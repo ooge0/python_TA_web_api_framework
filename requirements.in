@@ -1,0 +1,13 @@
+allure-pytest
+requests
+selenium
+pipdeptree
+loguru
+openpyxl
+faker
+PyHamcrest
+regex
+typing_extensions
+jsonschema
+pytest-xdist
+hypothesis
