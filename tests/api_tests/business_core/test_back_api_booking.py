@@ -21,7 +21,6 @@ class TestBackApiBooking:
     ref_response_status_code_Not_found = 404
     """##################################### GET - get booking ##########################"""
 
-    @pytest.mark.allure
     def test_backend_api_booking_Existing_bookingID_list_is_not_None(self, backend_api_client,
                                                                      back_end_api_booking_endpoint,
                                                                      backend_api_booking_valid_payload_test_data):
@@ -63,7 +62,6 @@ class TestBackApiBooking:
 
     """ ##################################### POST - booking creation ########################## """
 
-    @pytest.mark.allure
     @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
     def test_backend_api_booking_post_call_response_code_check(self, backend_api_client,
                                                                back_end_api_booking_endpoint,
@@ -81,7 +79,6 @@ class TestBackApiBooking:
                     f"Status code is not {self.ref_response_status_code_ok}, but {response.status_code}")
         self.logger.info(f"Response status code validated: {response.status_code} seconds")
 
-    @pytest.mark.allure
     def test_back_end_api_create_booking_with_no_token(self, backend_api_client, front_end_login_endpoint,
                                                        back_end_api_booking_endpoint,
                                                        backend_api_booking_valid_payload_test_data):
@@ -106,7 +103,6 @@ class TestBackApiBooking:
             self.logger.error(f"Booking by front-end API call creation failed. An error occurred: {e}")
         assert response.status_code == self.ref_response_status_code_ok
 
-    @pytest.mark.allure
     def test_backend_api_booking_bookingid_notNone_check(self, backend_api_client, back_end_api_booking_endpoint,
                                                          backend_api_post_test_payload):
         """
@@ -124,7 +120,6 @@ class TestBackApiBooking:
 
     """ ##################################### PUT - booking creation ########################## """
 
-    @pytest.mark.allure
     def test_backend_api_booking_create_booking(self, backend_api_client, back_end_api_booking_endpoint,
                                                 backend_api_booking_valid_payload_test_data):
         payload, headers = backend_api_booking_valid_payload_test_data
@@ -137,7 +132,6 @@ class TestBackApiBooking:
 
     """ ##################################### PUT - booking update ########################## """
 
-    @pytest.mark.allure
     def test_backend_api_booking_update(self, backend_api_client, back_end_api_booking_endpoint,
                                         backend_api_put_test_payload, back_end_auth_api_endpoint,
                                         api_valid_headers, back_api_valid_user_creds, get_back_end_token):
@@ -211,7 +205,6 @@ class TestBackApiBooking:
 
     """ ##################################### DELETE - booking deletion ########################## """
 
-    @pytest.mark.allure
     def test_backend_api_booking_delete_booking_by_valid_id(self, backend_api_client, back_end_api_booking_endpoint,
                                                             get_back_end_token, backend_api_post_test_payload,
                                                             backend_api_booking_valid_payload_test_data):

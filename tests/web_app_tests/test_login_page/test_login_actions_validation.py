@@ -29,7 +29,7 @@ class UiTestLoginActionFlow:
     utils = general_utils.GeneralUtils()
     logger = get_logger()
 
-    @pytest.mark.feature("login_form_validation")
+    @allure.feature("login_form_validation")
     def test_ui_Login_form_Placeholder_text_validation(self):
         """
         Here is an approach to use hardcoded data as tests data.
@@ -59,7 +59,7 @@ class UiTestLoginActionFlow:
         assert_that(navbar_link_present, is_(True), "navbar_link_present assertion failed")
 
     @pytest.mark.skipif((read_configuration("env", "env_to_test")) != "prod", reason="Test only for PROD environment")
-    @pytest.mark.feature("login_flow")
+    @allure.feature("login_flow")
     def test_ui_Login_process_validation_Valid_admin_creds_by_constants(self):
         """
         Here is an approach to use constants as tests data.
@@ -78,7 +78,7 @@ class UiTestLoginActionFlow:
     @pytest.mark.parametrize("user_name, user_password",
                              excel_utils.get_data_as_list("resources/test_data/booker_test_data.xlsx",
                                                           "login_test_data", True))
-    @pytest.mark.feature("login_flow")
+    @allure.feature("login_flow")
     def test_ui_Login_process_validation_Valid_admin_creds_by_shared_data_from_excel(self, user_name, user_password):
         """
         Here is implemented fixture usage and an approach to use external file (Excel file) to retrieve
@@ -96,7 +96,7 @@ class UiTestLoginActionFlow:
         assert_that(navbar_link_present, is_(True), "navbar_link_present assertion failed")
 
     @pytest.mark.parametrize("login_data_fixture", [lazy_fixture("login_test_by_invalid_data_for_single")])
-    @pytest.mark.feature("login_flow")
+    @allure.feature("login_flow")
     def test_ui_Login_process_validation_By_single_set_of_invalid_admin_creds(self, login_data_fixture):
         """
         Test checks login flow using all sets of invalid data from Excel doc.
@@ -106,7 +106,7 @@ class UiTestLoginActionFlow:
         self._execute_login_test(login_data_fixture)
 
     @pytest.mark.parametrize("login_data_fixture", [lazy_fixture("login_test_by_invalid_data_for_all")])
-    @pytest.mark.feature("login_flow")
+    @allure.feature("login_flow")
     def test_ui_Login_process_validation_By_multiple_sets_of_invalid_admin_creds(self, login_data_fixture):
         """
         Test checks login flow using all sets of invalid data from Excel doc.
@@ -161,7 +161,7 @@ class UiTestLoginActionFlow:
     @pytest.mark.parametrize("branding_text_on_the_header_navbar",
                              [excel_utils.get_cell_data("resources/test_data/booker_test_data.xlsx",
                                                         "data_validation_admin_page_ui", 3, 5)])
-    @pytest.mark.feature("admin_page_navbar_validation")
+    @allure.feature("admin_page_navbar_validation")
     def test_ui_Admin_page_Branding_name_validation_by_shared_data_from_excel_with_path(self,
                                                                                         branding_text_on_the_header_navbar):
         """
@@ -180,7 +180,7 @@ class UiTestLoginActionFlow:
         assert_that(navbar_link_present, is_(True), "navbar_link_present assertion failed")
 
     @pytest.mark.parametrize("sheet_name, row_number, column_number", [("data_validation_admin_page_ui", 3, 5)])
-    @pytest.mark.feature("admin_page_navbar_validation")
+    @allure.feature("admin_page_navbar_validation")
     def test_ui_Admin_page_Branding_name_validation_by_shared_data_from_excel_cell(self, excel_file_path, sheet_name,
                                                                                    row_number, column_number):
         """
@@ -201,7 +201,7 @@ class UiTestLoginActionFlow:
 
     @pytest.mark.parametrize("login_fixture", [{"user_name": "admin", "user_password": "password"}], indirect=True)
     @pytest.mark.parametrize("sheet_name, row_number, column_number", [("data_validation_admin_page_ui", 3, 5)])
-    @pytest.mark.feature("admin_page_navbar_validation")
+    @allure.feature("admin_page_navbar_validation")
     def test_ui_Admin_page_Branding_name_by_shared_data_from_excel_for_specific_cases(self, excel_file_path, sheet_name,
                                                                                       row_number,
                                                                                       column_number, login_fixture):
@@ -213,7 +213,7 @@ class UiTestLoginActionFlow:
         navbar_link_present = login_fixture.is_logout_navbar_link_visible
         assert_that(navbar_link_present, is_(True), "navbar_link_present assertion failed")
 
-    @pytest.mark.feature("admin_page_navbar_validation")
+    @allure.feature("admin_page_navbar_validation")
     def test_ui_Admin_page_Navbar_content_validation_by_shared_data_from_db(self):
         """
         Tests validation for branding name using data from database.

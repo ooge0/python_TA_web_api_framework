@@ -1,6 +1,7 @@
 """
 Module contains tests related to the front-end API /booking endpoint.
 """
+import allure
 import pytest
 from hamcrest import assert_that, is_, is_not
 
@@ -16,7 +17,7 @@ class TestFrontApiBooking:
     logger = get_logger()
     ref_response_status_code = 200
 
-    @pytest.mark.allure
+    @allure.feature("front-end- Booking")
     def test_front_api_create_token(self, frontend_api_client, front_end_login_endpoint, front_api_valid_user_creds):
         """
         Test to check token creation by valid credentials
@@ -36,8 +37,8 @@ class TestFrontApiBooking:
         else:
             pytest.fail("Set-Cookie header not found in response")
 
-    @pytest.mark.allure
-    def test_front_api_create_booking_with_valid_token(self, backend_api_client,back_end_api_booking_endpoint,
+    @allure.feature("front-end- Booking")
+    def test_front_api_create_booking_with_valid_token(self, backend_api_client, back_end_api_booking_endpoint,
                                                        backend_api_booking_valid_payload_test_data):
         """
         Booking creation test by API call using 'back_end_api_booking_endpoint' and valid booking payload

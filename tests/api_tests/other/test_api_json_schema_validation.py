@@ -1,4 +1,4 @@
-import pytest
+import allure
 from hamcrest import assert_that, is_
 
 from config.logger_config import get_logger
@@ -13,7 +13,7 @@ class TestJsonValidation:
     logger = get_logger()
     ref_response_status_code = 200
 
-    @pytest.mark.allure
+    @allure.feature("Booking")
     def test_backend_api_Create_booking_response_check_via_json_validation(self, backend_api_client,
                                                                            back_end_api_booking_endpoint,
                                                                            backend_api_booking_valid_payload_test_data):
@@ -29,7 +29,7 @@ class TestJsonValidation:
         assert_that(response.status_code, is_(self.ref_response_status_code))
         validate_json(response.json(), BOOKING_SCHEMA_MAIN)
 
-    @pytest.mark.allure
+    @allure.feature("Booking")
     def test_backend_api_Existing_booking_by_id_response_check_via_json_validation(self, backend_api_client,
                                                                                    back_end_api_booking_endpoint,
                                                                                    backend_api_booking_valid_payload_test_data):

@@ -18,7 +18,6 @@ class TestFrontApiAuth:
     logger = get_logger()
     ref_response_status_code_Bad_creds = 403
 
-    @pytest.mark.allure
     def test_front_api_creation_token_by_valid_creds(self, frontend_api_client, front_end_login_endpoint,
                                                      front_api_valid_credentials_valid_headers):
         """
@@ -39,7 +38,6 @@ class TestFrontApiAuth:
         else:
             pytest.fail("Set-Cookie header not found in response")
 
-    @pytest.mark.allure
     def test_front_api_creation_token_by_invalid_creds(self, frontend_api_client, front_end_login_endpoint,
                                                        front_api_invalid_credentials_valid_headers):
         """
@@ -58,7 +56,6 @@ class TestFrontApiAuth:
             self.logger.info(
                 f"HTTPError occurred: {str(ex)} which is expected when requesting a token with invalid credentials")
 
-    @pytest.mark.allure
     def test_front_api_creation_token_by_invalid_creds_hypothesis_check(self, frontend_api_client, backend_api_client,
                                                                         front_end_login_endpoint,
                                                                         front_api_valid_credentials_valid_headers):
