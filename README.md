@@ -795,11 +795,11 @@ After successful execution of command allure starts server and provide server UR
 <a href="#toc" style="color: green;">go to TOC.</a>
 
 ### Test List
-List of existing tests for the current project is possible to generate by executing python script `utilities/make_list_of_tests.py`\
-Result will be presented in the `resources/list_of_all_project_tests.md`
-All tests are grouping by categories. 
+List of existing tests for the current project is possible to generate by executing python script [make_list_of_tests.py](utilities/make_list_of_tests.py).
+Result will be presented in the [list_of_all_project_tests.md](resources/list_of_all_project_tests.md). \
+All tests are grouping by categories. \
 IMPORTANT!!!
-If you did any changes, please validate path to the test dir in the `make_list_of_tests.py` 
+If you did any changes, please validate path to the test dir in the [make_list_of_tests.py](utilities/make_list_of_tests.py) 
 
 # Resources for TA frameworks
 
