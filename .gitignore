@@ -79,7 +79,7 @@ idea/
 /assets
 /etc
 /resources/logger_output
-/resources/allure_reports
+/resources/test_reports/allure_reports
 /resources/screenshots
 /tests/.hypothesis
 geckodriver.log

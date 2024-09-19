@@ -1,7 +1,10 @@
+pytest==7.4.4
 allure-pytest
+pytest-html
 requests
 selenium
-pipdeptree
+pytest-lazy-fixture
+pytest-xdist
 loguru
 openpyxl
 faker
@@ -9,5 +12,8 @@ PyHamcrest
 regex
 typing_extensions
 jsonschema
-pytest-xdist
 hypothesis
+pylint
+pipdeptree
+graphviz
+tach
