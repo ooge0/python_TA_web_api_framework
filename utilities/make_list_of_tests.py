@@ -31,19 +31,19 @@ def extract_test_info(pytest_output):
 
 
 def escape_md_special_chars(text):
-    """Escape special Markdown characters such as square brackets and ampersands."""
+    """Escape special MarkDown characters such as square brackets and ampersands."""
     return text.replace('[', r'\[').replace(']', r'\]').replace('&', r'\&')
 
 
 def generate_md_links(test_info, base_dir) -> defaultdict(list):
-    """Generate a dictionary of markdown links grouped by test class (if '::' is present)."""
+    """Generate a dictionary of MarkDown links grouped by test class (if '::' is present)."""
     md_links = defaultdict(list)  # Using defaultdict to group test names under their class/category
 
     for file_path, test_name in test_info:
         abs_file_path = os.path.abspath(file_path)
-        relative_path = os.path.relpath(abs_file_path, base_dir)
+        relative_path = f"../{file_path.split('python_TA_web_api_framework/')[1]}"
 
-        # Escape special characters in the test name for Markdown
+        # Escape special characters in the test name for MarkDown
         escaped_test_name = escape_md_special_chars(test_name)
 
         # Split the test_name by '::' to separate the category (class) and method
@@ -51,8 +51,7 @@ def generate_md_links(test_info, base_dir) -> defaultdict(list):
             category, method = escaped_test_name.split("::", 1)
         else:
             category, method = "Miscellaneous", escaped_test_name  # Group tests without '::' under "Miscellaneous"
-
-        # Create the markdown link for the method
+        # Create the MarkDown link for the method
         md_link = f"[{method}]({relative_path})"
 
         # Append the link under the respective category
@@ -62,7 +61,7 @@ def generate_md_links(test_info, base_dir) -> defaultdict(list):
 
 
 def write_md_file(md_links, output_file):
-    """Write the markdown links to an output file, grouped by category."""
+    """Write the MarkDown links to an output file, grouped by category."""
     # Ensure output directory exists
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
@@ -83,7 +82,7 @@ def write_md_file(md_links, output_file):
 
 
 def main(test_file_path, output_md_file):
-    """Main function to get test names and generate markdown file."""
+    """Main function to get test names and generate MarkDown file."""
     # Get the script's directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     print("script_dir:", script_dir)
@@ -111,7 +110,6 @@ def main(test_file_path, output_md_file):
 
     md_links = generate_md_links(test_info, project_root)
     write_md_file(md_links, abs_output_md_file)
-    print(f"Markdown file generated at: {abs_output_md_file}")
 
 
 if __name__ == "__main__":
