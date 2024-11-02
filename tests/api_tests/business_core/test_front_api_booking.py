@@ -20,11 +20,11 @@ class TestFrontApiBooking:
     @allure.feature("front-end- Booking")
     def test_front_api_create_token(self, frontend_api_client, front_end_login_endpoint, front_api_valid_user_creds):
         """
-        Test to check token creation by valid credentials
+        Test to check token creation by valid credentials.
+
         :param frontend_api_client:
         :param front_end_login_endpoint:
         :param front_api_valid_user_creds:
-        :return: None
         """
         user_creds = front_api_valid_user_creds
         response = frontend_api_client.post(front_end_login_endpoint, json=user_creds)
@@ -41,11 +41,11 @@ class TestFrontApiBooking:
     def test_front_api_create_booking_with_valid_token(self, backend_api_client, back_end_api_booking_endpoint,
                                                        backend_api_booking_valid_payload_test_data):
         """
-        Booking creation test by API call using 'back_end_api_booking_endpoint' and valid booking payload
+        Booking creation test by API call using 'back_end_api_booking_endpoint' and valid booking payload.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data: Fixture, returned valid test data: payload and headers
-        :return: None
         """
 
         payload, headers = backend_api_booking_valid_payload_test_data

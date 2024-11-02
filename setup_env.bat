@@ -1,5 +1,8 @@
 @echo off
 
+:: Get current working dir and set it as PYTHONPATH
+SET PYTHONPATH="$(pwd)"
+
 :: Check if Python is installed
 python --version 2>NUL
 IF ERRORLEVEL 1 (
@@ -50,7 +53,19 @@ echo "Compiling requirements.txt from requirements.in..."
 echo "Installing dependencies from requirements.txt..."
 .\.venv\Scripts\pip install -r requirements.txt
 
-echo "Setup completed successfully."
-
 :: Inform user to activate the virtual environment manually
 echo "To activate the virtual environment, run: .\.venv\Scripts\activate"
+
+:: Activate the virtual environment
+call .venv\Scripts\activate
+
+:: Inform user of successful activation
+echo "Virtual environment activated."
+
+:: Get current working dir and set it as PYTHONPATH
+SET PYTHONPATH=%cd%
+
+:: Print PYTHONPATH
+echo PYTHONPATH defined as: %PYTHONPATH%
+
+echo "Setup completed successfully."

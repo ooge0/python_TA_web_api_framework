@@ -1,3 +1,6 @@
+"""
+Package includes method for reading configuration
+"""
 import os
 from configparser import ConfigParser
 
@@ -7,6 +10,11 @@ logger = get_logger()
 
 
 def read_configuration(category, key):
+    """
+    Method retrieves data (key) for specific category from 'config.ini' file
+
+    :return: Value from 'config.ini'
+    """
     # Get the directory of the current file
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,3 +27,4 @@ def read_configuration(category, key):
         return config.get(category, key)
     except Exception as e:
         logger.error(f"Read configuration error: {e}")
+

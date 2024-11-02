@@ -21,11 +21,11 @@ class TestFrontApiAuth:
     def test_front_api_creation_token_by_valid_creds(self, frontend_api_client, front_end_login_endpoint,
                                                      front_api_valid_credentials_valid_headers):
         """
-        Test to check token creation by valid credentials
+        Test to check token creation by valid credentials.
+
         :param frontend_api_client: Fixture - Client to interact with the frontend API
         :param front_end_login_endpoint: Fixture - Frontend endpoint for token generation
         :param front_api_valid_credentials_valid_headers: Fixture -  Provides valid user creds and header
-        :return: None
         """
         user_creds, headers = front_api_valid_credentials_valid_headers
         response = frontend_api_client.post(front_end_login_endpoint, headers=headers, json=user_creds)
@@ -41,12 +41,12 @@ class TestFrontApiAuth:
     def test_front_api_creation_token_by_invalid_creds(self, frontend_api_client, front_end_login_endpoint,
                                                        front_api_invalid_credentials_valid_headers):
         """
-                Test to check token creation by invalid credentials.
-                This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-                :param frontend_api_client: Client to interact with the frontend API
-                :param front_api_invalid_credentials_valid_headers: Fixture -  Provides valid user creds and header
-                :return: None
-                """
+        Test to check token creation by invalid credentials.
+        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+
+        :param frontend_api_client: Client to interact with the frontend API
+        :param front_api_invalid_credentials_valid_headers: Fixture -  Provides valid user creds and header
+        """
         user_creds, headers = front_api_invalid_credentials_valid_headers
         try:
             frontend_api_client.post(front_end_login_endpoint, headers=headers, json=user_creds)
@@ -60,10 +60,12 @@ class TestFrontApiAuth:
                                                                         front_end_login_endpoint,
                                                                         front_api_valid_credentials_valid_headers):
         """
+        Test checks token creation by invalid user credentials.
+        Main focus on usage 'hypothesis' library that is passing generated date via configured template
+
         :param frontend_api_client:
         :param backend_api_client:
         :param front_end_login_endpoint:
-        :return:
         """
 
         @settings(max_examples=10, deadline=None)
@@ -76,9 +78,9 @@ class TestFrontApiAuth:
             Hypothes's @settings >> Limit the number of examples for faster execution during development. Disable the deadline to avoid timing issues
             Test is doing validation of created token by using different sets of values for 'username' and 'password'
             for making payload.
+
             :param username:
             :param password:
-            :return:
             """
             self.logger.info(f"Testing with username: '{username}' and password: '{password}'")
             user_creds, headers = front_api_valid_credentials_valid_headers

@@ -23,10 +23,11 @@ class TestApiPerformance:
                                                             back_end_api_booking_endpoint,
                                                             backend_api_booking_valid_payload_test_data):
         """
+        Test checks the time of back-end API call for /auth
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         payload, headers = backend_api_booking_valid_payload_test_data
 
@@ -38,10 +39,11 @@ class TestApiPerformance:
                                                             back_end_api_booking_endpoint,
                                                             backend_api_booking_valid_payload_test_data):
         """
+        Test checks response status code of back-end API call for POST /auth.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         payload, headers = backend_api_booking_valid_payload_test_data
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
@@ -55,10 +57,11 @@ class TestApiPerformance:
     def test_backend_api_booking_post_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
                                                                backend_api_booking_valid_payload_test_data):
         """
+        Test checks response status code of back-end API call for POST /booking.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         payload, headers = backend_api_booking_valid_payload_test_data
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
@@ -69,10 +72,11 @@ class TestApiPerformance:
     def test_backend_api_booking_put_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
                                                               backend_api_booking_valid_payload_test_data):
         """
+        Test checks response time of back-end API call for POST /booking.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         payload, headers = backend_api_booking_valid_payload_test_data
         get_latest_created_booking_id = 2
@@ -86,10 +90,11 @@ class TestApiPerformance:
     def test_backend_api_booking_patch_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
                                                                 backend_api_booking_valid_payload_test_data):
         """
+        Test checks response time of back-end API call for PATCH /booking.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         payload, headers = backend_api_booking_valid_payload_test_data
         param = 3
@@ -107,10 +112,11 @@ class TestApiPerformance:
                                                                  back_end_api_booking_endpoint,
                                                                  backend_api_booking_valid_payload_test_data):
         """
+        Test checks response time of back-end API call for DELETE /booking.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return:
         """
         _, headers = backend_api_booking_valid_payload_test_data
         param = 3

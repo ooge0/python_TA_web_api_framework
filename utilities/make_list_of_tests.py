@@ -1,3 +1,7 @@
+"""
+Package provides method for getting names of created tests by pytest script
+and generate MarkDown file based on retrieved info.
+"""
 import os
 import re
 import subprocess

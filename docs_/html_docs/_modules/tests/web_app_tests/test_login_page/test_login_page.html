@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests.web_app_tests.test_login_page.test_login_page &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tests.web_app_tests.test_login_page.test_login_page</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tests.web_app_tests.test_login_page.test_login_page</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tests for Login page</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">hamcrest</span> <span class="kn">import</span> <span class="n">assert_that</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">,</span> <span class="n">is_</span><span class="p">,</span> <span class="n">has_item</span>
+
+<span class="kn">from</span> <span class="nn">config.logger_config</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">core.pages.login_page</span> <span class="kn">import</span> <span class="n">LoginAdminPage</span>
+<span class="kn">from</span> <span class="nn">core.reference_data.home_page_validation_data</span> <span class="kn">import</span> <span class="n">HomePageReferenceDataFromDB</span>
+<span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">read_configurations</span><span class="p">,</span> <span class="n">excel_utils</span><span class="p">,</span> <span class="n">general_utils</span>
+<span class="kn">from</span> <span class="nn">utilities.db_utils</span> <span class="kn">import</span> <span class="n">get_data_from_db_as_dict</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s1">&#39;setup_and_teardown&#39;</span><span class="p">,</span>
+    <span class="p">[{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">read_configurations</span><span class="o">.</span><span class="n">read_configuration</span><span class="p">(</span><span class="s2">&quot;basic info&quot;</span><span class="p">,</span> <span class="s2">&quot;front_home_page_url&quot;</span><span class="p">),</span>
+      <span class="s2">&quot;browser&quot;</span><span class="p">:</span> <span class="n">read_configurations</span><span class="o">.</span><span class="n">read_configuration</span><span class="p">(</span><span class="s2">&quot;basic info&quot;</span><span class="p">,</span> <span class="s2">&quot;browser&quot;</span><span class="p">),</span>
+      <span class="s2">&quot;browser_headless_mode&quot;</span><span class="p">:</span> <span class="n">read_configurations</span><span class="o">.</span><span class="n">read_configuration</span><span class="p">(</span><span class="s2">&quot;basic info&quot;</span><span class="p">,</span> <span class="s2">&quot;browser_headless_mode&quot;</span><span class="p">)</span>
+      <span class="p">}],</span>
+    <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&quot;setup_and_teardown&quot;</span><span class="p">,</span> <span class="s2">&quot;log_failure_by_picture&quot;</span><span class="p">,</span> <span class="s2">&quot;setup_database&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="TestLoginPage">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage">[docs]</a>
+<span class="k">class</span> <span class="nc">TestLoginPage</span><span class="p">:</span>
+<div class="viewcode-block" id="TestLoginPage.driver">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.driver">[docs]</a>
+    <span class="n">driver</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="TestLoginPage.utils">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.utils">[docs]</a>
+    <span class="n">utils</span> <span class="o">=</span> <span class="n">general_utils</span><span class="o">.</span><span class="n">GeneralUtils</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestLoginPage.logger">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.logger">[docs]</a>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">()</span></div>
+
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;sheet_name&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;login_test_data&quot;</span><span class="p">])</span>
+<div class="viewcode-block" id="TestLoginPage.test_login_by_valid_admin_creds_by_shared_data_from_excel_by_data_from_fixture">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.test_login_by_valid_admin_creds_by_shared_data_from_excel_by_data_from_fixture">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_login_by_valid_admin_creds_by_shared_data_from_excel_by_data_from_fixture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span>
+                                                                                       <span class="n">excel_data_from_sheet</span><span class="p">):</span>
+        <span class="n">user_name</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">excel_data_from_sheet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">login_admin_page</span> <span class="o">=</span> <span class="n">LoginAdminPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">login_admin_page</span><span class="o">.</span><span class="n">login_to_admin_panel</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">user_name</span><span class="p">,</span> <span class="n">user_password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+
+        <span class="n">navbar_link_present</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">is_logout_navbar_link_visible</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">navbar_link_present</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;navbar_link_present assertion failed&quot;</span><span class="p">)</span></div>
+
+
+    <span class="c1"># @pytest.mark.feature(&quot;admin_page_navbar_validation&quot;)</span>
+<div class="viewcode-block" id="TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_with_path">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_with_path">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_branding_name_validation_by_shared_data_from_excel_with_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branding_text_on_the_header_navbar</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Here is implemented parametrized fixture usage with external function as parameter and an approach to</span>
+<span class="sd">        use external file (Excel file) to retrieve stored data.</span>
+<span class="sd">        Created excel utilit allows to request directly data from the file by path, sheet name and name of cells.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">login_admin_page</span> <span class="o">=</span> <span class="n">LoginAdminPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">login_admin_page</span><span class="o">.</span><span class="n">login_to_admin_panel</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="n">user_password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+        <span class="n">branding_branding_name_details_from_page</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">get_branding_name_details</span><span class="p">()</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">(</span><span class="n">branding_text_on_the_header_navbar</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s2">&quot;Expected: </span><span class="si">{</span><span class="n">branding_text_on_the_header_navbar</span><span class="si">}</span><span class="s2">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s2">. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Data from Excel is wrong for row_number and column_number&quot;</span><span class="p">)</span>
+        <span class="n">navbar_link_present</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">is_logout_navbar_link_visible</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">navbar_link_present</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;navbar_link_present assertion failed&quot;</span><span class="p">)</span></div>
+
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;sheet_name, row_number, column_number&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;data_validation_admin_page_ui&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<div class="viewcode-block" id="TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_cell">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_cell">[docs]</a>
+    <span class="c1"># @pytest.mark.feature(&quot;admin_page_navbar_validation&quot;)</span>
+    <span class="k">def</span> <span class="nf">test_branding_name_validation_by_shared_data_from_excel_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excel_file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span>
+                                                                     <span class="n">row_number</span><span class="p">,</span> <span class="n">column_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Here is implemented fixture usage and an approach to use external file (Excel file) to retrieve</span>
+<span class="sd">        stored data.</span>
+<span class="sd">        Created excel utilit allows to request directly data from the file by path, sheet name and name of cells.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">branding_text_on_the_header_navbar</span> <span class="o">=</span> <span class="n">excel_utils</span><span class="o">.</span><span class="n">get_cell_data</span><span class="p">(</span><span class="n">excel_file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">row_number</span><span class="p">,</span>
+                                                                       <span class="n">column_number</span><span class="p">)</span>
+        <span class="n">login_admin_page</span> <span class="o">=</span> <span class="n">LoginAdminPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">login_admin_page</span><span class="o">.</span><span class="n">login_to_admin_panel</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="n">user_password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+        <span class="n">branding_branding_name_details_from_page</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">get_branding_name_details</span><span class="p">()</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">(</span><span class="n">branding_text_on_the_header_navbar</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s2">&quot;Expected: </span><span class="si">{</span><span class="n">branding_text_on_the_header_navbar</span><span class="si">}</span><span class="s2">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s2">. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;WRONG DATA from Excel for row_number: </span><span class="si">{</span><span class="n">row_number</span><span class="si">}</span><span class="s2"> and column_number: </span><span class="si">{</span><span class="n">column_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">navbar_link_present</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">is_logout_navbar_link_visible</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">navbar_link_present</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;navbar_link_present assertion failed&quot;</span><span class="p">)</span></div>
+
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;login_fixture&quot;</span><span class="p">,</span> <span class="p">[{</span><span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;user_password&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">}],</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;sheet_name, row_number, column_number&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;data_validation_admin_page_ui&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<div class="viewcode-block" id="TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_for_specific_cases">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.test_branding_name_validation_by_shared_data_from_excel_for_specific_cases">[docs]</a>
+    <span class="c1"># @pytest.mark.feature(&quot;admin_page_navbar_validation&quot;)</span>
+    <span class="k">def</span> <span class="nf">test_branding_name_validation_by_shared_data_from_excel_for_specific_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excel_file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span>
+                                                                                   <span class="n">row_number</span><span class="p">,</span>
+                                                                                   <span class="n">column_number</span><span class="p">,</span> <span class="n">login_fixture</span><span class="p">):</span>
+        <span class="n">branding_text_on_the_header_navbar</span> <span class="o">=</span> <span class="n">excel_utils</span><span class="o">.</span><span class="n">get_cell_data</span><span class="p">(</span><span class="n">excel_file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">row_number</span><span class="p">,</span>
+                                                                       <span class="n">column_number</span><span class="p">)</span>
+        <span class="n">branding_branding_name_details_from_page</span> <span class="o">=</span> <span class="n">login_fixture</span><span class="o">.</span><span class="n">get_branding_name_details</span><span class="p">()</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">(</span><span class="n">branding_text_on_the_header_navbar</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">&#39;Expected: </span><span class="si">{</span><span class="n">branding_text_on_the_header_navbar</span><span class="si">}</span><span class="s1">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">navbar_link_present</span> <span class="o">=</span> <span class="n">login_fixture</span><span class="o">.</span><span class="n">is_logout_navbar_link_visible</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">navbar_link_present</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;navbar_link_present assertion failed&quot;</span><span class="p">)</span></div>
+
+
+    <span class="c1"># @pytest.mark.feature(&quot;admin_page_navbar_validation&quot;)</span>
+<div class="viewcode-block" id="TestLoginPage.test_admin_page_content_validation_by_shared_data_from_db">
+<a class="viewcode-back" href="../../../../tests/tests.web_app_tests.test_login_page.html#tests.web_app_tests.test_login_page.test_login_page.TestLoginPage.test_admin_page_content_validation_by_shared_data_from_db">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_admin_page_content_validation_by_shared_data_from_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests validation for branding name using data from MySQL database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">login_admin_page</span> <span class="o">=</span> <span class="n">LoginAdminPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">login_admin_page</span><span class="o">.</span><span class="n">login_to_admin_panel</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="n">user_password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+        <span class="n">branding_branding_name_details_from_page</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">login_admin_page</span><span class="o">.</span><span class="n">get_branding_name_details</span><span class="p">()</span>
+
+        <span class="c1"># Fetch data from the database</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">get_data_from_db_as_dict</span><span class="p">(</span><span class="s1">&#39;data_validation_admin_page_ui&#39;</span><span class="p">)</span>
+        <span class="n">ValidationData</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;ValidationData&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">validation_data</span> <span class="o">=</span> <span class="n">ValidationData</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">expected_value_from_db_converted_dict</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">validation_data</span><span class="o">.</span><span class="n">branding_text_on_the_header_navbar</span>
+        <span class="n">expected_value_from_db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_validation_data_from_db</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+                                                                        <span class="n">HomePageReferenceDataFromDB</span><span class="o">.</span><span class="n">BRANDING_TEXT_ON_THE_HEADER_NAVBAR</span><span class="p">)</span>
+
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">(</span><span class="n">expected_value_from_db_converted_dict</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">&#39;Expected: </span><span class="si">{</span><span class="n">expected_value_from_db_converted_dict</span><span class="si">}</span><span class="s1">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">,</span> <span class="n">equal_to</span><span class="p">(</span><span class="n">expected_value_from_db</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">&#39;Expected: </span><span class="si">{</span><span class="n">expected_value_from_db</span><span class="si">}</span><span class="s1">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">validation_data</span><span class="p">,</span> <span class="n">has_item</span><span class="p">(</span><span class="n">branding_branding_name_details_from_page</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">&#39;Expected: </span><span class="si">{</span><span class="n">validation_data</span><span class="si">}</span><span class="s1">, but given: </span><span class="si">{</span><span class="n">branding_branding_name_details_from_page</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">login_admin_page</span><span class="o">.</span><span class="n">is_logout_navbar_link_visible</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;navbar_link_present assertion failed&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,3 +1,9 @@
+"""
+Module includes JSON schemas for /booking endpoint
+* 'BOOKING_SCHEMA_MAIN' - for using with back-end API
+* 'BOOKING_SCHEMA_secondary' - for using with front-end API
+"""
+
 BOOKING_SCHEMA_MAIN = {
     "type": "object",
     "properties": {

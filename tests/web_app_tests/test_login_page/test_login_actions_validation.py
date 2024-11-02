@@ -1,3 +1,6 @@
+"""
+Tests for validations of login actions
+"""
 from collections import namedtuple
 
 import allure

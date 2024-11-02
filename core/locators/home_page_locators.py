@@ -1,7 +1,21 @@
+# /core/locators/home_page_locators.py
+"""
+Module contains the locators for the elements on the Home Page.
+
+It includes specific XPATH and CSS selectors for key elements
+used in automated tests for interacting with the application's home page.
+"""
 from core.locators.base_locators import BaseLocators
 
 
 class HomePageLocators(BaseLocators):
+    """
+    Class contains the locators for the elements on the Home Page.
+
+    It inherits from BaseLocators and defines various XPATH and CSS selectors
+    for key elements, such as buttons, images, and sections that can be used
+    in automated tests for interacting with the home page of the application.
+    """
     LET_ME_HACK_BUTTON_XPATH_LOCATOR = "//*[@data-target='#collapseBanner']/button"
     LOGO_PICTURE_CLASS_LOCATOR = "map"
     LOGO_WELCOME_TEXT_CLASS_LOCATOR = "row hotel-description"

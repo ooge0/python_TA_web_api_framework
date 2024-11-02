@@ -1,3 +1,14 @@
+# /core/api/api_client.py
+"""
+`APIClient` module as class provides a central interface for interacting with web APIs.
+
+This class offers methods to:
+
+  - Send API requests using various HTTP methods (GET, POST, PUT, PATCH, DELETE).
+  - Manage base URL and request session.
+  - Handle request headers, JSON bodies, and query parameters.
+  - Log API requests and responses.
+"""
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 
@@ -8,6 +19,20 @@ from config.logger_config import get_logger
 
 @dataclass
 class APIClient:
+    """
+    `APIClient` class provides a central interface for interacting with web APIs.
+
+    Attributes:
+        base_url (str): The base URL for the API.
+        session (requests.Session): The session object for making requests.
+        logger: Logger for logging API requests and responses.
+
+    This class offers methods to:
+        - Send API requests using various HTTP methods (GET, POST, PUT, PATCH, DELETE).
+        - Manage base URL and request session.
+        - Handle request headers, JSON bodies, and query parameters.
+        - Log API requests and responses.
+    """
     base_url: str
     session: requests.Session = requests.Session()
     logger = get_logger()
@@ -16,7 +41,21 @@ class APIClient:
                  json: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) -> requests.Response:
         """
         Method to execute API requests with parameters for method, endpoint, headers, JSON body, and query parameters.
+
+        :param method: HTTP method to use for the request (e.g., 'GET', 'POST').
+        :type method: str
+        :param endpoint: API endpoint to send the request to (e.g., '/resource').
+        :type endpoint: str
+        :param headers: Optional dictionary of headers to include in the request (e.g., authorization tokens).
+        :type headers: Optional[Dict[str, str]]
+        :param json: Optional dictionary containing the JSON data to include in the request body (for POST, PUT, etc.).
+        :type json: Optional[Dict[str, Any]]
+        :param params: Optional dictionary containing query parameters to include in the request URL.
+        :type params: Optional[Dict[str, Any]]
+        :return: The response object resulting from the API request.
+        :rtype: requests.Response
         """
+
         url = f"{self.base_url}{endpoint}"
         try:
             response = self.session.request(method=method, url=url, headers=headers, json=json, params=params)

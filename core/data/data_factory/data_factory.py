@@ -1,4 +1,10 @@
-# data_factory.py
+# /core/data/data_factory/data_factory.py
+"""
+Package contains methods for extracting test data as data sets
+from different sources like  Excel files, fixtures, external DBs.
+Package contains methods get data using 'valid_data_flag' that will reference to set
+of valid/invalid data for tests.
+"""
 from typing import List, Optional
 
 from config.logger_config import get_logger
@@ -7,6 +13,9 @@ from utilities.excel_data_provider import ExcelDataProvider
 
 
 class DataFactory:
+    """
+    Class for manipulating data from external sources as test data
+    """
     def __init__(self, file_path: str):
         self.provider = ExcelDataProvider(file_path)
         self.logger = get_logger()
@@ -17,9 +26,10 @@ class DataFactory:
         Method creates data that is retried from Excel file
 
         :param sheet_name:
-        :param valid_data_flag: Used for getting data for positive tests(flag=1
+        :param valid_data_flag: Used for getting data for positive tests(flag=1) and negative if flag=0
         :param excel_test_data_index:
-        :return:
+
+        :return: Login credentials: user_name, user_password,
         """
         raw_data = self.provider.get_valid_data(sheet_name) if valid_data_flag else self.provider.get_invalid_data(sheet_name)
         if excel_test_data_index is not None:

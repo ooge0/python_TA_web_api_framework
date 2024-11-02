@@ -1,3 +1,7 @@
+"""
+Fixtures for tests on Login page
+"""
+
 import pytest
 from selenium.common import TimeoutException
 
@@ -10,6 +14,7 @@ def login_fixture(request, setup_and_teardown):
     Execute login actions to the Admin panel
     :param request:
     :param setup_and_teardown:
+
     :return: Driver instance
     """
     driver = setup_and_teardown

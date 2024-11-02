@@ -1,0 +1,302 @@
+.. ta_framework_ui_api documentation master file created by sphinx-quickstart on Fri Sep 20 14:04:30 2024.
+
+.. logo-begin-content
+
+.. figure:: /_static/images/logo_m.png
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
+    Where Python make magic...
+
+
+.. logo-end-content
+
+
+
+INTRO
+=====================
+
+Welcome to the Python Hybrid Test Automation Framework Documentation!
+
+Current project created for testing UI, front-end and back-end API of restful-booker web-site - `<https://automationintesting.online>`_
+
+More information about author of website, its  you can find here >> `<https://www.ministryoftesting.com/>`_
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: INTRO
+
+   about/AboutThisGuide
+
+-----------------------------------
+
+.. _toc:
+
+.. rubric:: Table of content
+
+.. contents::
+   :local:
+   :depth: 4
+   :backlinks: top
+
+
+Main project content
+====================
+
+This project contains source code, documentation, configurations, usage of developed tet automation framework and created tests themselves.
+Completed project configuration process is describing in Readme.md file below. All needed scripts are included.
+
+Documentation describes all steps for configuring all parts of projects, creating virtual env, installing required packages and related software.
+Also project contains detailed instruction on how to run tests.
+
+Introduction
+------------
+
+This section provides an overview of the main components of the hybrid test automation framework, which integrates **UI tests**, **API tests**, and **backend validation**.
+
+.. note::
+   The framework supports Selenium for web UI testing, `requests` for API testing, and and native SQL scripting for database operations. It is designed to scale and integrate with CI/CD pipelines.
+
+Framework Structure
+-------------------
+
+Go to :ref:`toc`
+
+The test automation framework consists of the following main components:
+
+- **UI Tests**: Automated browser tests using Selenium WebDriver.
+- **API Tests**: RESTful API testing using the `requests` library.
+- **Backend Tests**: Database validation through direct queries.
+
+.. warning::
+   Make sure to configure the correct environment variables and database connections before running tests.
+
+Features
+-------------------
+
+Go to :ref:`toc`
+
+Here are some of the key features:
+
+- **Data-Driven Testing**: Test data can be sourced from Excel files, databases, or JSON files.
+- **Allure Reporting**: The framework generates Allure reports for visual test results.
+- **Parallel Execution**: Supports parallel test execution using `pytest-xdist`.
+
+Project directories
+-------------------
+
+The main directories of the project are:
+
+.. code-block:: text
+
+   ├── core
+   ├── config
+   ├── resources
+   ├── utilities
+   └── tests
+
+   Each folder contains relevant modules for different testing functionalities.
+
+
+.. admonition:: Note for Contributors
+
+   Please ensure that you adhere to the project’s coding guidelines when contributing. Use `flake8` or `pylint`  for linting and ensure proper documentation of all functions.
+
+Framework Setup
+================
+
+Go to :ref:`toc`
+
+    In this project used `pip-tools` and approach to use high-level dependency tree.
+
+    Main required packages presented in `requirements.in`.
+
+    All used Python packages for the current project are generates in `requirements.txt` by `requirements.in` .
+
+    Make sure to configure the environment variables and dependencies correctly before running the project's tests.
+
+Here is a high-level guide for setting up the framework:
+
+1. **Install dependencies** using `\requirements.txt`.
+
+.. tabs::
+
+   .. tab:: Bash
+
+      .. code-block:: bash
+         :caption: Install Requirements
+
+         pip install -r requirements.txt
+
+   .. tab:: Command Prompt
+
+      .. code-block:: bat
+         :caption: Install Requirements
+
+         pip install -r requirements.txt
+
+   .. tab:: PowerShell
+
+      .. code-block:: powershell
+         :caption: Install Requirements
+
+         pip install -r requirements.txt
+
+2. **Configure the environment** by setting up `.env` files for different environments like `test`, etc.
+
+3. **Run tests** using `pytest` with the appropriate environment.
+
+   .. code-block:: bash
+
+      pytest --env=staging --alluredir=./allure-results
+
+.. rubric:: Quick link to Readme.md file
+
+Readme.md
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: General
+
+   readme
+
+Additional Notes
+----------------
+
+.. important::
+    - For more detailed documentation on how to extend the framework, see the `Readme <readme.html>`_.
+    - For troubleshooting common issues, visit the `FAQ <https://github.com/project/repo/wiki/FAQ>`_.
+
+
+Project packages
+================
+
+.. toctree::
+   :maxdepth: 5
+   :titlesonly:
+   :numbered:
+
+   config
+   core
+   resources
+   utilities
+   tests
+
+
+Project modules summary
+=======================
+
+.. toctree::
+   :maxdepth: 5
+   :titlesonly:
+   :caption: Project modules summary
+
+   modules_summary
+
+
+Project entities
+================
+
+.. toctree::
+   :maxdepth: 5
+   :titlesonly:
+   :caption: Project entities
+
+   all_classes_and_members
+
+
+'core' package summary list
+============================
+
+.. toctree::
+   :maxdepth: 5
+   :titlesonly:
+   :caption: 'core' package summary list:
+
+   methods_list
+
+
+Tests
+========
+
+.. note::
+    This section contains information about tests that are created for tested functionality of developed website.
+
+    All included tests divided logically on sections related to back-end , front-end or UI test of web application. For better navigation  each package contains separate package (folder).
+
+    While this project implements the usage of the PyTest library, all related information can be found in the dedicated section of the `README.md file <README_.html#tests>`_.
+    Below is content of test packages.
+
+.. toctree::
+   :titlesonly:
+   :caption: Tests
+
+   tests
+   list_of_all_project_tests.rst
+
+
+
+Diagrams/Graphs
+=================
+
+.. toctree::
+   :titlesonly:
+   :caption: Dependency graphs
+
+   graphs
+
+
+Class relationships
+-------------------
+
+Here is a magic
+
+api client function relationships
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: Class relationships
+
+.. include:: api_client_function_relationships.rst
+
+
+classes_ta_framework_ui_api.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: /_static/diagrams/pics/classes_ta_framework_ui_api.png
+
+packages_ta_framework_ui_api.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: /_static/diagrams/pics/packages_ta_framework_ui_api.png
+
+packages_core.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: /_static/diagrams/pics/packages_core.png
+
+packages_core_api.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: /_static/diagrams/pics/packages_core_api.png
+
+packages_core_data.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: /_static/diagrams/pics/packages_core_data.png
+
+packages_ta_framework_ui_api.png
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: /_static/diagrams/pics/packages_ta_framework_ui_api.png
+
+
+------------------------
+
+.. toctree::
+   :caption: Python Module Index
+   :numbered:
+   :glob:
+
+   modindex
+

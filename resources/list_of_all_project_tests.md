@@ -1,5 +1,4 @@
-
- ### Test List
+### Test List
 Total tests: 38
 #### 1. TestBackApiAuth
 1. [test_back_api_creation_token_by_valid_creds](../tests/api_tests/business_core/test_back_api_auth.py)

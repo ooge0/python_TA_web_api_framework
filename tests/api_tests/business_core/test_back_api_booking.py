@@ -27,10 +27,10 @@ class TestBackApiBooking:
         """
         Get all bookings by GET API call using 'back_end_api_booking_endpoint'
         Test checks that Existing bookingID list has not None values for bookingID.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
-        :return: None
         """
         _, headers = backend_api_booking_valid_payload_test_data
         response = backend_api_client.get(back_end_api_booking_endpoint, headers=headers)
@@ -46,11 +46,11 @@ class TestBackApiBooking:
                                                                                  backend_api_booking_valid_payload_test_data):
         """
         Get all bookings by GET API call using 'back_end_api_booking_endpoint'.
-        Test checks that Existing booking list has bookingig greater '0'
+        Test checks that Existing booking list has bookingig greater '0'.
+
         :param backend_api_client:
         :param front_end_login_endpoint:
         :param back_end_api_booking_endpoint:
-        :return: None
         """
         _, headers = backend_api_booking_valid_payload_test_data
         response = backend_api_client.get(back_end_api_booking_endpoint, headers=headers)
@@ -67,11 +67,11 @@ class TestBackApiBooking:
                                                                back_end_api_booking_endpoint,
                                                                backend_api_post_test_payload):
         """
-        Create booking by POST API call using 'back_end_api_booking_endpoint'
+        Create booking by POST API call using 'back_end_api_booking_endpoint'.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_post_test_payload:
-        :return: None
         """
         payload, headers = backend_api_post_test_payload
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
@@ -85,12 +85,12 @@ class TestBackApiBooking:
         """
         Booking creation test by backend API call using 'back_end_api_booking_endpoint' and valid booking payload.
         API not required token for POST call. It's essential API behavior , not a bug.
+
         :param backend_api_client:
         :param front_end_login_endpoint:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data: Fixture, returned valid test data: payload and headers for
         booking backend API call
-        :return: None
         """
         payload, headers = backend_api_booking_valid_payload_test_data
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
@@ -103,14 +103,15 @@ class TestBackApiBooking:
             self.logger.error(f"Booking by front-end API call creation failed. An error occurred: {e}")
         assert response.status_code == self.ref_response_status_code_ok
 
-    def test_backend_api_booking_bookingid_notNone_check(self, backend_api_client, back_end_api_booking_endpoint,
+    def test_backend_api_booking_creation_with_bookingid_notNone_check(self, backend_api_client, back_end_api_booking_endpoint,
                                                          backend_api_post_test_payload):
         """
-        Booking creation test by POST API call using 'back_end_api_booking_endpoint'
+        Booking creation test by POST API call using 'back_end_api_booking_endpoint'.
+        Test checks that booking_id is not None.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_post_test_payload: Fixture, returned valid test data: payload and headers
-        :return: None
         """
         booking_payload, headers = backend_api_post_test_payload
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers,
@@ -118,10 +119,16 @@ class TestBackApiBooking:
         booking_model = BackApiUtils.convert_response_to_model(response, ApiBookingObjectPayload)
         assert_that(booking_model.bookingid, is_not(None), "Booking ID should not be None")
 
-    """ ##################################### PUT - booking creation ########################## """
-
     def test_backend_api_booking_create_booking(self, backend_api_client, back_end_api_booking_endpoint,
                                                 backend_api_booking_valid_payload_test_data):
+        """
+        Booking creation test by POST API call using 'back_end_api_booking_endpoint'.
+        Test checks that booking object created.
+
+        :backend_api_client:
+        :back_end_api_booking_endpoint:
+        :backend_api_booking_valid_payload_test_data:
+        """
         payload, headers = backend_api_booking_valid_payload_test_data
 
         # Convert payload to dict (if needed) before sending it as a request
@@ -137,18 +144,16 @@ class TestBackApiBooking:
                                         api_valid_headers, back_api_valid_user_creds, get_back_end_token):
         """
         Booking update test by PUT API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'
+        Test checks that updated booking object has 'bookingid'.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_put_test_payload:
-        :return:
         """
         booking_id = 3
         token = get_back_end_token
         booking_payload, headers = backend_api_put_test_payload
         headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        print("headers:", headers)
-        print("booking_payload:", booking_payload)
         response = backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
                                           json=booking_payload.to_dict())
         booking_model = ApiBookingObjectPayload.from_dict(response.json())
@@ -160,8 +165,9 @@ class TestBackApiBooking:
     def test_backend_api_booking_patch_response_is_edited_ok(self, backend_api_client, back_end_api_booking_endpoint,
                                                              backend_api_patch_test_payload, get_back_end_token):
         """
-        Booking update test by PUT API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'
+        Booking update test by PATCH API call using 'back_end_api_booking_endpoint'.
+        Test checks that updated booking object has 'bookingid'.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_patch_test_payload:
@@ -171,8 +177,6 @@ class TestBackApiBooking:
         token = get_back_end_token
         booking_payload, headers = backend_api_patch_test_payload
         headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        print("headers:", headers)
-        print("booking_payload:", booking_payload)
         response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
                                             json=booking_payload.to_dict())
         booking_model = ApiBookingObjectPayload.from_dict(response.json())
@@ -185,7 +189,8 @@ class TestBackApiBooking:
                                                              backend_api_patch_test_payload, get_back_end_token):
         """
         Booking update test by PUT API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'
+        Test checks that updated booking object has 'bookingid'.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_patch_test_payload:
@@ -195,8 +200,6 @@ class TestBackApiBooking:
         token = get_back_end_token
         booking_payload, headers = backend_api_patch_test_payload
         headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        print("headers:", headers)
-        print("booking_payload:", booking_payload)
         response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
                                             json=booking_payload.to_dict())
         booking_model = ApiBookingObjectPayload.from_dict(response.json())
@@ -216,7 +219,6 @@ class TestBackApiBooking:
         :param back_end_api_booking_endpoint: The API endpoint for bookings
         :param get_back_end_token: Fixture to retrieve the authentication token
         :param backend_api_post_test_payload: Fixture to generate test payload for booking creation
-        :return: None
         """
         # Step 1: Create a booking to get a valid booking ID
         token = get_back_end_token

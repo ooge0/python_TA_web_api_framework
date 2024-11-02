@@ -1,3 +1,6 @@
+"""
+Tests for Login page
+"""
 from collections import namedtuple
 
 import pytest

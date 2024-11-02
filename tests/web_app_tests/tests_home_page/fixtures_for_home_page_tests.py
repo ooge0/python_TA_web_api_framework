@@ -1,3 +1,6 @@
+"""
+Fixtures for Login page tests
+"""
 import pytest
 
 

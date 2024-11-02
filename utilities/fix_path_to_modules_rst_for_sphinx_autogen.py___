@@ -1,0 +1,25 @@
+# /utilities/fix_path_to_modules_rst_for_sphinx_autogen.py
+
+import os
+
+def fix_paths(file_path):
+    """
+    solution is to manually correct the paths in the .rst files after generating them with sphinx-autogen.
+    """
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    # Replace relative paths
+    fixed_content = content.replace('../../', '')
+
+    with open(file_path, 'w') as file:
+        file.write(fixed_content)
+
+
+# Specify the files to fix
+rst_files = [
+    'modules.rst',  # modules.rst is required path changes after `sphinx-autogen` command execution
+]
+
+for rst_file in rst_files:
+    fix_paths(rst_file)

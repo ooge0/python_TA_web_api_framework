@@ -1,3 +1,8 @@
+"""
+Module for database management operations.
+This module includes functions to create a SQLite database,
+initialize tables, and populate them with test data.
+"""
 import os
 import sqlite3
 
@@ -7,14 +12,25 @@ from utilities.read_configurations import read_configuration
 
 
 def create_database(db_file):
-    """Creates a SQLite database file."""
+    """Creates a SQLite database file.
+
+    Args:
+        db_file (str): The file path for the SQLite database.
+
+    Returns:
+        tuple: A connection and cursor object for the database.
+    """
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
     return conn, cursor
 
 
 def create_tables(cursor):
-    """Creates tables in the database."""
+    """Creates tables in the SQLite database.
+
+    Args:
+        cursor (sqlite3.Cursor): The cursor object used to execute SQL commands.
+    """
     cursor.execute('''
       CREATE TABLE login_test_data (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,6 +73,7 @@ def create_tables(cursor):
 
 
 def main():
+    """Main function to set up the database and create initial tables."""
     db_file = read_configuration("db", "db_file")
     db_dir = read_configuration("db", "db_dir")
 

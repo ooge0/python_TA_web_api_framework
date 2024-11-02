@@ -1,3 +1,11 @@
+#/tests/conftest.py
+"""
+File with fixtures for general usage in the project that includes:
+    - LOGGER fixtures
+    - General fixtures
+    - EXCEL fixtures
+    - DB fixtures
+"""
 from collections import namedtuple
 
 import allure
@@ -32,6 +40,7 @@ utils = GeneralUtils()
 def session_logger():
     """
     Create instance of logger.
+
     :return: Logger(loguru)
     """
     logger = get_logger()
@@ -70,7 +79,8 @@ def log_test_name(request, session_logger):
 @pytest.fixture(scope="session")
 def env():
     """
-    Return 'env' for test execution
+    Fixture get env name for test execution
+
     :return: env name as string
     """
     return read_configuration("env", "env_to_test")
@@ -146,25 +156,40 @@ def setup_and_teardown(request, session_logger):
 @pytest.fixture
 def excel_file_path():
     """
-    Returns the path to Excel file with test data
+    Fixture returns the path to Excel file with test data
+
+    :return:  path to Excel file that si retrieved from config file
     """
-    return read_configuration("excel", "excel_file_path")
+    return read_configuration("Excel", "excel_file_path")
 
 
 @pytest.fixture(scope="session")
 def data_factory():
-    return DataFactory(read_configuration("excel", "excel_file_path"))
+    """
+    Fixture retrieves path to Excel file from project configuration file.
+
+    :return: File path to the Excel file with test data.
+    """
+    return DataFactory(read_configuration("Excel", "excel_file_path"))
 
 
 @pytest.fixture(scope="session")
 def login_test_by_invalid_data_for_single(data_factory):
-    # This fixture uses data_factory to create the test data and returns it
+    """
+    Fixture retrieves single invalid login credentials from Excel file.
+    
+    :return: Single invalid login credentials set from Excel file
+    """
     return data_factory.create_login_test_data("login_test_data", False, excel_test_data_index=0)
 
 
 @pytest.fixture(scope="session")
 def login_test_by_invalid_data_for_all(data_factory):
-    # This fixture uses data_factory to create the test data and returns it
+    """
+    Fixture retrieves all invalid login credentials from Excel file.
+
+    :return: All invalid login credentials from Excel file 
+    """
     data = data_factory.create_login_test_data("login_test_data", False, excel_test_data_index="all")
     return data
 
@@ -172,9 +197,11 @@ def login_test_by_invalid_data_for_all(data_factory):
 @pytest.fixture(params=["login_test_data"])
 def excel_data_from_sheet(request, excel_file_path):
     """
-    Returns data from excel file via requested excel sheet name
-    :param request:
-    :param excel_file_path: Path to the excel file with test data
+    Returns data from Excel file via requested Excel sheet name.
+    
+    :param request: login_test_data.
+    :param excel_file_path: Path to the Excel file with test data.
+        
     :return: None
     """
     sheet_name = request.param
@@ -184,7 +211,11 @@ def excel_data_from_sheet(request, excel_file_path):
 # DB fixtures
 @pytest.fixture(scope="function")
 def validation_data():
-    """	Fetches validation data from the database and returns a namedtuple.	"""
+    """
+    Fixture fetches validation data from the database.
+    
+    :returns: Validation data as namedtuple.
+    """
     data = get_data_from_db_as_dict("validation_data")
     ValidationData = namedtuple('ValidationData', data[0].keys())
     return ValidationData(*data[0].values())
@@ -193,7 +224,7 @@ def validation_data():
 @pytest.fixture(scope='session')
 def setup_database():
     """
-    Create test data base and push initial test data.
+    Create test database and push initial test data.
     """
     conn, cursor = make_db()
     create_tables(cursor)

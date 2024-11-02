@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1. Table of contents &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Framework structure" href="about/framework_structure.html" />
+    <link rel="prev" title="2. Readme.md" href="readme.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="readme.html">2. Readme.md</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Table of contents <div id="toc"></div></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-of-web-app">2.2. Resources of web app</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restful-booker-app-resources">2.2.1. Restful-booker app resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#restful-booker-web-site-url">2.2.1.1. Restful-booker web-site URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#booking-side">2.2.2. Booking side</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#home-web-page">2.2.2.1. Home web page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#booking-web-page">2.2.3. Booking web page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#admin-side">2.2.4. Admin side</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#admin-rooms-web-page">2.2.4.1. Admin (Rooms) web page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#report-web-page">2.2.4.2. Report web page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#branding-web-page">2.2.4.3. Branding web page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#messages-web-page">2.2.4.4. Messages web page</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-framework-configuration-and-setup">2.3. Test framework configuration and setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-python-packages">2.3.1. Required python packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-tests-itself">2.3.1.1. For tests itself</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-ui-web-testing">2.3.1.2. For ui/web testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils-configs">2.3.1.3. Utils/configs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging-reporting">2.3.1.4. Logging/reporting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-generators">2.3.1.5. Data generators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#db">2.3.1.6. DB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#assertions">2.3.1.7. Assertions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-analysing">2.3.1.8. Code analysing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#project-docs">2.4. Project docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-setup-process">2.5. Project setup process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-by-scripts">2.5.1. 1. Setup by scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-and-activate-a-new-virtual-environment">2.5.2. 2. Create and activate a new virtual environment:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-required-packages-from-requirements-txt">2.5.3. 3. Install required packages from requirements.txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-prerequisites-for-allure-test-report-generation">2.5.4. 4. Check prerequisites for Allure test report generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-db-as-source-of-test-data">2.5.5. 5. Usage DB as source of test data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#update-db-content">2.5.5.1. 1. Update DB content</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-project-dependency-tree">2.5.6. 6. Checking project dependency tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pipdeptree">2.5.6.1. pipdeptree</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">2.5.7. Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydocstyle">2.5.8. Pydocstyle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#check-an-entire-directory">2.5.8.1. 3. <strong>Check an Entire Directory</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-with-specific-conventions">2.5.8.2. 4. <strong>Check with Specific Conventions</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ignore-specific-errors">2.5.8.3. 5. <strong>Ignore Specific Errors</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-format">2.5.8.4. 6. <strong>Output Format</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verbose-mode">2.5.8.5. 7. <strong>Verbose Mode</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checking-a-specific-file-or-line">2.5.8.6. 8. <strong>Checking a Specific File or Line</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-available-error-codes">2.5.8.7. 9. <strong>Show Available Error Codes</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-commands">2.5.8.8. Summary of Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-documentation-by-sphinx">2.5.8.9. Generating documentation by Sphinx</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">2.6. Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-execution-by-pytest">2.6.1. Test execution by <em>pytest</em></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#run-all-tests">2.6.1.1. Run all Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-in-a-module">2.6.1.2. Run tests in a module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-run-for-specific-test-by-test-name-by-command">2.6.1.3. Test run for specific test (by test name) by command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-in-a-directory">2.6.1.4. Run tests in a directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-by-node-ids">2.6.1.5. Run tests by node IDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-of-a-specific-class">2.6.1.6. Run tests of a specific class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-by-marker-expressions">2.6.1.7. Run tests by marker expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-parts-for-test-run-configuration">2.6.2. Additional parts for test run/configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-configuration-file-location">2.6.2.1. Specifying configuration file location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rerun-failed-tests">2.6.2.2. Rerun failed tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-tests-in-parallel-using-workers">2.6.2.3. Run tests in parallel(using workers)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#snippets-for-running-existing-tests">2.6.2.4. Snippets for running existing tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-report-generation">2.6.3. Test report generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#by-pytest-simple-report">2.6.3.1. By pytest (Simple Report)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-pytest-html-report">2.6.3.2. By pytest (HTML Report)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-pytest-junit-xml-report">2.6.3.3. By pytest (JUnit XML Report)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-reports-by-allure">2.6.3.4. Test reports by Allure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#existing-created-tests-by-categories">2.6.4. Existing(created) tests by categories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#test-list">2.6.4.1. Test List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-for-ta-frameworks">2.7. Resources for TA frameworks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="readme.html"><span class="section-number">2. </span>Readme.md</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.1. </span>Table of contents <div id="toc"></div></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README_.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!-- Header Section -->
+<p align="left">
+  <img alt="python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" width="80"/>
+  <img alt="pytest" src="https://img.shields.io/badge/py-test-blue?logo=pytest" width="80"/>
+  <img alt="selenium" src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white" width="90"/>
+  <img alt="requests" src="https://img.shields.io/badge/-requests-%43B02A?style=for-the-badge&logo=requests&logoColor=white" width="75"/>
+  <img alt="PyCharm" src="https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green" width="90"/>
+  <img alt="pylint" src="https://raw.githubusercontent.com/pylint-dev/pylint/main/doc/logo.png" width="28"/>
+</p>
+<p>
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge" width="100"/>
+</p>
+<p><strong><em>Test automation framework for testing UI, front-end and  back-end API of restful-booker web-site - <a class="reference external" href="https://automationintesting.online">https://automationintesting.online</a></em>.</strong></p>
+<section id="table-of-contents">
+<h1><span class="section-number">2.1. </span>Table of contents <div id="toc"></div><a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h1>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#resources-of-web-app"><span class="xref myst">Resources of web app</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#restful-booker-app-resources"><span class="xref myst">Restful-booker app resources</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#restful-booker-web-site-url"><span class="xref myst">Restful-booker web-site URL</span></a></p></li>
+<li><p><a class="reference internal" href="#restful-booker-api"><span class="xref myst">Restful-booker API</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#booking-side"><span class="xref myst">Booking side</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#home-web-page"><span class="xref myst">Home web page</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#basic-structure-of-home-web-page"><span class="xref myst">Basic structure of Home web page</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#booking-web-page"><span class="xref myst">Booking web page</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#admin-side"><span class="xref myst">Admin Side</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#admin-rooms-web-page"><span class="xref myst">Admin (Rooms) Web Page</span></a></p></li>
+<li><p><a class="reference internal" href="#report-web-page"><span class="xref myst">Report web page</span></a></p></li>
+<li><p><a class="reference internal" href="#branding-web-page"><span class="xref myst">Branding web page</span></a></p></li>
+<li><p><a class="reference internal" href="#messages-web-page"><span class="xref myst">Messages web page</span></a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#test-framework-configuration-and-setup"><span class="xref myst">Test framework configuration and setup</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#required-python-packages"><span class="xref myst">Required python packages</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#for-tests-itself"><span class="xref myst">For tests itself</span></a></p></li>
+<li><p><a class="reference internal" href="#for-uiweb-testing"><span class="xref myst">For UI/Web testing</span></a></p></li>
+<li><p><a class="reference internal" href="#utilsconfigs"><span class="xref myst">Utils/configs</span></a></p></li>
+<li><p><a class="reference internal" href="#loggingreporting"><span class="xref myst">Logging/reporting</span></a></p></li>
+<li><p><a class="reference internal" href="#data-generators"><span class="xref myst">Data generators</span></a></p></li>
+<li><p><a class="reference internal" href="#db"><span class="xref myst">DB</span></a></p></li>
+<li><p><a class="reference internal" href="#assertions"><span class="xref myst">Assertions</span></a></p></li>
+<li><p><a class="reference internal" href="#code-analysing"><span class="xref myst">Code analysing</span></a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#project-docs"><span class="xref myst">Project docs</span></a></p></li>
+<li><p><a class="reference internal" href="#project-setup-process"><span class="xref myst">Project setup process</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#1-setup-by-scripts"><span class="xref myst">Setup by scripts</span></a></p></li>
+<li><p><a class="reference internal" href="#2-create-and-activate-a-new-virtual-environment"><span class="xref myst">Create and activate a new virtual environment</span></a></p></li>
+<li><p><a class="reference internal" href="#3-install-required-packages-from-requirementstxt"><span class="xref myst">Install required packages from requirements.txt</span></a></p></li>
+<li><p><a class="reference internal" href="#4-check-prerequisites-for-allure-test-report-generation"><span class="xref myst">Check prerequisites for Allure test report generation</span></a></p></li>
+<li><p><a class="reference internal" href="#5-usage-db-as-source-of-test-data"><span class="xref myst">Usage DB as source of test data</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#1-update-db-content"><span class="xref myst">Update DB content</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#6-checking-project-dependency-tree"><span class="xref myst">Checking project dependency tree</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#pipdeptree"><span class="xref myst">pipdeptree</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#generating-documentation-by-sphinx"><span class="xref myst">Generating documentation by Sphinx</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="tests/tests.html#module-tests" title="tests"><span class="xref myst py py-mod">Tests</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#test-execution-by-_pytest_"><span class="xref myst">Test execution by <em>pytest</em></span></a></p></li>
+<li><p><a class="reference internal" href="#run-all-tests"><span class="xref myst">Run all Tests</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-in-a-module"><span class="xref myst">Run tests in a module</span></a></p></li>
+<li><p><a class="reference internal" href="#test-run-for-specific-test-by-test-name-by-command"><span class="xref myst">Test run for specific test (by test name) by command</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-in-a-directory"><span class="xref myst"> Run Tests in a directory</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-of-a-specific-class"><span class="xref myst">Run tests of a specific class</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-by-marker-expressions"><span class="xref myst">Run tests by marker expressions</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-by-node-ids"><span class="xref myst">Run tests by node IDs</span></a></p></li>
+<li><p><a class="reference internal" href="#additional-parts-for-test-runconfiguration"><span class="xref myst">Additonal parts for test run/configuration</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#specifying-configuration-file-location"><span class="xref myst">Specifying configuration file location</span></a></p></li>
+<li><p><a class="reference internal" href="#rerun-failed-tests"><span class="xref myst">Rerun failed tests</span></a></p></li>
+<li><p><a class="reference internal" href="#run-tests-in-parallelusing-workers"><span class="xref myst">Run tests in parallel(using workers)</span></a></p></li>
+<li><p><a class="reference internal" href="#snippets-for-running-existing-tests"><span class="xref myst">Snippets for running existing tests</span></a></p></li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#test-report-generation"><span class="xref myst">Test report generation</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#by-pytest-simple-report"><span class="xref myst">By pytest (Simple Report)</span></a></p></li>
+<li><p><a class="reference internal" href="#by-pytest-html-report"><span class="xref myst">By pytest (HTML Report)</span></a></p></li>
+<li><p><a class="reference internal" href="#by-pytest-junit-xml-report"><span class="xref myst">By pytest (JUnit XML Report)</span></a></p></li>
+<li><p><a class="reference internal" href="#test-reports-by-allure"><span class="xref myst">Test reports by Allure</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#creating-initial-pytest-reports-by-allure-"><span class="xref myst">Creating initial pytest reports by Allure</span></a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference internal" href="#existingcreated-tests-by-categories"><span class="xref myst">Existing(created) tests by categories</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#test-list"><span class="xref myst">Test List</span></a>
+6<a class="reference internal" href="#resources-for-ta-frameworks"><span class="xref myst">Resources for TA frameworks</span></a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="resources-of-web-app">
+<h1><span class="section-number">2.2. </span>Resources of web app<a class="headerlink" href="#resources-of-web-app" title="Link to this heading"></a></h1>
+<section id="restful-booker-app-resources">
+<h2><span class="section-number">2.2.1. </span>Restful-booker app resources<a class="headerlink" href="#restful-booker-app-resources" title="Link to this heading"></a></h2>
+<section id="restful-booker-web-site-url">
+<h3><span class="section-number">2.2.1.1. </span>Restful-booker web-site URL<a class="headerlink" href="#restful-booker-web-site-url" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://automationintesting.online/">https://automationintesting.online/</a></p>
+<section id="restful-booker-api">
+<h4><span class="section-number">2.2.1.1.1. </span>Restful-booker API<a class="headerlink" href="#restful-booker-api" title="Link to this heading"></a></h4>
+<p><a class="reference external" href="https://restful-booker.herokuapp.com/apidoc/index.html">https://restful-booker.herokuapp.com/apidoc/index.html</a></p>
+</section>
+</section>
+</section>
+<section id="booking-side">
+<h2><span class="section-number">2.2.2. </span>Booking side<a class="headerlink" href="#booking-side" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="#table-of-contents"><span class="xref myst">go to TOC</span></a></p>
+<section id="home-web-page">
+<h3><span class="section-number">2.2.2.1. </span>Home web page<a class="headerlink" href="#home-web-page" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/">Home web page: https://automationintesting.online</a></p>
+<img src="../../project_related_data\pic\restful-booker_site__home_page_main.png" alt="restful-booker_site__home_page_main.png" style="width:60%;">
+<section id="basic-structure-of-home-web-page">
+<h4><span class="section-number">2.2.2.1.1. </span>Basic structure of home web page<a class="headerlink" href="#basic-structure-of-home-web-page" title="Link to this heading"></a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+    logo(picture)
+        welcome_text
+    rooms_section
+        room_section
+            hotel_picture
+            hotel_room_description
+                hotel_room_description_header
+                    hotel_room_type
+                    hotel_room_wheelchair_option
+                hotel_room_description_title
+                hotel_room_options
+                    hotel_room_option_wifi
+                    hotel_room_option_refreshments
+                    hotel_room_option_tv
+                    hotel_room_option_safe
+                    hotel_room_option_radio
+                    hotel_room_option_views
+                hotel_room_booking_button
+            booker_contact_form
+                name_input_form
+                email_input_form
+                phone_input_form
+                subject_input_form
+                message_input_form
+                submit_button_on_contact_form
+                alert_booker_form
+            hotel_contact_details_field
+            map_picture
+            footer_panel
+                site_owner_info
+                cookie_policy_link
+                privacy_policy_link
+                admin_panel_link
+```
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="booking-web-page">
+<h2><span class="section-number">2.2.3. </span>Booking web page<a class="headerlink" href="#booking-web-page" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/">Booking web page: https://automationintesting.online</a></p>
+<p>Same URL as for Home page but with additional components on the page</p>
+<img src="../../project_related_data\pic\restful-booker_site__book_this_room_page.png" alt="restful-booker_site__home_page_main.png" style="width:60%;">
+</section>
+<section id="admin-side">
+<h2><span class="section-number">2.2.4. </span>Admin side<a class="headerlink" href="#admin-side" title="Link to this heading"></a></h2>
+<section id="admin-rooms-web-page">
+<h3><span class="section-number">2.2.4.1. </span>Admin (Rooms) web page<a class="headerlink" href="#admin-rooms-web-page" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/#/admin/">Home web page: https://automationintesting.online/#/admin/</a></p>
+<img src="../../project_related_data\pic\restful-booker_site__admin-room_page.png" alt="restful-booker_site__admin-room_page.png" style="width:70%;">
+</section>
+<section id="report-web-page">
+<h3><span class="section-number">2.2.4.2. </span>Report web page<a class="headerlink" href="#report-web-page" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/#/admin/">Report web page: https://automationintesting.online/#/admin/report</a></p>
+<img src="../../project_related_data\pic\restful-booker_site__report_page.png" alt="restful-booker_site__report_page.png" style="width:70%;">
+</section>
+<section id="branding-web-page">
+<h3><span class="section-number">2.2.4.3. </span>Branding web page<a class="headerlink" href="#branding-web-page" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/#/admin/">Branding web page: https://automationintesting.online/#/admin/branding</a></p>
+<img src="../../project_related_data\pic\restful-booker_site__branding_page.png" alt="restful-booker_site__branding_page.png" style="width:70%;">
+</section>
+<section id="messages-web-page">
+<h3><span class="section-number">2.2.4.4. </span>Messages web page<a class="headerlink" href="#messages-web-page" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p><a class="reference external" href="https://automationintesting.online/#/admin/messages">Messages web page: https://automationintesting.online/#/admin/messages</a></p>
+<img src="../../project_related_data\pic\restful-booker_site__messages_page.png" alt="restful-booker_site__messages_page.png" style="width:70%;">
+</section>
+</section>
+</section>
+<section id="test-framework-configuration-and-setup">
+<h1><span class="section-number">2.3. </span>Test framework configuration and setup<a class="headerlink" href="#test-framework-configuration-and-setup" title="Link to this heading"></a></h1>
+<section id="required-python-packages">
+<h2><span class="section-number">2.3.1. </span>Required python packages<a class="headerlink" href="#required-python-packages" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>In this project used ‘pip-tools’ and approach to use high-level dependency tree. Main required packages presented in <code class="docutils literal notranslate"><span class="pre">requirements.in</span></code>. All used Python packages for the current project are generates in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p>
+<p>Below is the list of main packages with references</p>
+<section id="for-tests-itself">
+<h3><span class="section-number">2.3.1.1. </span>For tests itself<a class="headerlink" href="#for-tests-itself" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<ul>
+<li><p><strong>pytest</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/pytest/">https://pypi.org/project/pytest/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://docs.pytest.org/en/latest/">https://docs.pytest.org/en/latest/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest
+</pre></div>
+</div>
+</li>
+<li><p><strong>hypothesis</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/hypothesis/">https://pypi.org/project/hypothesis/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://hypothesis.works/">https://hypothesis.works/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>hypothesis
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="for-ui-web-testing">
+<h3><span class="section-number">2.3.1.2. </span>For ui/web testing<a class="headerlink" href="#for-ui-web-testing" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="diagrams/graphs.html#toc"><span class="std std-ref">go to TOC</span></a></p>
+<ul>
+<li><p><strong>selenium</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/selenium/">https://pypi.org/project/selenium/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://selenium-python.readthedocs.io/">https://selenium-python.readthedocs.io/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>selenium
+</pre></div>
+</div>
+</li>
+<li><p><strong>webdriver-manager</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/webdriver-manager/">https://pypi.org/project/webdriver-manager/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://github.com/bonigarcia/webdrivermanager">https://github.com/bonigarcia/webdrivermanager</a></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">webdriver</span><span class="o">-</span><span class="n">manager</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="utils-configs">
+<h3><span class="section-number">2.3.1.3. </span>Utils/configs<a class="headerlink" href="#utils-configs" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="diagrams/graphs.html#toc"><span class="std std-ref">go to TOC</span></a></p>
+<ul>
+<li><p><strong>mypy</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/mypy/">https://pypi.org/project/mypy/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://mypy-lang.org/">https://mypy-lang.org/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mypy
+</pre></div>
+</div>
+</li>
+<li><p><strong>python-dotenv</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/dotenv/">https://pypi.org/project/dotenv/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://www.dotenv.org/docs/languages/python">https://www.dotenv.org/docs/languages/python</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>python-dotenv
+</pre></div>
+</div>
+</li>
+<li><p><strong>pyyaml</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/PyYAML/">https://pypi.org/project/PyYAML/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://pyyaml.org/">https://pyyaml.org/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyyaml
+</pre></div>
+</div>
+</li>
+<li><p><strong>configParser</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/configparser/">https://pypi.org/project/configparser/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://docs.python.org/3/library/configparser.html">https://docs.python.org/3/library/configparser.html</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>configparser
+</pre></div>
+</div>
+</li>
+<li><p><strong>openpyxl</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/openpyxl/">https://pypi.org/project/openpyxl/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/">https://openpyxl.readthedocs.io/en/stable/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl
+</pre></div>
+</div>
+</li>
+<li><p><strong>pyreverse</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/pyreverse/">https://pypi.org/project/pyreverse/</a></p></li>
+<li><p>related info:  <a class="reference external" href="https://pylint.readthedocs.io/en/latest/pyreverse.html">https://pylint.readthedocs.io/en/latest/pyreverse.html</a></p></li>
+</ul>
+<p>Pyreverse has now been integrated to pylint : <a class="reference external" href="http://pypi.python.org/pypi/pylint/">http://pypi.python.org/pypi/pylint/</a></p>
+</li>
+<li><p><strong>pipdeptree</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/pipdeptree/">https://pypi.org/project/pipdeptree/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://github.com/tox-dev/pipdeptree">https://github.com/tox-dev/pipdeptree</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pipdeptree
+</pre></div>
+</div>
+</li>
+<li><p><strong>invoke</strong></p>
+<p>Invoke is a Python (2.7 and 3.4+) library for managing shell-oriented subprocesses and organizing executable Python code into CLI-invokable tasks. It draws inspiration from various sources (make/rake, Fabric 1.x, etc) to arrive at a powerful &amp; clean feature set.</p>
+<ul class="simple">
+<li><p>pypi.org docs: https://pypi.org/project/invoke/</p></li>
+<li><p>related info: https://www.pyinvoke.org/</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>invoke
+</pre></div>
+</div>
+</li>
+<li><p><strong>tox</strong></p>
+<p>tox aims to automate and standardize testing in Python. It is part of a larger vision of easing the packaging, testing and release process of Python software (alongside pytest and devpi).</p>
+<ul class="simple">
+<li><p>pypi.org docs: https://pypi.org/project/tox/</p></li>
+<li><p>related info: https://tox.wiki/en/latest/?badge=latest</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tox
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="logging-reporting">
+<h3><span class="section-number">2.3.1.4. </span>Logging/reporting<a class="headerlink" href="#logging-reporting" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>allure</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/allure-pytest/">https://pypi.org/project/allure-pytest/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://allurereport.org/docs/pytest/">https://allurereport.org/docs/pytest/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>allure-pytest
+</pre></div>
+</div>
+</li>
+<li><p><strong>pytest-html</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/pytest-html/">https://pypi.org/project/pytest-html/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://pytest-html.readthedocs.io/en/latest/">https://pytest-html.readthedocs.io/en/latest/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest-html
+</pre></div>
+</div>
+</li>
+<li><p><strong>loguru</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/loguru/">https://pypi.org/project/loguru/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://loguru.readthedocs.io/">https://loguru.readthedocs.io/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>loguru
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="data-generators">
+<h3><span class="section-number">2.3.1.5. </span>Data generators<a class="headerlink" href="#data-generators" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="diagrams/graphs.html#toc"><span class="std std-ref">go to TOC</span></a></p>
+<ul>
+<li><p><strong>wonderwords</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/wonderwords/">https://pypi.org/project/wonderwords/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://loguru.readthedocs.io/">https://loguru.readthedocs.io/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>wonderwords
+</pre></div>
+</div>
+</li>
+<li><p><strong>Faker</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/Faker/">https://pypi.org/project/Faker/</a></p></li>
+<li><p>related info: <a class="reference external" href="http://faker.rtfd.org/">http://faker.rtfd.org/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>Faker
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="db">
+<h3><span class="section-number">2.3.1.6. </span>DB<a class="headerlink" href="#db" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>mysql-connector-python</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/mysql-connector-python/">https://pypi.org/project/mysql-connector-python/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://dev.mysql.com/doc/connector-python/en/">https://dev.mysql.com/doc/connector-python/en/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mysql-connector-python
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="assertions">
+<h3><span class="section-number">2.3.1.7. </span>Assertions<a class="headerlink" href="#assertions" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="diagrams/graphs.html#toc"><span class="std std-ref">go to TOC</span></a></p>
+<ul>
+<li><p><strong>PyHamcrest</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/PyHamcrest/">https://pypi.org/project/PyHamcrest/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://pyhamcrest.readthedocs.io/">https://pyhamcrest.readthedocs.io/</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>PyHamcrest
+</pre></div>
+</div>
+</li>
+<li><p><strong>regex</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/regex/">https://pypi.org/project/regex/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://github.com/mrabarnett/mrab-regex">https://github.com/mrabarnett/mrab-regex</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>regex
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="code-analysing">
+<h3><span class="section-number">2.3.1.8. </span>Code analysing<a class="headerlink" href="#code-analysing" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>pylint</strong></p>
+<ul class="simple">
+<li><p>pypi.org docs: <a class="reference external" href="https://pypi.org/project/pylint/">https://pypi.org/project/pylint/</a></p></li>
+<li><p>related info: <a class="reference external" href="https://github.com/pylint-dev/pylint">https://github.com/pylint-dev/pylint</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pylint
+</pre></div>
+</div>
+<p>Generate a default configuration file for the Pylint code analyzer by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pylint<span class="w"> </span>--generate-rcfile<span class="w"> </span>&gt;<span class="w"> </span>pylint.rc
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="project-docs">
+<h1><span class="section-number">2.4. </span>Project docs<a class="headerlink" href="#project-docs" title="Link to this heading"></a></h1>
+<p>This project contains generated documentation by Sphinx
+All documentation you can find  by opening <a class="reference internal" href="#docs/build/index.html"><span class="xref myst">index.html</span></a> in the browser or check <a class="reference internal" href="#docs/pdf_docs/ta_framework_ui_api.pdf"><span class="xref myst">ta_framework_ui_api.pdf</span></a>
+Sphinx setup and generating process described <a class="reference internal" href="#generating-documentation-by-sphinx"><span class="xref myst">here</span></a></p>
+</section>
+<section id="project-setup-process">
+<h1><span class="section-number">2.5. </span>Project setup process<a class="headerlink" href="#project-setup-process" title="Link to this heading"></a></h1>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<section id="setup-by-scripts">
+<h2><span class="section-number">2.5.1. </span>1. Setup by scripts<a class="headerlink" href="#setup-by-scripts" title="Link to this heading"></a></h2>
+<p>By default, you can use file:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setup_env.bat</span></code> for Windows-based machine or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup_env.sh</span></code> UNIX-based
+for validating python version, installing all packages required for running current project.
+Otherwise, you can manually install everything using described steps below or fix some issues that appears while project was configured via scripted file.</p></li>
+</ol>
+</section>
+<section id="create-and-activate-a-new-virtual-environment">
+<h2><span class="section-number">2.5.2. </span>2. Create and activate a new virtual environment:<a class="headerlink" href="#create-and-activate-a-new-virtual-environment" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<ul>
+<li><p><strong><em>Create virtual environment.</em></strong><br />
+Script below is creating environment with name ‘env’.<br />
+If you want to create environment with unique name, please replace the env name using your env name in script<br />
+<em>python -m {here_is_your_venv_name} ../env</em></p>
+<p>Working script for creating venv with name ‘venv’ is below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">../</span><span class="n">env</span>
+</pre></div>
+</div>
+<p>then activate it</p>
+<ul class="simple">
+<li><p>for unix-based</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">../</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>for windows</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="o">.</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">Activate</span>
+</pre></div>
+</div>
+<p>If you like to have different name for the environment</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="p">{</span><span class="n">venv_for_project</span><span class="p">}</span>   
+</pre></div>
+</div>
+<p>and then</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="p">{</span><span class="n">venv_for_project</span><span class="p">}</span><span class="o">/</span><span class="n">Scripts</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong><em>For deactivating created env use command</em></strong>
+*
+<code class="docutils literal notranslate"><span class="pre">shell</span>&#160;&#160;&#160;&#160; <span class="pre">deactivate</span>&#160;&#160;&#160;&#160; </code></p>
+</section>
+<section id="install-required-packages-from-requirements-txt">
+<h2><span class="section-number">2.5.3. </span>3. Install required packages from requirements.txt<a class="headerlink" href="#install-required-packages-from-requirements-txt" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>If <strong><em>requirements.txt</em></strong> file is missing request, or you have different configuration of the project after installation, please check generate new  <em>requirements.txt</em> file using command</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip-compile<span class="w"> </span>requirements.in
+</pre></div>
+</div>
+<p>Created <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file will have all dependency for the project.</p>
+<p>In case if you are using ‘pip-tools’ do next steps,</p>
+<ol class="arabic simple">
+<li><p>check <code class="docutils literal notranslate"><span class="pre">requirements.in</span></code> content for preventing conflicts with existing(venv/global) configurations.</p></li>
+<li><p>compile requirements.txt by</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip-compile<span class="w"> </span>requirements.in
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>install dependencies by</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">  </span>
+</pre></div>
+</div>
+</section>
+<section id="check-prerequisites-for-allure-test-report-generation">
+<h2><span class="section-number">2.5.4. </span>4. Check prerequisites for Allure test report generation<a class="headerlink" href="#check-prerequisites-for-allure-test-report-generation" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<ol class="arabic">
+<li><p>Check your system on installed and available :</p>
+<ul>
+<li><p>JAVA</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>java<span class="w"> </span>-version
+</pre></div>
+</div>
+</li>
+<li><p>Node.js</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>If programs are missing install them using info below</p>
+</li>
+</ul>
+</li>
+<li><p>Install Java 3</p>
+<ul class="simple">
+<li><p>Download Java 3 <a class="reference external" href="https://nodejs.org/en/download/package-manager">HERE</a></p></li>
+</ul>
+</li>
+<li><p>Install Node.js</p>
+<ul class="simple">
+<li><p>Download Node.js <a class="reference external" href="https://nodejs.org/en/download/package-manager">HERE</a></p></li>
+</ul>
+</li>
+<li><p>In command prompt, run the below command</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>allure-commandline
+</pre></div>
+</div>
+</li>
+<li><p>Add <em>npm</em> and <em>allure-commandline</em> to system path</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>%AppData<span class="se">\R</span>oaming<span class="se">\n</span>pm
+</pre></div>
+</div>
+</li>
+<li><p>Check that system can have access to allure by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>allure<span class="w"> </span>--version
+</pre></div>
+</div>
+</li>
+<li><p>Install allure-pytest</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>allure-pytest
+</pre></div>
+</div>
+<p>or from your IDE</p>
+</li>
+</ol>
+</section>
+<section id="usage-db-as-source-of-test-data">
+<h2><span class="section-number">2.5.5. </span>5. Usage DB as source of test data<a class="headerlink" href="#usage-db-as-source-of-test-data" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>In case if your test data is stored in DB or external files, check the project configuration and adjust test data
+manually.</p>
+<section id="update-db-content">
+<h3><span class="section-number">2.5.5.1. </span>1. Update DB content<a class="headerlink" href="#update-db-content" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>If you are using data from DB generate data based on your testing model or paste it manually
+preferable to use pip install mysql-connector-python</p>
+</section>
+</section>
+<section id="checking-project-dependency-tree">
+<h2><span class="section-number">2.5.6. </span>6. Checking project dependency tree<a class="headerlink" href="#checking-project-dependency-tree" title="Link to this heading"></a></h2>
+<section id="pipdeptree">
+<h3><span class="section-number">2.5.6.1. </span>pipdeptree<a class="headerlink" href="#pipdeptree" title="Link to this heading"></a></h3>
+<p>Basic Dependency Tree</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree
+</pre></div>
+</div>
+<p>Dependency Tree in JSON Format</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree<span class="w"> </span>--json
+</pre></div>
+</div>
+<p>Dependency Tree with Outdated Packages</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree<span class="w"> </span>--outdated
+</pre></div>
+</div>
+<p>Dependency Tree for a Specific Package</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree<span class="w"> </span>-p<span class="w"> </span>&lt;package_name&gt;
+</pre></div>
+</div>
+<p>Generate a Text Report and Save to File</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree<span class="w"> </span>&gt;<span class="w"> </span>resources/project_dependencies.txt
+</pre></div>
+</div>
+<p>Visualize Dependency Tree with Graphviz first install graphviz:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>graphviz
+</pre></div>
+</div>
+<p>then generate a graphical representation:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pipdeptree<span class="w"> </span>--graph-output<span class="w"> </span>png<span class="w"> </span>&gt;<span class="w"> </span>resources/project_dependencies.png
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation">
+<h2><span class="section-number">2.5.7. </span>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+</section>
+<section id="pydocstyle">
+<h2><span class="section-number">2.5.8. </span>Pydocstyle<a class="headerlink" href="#pydocstyle" title="Link to this heading"></a></h2>
+<p>To check your code for missing docstrings for current project selected pydocstyle.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>core
+</pre></div>
+</div>
+<section id="check-an-entire-directory">
+<h3><span class="section-number">2.5.8.1. </span>3. <strong>Check an Entire Directory</strong><a class="headerlink" href="#check-an-entire-directory" title="Link to this heading"></a></h3>
+<p>To check all Python files in a specific directory, you can run:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">path/to/your_directory/</span></code></p>
+</section>
+<section id="check-with-specific-conventions">
+<h3><span class="section-number">2.5.8.2. </span>4. <strong>Check with Specific Conventions</strong><a class="headerlink" href="#check-with-specific-conventions" title="Link to this heading"></a></h3>
+<p>You can specify the docstring conventions you want to enforce using the <code class="docutils literal notranslate"><span class="pre">--convention</span></code> flag. The available conventions are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">google</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pep257</span></code></p></li>
+</ul>
+<p>For example, to check using the Google style:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">--convention=google</span> <span class="pre">path/to/your_directory/</span></code></p>
+</section>
+<section id="ignore-specific-errors">
+<h3><span class="section-number">2.5.8.3. </span>5. <strong>Ignore Specific Errors</strong><a class="headerlink" href="#ignore-specific-errors" title="Link to this heading"></a></h3>
+<p>If you want to ignore certain error codes, you can use the <code class="docutils literal notranslate"><span class="pre">--ignore</span></code> option followed by the error codes (comma-separated). For example, to ignore error code D103 (missing docstring in public function):</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">--ignore=D103</span> <span class="pre">path/to/your_directory/</span></code></p>
+</section>
+<section id="output-format">
+<h3><span class="section-number">2.5.8.4. </span>6. <strong>Output Format</strong><a class="headerlink" href="#output-format" title="Link to this heading"></a></h3>
+<p>You can change the output format using the <code class="docutils literal notranslate"><span class="pre">--format</span></code> option. The default format is a simple text output, but you can change it to <code class="docutils literal notranslate"><span class="pre">json</span></code> for easier parsing:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">--format=json</span> <span class="pre">path/to/your_directory/</span></code></p>
+</section>
+<section id="verbose-mode">
+<h3><span class="section-number">2.5.8.5. </span>7. <strong>Verbose Mode</strong><a class="headerlink" href="#verbose-mode" title="Link to this heading"></a></h3>
+<p>To see more detailed output, you can run <code class="docutils literal notranslate"><span class="pre">pydocstyle</span></code> in verbose mode:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">--verbose</span> <span class="pre">path/to/your_directory/</span></code></p>
+</section>
+<section id="checking-a-specific-file-or-line">
+<h3><span class="section-number">2.5.8.6. </span>8. <strong>Checking a Specific File or Line</strong><a class="headerlink" href="#checking-a-specific-file-or-line" title="Link to this heading"></a></h3>
+<p>You can check a specific line in a file by appending the line number to the file path. For example, to check line 42 of <code class="docutils literal notranslate"><span class="pre">your_file.py</span></code>:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">path/to/your_file.py:42</span></code></p>
+</section>
+<section id="show-available-error-codes">
+<h3><span class="section-number">2.5.8.7. </span>9. <strong>Show Available Error Codes</strong><a class="headerlink" href="#show-available-error-codes" title="Link to this heading"></a></h3>
+<p>To see a list of all available error codes and their meanings, use the <code class="docutils literal notranslate"><span class="pre">--help</span></code> option:</p>
+<p>bash
+<code class="docutils literal notranslate"><span class="pre">pydocstyle</span> <span class="pre">--help</span></code></p>
+</section>
+<section id="summary-of-commands">
+<h3><span class="section-number">2.5.8.8. </span>Summary of Commands<a class="headerlink" href="#summary-of-commands" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Check a specific file</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>path/to/your_file.py
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check an entire directory</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>path/to/your_directory/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Specify conventions</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>--convention<span class="o">=</span>google<span class="w"> </span>path/to/your_directory/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Ignore specific errors</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>--ignore<span class="o">=</span>D103<span class="w"> </span>path/to/your_directory/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Output in JSON format</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydocstyle<span class="w"> </span>--format<span class="o">=</span>json<span class="w"> </span>path/to/your_directory/
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="generating-documentation-by-sphinx">
+<h3><span class="section-number">2.5.8.9. </span>Generating documentation by Sphinx<a class="headerlink" href="#generating-documentation-by-sphinx" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Install Sphinx in your project environment:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Set Up Sphinx in Your Project
+<strong>!!! IMPORTANT</strong>
+For more convenient usage of project structure to better create separate folder where will be stored all documentation and related Sphinx config files and folder. <br />
+For this project was created new folder <code class="docutils literal notranslate"><span class="pre">docs</span></code> and from that place all Sphinx related command should be executed.
+After navigation to the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-quickstart
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This command will guide you through setting up Sphinx by asking several configuration questions.</p>
+<p>Typical responses:</p>
+<ul>
+<li><p><strong>Separate source and build directories</strong>: Yes</p></li>
+<li><p><strong>Project name</strong>: [Your project name]</p></li>
+<li><p><strong>Author name</strong>: [Your name]</p></li>
+<li><p><strong>Project version</strong>: [Your project version]</p></li>
+<li><p><strong>Project language</strong>: [en]</p>
+<p>This will generate<br />
+1. <code class="docutils literal notranslate"><span class="pre">source/</span></code> directory with a default <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file for configuration and some starter <code class="docutils literal notranslate"><span class="pre">.rst</span></code> (reStructuredText) files.<br />
+2.  <code class="docutils literal notranslate"><span class="pre">build/</span></code> directory (will be empty). It’s default directory that will have all project related data if you will not use any different name for collecting generated Sphinx docs (pdf, html… etc).<br />
+It can be deleted or renamed if you want to have separate places for different types of generated docs. For this project will be generated documentation in HTML and PDF formats. Below you will find scripts and instructions for generating documents in PDF and HTML format using different Sphinx extensions.
+3. make.bat - default script file for generating docs on Windows OS
+4. Makefile - default script file for generating docs on UNIX base OS</p>
+</li>
+</ul>
+<ol class="arabic" start="3">
+<li><p>Configure conf.py
+Edit the generated <a class="reference internal" href="#docs/source/conf.py"><span class="xref myst">conf.py</span></a> file located in the source/ directory to customize your documentation. Key configurations to include:</p>
+<ul class="simple">
+<li><p><strong><em>Extensions</em></strong>: Enable useful Sphinx extensions, such as autodoc for auto-generating documentation from your Python docstrings:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>  <span class="c1"># For Google-style or NumPy-style docstrings</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ul>
+<li><p><strong><em>Paths</em></strong>: Set the path for your Python modules to be included in the docs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong><em>HTML Theme</em></strong>: You can set the theme for your HTML documentation (default is alabaster):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>  <span class="c1"># Example: ReadTheDocs theme</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Source file suffix</strong>*: Define which file extensions to look for:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source_suffix</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.rst&#39;</span><span class="p">,</span> <span class="s1">&#39;.md&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ol class="arabic" start="4">
+<li><p>Install related to chosen Sphinx extensions packages.</p>
+<ol class="arabic">
+<li><p>For ‘sphinx_rtd_theme’ theme execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx_rtd_theme
+</pre></div>
+</div>
+</li>
+<li><p>For ‘myst_parser’ theme execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>myst_parser
+</pre></div>
+</div>
+</li>
+<li><p>For ‘rst2pdf’ theme execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>rst2pdf
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Document Your Code.</p></li>
+<li><p>Generate reStructuredText (.rst) Files
+To automatically generate <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files from your Python code, use sphinx-apidoc.
+This will generate a <code class="docutils literal notranslate"><span class="pre">source/</span></code> directory with .rst files that describe your modules and classes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>-o<span class="w"> </span>source/<span class="w"> </span>path/to/your/module
+</pre></div>
+</div>
+<p><strong>!!! IMPORTANT</strong><br />
+For the current project all Sphinx documentation is stored in <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder and script below should be executed from the project root folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>-o<span class="w"> </span>docs/source<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Build HTML Documentation</p>
+<p><strong>!!! IMPORTANT</strong><br />
+<strong>For the current project script below should be executed from the project root folder.</strong><br />
+Once your <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files are in place and <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> is configured, you can build the HTML documentation:</p>
+<ul>
+<li><p>on Windows OS</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs/source/<span class="w"> </span>docs/html_docs/
+</pre></div>
+</div>
+<p>where <strong><em>html_docs</em></strong> - custom defined name for storing generated html docs.</p>
+<p>If errors appears after generating docs try to clear the cached build.<br />
+Clear the <code class="docutils literal notranslate"><span class="pre">build/</span></code> directory by deleting it or running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>-E<span class="w"> </span>source/<span class="w"> </span>html_docs/
+</pre></div>
+</div>
+<p>The -E flag forces Sphinx to rebuild everything from scratch, avoiding potential caching issues.</p>
+</li>
+<li><p>on UNIX</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>This command will generate the HTML files inside the build/html/ directory. Open the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file in your browser to view your documentation.</p>
+</li>
+</ul>
+</li>
+<li><p>Build PDF Documentation</p></li>
+</ol>
+<ul>
+<li><p>on Windows OS</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>pdf<span class="w"> </span>source/<span class="w"> </span>pdf_docs/
+</pre></div>
+</div>
+</li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p>View Documentation</p></li>
+</ol>
+<p>Navigate to the build/html/ directory and open index.html in your browser to view your generated documentation.</p>
+<p>Additional Configurations (Optional)
+Include Markdown files: If you want to include .md files, ensure the myst_parser is installed and enabled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>pip<span class="w"> </span>install<span class="w"> </span>myst-parser
+</pre></div>
+</div>
+<p>Then add it to <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>	<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myst_parser&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Customizing Themes: You can install additional Sphinx themes by running pip install <theme-name> and configuring html_theme in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="tests">
+<h1><span class="section-number">2.6. </span>Tests<a class="headerlink" href="#tests" title="Link to this heading"></a></h1>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>More information about test runs by pytest you can
+find <a class="reference external" href="https://pytest-with-eric.com/introduction/pytest-run-single-test/">here</a></p>
+<section id="test-execution-by-pytest">
+<h2><span class="section-number">2.6.1. </span>Test execution by <em>pytest</em><a class="headerlink" href="#test-execution-by-pytest" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>All tests are located in <strong><em>tests</em></strong> folder</p>
+<section id="run-all-tests">
+<h3><span class="section-number">2.6.1.1. </span>Run all Tests<a class="headerlink" href="#run-all-tests" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>To run all the tests from the root directory, you can use the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>or just</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>You can add the -v flag to get more verbose output:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><img alt="python_pytest_verbose.png" src="_images/python_pytest_verbose.png" /></p>
+<p>You can enable live console logging using the pytest -s command too.</p>
+</section>
+<section id="run-tests-in-a-module">
+<h3><span class="section-number">2.6.1.2. </span>Run tests in a module<a class="headerlink" href="#run-tests-in-a-module" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>To run all tests in a specific file (module), use the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">tests/unit/test_functions.py</span></code></p>
+</section>
+<section id="test-run-for-specific-test-by-test-name-by-command">
+<h3><span class="section-number">2.6.1.3. </span>Test run for specific test (by test name) by command<a class="headerlink" href="#test-run-for-specific-test-by-test-name-by-command" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> option followed by the name of the test function or method you want to run</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-k</span> <span class="pre">{some_test}}</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-k</span> <span class="pre">test_dummy_test.py</span></code></p>
+</section>
+<section id="run-tests-in-a-directory">
+<h3><span class="section-number">2.6.1.4. </span>Run tests in a directory<a class="headerlink" href="#run-tests-in-a-directory" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>Perhaps you may decide to split your tests by unit, integration, end-to-end, performance, regression and so on.<br />
+If you need an overview of the various types of testing for your Python applications, this article on the types of<br />
+software testing is a good introduction.<br />
+In these cases it’s helpful to run tests within a specific directory, and you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="p">{</span><span class="n">path_to_the_folder_with_test</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>e.g.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>tests/dummy_tests
+</pre></div>
+</div>
+</section>
+<section id="run-tests-by-node-ids">
+<h3><span class="section-number">2.6.1.5. </span>Run tests by node IDs<a class="headerlink" href="#run-tests-by-node-ids" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>To run a specific test, you can use the test’s node ID, which is essentially its path in the syntax:<br />
+<code class="docutils literal notranslate"><span class="pre">{filename.py}::{test_function_name}.</span></code><br />
+For example, to run the test_add_negative_numbers function in the test_functions.py file, you can use the following
+command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w">  </span>test/dummy_tests/test_functions.py::test_add_positive_numbers
+</pre></div>
+</div>
+<p>This runs the <strong><em>test_add_positive_numbers</em></strong> test in the test_functions.py file.</p>
+</section>
+<section id="run-tests-of-a-specific-class">
+<h3><span class="section-number">2.6.1.6. </span>Run tests of a specific class<a class="headerlink" href="#run-tests-of-a-specific-class" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>You can also run all tests in a specific class. To do this, you use the :: operator followed by the class name.<br />
+For example, to run all tests in the RegressionTests class, you can use the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">test/dummy_tests/test_functions.py::TestsUnit</span></code></p>
+</section>
+<section id="run-tests-by-marker-expressions">
+<h3><span class="section-number">2.6.1.7. </span>Run tests by marker expressions<a class="headerlink" href="#run-tests-by-marker-expressions" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>By using markers, you can run specific groups of tests, exclude tests, and prioritize tests. This can help you to write
+better tests and to get more value from your test suite.</p>
+<p>We’ve covered several kinds of markers in the articles on Pytest Timeout, Pytest Skip Tests and Pytes Asyncio.</p>
+<p>In Pytest, you can assign markers to your test functions using the &#64;pytest.mark decorator. You can then use these
+markers to run specific tests.</p>
+<p>This is especially useful when you have different types of tests, such as fast and slow tests, and you want to run them
+selectively.</p>
+<p>Example of pytest written with markers presented below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">unit</span>
+<span class="k">def</span> <span class="nf">test_one</span><span class="p">():</span>
+    <span class="n">result_of_doing</span> <span class="o">=</span> <span class="n">do_something</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">result_of_doing</span> <span class="o">==</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>To run tests based on marker expressions, you use the -m flag followed by the marker name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[pytest]
+markers =
+    unit : unit tests
+    end_to_end  : end to end tests
+    skip : slow tests`
+</pre></div>
+</div>
+<p>command is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">-</span><span class="n">m</span> <span class="n">unit</span>
+</pre></div>
+</div>
+<p>In case if ini file located not in the root directory marker should be passed via flag <code class="docutils literal notranslate"><span class="pre">-c</span></code> and valid configured path to
+the ini file</p>
+</section>
+</section>
+<section id="additional-parts-for-test-run-configuration">
+<h2><span class="section-number">2.6.2. </span>Additional parts for test run/configuration<a class="headerlink" href="#additional-parts-for-test-run-configuration" title="Link to this heading"></a></h2>
+<section id="specifying-configuration-file-location">
+<h3><span class="section-number">2.6.2.1. </span>Specifying configuration file location<a class="headerlink" href="#specifying-configuration-file-location" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<p>The -c option allows you to specify the path to your pytest.ini file directly.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-c</span> <span class="pre">path/to/your/pytest.ini</span></code><br />
+example of usage for current project is <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-c</span> <span class="pre">config/pytest.ini</span> <span class="pre">-m</span> <span class="pre">unit</span></code></p>
+<p>Better to set the PYTEST_ADDOPTS environment variable to include the config file path:</p>
+<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTEST_ADDOPTS=&quot;-c</span> <span class="pre">config/pytest.ini&quot;</span></code></p>
+</section>
+<section id="rerun-failed-tests">
+<h3><span class="section-number">2.6.2.2. </span>Rerun failed tests<a class="headerlink" href="#rerun-failed-tests" title="Link to this heading"></a></h3>
+<p>Rerun for failed tests work after installation of <code class="docutils literal notranslate"><span class="pre">pytest-rerunfailures</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest-rerunfailures
+</pre></div>
+</div>
+<p>Check version of <code class="docutils literal notranslate"><span class="pre">pytest-rerunfailures</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest-rerunfailures<span class="w"> </span>--version
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--reruns<span class="w"> </span><span class="m">3</span><span class="w"> </span>--alluredir<span class="o">=</span><span class="s2">&quot;resources/project_test_reports/allure_reports</span>
+</pre></div>
+</div>
+<p>or in paralel</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w">  </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>--reruns<span class="w"> </span><span class="m">3</span><span class="w"> </span>--alluredir<span class="o">=</span><span class="s2">&quot;resources/project_test_reports/allure_reports&quot;</span>
+</pre></div>
+</div>
+<p><em>Full Command Breakdown</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span></code>: Runs tests in parallel using 10 worker processes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--reruns</span> <span class="pre">3</span></code>: Reruns any failed tests up to 3 times.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--alluredir=&quot;resources/project_test_reports/allure_reports&quot;</span></code>: Specifies the directory to store Allure reports.</p>
+</section>
+<section id="run-tests-in-parallel-using-workers">
+<h3><span class="section-number">2.6.2.3. </span>Run tests in parallel(using workers)<a class="headerlink" href="#run-tests-in-parallel-using-workers" title="Link to this heading"></a></h3>
+<p><strong><em>Installing Required Plugins</em></strong></p>
+<p>Make sure you have the required plugins installed:</p>
+<ul class="simple">
+<li><p>for parallel test execution<code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code></p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>
+</pre></div>
+</div>
+<p><em>-n 4</em>: Runs tests in parallel using 4 worker processes.</p>
+</section>
+<section id="snippets-for-running-existing-tests">
+<h3><span class="section-number">2.6.2.4. </span>Snippets for running existing tests<a class="headerlink" href="#snippets-for-running-existing-tests" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<ol class="arabic simple">
+<li><p>Test for checking home page (not a booking view)</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>test/web_app_tests/test_login_page.py::test_check_main_section_of_home_page
+</pre></div>
+</div>
+</section>
+</section>
+<section id="test-report-generation">
+<h2><span class="section-number">2.6.3. </span>Test report generation<a class="headerlink" href="#test-report-generation" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<section id="by-pytest-simple-report">
+<h3><span class="section-number">2.6.3.1. </span>By pytest (Simple Report)<a class="headerlink" href="#by-pytest-simple-report" title="Link to this heading"></a></h3>
+<p>Simple pytest report generation in html format is possible by executing command</p>
+<p>Short Traceback:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--tb<span class="o">=</span>short
+</pre></div>
+</div>
+<p>Long Traceback (default):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--tb<span class="o">=</span>long
+</pre></div>
+</div>
+<p>No Traceback (only show test results):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--tb<span class="o">=</span>short<span class="w"> </span>--disable-warnings
+</pre></div>
+</div>
+</section>
+<section id="by-pytest-html-report">
+<h3><span class="section-number">2.6.3.2. </span>By pytest (HTML Report)<a class="headerlink" href="#by-pytest-html-report" title="Link to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--html<span class="o">=</span>resources/project_test_reports/pytest_reports/pytest_general_test_report.html
+</pre></div>
+</div>
+<p>using workers</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>--html<span class="o">=</span>resources/project_test_reports/pytest_html_reports/pytest_html_general_test_report.html
+</pre></div>
+</div>
+</section>
+<section id="by-pytest-junit-xml-report">
+<h3><span class="section-number">2.6.3.3. </span>By pytest (JUnit XML Report)<a class="headerlink" href="#by-pytest-junit-xml-report" title="Link to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--junitxml<span class="o">=</span>resources/project_test_reports/pytest_junit_xml_reports/pytest_junit_xml_general_test_report.xml
+</pre></div>
+</div>
+</section>
+<section id="test-reports-by-allure">
+<h3><span class="section-number">2.6.3.4. </span>Test reports by Allure<a class="headerlink" href="#test-reports-by-allure" title="Link to this heading"></a></h3>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<section id="creating-initial-pytest-reports-by-allure">
+<h4><span class="section-number">2.6.3.4.1. </span>Creating initial pytest reports by Allure<a class="headerlink" href="#creating-initial-pytest-reports-by-allure" title="Link to this heading"></a></h4>
+<p><a href="#toc" style="color: green;">go to TOC.</a>
+For generating Allure reports on the tests performed, you must first execute tests by pytest.
+You need specify a path for the test results directory in the –alluredir command-line argument when running your tests.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--alluredir<span class="o">=</span><span class="s2">&quot;resources/test_report/allure_reports&quot;</span>
+</pre></div>
+</div>
+<p>If any any error appears</p>
+<ul class="simple">
+<li><p>Check that the system statisfy Allure requirements.</p></li>
+<li><p>Confirm that all components installed, report folder is created.
+need to specify execution tests by pytests with specific output format.</p></li>
+</ul>
+<p>When test execution completed , Allure reports generation starts after executing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">allure</span> <span class="n">serve</span> <span class="p">{</span><span class="n">path_to_report_folder</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Example of command execution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="p">{</span><span class="n">project_dir_path</span><span class="p">}</span> <span class="n">allure</span> <span class="n">serve</span> <span class="s2">&quot;resources/allure_reports&quot;</span>
+</pre></div>
+</div>
+<p>command that is applicable for the current project configuration is</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>allure<span class="w"> </span>serve<span class="w"> </span><span class="s2">&quot;resources/test_report/allure_reports&quot;</span>
+</pre></div>
+</div>
+<p>After successful execution of command allure starts server and provide server URL for checking allure report in the browser.</p>
+</section>
+</section>
+</section>
+<section id="existing-created-tests-by-categories">
+<h2><span class="section-number">2.6.4. </span>Existing(created) tests by categories<a class="headerlink" href="#existing-created-tests-by-categories" title="Link to this heading"></a></h2>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<section id="test-list">
+<h3><span class="section-number">2.6.4.1. </span>Test List<a class="headerlink" href="#test-list" title="Link to this heading"></a></h3>
+<p>List of existing tests for the current project is possible to generate by executing python script <a class="reference internal" href="#utilities/make_list_of_tests.py"><span class="xref myst">make_list_of_tests.py</span></a>.
+Result will be presented in the <a class="reference internal" href="#resources/list_of_all_project_tests.md"><span class="xref myst">list_of_all_project_tests.md</span></a>. <br />
+All tests are grouping by categories. <br />
+IMPORTANT!!!
+If you did any changes, please validate path to the test dir in the <a class="reference internal" href="#utilities/make_list_of_tests.py"><span class="xref myst">make_list_of_tests.py</span></a></p>
+</section>
+</section>
+</section>
+<section id="resources-for-ta-frameworks">
+<h1><span class="section-number">2.7. </span>Resources for TA frameworks<a class="headerlink" href="#resources-for-ta-frameworks" title="Link to this heading"></a></h1>
+<p><a href="#toc" style="color: green;">go to TOC.</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://thinking-tester-contact-list.herokuapp.com/">Contact List App - web app for pure API testing</a></p>
+<ul>
+<li><p>was available at 18 June 2024</p></li>
+</ul>
+</li>
+<li><p>Web apps for testing</p>
+<ul>
+<li><p><a class="reference external" href="https://opensource-demo.orangehrmlive.com/">OrangeHRM web app</a></p></li>
+<li><p><a class="reference external" href="https://httpbin.org/#/">httpbin.org - web app</a></p>
+<ul>
+<li><p>was available at 18 June 2024</p></li>
+<li><p>the developer - <a class="reference external" href="https://kennethreitz.org/">Website</a></p></li>
+<li><p>A simple HTTP Request &amp; Response Service.</p></li>
+<li><p>Run locally: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-p</span> <span class="pre">80:80</span> <span class="pre">kennethreitz/httpbin</span></code></p></li>
+<li><p><a class="reference external" href="https://httpbin.org/forms/post">HTML form</a> that posts to <code class="docutils literal notranslate"><span class="pre">/post</span> <span class="pre">/forms/post</span></code></p></li>
+<li><p>was available at 18 June 2024</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://tutorialsninja.com/demo/">tutorialsninja.com - web app</a></p>
+<ul>
+<li><p>was available at 18 June 2024</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="readme.html" class="btn btn-neutral float-left" title="2. Readme.md" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="about/framework_structure.html" class="btn btn-neutral float-right" title="3. Framework structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

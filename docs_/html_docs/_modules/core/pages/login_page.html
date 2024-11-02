@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core.pages.login_page &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">core.pages.login_page</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for core.pages.login_page</h1><div class="highlight"><pre>
+<span></span><span class="c1"># /core/pages/login_page.py</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module contains the LoginAdminPage class, which encapsulates</span>
+<span class="sd">methods for interacting with the admin panel of a booking site.</span>
+
+<span class="sd">It provides functionality for logging in, retrieving UI elements,</span>
+<span class="sd">and checking element properties in the admin interface.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">selenium.common</span> <span class="kn">import</span> <span class="n">TimeoutException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.wait</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+
+<span class="kn">from</span> <span class="nn">core.pages.base_page</span> <span class="kn">import</span> <span class="n">BaseFrontPage</span><span class="p">,</span> <span class="n">LoginPageLocators</span>
+<span class="kn">from</span> <span class="nn">core.pages.home_page</span> <span class="kn">import</span> <span class="n">HomeFrontPage</span>
+
+
+<div class="viewcode-block" id="LoginAdminPage">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage">[docs]</a>
+<span class="k">class</span> <span class="nc">LoginAdminPage</span><span class="p">(</span><span class="n">BaseFrontPage</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for performing actions on the admin panel UI of the booking site.</span>
+
+<span class="sd">    This class inherits from BaseFrontPage and provides methods to interact</span>
+<span class="sd">    with the login elements and perform login operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the LoginAdminPage with the given WebDriver instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            driver: A Selenium WebDriver instance for interacting with the browser.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+
+    <span class="c1"># Page elements and data</span>
+
+<div class="viewcode-block" id="LoginAdminPage.get_branding_name_details">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.get_branding_name_details">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_branding_name_details</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the branding name details displayed on the login form.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The branding name details as text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">BRANDING_NAME_DETAILS_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LoginAdminPage.get_user_name_placeholder_text_on_login_form">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.get_user_name_placeholder_text_on_login_form">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_user_name_placeholder_text_on_login_form</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the placeholder text for the username input field.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The placeholder text for the username input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_placeholder_text_for_element</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">USERNAME_INPUT_LINK_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LoginAdminPage.get_user_password_placeholder_text_on_login_form">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.get_user_password_placeholder_text_on_login_form">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_user_password_placeholder_text_on_login_form</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the placeholder text for the password input field.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The placeholder text for the password input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_placeholder_text_for_element</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">PASSWORD_INPUT_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ACTIONS</span>
+
+<div class="viewcode-block" id="LoginAdminPage.is_element_present">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.is_element_present">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_element_present</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator_key</span><span class="p">:</span> <span class="n">LoginPageLocators</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if an element is present on the page.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            locator_key (LoginPageLocators): The locator key for the element.</span>
+<span class="sd">            wait_time (int): The maximum time to wait for the element to appear.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the element is present, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">presence_of_static_element_on_the_page</span><span class="p">(</span><span class="n">locator_key</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="LoginAdminPage.is_logout_navbar_link_visible">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.is_logout_navbar_link_visible">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_logout_navbar_link_visible</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the logout navbar link is visible.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the logout link is visible, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_element_present</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">LOGOUT_NAVBAR_LINK_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="LoginAdminPage.is_logout_navbar_link_clickable">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.is_logout_navbar_link_clickable">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_logout_navbar_link_clickable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the logout navbar link is clickable.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the logout link is clickable, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_element_clickable</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">LOGOUT_NAVBAR_LINK_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="LoginAdminPage.is_front_page_link_present">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.is_front_page_link_present">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_front_page_link_present</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the front page link is present.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the front page link is present, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_element_present</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LoginAdminPage.is_element_clickable">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.is_element_clickable">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_element_clickable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator_key</span><span class="p">:</span> <span class="n">LoginPageLocators</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if an element is clickable.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            locator_key (LoginPageLocators): The locator key for the element.</span>
+<span class="sd">            wait_time (int): The maximum time to wait for the element to be clickable.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the element is clickable, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">locator_key</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error checking element clickability: </span><span class="si">{</span><span class="n">locator_key</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="LoginAdminPage.login_to_admin_panel">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.login_to_admin_panel">[docs]</a>
+    <span class="k">def</span> <span class="nf">login_to_admin_panel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Logs in to the admin panel with provided credentials.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            user_name (str): The user&#39;s username.</span>
+<span class="sd">            user_password (str): The user&#39;s password.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TimeoutException: If login fails due to timeout.</span>
+<span class="sd">            Exception: For other login failures.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_front_page</span> <span class="o">=</span> <span class="n">HomeFrontPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">home_front_page</span><span class="o">.</span><span class="n">open_admin_page_by_footer_link</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enter_credentials_into_login_form</span><span class="p">(</span><span class="n">user_name</span><span class="p">,</span> <span class="n">user_password</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">SUBMIT_BUTTON_ID_LOCATOR</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;login_to_admin_panel completed with user_name: </span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">, user_password:</span><span class="si">{</span><span class="n">user_password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;login_to_admin_panel failed due to timeout. Username: </span><span class="si">{</span><span class="n">user_name</span><span class="si">}</span><span class="s2"> , user_password: </span><span class="si">{</span><span class="n">user_password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;login_to_admin_panel failed due to an unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+
+
+<div class="viewcode-block" id="LoginAdminPage.enter_credentials_into_login_form">
+<a class="viewcode-back" href="../../../core.pages.html#core.pages.login_page.LoginAdminPage.enter_credentials_into_login_form">[docs]</a>
+    <span class="k">def</span> <span class="nf">enter_credentials_into_login_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enters the provided credentials into the login form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            username (str): The username to enter.</span>
+<span class="sd">            user_password (str): The password to enter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">USERNAME_INPUT_LINK_XPATH_LOCATOR</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">user_password</span><span class="p">,</span> <span class="n">LoginPageLocators</span><span class="o">.</span><span class="n">PASSWORD_INPUT_XPATH_LOCATOR</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

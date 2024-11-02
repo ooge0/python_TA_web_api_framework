@@ -1,9 +1,17 @@
+"""
+Package provides method for getting names of created tests by pytest script
+"""
 import subprocess
 
 from utilities.general_utils import GeneralUtils
 
 
-def get_test_names(test_dir):
+def get_test_names(test_dir) -> list[str]:
+    """
+    Get name of pytest test that is retried from subprocess output.
+
+    :return: list of test names
+    """
     result = subprocess.run(['pytest', '--collect-only', test_dir, '--no-header'], stdout=subprocess.PIPE,
                             text=True)
     output = result.stdout

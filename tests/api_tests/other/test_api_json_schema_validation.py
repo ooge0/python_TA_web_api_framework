@@ -1,3 +1,7 @@
+"""
+Module contains tests related top JSON validation of API responses
+"""
+
 import allure
 from hamcrest import assert_that, is_
 
@@ -14,10 +18,12 @@ class TestJsonValidation:
     ref_response_status_code = 200
 
     @allure.feature("Booking")
-    def test_backend_api_Create_booking_response_check_via_json_validation(self, backend_api_client,
+    def test_backend_api_create_booking_response_check_via_json_validation(self, backend_api_client,
                                                                            back_end_api_booking_endpoint,
                                                                            backend_api_booking_valid_payload_test_data):
         """
+        Test checks response content and doing JSON validation
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data:
@@ -30,15 +36,15 @@ class TestJsonValidation:
         validate_json(response.json(), BOOKING_SCHEMA_MAIN)
 
     @allure.feature("Booking")
-    def test_backend_api_Existing_booking_by_id_response_check_via_json_validation(self, backend_api_client,
+    def test_backend_api_existing_booking_by_id_response_check_via_json_validation(self, backend_api_client,
                                                                                    back_end_api_booking_endpoint,
                                                                                    backend_api_booking_valid_payload_test_data):
         """
-        Get booking by specific 'bookingid' by GET API call using 'back_end_api_booking_endpoint'
+        Get booking by specific 'bookingid' by GET API call using 'back_end_api_booking_endpoint'.
+
         :param backend_api_client:
         :param back_end_api_booking_endpoint:
         :param backend_api_booking_valid_payload_test_data: Fixture, returned valid test data: payload and headers
-        :return: None
         """
         _, headers = backend_api_booking_valid_payload_test_data
         booking_id = 2

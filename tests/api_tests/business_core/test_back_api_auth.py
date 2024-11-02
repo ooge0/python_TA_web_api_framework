@@ -24,10 +24,10 @@ class TestBackApiAuth:
                                                     back_api_valid_credentials_valid_headers):
         """
         Test to check token creation by valid credentials
+        
         :param backend_api_client: Client to interact with the backend API
         :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
         :param back_api_valid_credentials_valid_headers: Fixture that returns valid user credentials and headers for the current test.
-        :return: None
         """
         user_creds, headers = back_api_valid_credentials_valid_headers
         response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
@@ -44,10 +44,10 @@ class TestBackApiAuth:
         """
         Test to check token creation by invalid credentials.
         This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+        
         :param backend_api_client: Client to interact with the backend API
         :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
         :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
-        :return: None
         """
         user_creds, headers = back_api_invalid_credentials
         response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
@@ -64,13 +64,13 @@ class TestBackApiAuth:
                                                                         back_end_auth_api_endpoint,
                                                                         back_api_invalid_credentials):
         """
-                Test to check token creation by invalid credentials.
-                This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-                :param backend_api_client: Client to interact with the backend API
-                :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-                :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
-                :return: None
-                """
+        Test to check token creation by invalid credentials.
+        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+        
+        :param backend_api_client: Client to interact with the backend API
+        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
+        :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
+        """
         user_creds = back_api_invalid_credentials
         response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
         self.logger.info(
@@ -86,13 +86,13 @@ class TestBackApiAuth:
                                                                         back_end_auth_api_endpoint,
                                                                         back_api_invalid_credentials):
         """
-                Test to check token creation by invalid credentials.
-                This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-                :param backend_api_client: Client to interact with the backend API
-                :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-                :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
-                :return: None
-                """
+        Test to check token creation by invalid credentials.
+        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+
+        :param backend_api_client: Client to interact with the backend API
+        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
+        :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
+        """
         user_creds = back_api_invalid_credentials
         response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
         self.logger.info(
@@ -107,12 +107,12 @@ class TestBackApiAuth:
     def test_back_api_creation_token_by_empty_user_creds_and_no_headers(self, backend_api_client,
                                                                         back_end_auth_api_endpoint):
         """
-                Test to check token creation by invalid credentials.
-                This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-                :param backend_api_client: Client to interact with the backend API
-                :param back_end_auth_api_endpoint: Endpoint for login
-                :return: None
-                """
+        Test to check token creation by invalid credentials.
+        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+
+        :param backend_api_client: Client to interact with the backend API
+        :param back_end_auth_api_endpoint: Endpoint for login
+        """
         user_creds = {"username": "", "password": ""}
         response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
         self.logger.info(
@@ -162,7 +162,6 @@ class TestBackApiAuth:
 
         :param backend_api_client: Client to interact with the backend API
         :param back_end_auth_api_endpoint: Endpoint for token generation
-        :return: None
         """
 
         @settings(max_examples=10,

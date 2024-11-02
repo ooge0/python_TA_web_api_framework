@@ -83,3 +83,4 @@ idea/
 /resources/screenshots
 /tests/.hypothesis
 geckodriver.log
+/docs/

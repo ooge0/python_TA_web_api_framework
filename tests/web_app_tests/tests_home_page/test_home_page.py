@@ -1,3 +1,6 @@
+"""
+Tests for Home page
+"""
 import pytest
 from hamcrest import assert_that, instance_of, contains_inanyorder, equal_to, is_not
 
