@@ -1,10 +1,14 @@
 # .readthedocs.yml
 version: 2
 
-# Disable Sphinx build on Read the Docs
+# Specify the OS and Python environment explicitly
 build:
-  image: "stable"  # Just set a default image; no builds will happen
+  os: ubuntu-20.04  # Use a supported OS
+  tools:
+    python: "3.12"   # Specify the Python version
 
+# Disable Sphinx build on Read the Docs
+# Only install the project dependencies without rebuilding docs
 python:
   install:
     - method: pip
