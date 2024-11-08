@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API client class representation &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function and Class Relationships" href="function_and_class_relationships.html" />
+    <link rel="prev" title="Class relationships" href="classes_relationships.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API client class representation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/diagrams/api_client_relationships.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-client-class-representation">
+<h1>API client class representation<a class="headerlink" href="#api-client-class-representation" title="Link to this heading"></a></h1>
+<p><strong>Fancy graphviz API client class representation</strong></p>
+<div class="graphviz"><img src="../_images/graphviz-e42b4881206b1e163dfc8bcd13d6f12ee84bb606.png" alt="digraph G {
+    label=&quot;API Client Function Relationships&quot;;
+    fontsize=20;
+    labelloc=top;
+    fontname=&quot;Helvetica&quot;;
+
+    // Define the style for all nodes
+    node [shape=box, style=filled, color=lightblue2, fontname=&quot;Arial&quot;, fontsize=12];
+
+    // Define the style for edges
+    edge [color=darkgreen, style=dashed, penwidth=1.5];
+
+    // APIClient node with 3D box style
+    &quot;APIClient&quot; [label=&quot;APIClient&quot;, shape=box3d, color=lightblue];
+
+    // Edges from APIClient to its methods
+    &quot;APIClient&quot; -&gt; &quot;_request&quot; [label=&quot;uses&quot;, color=&quot;blue&quot;, fontcolor=&quot;blue&quot;, fontsize=10];
+    &quot;APIClient&quot; -&gt; &quot;delete&quot; [label=&quot;calls&quot;, color=&quot;red&quot;, fontcolor=&quot;red&quot;, fontsize=10, style=&quot;solid&quot;];
+    &quot;APIClient&quot; -&gt; &quot;get&quot; [label=&quot;calls&quot;, color=&quot;purple&quot;, fontcolor=&quot;purple&quot;, fontsize=10, style=&quot;solid&quot;];
+    &quot;APIClient&quot; -&gt; &quot;patch&quot; [label=&quot;calls&quot;, color=&quot;orange&quot;, fontcolor=&quot;orange&quot;, fontsize=10, style=&quot;dashed&quot;];
+    &quot;APIClient&quot; -&gt; &quot;post&quot; [label=&quot;calls&quot;, color=&quot;green&quot;, fontcolor=&quot;green&quot;, fontsize=10, style=&quot;solid&quot;];
+    &quot;APIClient&quot; -&gt; &quot;put&quot; [label=&quot;calls&quot;, color=&quot;brown&quot;, fontcolor=&quot;brown&quot;, fontsize=10, style=&quot;solid&quot;];
+
+    // Additional nodes
+    &quot;Any&quot; [label=&quot;Any&quot;, shape=ellipse, color=yellow];
+    &quot;dataclass&quot; [label=&quot;dataclass&quot;, shape=ellipse, color=palegreen];
+    &quot;get_logger&quot; [label=&quot;get_logger&quot;, shape=ellipse, color=lightcoral];
+
+    // Define relationships to external dependencies
+    &quot;APIClient&quot; -&gt; &quot;Any&quot; [style=dotted];
+    &quot;APIClient&quot; -&gt; &quot;dataclass&quot; [style=dashed, color=&quot;gray&quot;];
+    &quot;APIClient&quot; -&gt; &quot;get_logger&quot; [style=dashed, color=&quot;gray&quot;];
+}" class="graphviz" /></div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classes_relationships.html" class="btn btn-neutral float-left" title="Class relationships" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="function_and_class_relationships.html" class="btn btn-neutral float-right" title="Function and Class Relationships" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

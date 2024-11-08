@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utilities package &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">utilities package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilities-package">
+<h1>utilities package<a class="headerlink" href="#utilities-package" title="Link to this heading"></a></h1>
+<section id="module-utilities">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utilities" title="Link to this heading"></a></h2>
+<p>This package is a collection of utility functions and helpers for various tasks,
+including API interactions, database management, Excel data handling,
+and test data generation. This package provides reusable components
+to streamline development and improve code organization.</p>
+<section id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h3>
+<section id="module-utilities.api_utils">
+<span id="utilities-api-utils-module"></span><h4>utilities.api_utils module<a class="headerlink" href="#module-utilities.api_utils" title="Link to this heading"></a></h4>
+<p>Helper functions to simplify API tests</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.api_utils.assert_that_less_then">
+<span class="sig-prename descclassname"><span class="pre">utilities.api_utils.</span></span><span class="sig-name descname"><span class="pre">assert_that_less_then</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_response_status_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_response_time_in_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/api_utils.html#assert_that_less_then"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.api_utils.assert_that_less_then" title="Link to this definition"></a></dt>
+<dd><p>Assert that the response status code matches the expected status code and that
+the response time is less than the expected time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – The test case instance (if used within a class).</p></li>
+<li><p><strong>ref_response_status_code</strong> (<em>int</em>) – The expected HTTP status code.</p></li>
+<li><p><strong>ref_response_time_in_seconds</strong> (<em>float</em>) – The maximum expected response time in seconds.</p></li>
+<li><p><strong>response</strong> – The HTTP response object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the response status code does not match the expected status code
+    or if the response time exceeds the expected time.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.api_utils.get_header_value">
+<span class="sig-prename descclassname"><span class="pre">utilities.api_utils.</span></span><span class="sig-name descname"><span class="pre">get_header_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/api_utils.html#get_header_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.api_utils.get_header_value" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a value from headers by a specific key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>headers</strong> (<em>dict</em>) – The headers dictionary from the HTTP response.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – The key for which to retrieve the value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value corresponding to the key, or None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.api_utils.get_token_from_header">
+<span class="sig-prename descclassname"><span class="pre">utilities.api_utils.</span></span><span class="sig-name descname"><span class="pre">get_token_from_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'token=([^;]+)'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/api_utils.html#get_token_from_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.api_utils.get_token_from_header" title="Link to this definition"></a></dt>
+<dd><p>Extract a token from a header value using a regular expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_value</strong> (<em>str</em>) – The header value containing the token.</p></li>
+<li><p><strong>pattern</strong> (<em>str</em>) – The regex pattern to match the token.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The extracted token, or None if no match is found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.api_utils.measure_response_time">
+<span class="sig-prename descclassname"><span class="pre">utilities.api_utils.</span></span><span class="sig-name descname"><span class="pre">measure_response_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/api_utils.html#measure_response_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.api_utils.measure_response_time" title="Link to this definition"></a></dt>
+<dd><p>Measure the response time of an HTTP response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>response</strong> – The HTTP response object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total time taken for the response in seconds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.api_utils.validate_json">
+<span class="sig-prename descclassname"><span class="pre">utilities.api_utils.</span></span><span class="sig-name descname"><span class="pre">validate_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_json</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/api_utils.html#validate_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.api_utils.validate_json" title="Link to this definition"></a></dt>
+<dd><p>Validate a JSON object or a list of JSON objects against a given schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_json</strong> (<em>dict</em><em> or </em><em>list</em>) – The JSON object or list of JSON objects to validate.</p></li>
+<li><p><strong>schema</strong> (<em>dict</em>) – The JSON schema to validate against.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the JSON does not conform to the schema.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utilities.back_api_utils">
+<span id="utilities-back-api-utils-module"></span><h4>utilities.back_api_utils module<a class="headerlink" href="#module-utilities.back_api_utils" title="Link to this heading"></a></h4>
+<p>Module that contains helpers for API interactions.
+Module includes utility functions to convert API responses into data models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilities.back_api_utils.BackApiUtils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.back_api_utils.</span></span><span class="sig-name descname"><span class="pre">BackApiUtils</span></span><a class="reference internal" href="_modules/utilities/back_api_utils.html#BackApiUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.back_api_utils.BackApiUtils" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A utility class for working with API responses.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.back_api_utils.BackApiUtils.convert_response_to_model">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_response_to_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/back_api_utils.html#BackApiUtils.convert_response_to_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.back_api_utils.BackApiUtils.convert_response_to_model" title="Link to this definition"></a></dt>
+<dd><p>Convert an API response to a specified model class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response</strong> – The API response object that contains the JSON data.</p></li>
+<li><p><strong>model_class</strong> – The class of the model to which the response should be converted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the specified model class populated with data from the response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="utilities-create-database-with-mock-data-module">
+<h4>utilities.create_database_with_mock_data module<a class="headerlink" href="#utilities-create-database-with-mock-data-module" title="Link to this heading"></a></h4>
+</section>
+<section id="utilities-db-utils-module">
+<h4>utilities.db_utils module<a class="headerlink" href="#utilities-db-utils-module" title="Link to this heading"></a></h4>
+</section>
+<section id="module-utilities.excel_data_provider">
+<span id="utilities-excel-data-provider-module"></span><h4>utilities.excel_data_provider module<a class="headerlink" href="#module-utilities.excel_data_provider" title="Link to this heading"></a></h4>
+<p>Module for providing data from Excel files.
+This module includes the ExcelDataProvider class, which offers methods to
+retrieve user credentials from an Excel sheet, both valid and invalid,
+and supports data retrieval by index.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilities.excel_data_provider.ExcelDataProvider">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.excel_data_provider.</span></span><span class="sig-name descname"><span class="pre">ExcelDataProvider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_data_provider.html#ExcelDataProvider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_data_provider.ExcelDataProvider" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to handle data extraction from an Excel file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.excel_data_provider.ExcelDataProvider.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_data_provider.html#ExcelDataProvider.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_data_provider.ExcelDataProvider.get_data" title="Link to this definition"></a></dt>
+<dd><p>Extracts a set of user credentials from the specified Excel sheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sheet_name</strong> (<em>str</em>) – The name of the sheet to retrieve data from.</p></li>
+<li><p><strong>flag</strong> (<em>bool</em>) – Indicates whether to extract positive (True) or negative (False) test data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Retrieved test data, where each tuple contains user_name and user_password.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.excel_data_provider.ExcelDataProvider.get_data_by_index">
+<span class="sig-name descname"><span class="pre">get_data_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_data_provider.html#ExcelDataProvider.get_data_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_data_provider.ExcelDataProvider.get_data_by_index" title="Link to this definition"></a></dt>
+<dd><p>Retrieves data from the provided list by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>List</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – The list of data from which to retrieve a tuple.</p></li>
+<li><p><strong>index</strong> (<em>int</em>) – The index of the data to retrieve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The retrieved tuple of data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[str, str]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If the index is out of range of the data list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.excel_data_provider.ExcelDataProvider.get_invalid_data">
+<span class="sig-name descname"><span class="pre">get_invalid_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_data_provider.html#ExcelDataProvider.get_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_data_provider.ExcelDataProvider.get_invalid_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieves invalid test data from the specified Excel sheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sheet_name</strong> (<em>str</em>) – The name of the sheet to retrieve invalid data from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Retrieved invalid test data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.excel_data_provider.ExcelDataProvider.get_valid_data">
+<span class="sig-name descname"><span class="pre">get_valid_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_data_provider.html#ExcelDataProvider.get_valid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_data_provider.ExcelDataProvider.get_valid_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieves valid test data from the specified Excel sheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sheet_name</strong> (<em>str</em>) – The name of the sheet to retrieve valid data from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Retrieved valid test data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-utilities.excel_utils">
+<span id="utilities-excel-utils-module"></span><h4>utilities.excel_utils module<a class="headerlink" href="#module-utilities.excel_utils" title="Link to this heading"></a></h4>
+<p>Module for handling Excel file operations.
+This module provides utility functions to read and write data to Excel files
+using the openpyxl library. It includes functions to get row and column counts,
+read cell data, set cell data, and retrieve data as lists with optional filtering.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.excel_utils.get_cell_data">
+<span class="sig-prename descclassname"><span class="pre">utilities.excel_utils.</span></span><span class="sig-name descname"><span class="pre">get_cell_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_utils.html#get_cell_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_utils.get_cell_data" title="Link to this definition"></a></dt>
+<dd><p>Returns the data from a specific cell in the specified sheet of the Excel file.</p>
+<p>If the cell data is not a string, the returned value will be in a tuple or list.
+This is important for testing purposes, where each character is used as input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the Excel file.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em>) – Name of the sheet from which to get cell data.</p></li>
+<li><p><strong>row_number</strong> (<em>int</em>) – The row number of the cell (1-indexed).</p></li>
+<li><p><strong>column_number</strong> (<em>int</em>) – The column number of the cell (1-indexed).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the cell, which may be a string, tuple, or list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.excel_utils.get_column_count">
+<span class="sig-prename descclassname"><span class="pre">utilities.excel_utils.</span></span><span class="sig-name descname"><span class="pre">get_column_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_utils.html#get_column_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_utils.get_column_count" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of columns in the specified sheet of the Excel file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the Excel file.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em>) – Name of the sheet from which to count columns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of columns in the specified sheet.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.excel_utils.get_data_as_list">
+<span class="sig-prename descclassname"><span class="pre">utilities.excel_utils.</span></span><span class="sig-name descname"><span class="pre">get_data_as_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_utils.html#get_data_as_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_utils.get_data_as_list" title="Link to this definition"></a></dt>
+<dd><p>Reads data from an Excel sheet and optionally filters it by a ‘valid_flag’ column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the Excel file.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em>) – Name of the sheet.</p></li>
+<li><p><strong>flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, returns only rows where ‘valid_flag’ is True.
+If False, returns only rows where ‘valid_flag’ is False.
+If None, returns all rows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lists, where each inner list represents a row of data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.excel_utils.get_row_count">
+<span class="sig-prename descclassname"><span class="pre">utilities.excel_utils.</span></span><span class="sig-name descname"><span class="pre">get_row_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_utils.html#get_row_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_utils.get_row_count" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of rows in the specified sheet of the Excel file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the Excel file.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em>) – Name of the sheet from which to count rows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of rows in the specified sheet.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.excel_utils.set_cell_data">
+<span class="sig-prename descclassname"><span class="pre">utilities.excel_utils.</span></span><span class="sig-name descname"><span class="pre">set_cell_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/excel_utils.html#set_cell_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.excel_utils.set_cell_data" title="Link to this definition"></a></dt>
+<dd><p>Sets the data in a specific cell in the specified sheet of the Excel file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the Excel file.</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em>) – Name of the sheet where the cell data should be set.</p></li>
+<li><p><strong>row_number</strong> (<em>int</em>) – The row number of the cell (1-indexed).</p></li>
+<li><p><strong>column_number</strong> (<em>int</em>) – The column number of the cell (1-indexed).</p></li>
+<li><p><strong>data</strong> – The data to set in the specified cell.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utilities.general_utils">
+<span id="utilities-general-utils-module"></span><h4>utilities.general_utils module<a class="headerlink" href="#module-utilities.general_utils" title="Link to this heading"></a></h4>
+<p>Utilities class provider</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.general_utils.</span></span><span class="sig-name descname"><span class="pre">GeneralUtils</span></span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A utility class providing helper methods for:
+- Taking screenshots in Selenium tests
+- Creating files and writing test names
+- Validating data retrieved from the database
+- Handling string-to-boolean conversions
+- Constructing normalized file paths</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.create_file_and_write_test_names">
+<span class="sig-name descname"><span class="pre">create_file_and_write_test_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.create_file_and_write_test_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.create_file_and_write_test_names" title="Link to this definition"></a></dt>
+<dd><p>Creates a file and writes the list of test names to it, each on a new line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_list</strong> – A list of test names (strings) to be written into the file.</p></li>
+<li><p><strong>file_path</strong> – The path where the file will be created. Directories in the path are
+created if they do not exist.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The method logs the operation and handles errors related to file creation or writing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.get_path">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.get_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.get_path" title="Link to this definition"></a></dt>
+<dd><p>Constructs a normalized file path from a project root, directory, and file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db_dir</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The directory path (may include unwanted leading/trailing characters).</p></li>
+<li><p><strong>db_file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The database file name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A normalized full file path constructed from the project root, the cleaned
+directory path, and the database file name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.get_validation_data_from_db">
+<span class="sig-name descname"><span class="pre">get_validation_data_from_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.get_validation_data_from_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.get_validation_data_from_db" title="Link to this definition"></a></dt>
+<dd><p>Validates and retrieves data from a database response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – A list of dictionary objects returned from the database.</p></li>
+<li><p><strong>key</strong> – The key whose corresponding value needs to be retrieved from the data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value from the database data corresponding to the provided key.</p>
+</dd>
+</dl>
+<p>If the key is not found, an error is logged. This method assumes the data is
+structured as a list of dictionaries and attempts to retrieve data from the first
+dictionary.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;loguru.logger</span> <span class="pre">handlers=[(id=0,</span> <span class="pre">level=10,</span> <span class="pre">sink=&lt;stderr&gt;),</span> <span class="pre">(id=1,</span> <span class="pre">level=10,</span> <span class="pre">sink='./resources/logger_output/logfile.log')]&gt;</span></em><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.logger" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.str_to_bool">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">str_to_bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.str_to_bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.str_to_bool" title="Link to this definition"></a></dt>
+<dd><p>Converts a string to a boolean value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The string to be converted.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the string represents a truthy value (‘true’, ‘1’, ‘t’, ‘y’, ‘yes’),
+otherwise False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.general_utils.GeneralUtils.take_screenshot">
+<span class="sig-name descname"><span class="pre">take_screenshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'page_screenshot.png'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#GeneralUtils.take_screenshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.GeneralUtils.take_screenshot" title="Link to this definition"></a></dt>
+<dd><p>Takes a screenshot of the current web page in a Selenium test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – Optional; The name of the screenshot file. Defaults to ‘page_screenshot.png’.</p>
+</dd>
+</dl>
+<p>The screenshot is saved in the ‘resources/screenshots/’ directory. If the directory
+does not exist, it is created. The method logs the result and handles any errors.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.general_utils.check_sys_env_issues">
+<span class="sig-prename descclassname"><span class="pre">utilities.general_utils.</span></span><span class="sig-name descname"><span class="pre">check_sys_env_issues</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/general_utils.html#check_sys_env_issues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.general_utils.check_sys_env_issues" title="Link to this definition"></a></dt>
+<dd><p>Checks and logs system and environment details including:
+- Python system prefix
+- Current working directory
+- Environment variables</p>
+<p>Logs this information using the configured logger and also prints it to the console.</p>
+</dd></dl>
+
+</section>
+<section id="module-utilities.get_names_of_tests">
+<span id="utilities-get-names-of-tests-module"></span><h4>utilities.get_names_of_tests module<a class="headerlink" href="#module-utilities.get_names_of_tests" title="Link to this heading"></a></h4>
+<p>Package provides method for getting names of created tests by pytest script</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.get_names_of_tests.get_test_names">
+<span class="sig-prename descclassname"><span class="pre">utilities.get_names_of_tests.</span></span><span class="sig-name descname"><span class="pre">get_test_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/get_names_of_tests.html#get_test_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.get_names_of_tests.get_test_names" title="Link to this definition"></a></dt>
+<dd><p>Get name of pytest test that is retried from subprocess output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of test names</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utilities.make_list_of_tests">
+<span id="utilities-make-list-of-tests-module"></span><h4>utilities.make_list_of_tests module<a class="headerlink" href="#module-utilities.make_list_of_tests" title="Link to this heading"></a></h4>
+<p>Package provides method for getting names of created tests by pytest script
+and generate MarkDown file based on retrieved info.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.escape_md_special_chars">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">escape_md_special_chars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#escape_md_special_chars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.escape_md_special_chars" title="Link to this definition"></a></dt>
+<dd><p>Escape special MarkDown characters such as square brackets and ampersands.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.extract_test_info">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">extract_test_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pytest_output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#extract_test_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.extract_test_info" title="Link to this definition"></a></dt>
+<dd><p>Extract test names and file paths with line numbers from pytest output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.generate_md_links">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">generate_md_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#generate_md_links"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.generate_md_links" title="Link to this definition"></a></dt>
+<dd><p>Generate a dictionary of MarkDown links grouped by test class (if ‘::’ is present).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">defaultdict</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.get_pytest_names">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">get_pytest_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#get_pytest_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.get_pytest_names" title="Link to this definition"></a></dt>
+<dd><p>Run pytest –collect-only to get the test names and locations.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.main">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_md_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.main" title="Link to this definition"></a></dt>
+<dd><p>Main function to get test names and generate MarkDown file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.make_list_of_tests.write_md_file">
+<span class="sig-prename descclassname"><span class="pre">utilities.make_list_of_tests.</span></span><span class="sig-name descname"><span class="pre">write_md_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">md_links</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/make_list_of_tests.html#write_md_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.make_list_of_tests.write_md_file" title="Link to this definition"></a></dt>
+<dd><p>Write the MarkDown links to an output file, grouped by category.</p>
+</dd></dl>
+
+</section>
+<section id="module-utilities.read_configurations">
+<span id="utilities-read-configurations-module"></span><h4>utilities.read_configurations module<a class="headerlink" href="#module-utilities.read_configurations" title="Link to this heading"></a></h4>
+<p>Package includes method for reading configuration</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.read_configurations.read_configuration">
+<span class="sig-prename descclassname"><span class="pre">utilities.read_configurations.</span></span><span class="sig-name descname"><span class="pre">read_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/read_configurations.html#read_configuration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.read_configurations.read_configuration" title="Link to this definition"></a></dt>
+<dd><p>Method retrieves data (key) for specific category from ‘config.ini’ file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Value from ‘config.ini’</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="utilities-test-data-utils-module">
+<h4>utilities.test_data_utils module<a class="headerlink" href="#utilities-test-data-utils-module" title="Link to this heading"></a></h4>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

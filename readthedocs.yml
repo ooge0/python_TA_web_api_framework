@@ -1,0 +1,11 @@
+# readthedocs.yml
+version: 2
+
+# Disable Sphinx build on Read the Docs
+build:
+  image: "stable"  # Just set a default image; no builds will happen
+
+python:
+  install:
+    - method: pip
+      path: .

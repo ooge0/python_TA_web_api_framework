@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core.locators package &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">core.locators package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/core.locators.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-locators-package">
+<h1>core.locators package<a class="headerlink" href="#core-locators-package" title="Link to this heading"></a></h1>
+<section id="module-core.locators">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-core.locators" title="Link to this heading"></a></h2>
+<p>Package contains sort of methods for getting test data as data sets
+from different sources.</p>
+<section id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h3>
+<section id="module-core.locators.base_locators">
+<span id="core-locators-base-locators-module"></span><h4>core.locators.base_locators module<a class="headerlink" href="#module-core.locators.base_locators" title="Link to this heading"></a></h4>
+<p>Module contains enumerations for web element locators used in UI testing.
+These enumerations help standardize locator definitions and provide a clear
+interface for accessing element locators across different pages or components
+in the application.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><ul class="simple">
+<li><p>BaseLocators: A base class for locator instances that returns the locator value when converted to a string.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.locators.base_locators.BaseLocators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.locators.base_locators.</span></span><span class="sig-name descname"><span class="pre">BaseLocators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/locators/base_locators.html#BaseLocators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.base_locators.BaseLocators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Base class for locator instances.</p>
+<p>This class extends Enum to define locators as enumeration members.
+Each member should represent a specific locator strategy, such as
+XPath, CSS selectors, etc. The string representation of the member
+returns the locator value, making it convenient for use in
+Selenium or similar frameworks.</p>
+</dd></dl>
+
+</section>
+<section id="module-core.locators.home_page_locators">
+<span id="core-locators-home-page-locators-module"></span><h4>core.locators.home_page_locators module<a class="headerlink" href="#module-core.locators.home_page_locators" title="Link to this heading"></a></h4>
+<p>Module contains the locators for the elements on the Home Page.</p>
+<p>It includes specific XPATH and CSS selectors for key elements
+used in automated tests for interacting with the application’s home page.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.locators.home_page_locators.</span></span><span class="sig-name descname"><span class="pre">HomePageLocators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#core.locators.base_locators.BaseLocators" title="core.locators.base_locators.BaseLocators"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLocators</span></code></a></p>
+<p>Class contains the locators for the elements on the Home Page.</p>
+<p>It inherits from BaseLocators and defines various XPATH and CSS selectors
+for key elements, such as buttons, images, and sections that can be used
+in automated tests for interacting with the home page of the application.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.BOOK_THIS_ROOM_BUTTON_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">BOOK_THIS_ROOM_BUTTON_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//button[contains(&#64;class,'btn</span> <span class="pre">btn-outline-primary')]&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.BOOK_THIS_ROOM_BUTTON_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.BOOK_THIS_ROOM_BUTTON_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.BUTTON_SUBMIT_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">BUTTON_SUBMIT_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//</span> <span class="pre">button[</span> <span class="pre">&#64;</span> <span class="pre">id</span> <span class="pre">=</span> <span class="pre">'submitContact']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.BUTTON_SUBMIT_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.BUTTON_SUBMIT_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_BAR_ID_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_BAR_ID_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'footer'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_BAR_ID_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_BAR_ID_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_BAR_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_BAR_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;id='footer']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_BAR_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_BAR_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;id='footer']/div/p/a[4]&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;id='footer']/div/p/a[2]&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;id='footer']/div/p/a[1]&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;id='footer']/div/p/a[3]&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">p'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_INFO_SECTION_CLASS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_INFO_SECTION_CLASS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'row</span> <span class="pre">hotel-room-info'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_INFO_SECTION_CLASS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_INFO_SECTION_CLASS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_RADIO_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_RADIO_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(3)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_RADIO_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_RADIO_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_RADIO_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_RADIO_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='Radio'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_RADIO_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_RADIO_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_REFRESHMENTS_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(4)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_REFRESHMENTS_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='Refreshments'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_REFRESHMENTS_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_SAFE_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_SAFE_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(5)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_SAFE_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_SAFE_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_SAFE__XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_SAFE__XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='Safe'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_SAFE__XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_SAFE__XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_TV_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_TV_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(2)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_TV_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_TV_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_TV_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_TV_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='TV'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_TV_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_TV_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_VIEWS_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(6)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_VIEWS_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='Views'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_VIEWS_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_WIFI_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_WIFI_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">div.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">ul</span> <span class="pre">&gt;</span> <span class="pre">li:nth-child(1)'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_WIFI_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_WIFI_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_WIFI_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_OPTION_WIFI_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;(//li[text()='WiFi'])&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_OPTION_WIFI_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_OPTION_WIFI_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_PICTURE_INFO_SECTION_CLASS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_PICTURE_INFO_SECTION_CLASS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'img-responsive</span> <span class="pre">hotel-img'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_PICTURE_INFO_SECTION_CLASS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_PICTURE_INFO_SECTION_CLASS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_TYPE_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">.col-sm-7</span> <span class="pre">&gt;</span> <span class="pre">h3'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_WHEELCHAIR_OPTION_CSS_LOCATOR">
+<span class="sig-name descname"><span class="pre">HOTEL_ROOM_WHEELCHAIR_OPTION_CSS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.hotel-room-info</span> <span class="pre">&gt;</span> <span class="pre">.col-sm-7</span> <span class="pre">&gt;span'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.HOTEL_ROOM_WHEELCHAIR_OPTION_CSS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.HOTEL_ROOM_WHEELCHAIR_OPTION_CSS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.INPUT_EMAIL_FORM_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">INPUT_EMAIL_FORM_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid</span> <span class="pre">=</span> <span class="pre">'ContactEmail']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.INPUT_EMAIL_FORM_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.INPUT_EMAIL_FORM_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.INPUT_NAME_FORM_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">INPUT_NAME_FORM_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid</span> <span class="pre">=</span> <span class="pre">'ContactName']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.INPUT_NAME_FORM_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.INPUT_NAME_FORM_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.INPUT_PHONE_FORM_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">INPUT_PHONE_FORM_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid</span> <span class="pre">=</span> <span class="pre">'ContactPhone']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.INPUT_PHONE_FORM_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.INPUT_PHONE_FORM_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.INPUT_SUBJECT_FORM_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">INPUT_SUBJECT_FORM_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid</span> <span class="pre">=</span> <span class="pre">'ContactSubject']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.INPUT_SUBJECT_FORM_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.INPUT_SUBJECT_FORM_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.LET_ME_HACK_BUTTON_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">LET_ME_HACK_BUTTON_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//*[&#64;data-target='#collapseBanner']/button&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.LET_ME_HACK_BUTTON_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.LET_ME_HACK_BUTTON_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.LOGO_PICTURE_CLASS_LOCATOR">
+<span class="sig-name descname"><span class="pre">LOGO_PICTURE_CLASS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'map'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.LOGO_PICTURE_CLASS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.LOGO_PICTURE_CLASS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.LOGO_WELCOME_TEXT_CLASS_LOCATOR">
+<span class="sig-name descname"><span class="pre">LOGO_WELCOME_TEXT_CLASS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'row</span> <span class="pre">hotel-description'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.LOGO_WELCOME_TEXT_CLASS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.LOGO_WELCOME_TEXT_CLASS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.ROOM_HEADER_SECTION_CLASS_LOCATOR">
+<span class="sig-name descname"><span class="pre">ROOM_HEADER_SECTION_CLASS_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'row</span> <span class="pre">room-header'</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.ROOM_HEADER_SECTION_CLASS_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.ROOM_HEADER_SECTION_CLASS_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.home_page_locators.HomePageLocators.TEXT_AREA_CONTACT_DESCRIPTION_FORM_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">TEXT_AREA_CONTACT_DESCRIPTION_FORM_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//textarea[&#64;data-testid</span> <span class="pre">=</span> <span class="pre">'ContactDescription']&quot;</span></em><a class="reference internal" href="_modules/core/locators/home_page_locators.html#HomePageLocators.TEXT_AREA_CONTACT_DESCRIPTION_FORM_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.home_page_locators.HomePageLocators.TEXT_AREA_CONTACT_DESCRIPTION_FORM_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.locators.login_page_locators">
+<span id="core-locators-login-page-locators-module"></span><h4>core.locators.login_page_locators module<a class="headerlink" href="#module-core.locators.login_page_locators" title="Link to this heading"></a></h4>
+<p>Module contains the locators for the elements on the Login Page.</p>
+<p>It includes specific XPATH and CSS selectors for key elements
+used in automated tests for interacting with the application’s home page.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.locators.login_page_locators.</span></span><span class="sig-name descname"><span class="pre">LoginPageLocators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names=&lt;not</span> <span class="pre">given&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#core.locators.base_locators.BaseLocators" title="core.locators.base_locators.BaseLocators"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLocators</span></code></a></p>
+<p>Class contains the locators for the elements on the Login Page.</p>
+<p>It inherits from BaseLocators and defines various XPATH and CSS selectors
+for key elements, such as buttons, images, and sections that can be used
+in automated tests for interacting with the home page of the application.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.BRANDING_NAME_DETAILS_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">BRANDING_NAME_DETAILS_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//div[&#64;class='mx-auto</span> <span class="pre">order-0']/a&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.BRANDING_NAME_DETAILS_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.BRANDING_NAME_DETAILS_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">ml-auto']/li[2]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.INBOX_NAVBAR_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">INBOX_NAVBAR_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">ml-auto']/li[1]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.INBOX_NAVBAR_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.INBOX_NAVBAR_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.LOGOUT_NAVBAR_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">LOGOUT_NAVBAR_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">ml-auto']/li[3]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.LOGOUT_NAVBAR_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.LOGOUT_NAVBAR_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.NAVBAR_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">NAVBAR_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">mr-auto']/li[3]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.NAVBAR_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.NAVBAR_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.PASSWORD_INPUT_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">PASSWORD_INPUT_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid='password']&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.PASSWORD_INPUT_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.PASSWORD_INPUT_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.REPORT_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">REPORT_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">mr-auto']/li[2]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.REPORT_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.REPORT_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.ROOMS_NAVBAR_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">ROOMS_NAVBAR_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//ul[&#64;class='navbar-nav</span> <span class="pre">mr-auto']/li[1]&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.ROOMS_NAVBAR_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.ROOMS_NAVBAR_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR">
+<span class="sig-name descname"><span class="pre">SUBMIT_BUTTON_ID_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'doLogin'</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.locators.login_page_locators.LoginPageLocators.USERNAME_INPUT_LINK_XPATH_LOCATOR">
+<span class="sig-name descname"><span class="pre">USERNAME_INPUT_LINK_XPATH_LOCATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;//input[&#64;data-testid='username']&quot;</span></em><a class="reference internal" href="_modules/core/locators/login_page_locators.html#LoginPageLocators.USERNAME_INPUT_LINK_XPATH_LOCATOR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.locators.login_page_locators.LoginPageLocators.USERNAME_INPUT_LINK_XPATH_LOCATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
