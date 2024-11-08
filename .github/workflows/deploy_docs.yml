@@ -3,7 +3,7 @@ name: Deploy Documentation to GitHub Pages
 on:
   push:
     branches:
-      - master  # Deploy when changes are pushed to main
+      - master  # Deploy when changes are pushed to master (or main)
 
 jobs:
   deploy:
@@ -12,15 +12,27 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
-      - name: Copy HTML documentation to gh-pages
+      - name: Set up Git
         run: |
           git config --global user.email "dns.rom@gmail.com"
           git config --global user.name "ooge0"
+
+      - name: Copy HTML documentation to gh-pages
+        run: |
+          # Prepare the output directory
           mkdir -p out
-          cp -r docs/html_docs/* out/
+          cp -r docs/html_docs/* out/  # Copy HTML files from your documentation
+
+      - name: Deploy to gh-pages
+        run: |
           cd out
-          git init
-          git checkout -b gh-pages
+          git init  # Initialize a git repo in the out folder
+          git checkout -b gh-pages  # Create and switch to the gh-pages branch
           git add .
           git commit -m "Deploy documentation"
-          git push -f origin gh-pages
+          git push -f origin gh-pages  # Force push to the gh-pages branch
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
