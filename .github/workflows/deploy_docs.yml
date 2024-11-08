@@ -33,6 +33,6 @@ jobs:
           git push -f origin gh-pages  # Force push to the gh-pages branch
 
       - name: Push changes
-        uses: ad-m/github-push-action@v4
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
