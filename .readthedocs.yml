@@ -3,13 +3,18 @@ version: 2
 
 # Specify the OS and Python environment explicitly
 build:
-  os: ubuntu-20.04  # Use a supported OS
+  commands:
+    - cp -r docs/html_docs $READTHEDOCS_OUTPUT/html/
+  os: ubuntu-20.04
   tools:
-    python: "3.12"   # Specify the Python version
+    python: "3.12"
 
-# Disable Sphinx build on Read the Docs
-# Only install the project dependencies without rebuilding docs
+# Skip the project install
 python:
   install:
-    - method: pip
-      path: .
+    - requirements: docs/requirements.txt  # Optional if you have specific doc requirements
+
+# Set the documentation type to 'sphinx' and serve from the pre-built HTML folder
+sphinx:
+  builder: dirhtml  # Ensures directory-style HTML output if needed
+  configuration: false  # Disables re-building Sphinx; just serves HTML files
