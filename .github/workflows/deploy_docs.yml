@@ -14,8 +14,8 @@ jobs:
 
       - name: Copy HTML documentation to gh-pages
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "dns.rom@gmail.com"
+          git config --global user.name "ooge0"
           mkdir -p out
           cp -r docs/html_docs/* out/
           cd out
