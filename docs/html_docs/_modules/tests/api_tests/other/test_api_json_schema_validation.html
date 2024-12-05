@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests.api_tests.other.test_api_json_schema_validation &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tests.api_tests.other.test_api_json_schema_validation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tests.api_tests.other.test_api_json_schema_validation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module contains tests related top JSON validation of API responses</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">allure</span>
+<span class="kn">from</span> <span class="nn">hamcrest</span> <span class="kn">import</span> <span class="n">assert_that</span><span class="p">,</span> <span class="n">is_</span>
+
+<span class="kn">from</span> <span class="nn">config.logger_config</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">core.data.json_schemas.booking_schema</span> <span class="kn">import</span> <span class="n">BOOKING_SCHEMA_MAIN</span><span class="p">,</span> <span class="n">BOOKING_SCHEMA_SECONDARY</span>
+<span class="kn">from</span> <span class="nn">utilities.api_utils</span> <span class="kn">import</span> <span class="n">validate_json</span>
+
+
+<div class="viewcode-block" id="TestJsonValidation">
+<a class="viewcode-back" href="../../../../tests/tests.api_tests.other.html#tests.api_tests.other.test_api_json_schema_validation.TestJsonValidation">[docs]</a>
+<span class="k">class</span> <span class="nc">TestJsonValidation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for tests that are related to JSON validation for back-end and front-end endpoints.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestJsonValidation.logger">
+<a class="viewcode-back" href="../../../../tests/tests.api_tests.other.html#tests.api_tests.other.test_api_json_schema_validation.TestJsonValidation.logger">[docs]</a>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestJsonValidation.ref_response_status_code">
+<a class="viewcode-back" href="../../../../tests/tests.api_tests.other.html#tests.api_tests.other.test_api_json_schema_validation.TestJsonValidation.ref_response_status_code">[docs]</a>
+    <span class="n">ref_response_status_code</span> <span class="o">=</span> <span class="mi">200</span></div>
+
+
+    <span class="nd">@allure</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;Booking&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="TestJsonValidation.test_backend_api_create_booking_response_check_via_json_validation">
+<a class="viewcode-back" href="../../../../tests/tests.api_tests.other.html#tests.api_tests.other.test_api_json_schema_validation.TestJsonValidation.test_backend_api_create_booking_response_check_via_json_validation">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_backend_api_create_booking_response_check_via_json_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend_api_client</span><span class="p">,</span>
+                                                                           <span class="n">back_end_api_booking_endpoint</span><span class="p">,</span>
+                                                                           <span class="n">backend_api_booking_valid_payload_test_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test checks response content and doing JSON validation</span>
+
+<span class="sd">        :param backend_api_client:</span>
+<span class="sd">        :param back_end_api_booking_endpoint:</span>
+<span class="sd">        :param backend_api_booking_valid_payload_test_data:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">booking_payload</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">backend_api_booking_valid_payload_test_data</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">backend_api_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">back_end_api_booking_endpoint</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                                           <span class="n">json</span><span class="o">=</span><span class="n">booking_payload</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_response_status_code</span><span class="p">))</span>
+        <span class="n">validate_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">BOOKING_SCHEMA_MAIN</span><span class="p">)</span></div>
+
+
+    <span class="nd">@allure</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;Booking&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="TestJsonValidation.test_backend_api_existing_booking_by_id_response_check_via_json_validation">
+<a class="viewcode-back" href="../../../../tests/tests.api_tests.other.html#tests.api_tests.other.test_api_json_schema_validation.TestJsonValidation.test_backend_api_existing_booking_by_id_response_check_via_json_validation">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_backend_api_existing_booking_by_id_response_check_via_json_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend_api_client</span><span class="p">,</span>
+                                                                                   <span class="n">back_end_api_booking_endpoint</span><span class="p">,</span>
+                                                                                   <span class="n">backend_api_booking_valid_payload_test_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get booking by specific &#39;bookingid&#39; by GET API call using &#39;back_end_api_booking_endpoint&#39;.</span>
+
+<span class="sd">        :param backend_api_client:</span>
+<span class="sd">        :param back_end_api_booking_endpoint:</span>
+<span class="sd">        :param backend_api_booking_valid_payload_test_data: Fixture, returned valid test data: payload and headers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">backend_api_booking_valid_payload_test_data</span>
+        <span class="n">booking_id</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">backend_api_client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">back_end_api_booking_endpoint</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">booking_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">assert_that</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">is_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_response_status_code</span><span class="p">))</span>
+        <span class="n">validate_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">BOOKING_SCHEMA_SECONDARY</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

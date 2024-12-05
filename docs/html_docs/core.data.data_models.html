@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core.data.data_models package &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9bcbadda"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">core.data.data_models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/core.data.data_models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-data-data-models-package">
+<h1>core.data.data_models package<a class="headerlink" href="#core-data-data-models-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-core.data.data_models.api_header_data_models">
+<span id="core-data-data-models-api-header-data-models-module"></span><h2>core.data.data_models.api_header_data_models module<a class="headerlink" href="#module-core.data.data_models.api_header_data_models" title="Link to this heading"></a></h2>
+<p>Represents HTTP headers for API requests.</p>
+<p>Class encapsulates the various headers that may be included
+in an HTTP request, allowing for easy construction and conversion
+to a dictionary format.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.api_header_data_models.</span></span><span class="sig-name descname"><span class="pre">HeaderModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">referrer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents HTTP headers for API requests.</p>
+<p>Class encapsulates the various headers that may be included
+in an HTTP request, allowing for easy construction and conversion
+to a dictionary format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel.content_type">
+<span class="sig-name descname"><span class="pre">content_type</span></span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.content_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel.content_type" title="Link to this definition"></a></dt>
+<dd><p>The MIME type of the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel.user_agent">
+<span class="sig-name descname"><span class="pre">user_agent</span></span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.user_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel.user_agent" title="Link to this definition"></a></dt>
+<dd><p>Information about the user agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel.referrer">
+<span class="sig-name descname"><span class="pre">referrer</span></span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.referrer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel.referrer" title="Link to this definition"></a></dt>
+<dd><p>The URL of the referring page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel.auth_token">
+<span class="sig-name descname"><span class="pre">auth_token</span></span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.auth_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel.auth_token" title="Link to this definition"></a></dt>
+<dd><p>An authentication token (e.g., a session cookie).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">auth_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.auth_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">content_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.content_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">referrer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.referrer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.api_header_data_models.HeaderModel.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_header_data_models.HeaderModel.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convert non-null attributes to a dictionary representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing the HTTP headers,
+with only non-null attributes included.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">user_agent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/api_header_data_models.html#HeaderModel.user_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models.api_login_data_models">
+<span id="core-data-data-models-api-login-data-models-module"></span><h2>core.data.data_models.api_login_data_models module<a class="headerlink" href="#module-core.data.data_models.api_login_data_models" title="Link to this heading"></a></h2>
+<p>This module defines the <cite>LoginCredentials</cite> dataclass, which is used to represent and handle user login credentials.
+It provides methods for creating an instance from a dictionary and converting the instance back to a dictionary.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.api_login_data_models.</span></span><span class="sig-name descname"><span class="pre">LoginCredentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing user login credentials.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials.username" title="Link to this definition"></a></dt>
+<dd><p>The username used for login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials.password" title="Link to this definition"></a></dt>
+<dd><p>The password associated with the username.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials.valid">
+<span class="sig-name descname"><span class="pre">valid</span></span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials.valid" title="Link to this definition"></a></dt>
+<dd><p>An optional flag indicating whether the credentials are valid. Defaults to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_data_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create an instance of LoginCredentials from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – A dictionary containing the ‘username’ and ‘password’ keys.</p></li>
+<li><p><strong>valid_data_flag</strong> (<em>bool</em><em>, </em><em>optional</em>) – A flag indicating if the credentials are valid (default is None).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the LoginCredentials class populated with the provided data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.api_login_data_models.LoginCredentials" title="core.data.data_models.api_login_data_models.LoginCredentials">LoginCredentials</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.api_login_data_models.LoginCredentials.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.api_login_data_models.LoginCredentials.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convert the LoginCredentials instance into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_valid</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to include the ‘valid’ flag in the output dictionary (default is False).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the ‘username’, ‘password’, and optionally ‘valid’ fields.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">valid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/api_login_data_models.html#LoginCredentials.valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models.back_api_auth_data_models">
+<span id="core-data-data-models-back-api-auth-data-models-module"></span><h2>core.data.data_models.back_api_auth_data_models module<a class="headerlink" href="#module-core.data.data_models.back_api_auth_data_models" title="Link to this heading"></a></h2>
+<p>A class representing the authentication payload for an API.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.back_api_auth_data_models.BackApiAuthPayload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.back_api_auth_data_models.</span></span><span class="sig-name descname"><span class="pre">BackApiAuthPayload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/back_api_auth_data_models.html#BackApiAuthPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.back_api_auth_data_models.BackApiAuthPayload" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing the authentication payload for an API.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.token">
+<span class="sig-name descname"><span class="pre">token</span></span><a class="reference internal" href="_modules/core/data/data_models/back_api_auth_data_models.html#BackApiAuthPayload.token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.token" title="Link to this definition"></a></dt>
+<dd><p>The authentication token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/back_api_auth_data_models.html#BackApiAuthPayload.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create an instance of BackApiAuthPayload from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – A dictionary containing the authentication data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the BackApiAuthPayload class populated with the provided data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.back_api_auth_data_models.BackApiAuthPayload" title="core.data.data_models.back_api_auth_data_models.BackApiAuthPayload">BackApiAuthPayload</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/back_api_auth_data_models.html#BackApiAuthPayload.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.back_api_auth_data_models.BackApiAuthPayload.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convert the BackApiAuthPayload instance into a string (the token value).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The token as a string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/back_api_auth_data_models.html#BackApiAuthPayload.token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models.front_api_bookingID_list_data_model">
+<span id="core-data-data-models-front-api-bookingid-list-data-model-module"></span><h2>core.data.data_models.front_api_bookingID_list_data_model module<a class="headerlink" href="#module-core.data.data_models.front_api_bookingID_list_data_model" title="Link to this heading"></a></h2>
+<p>Class represents a payload containing a booking ID.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_bookingID_list_data_model.</span></span><span class="sig-name descname"><span class="pre">ApiBookingIdListObjectPayload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bookingid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#ApiBookingIdListObjectPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class represents a payload containing a booking ID.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.bookingid">
+<span class="sig-name descname"><span class="pre">bookingid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#ApiBookingIdListObjectPayload.bookingid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.bookingid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_response</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#ApiBookingIdListObjectPayload.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Creates an instance from a dictionary, extracting the booking ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – The dictionary containing booking information.</p></li>
+<li><p><strong>is_response</strong> (<em>bool</em>) – Indicates if the data is part of an API response.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance with the booking ID.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload" title="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload">ApiBookingIdListObjectPayload</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#ApiBookingIdListObjectPayload.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Converts the instance to a dictionary representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_id</strong> (<em>bool</em>) – If True, includes the booking ID in the output.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary representation of the instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_bookingID_list_data_model.</span></span><span class="sig-name descname"><span class="pre">BookingIdList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bookings=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a list of API booking ID objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.bookings">
+<span class="sig-name descname"><span class="pre">bookings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code><span class="pre">[</span><a class="reference internal" href="#core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload" title="core.data.data_models.front_api_bookingID_list_data_model.ApiBookingIdListObjectPayload"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApiBookingIdListObjectPayload</span></code></a><span class="pre">]</span></em><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList.bookings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.bookings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.from_list">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.from_list" title="Link to this definition"></a></dt>
+<dd><p>Creates a BookingIdList instance from a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – A list of dictionaries representing booking IDs.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance containing the list of booking ID objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList" title="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList">BookingIdList</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.get_booking_id_by_index">
+<span class="sig-name descname"><span class="pre">get_booking_id_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList.get_booking_id_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.get_booking_id_by_index" title="Link to this definition"></a></dt>
+<dd><p>Retrieves a booking ID by its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – The index of the booking in the list.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The booking ID if the index is valid, otherwise None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.get_booking_ids">
+<span class="sig-name descname"><span class="pre">get_booking_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList.get_booking_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.get_booking_ids" title="Link to this definition"></a></dt>
+<dd><p>Extracts booking IDs from the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of booking IDs, excluding None values.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Optional[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_bookingID_list_data_model.html#BookingIdList.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_bookingID_list_data_model.BookingIdList.to_list" title="Link to this definition"></a></dt>
+<dd><p>Converts the BookingIdList to a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of dictionary representations of the booking ID objects.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models.front_api_booking_object_data_model">
+<span id="core-data-data-models-front-api-booking-object-data-model-module"></span><h2>core.data.data_models.front_api_booking_object_data_model module<a class="headerlink" href="#module-core.data.data_models.front_api_booking_object_data_model" title="Link to this heading"></a></h2>
+<p>A class representing the check-in and check-out dates for a booking.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_booking_object_data_model.</span></span><span class="sig-name descname"><span class="pre">AdditionalNeeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">needs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#AdditionalNeeds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing any additional needs for the booking.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds.needs">
+<span class="sig-name descname"><span class="pre">needs</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#AdditionalNeeds.needs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds.needs" title="Link to this definition"></a></dt>
+<dd><p>Additional needs or requirements for the booking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">needs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#AdditionalNeeds.needs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_booking_object_data_model.</span></span><span class="sig-name descname"><span class="pre">ApiBookingObjectPayload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">firstname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">totalprice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depositpaid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bookingdates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additionalneeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bookingid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing the payload of a booking object for an API.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.firstname">
+<span class="sig-name descname"><span class="pre">firstname</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.firstname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.firstname" title="Link to this definition"></a></dt>
+<dd><p>First name of the person making the booking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.lastname">
+<span class="sig-name descname"><span class="pre">lastname</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.lastname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.lastname" title="Link to this definition"></a></dt>
+<dd><p>Last name of the person making the booking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.totalprice">
+<span class="sig-name descname"><span class="pre">totalprice</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.totalprice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.totalprice" title="Link to this definition"></a></dt>
+<dd><p>Total price of the booking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.depositpaid">
+<span class="sig-name descname"><span class="pre">depositpaid</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.depositpaid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.depositpaid" title="Link to this definition"></a></dt>
+<dd><p>Whether the deposit has been paid (yes/no).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.bookingdates">
+<span class="sig-name descname"><span class="pre">bookingdates</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.bookingdates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.bookingdates" title="Link to this definition"></a></dt>
+<dd><p>An instance of BookingDates representing check-in and check-out dates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.front_api_booking_object_data_model.BookingDates" title="core.data.data_models.front_api_booking_object_data_model.BookingDates">BookingDates</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.additionalneeds">
+<span class="sig-name descname"><span class="pre">additionalneeds</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.additionalneeds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.additionalneeds" title="Link to this definition"></a></dt>
+<dd><p>An instance of AdditionalNeeds representing any additional requirements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds" title="core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds">AdditionalNeeds</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.bookingid">
+<span class="sig-name descname"><span class="pre">bookingid</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.bookingid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.bookingid" title="Link to this definition"></a></dt>
+<dd><p>The ID of the booking, by default None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[int], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">additionalneeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds" title="core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdditionalNeeds</span></code></a></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.additionalneeds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">bookingdates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#core.data.data_models.front_api_booking_object_data_model.BookingDates" title="core.data.data_models.front_api_booking_object_data_model.BookingDates"><code class="xref py py-class docutils literal notranslate"><span class="pre">BookingDates</span></code></a></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.bookingdates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">bookingid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.bookingid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">depositpaid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.depositpaid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">firstname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.firstname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_response</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create an instance of ApiBookingObjectPayload from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – A dictionary containing the booking data.</p></li>
+<li><p><strong>is_response</strong> (<em>bool</em><em>, </em><em>optional</em>) – A flag indicating if the input data is from a response, by default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the ApiBookingObjectPayload class populated with the provided data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload" title="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload">ApiBookingObjectPayload</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">lastname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.lastname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convert the ApiBookingObjectPayload instance into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_id</strong> (<em>bool</em><em>, </em><em>optional</em>) – A flag indicating whether to include the booking ID in the dictionary, by default False.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary representation of the ApiBookingObjectPayload instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">totalprice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#ApiBookingObjectPayload.totalprice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.BookingDates">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_booking_object_data_model.</span></span><span class="sig-name descname"><span class="pre">BookingDates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">checkin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#BookingDates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.BookingDates" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing the check-in and check-out dates for a booking.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.BookingDates.checkin">
+<span class="sig-name descname"><span class="pre">checkin</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#BookingDates.checkin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.BookingDates.checkin" title="Link to this definition"></a></dt>
+<dd><p>The check-in date as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_booking_object_data_model.BookingDates.checkout">
+<span class="sig-name descname"><span class="pre">checkout</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#BookingDates.checkout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_booking_object_data_model.BookingDates.checkout" title="Link to this definition"></a></dt>
+<dd><p>The check-out date as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">checkin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#BookingDates.checkin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">checkout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_booking_object_data_model.html#BookingDates.checkout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models.front_api_room_details_data_models">
+<span id="core-data-data-models-front-api-room-details-data-models-module"></span><h2>core.data.data_models.front_api_room_details_data_models module<a class="headerlink" href="#module-core.data.data_models.front_api_room_details_data_models" title="Link to this heading"></a></h2>
+<p>Class represents the details of a front room.
+It encapsulates the attributes related to a room’s details,
+including its name, type, accessibility features, description, image,
+price, and additional features.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.data.data_models.front_api_room_details_data_models.</span></span><span class="sig-name descname"><span class="pre">FrontRoomDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roomName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accessible</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roomPrice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class represents the details of a front room.
+It encapsulates the attributes related to a room’s details,
+including its name, type, accessibility features, description, image,
+price, and additional features.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.roomName">
+<span class="sig-name descname"><span class="pre">roomName</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.roomName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.roomName" title="Link to this definition"></a></dt>
+<dd><p>The name of the room.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.type" title="Link to this definition"></a></dt>
+<dd><p>The type/category of the room (e.g., Single, Double, Suite).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.accessible">
+<span class="sig-name descname"><span class="pre">accessible</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.accessible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.accessible" title="Link to this definition"></a></dt>
+<dd><p>Accessibility features or notes related to the room.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.description" title="Link to this definition"></a></dt>
+<dd><p>A detailed description of the room.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.image">
+<span class="sig-name descname"><span class="pre">image</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.image" title="Link to this definition"></a></dt>
+<dd><p>URL or path of the room’s image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.roomPrice">
+<span class="sig-name descname"><span class="pre">roomPrice</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.roomPrice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.roomPrice" title="Link to this definition"></a></dt>
+<dd><p>The price per night for the room.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.features">
+<span class="sig-name descname"><span class="pre">features</span></span><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.data.data_models.front_api_room_details_data_models.FrontRoomDetails.features" title="Link to this definition"></a></dt>
+<dd><p>A list of additional features (e.g., Wi-Fi, air conditioning).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">accessible</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.accessible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">roomName</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.roomName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">roomPrice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.roomPrice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/data/data_models/front_api_room_details_data_models.html#FrontRoomDetails.type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.data.data_models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-core.data.data_models" title="Link to this heading"></a></h2>
+<p>Package contains data models used API related to tested resources.</p>
+<p>Data models are defined to represent the structure of data exchanged between
+the client and server. They provide a clear and consistent way to handle data validation,
+serialization, and deserialization.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

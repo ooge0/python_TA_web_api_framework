@@ -1,0 +1,5 @@
+<map id="inheritance5c16f02312" name="inheritance5c16f02312">
+<area shape="rect" id="node1" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds" target="_top" title="A class representing any additional needs for the booking." alt="" coords="34,104,558,130"/>
+<area shape="rect" id="node2" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload" target="_top" title="A class representing the payload of a booking object for an API." alt="" coords="5,55,587,80"/>
+<area shape="rect" id="node3" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.BookingDates" target="_top" title="A class representing the check&#45;in and check&#45;out dates for a booking." alt="" coords="42,5,550,31"/>
+</map>

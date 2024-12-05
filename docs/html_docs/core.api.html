@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>core.api package &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9bcbadda"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/graphs.html">Dependency diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">core.api package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/core.api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-api-package">
+<h1>core.api package<a class="headerlink" href="#core-api-package" title="Link to this heading"></a></h1>
+</section>
+<section id="function-and-class-relationships">
+<h1>Function and Class Relationships<a class="headerlink" href="#function-and-class-relationships" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="_images/facepalm.jpg"><img alt="_images/facepalm.jpg" src="_images/facepalm.jpg" style="width: 300px; height: 200px;" /></a>
+<section id="module-core.api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-core.api" title="Link to this heading"></a></h2>
+<p>Package provides the core <cite>ApiClient</cite> class for interacting with the web API.</p>
+<p>The <cite>ApiClient</cite> class handles tasks like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Sending API requests and receiving responses.</p></li>
+<li><p>Managing authentication tokens.</p></li>
+<li><p>Handling errors and exceptions.</p></li>
+</ul>
+</div></blockquote>
+<p>Use this class for all interactions with the backend API of your application.</p>
+<section id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h3>
+<section id="module-core.api.api_client">
+<span id="core-api-api-client-module"></span><h4>core.api.api_client module<a class="headerlink" href="#module-core.api.api_client" title="Link to this heading"></a></h4>
+<p><cite>APIClient</cite> module as class provides a central interface for interacting with web APIs.</p>
+<p>This class offers methods to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Send API requests using various HTTP methods (GET, POST, PUT, PATCH, DELETE).</p></li>
+<li><p>Manage base URL and request session.</p></li>
+<li><p>Handle request headers, JSON bodies, and query parameters.</p></li>
+<li><p>Log API requests and responses.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.api.api_client.</span></span><span class="sig-name descname"><span class="pre">APIClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session=&lt;requests.sessions.Session</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><cite>APIClient</cite> class provides a central interface for interacting with web APIs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.base_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.base_url" title="Link to this definition"></a></dt>
+<dd><p>The base URL for the API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.session">
+<span class="sig-name descname"><span class="pre">session</span></span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.session" title="Link to this definition"></a></dt>
+<dd><p>The session object for making requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>requests.Session</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.logger" title="Link to this definition"></a></dt>
+<dd><p>Logger for logging API requests and responses.</p>
+</dd></dl>
+
+<dl class="simple">
+<dt>This class offers methods to:</dt><dd><ul class="simple">
+<li><p>Send API requests using various HTTP methods (GET, POST, PUT, PATCH, DELETE).</p></li>
+<li><p>Manage base URL and request session.</p></li>
+<li><p>Handle request headers, JSON bodies, and query parameters.</p></li>
+<li><p>Log API requests and responses.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">base_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.base_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.delete" title="Link to this definition"></a></dt>
+<dd><p>DELETE API call execution with query parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.get" title="Link to this definition"></a></dt>
+<dd><p>GET API call execution with query parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;loguru.logger</span> <span class="pre">handlers=[(id=0,</span> <span class="pre">level=10,</span> <span class="pre">sink=&lt;stderr&gt;),</span> <span class="pre">(id=1,</span> <span class="pre">level=10,</span> <span class="pre">sink='./resources/logger_output/logfile.log')]&gt;</span></em><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.patch">
+<span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.patch" title="Link to this definition"></a></dt>
+<dd><p>PATCH API call execution with JSON body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.post" title="Link to this definition"></a></dt>
+<dd><p>POST API call execution with JSON body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="core.api.api_client.APIClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client.APIClient.put" title="Link to this definition"></a></dt>
+<dd><p>PUT API call execution with JSON body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">session</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;requests.sessions.Session</span> <span class="pre">object&gt;</span></em><a class="reference internal" href="_modules/core/api/api_client.html#APIClient.session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.api.api_client_fixtures">
+<span id="core-api-api-client-fixtures-module"></span><h4>core.api.api_client_fixtures module<a class="headerlink" href="#module-core.api.api_client_fixtures" title="Link to this heading"></a></h4>
+<p>Provides a fixtures for a pre-configured <cite>APIClient</cite> instance to interact
+with back-end and front-end API.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.back_end_api_booking_endpoint">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">back_end_api_booking_endpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#back_end_api_booking_endpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.back_end_api_booking_endpoint" title="Link to this definition"></a></dt>
+<dd><p>Get backend endpoint for booking action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘booking’ backend endpoint</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.back_end_auth_api_endpoint">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">back_end_auth_api_endpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#back_end_auth_api_endpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.back_end_auth_api_endpoint" title="Link to this definition"></a></dt>
+<dd><p>Get backend endpoint for auth action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘auth’ backend endpoint</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.backend_api_client">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">backend_api_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#backend_api_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.backend_api_client" title="Link to this definition"></a></dt>
+<dd><p>API client for backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Client for execution backend API requests</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.front_end_api_booking_endpoint">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">front_end_api_booking_endpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#front_end_api_booking_endpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.front_end_api_booking_endpoint" title="Link to this definition"></a></dt>
+<dd><p>Get frontend endpoint for booking action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘booking’ frontend endpoint</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.front_end_login_endpoint">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">front_end_login_endpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#front_end_login_endpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.front_end_login_endpoint" title="Link to this definition"></a></dt>
+<dd><p>Get frontend endpoint for login action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘login’ frontend endpoint</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="core.api.api_client_fixtures.frontend_api_client">
+<span class="sig-prename descclassname"><span class="pre">core.api.api_client_fixtures.</span></span><span class="sig-name descname"><span class="pre">frontend_api_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/api/api_client_fixtures.html#frontend_api_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.api_client_fixtures.frontend_api_client" title="Link to this definition"></a></dt>
+<dd><p>FrontEnd API client for frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Client for execution frontend API requests</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-core.api.backend_api_points">
+<span id="core-api-backend-api-points-module"></span><h4>core.api.backend_api_points module<a class="headerlink" href="#module-core.api.backend_api_points" title="Link to this heading"></a></h4>
+<p>Module as class to define the backend API endpoints as constants.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.api.backend_api_points.</span></span><span class="sig-name descname"><span class="pre">BackEndPoints</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that holds constants for backend API endpoints.</p>
+<p>This class provides a centralized location for defining API endpoint
+paths used in the application. These constants are used throughout
+the codebase to reference the corresponding backend services.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.PING">
+<span class="sig-name descname"><span class="pre">PING</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.PING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.PING" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for checking the health of the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.AUTH">
+<span class="sig-name descname"><span class="pre">AUTH</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.AUTH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.AUTH" title="Link to this definition"></a></dt>
+<dd><p>Base endpoint for authentication operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.LOGIN">
+<span class="sig-name descname"><span class="pre">LOGIN</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.LOGIN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.LOGIN" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for user login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.LOGOUT">
+<span class="sig-name descname"><span class="pre">LOGOUT</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.LOGOUT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.LOGOUT" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for user logout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.BOOKING">
+<span class="sig-name descname"><span class="pre">BOOKING</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.BOOKING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.BOOKING" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for managing booking operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.backend_api_points.BackEndPoints.ROOM">
+<span class="sig-name descname"><span class="pre">ROOM</span></span><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.ROOM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.backend_api_points.BackEndPoints.ROOM" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for accessing room information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">AUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/auth'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.AUTH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">BOOKING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/booking'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.BOOKING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">LOGIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/auth/login'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.LOGIN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">LOGOUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/auth/logout'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.LOGOUT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">PING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/ping'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.PING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">ROOM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/room'</span></em><a class="reference internal" href="_modules/core/api/backend_api_points.html#BackEndPoints.ROOM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-core.api.frontend_api_points">
+<span id="core-api-frontend-api-points-module"></span><h4>core.api.frontend_api_points module<a class="headerlink" href="#module-core.api.frontend_api_points" title="Link to this heading"></a></h4>
+<p>Module as class to define the frontend API endpoints as constants.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="core.api.frontend_api_points.FrontEndPoints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">core.api.frontend_api_points.</span></span><span class="sig-name descname"><span class="pre">FrontEndPoints</span></span><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.frontend_api_points.FrontEndPoints" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to define the frontend API endpoints as constants.</p>
+<p>This class provides a centralized location for defining frontend API
+endpoint paths used in the application. These constants are used
+throughout the codebase to ensure consistency and avoid hardcoding
+URL paths in various places within the code.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.frontend_api_points.FrontEndPoints.AUTH">
+<span class="sig-name descname"><span class="pre">AUTH</span></span><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.AUTH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.frontend_api_points.FrontEndPoints.AUTH" title="Link to this definition"></a></dt>
+<dd><p>The base endpoint for authentication operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.frontend_api_points.FrontEndPoints.LOGIN">
+<span class="sig-name descname"><span class="pre">LOGIN</span></span><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.LOGIN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.frontend_api_points.FrontEndPoints.LOGIN" title="Link to this definition"></a></dt>
+<dd><p>The endpoint for user login.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.frontend_api_points.FrontEndPoints.BOOKING">
+<span class="sig-name descname"><span class="pre">BOOKING</span></span><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.BOOKING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.frontend_api_points.FrontEndPoints.BOOKING" title="Link to this definition"></a></dt>
+<dd><p>The endpoint for managing bookings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="core.api.frontend_api_points.FrontEndPoints.ROOM">
+<span class="sig-name descname"><span class="pre">ROOM</span></span><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.ROOM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.api.frontend_api_points.FrontEndPoints.ROOM" title="Link to this definition"></a></dt>
+<dd><p>The endpoint for accessing room information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">AUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/auth'</span></em><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.AUTH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">BOOKING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/booking'</span></em><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.BOOKING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">LOGIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/auth/login'</span></em><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.LOGIN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">ROOM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/room'</span></em><a class="reference internal" href="_modules/core/api/frontend_api_points.html#FrontEndPoints.ROOM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

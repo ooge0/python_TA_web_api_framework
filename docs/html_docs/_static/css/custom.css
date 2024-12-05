@@ -1,0 +1,11 @@
+.admonition.toggle .admonition-title {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admonition.toggle .admonition-title:after {
+    content: " (click to expand/collapse)";
+    font-size: 0.9em;
+    color: #666;
+}

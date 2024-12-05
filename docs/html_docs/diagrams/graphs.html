@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dependency diagrams &mdash; ta_framework_ui_api 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/customWidth.css?v=92e8aea5" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class relationships" href="classes_relationships.html" />
+    <link rel="prev" title="1.1.1.2.1.1.2. tests.web_app_tests.tests_home_page package" href="../tests/tests.web_app_tests.tests_home_page.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ta_framework_ui_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/about_this_guide.html">1. About this Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">2. Readme.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/framework_structure.html">3. Framework structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/features.html">4. Project features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Setup Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/installation_guide.html">1. Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/environment_setup.html">2. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/virtual_env.html">3. Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/running_tests.html">4. Running tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/tests.html">1. tests package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Diagrams and Graphs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dependency diagrams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core-package">core package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packages">Packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#core-api-api-client">core.api.api_client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#core-pages">core.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#core-pages-admin-rooms-page">core.pages.admin_rooms_page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-pages-home-page">core.pages.home_page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-pages-login-page">core.pages.login_page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#core-data-data-models-front-api-booking-object-data-model">core.data.data_models.front_api_booking_object_data_model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tests-api-tests">tests_api_tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources">resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classes_relationships.html">Class relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_client_relationships.html">API client class representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_and_class_relationships.html">Function and Class Relationships</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributors and FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/contributors_guide.html">Note for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Module Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Module Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ta_framework_ui_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dependency diagrams</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/diagrams/graphs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dependency-diagrams">
+<h1>Dependency diagrams<a class="headerlink" href="#dependency-diagrams" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../_images/facepalm.jpg"><img alt="../_images/facepalm.jpg" src="../_images/facepalm.jpg" style="width: 300px; height: 200px;" /></a>
+<p id="toc"><strong>Table of Contents</strong></p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#core-package" id="id1">core package</a></p>
+<ul>
+<li><p><a class="reference internal" href="#classes" id="id2">Classes</a></p></li>
+<li><p><a class="reference internal" href="#packages" id="id3">Packages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core-api-api-client" id="id4">core.api.api_client</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#core-pages" id="id5">core.pages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core-pages-admin-rooms-page" id="id6">core.pages.admin_rooms_page</a></p></li>
+<li><p><a class="reference internal" href="#core-pages-home-page" id="id7">core.pages.home_page</a></p></li>
+<li><p><a class="reference internal" href="#core-pages-login-page" id="id8">core.pages.login_page</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core-data" id="id9">core.data</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#core-data-data-models-front-api-booking-object-data-model" id="id10">core.data.data_models.front_api_booking_object_data_model</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tests" id="id11">tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tests-api-tests" id="id12">tests_api_tests</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#utilities" id="id13">utilities</a></p></li>
+<li><p><a class="reference internal" href="#resources" id="id14">resources</a></p></li>
+</ul>
+</nav>
+<section id="core-package">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">core package</a><a class="headerlink" href="#core-package" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Classes</a><a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<img alt="../_images/classes_core.png" src="../_images/classes_core.png" />
+</section>
+<section id="packages">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Packages</a><a class="headerlink" href="#packages" title="Link to this heading"></a></h3>
+<img alt="../_images/packages_core.png" src="../_images/packages_core.png" />
+<section id="core-api-api-client">
+<h4><a class="toc-backref" href="#id4" role="doc-backlink">core.api.api_client</a><a class="headerlink" href="#core-api-api-client" title="Link to this heading"></a></h4>
+<p>Classes</p>
+<img alt="../_images/classes_core_api_api_client.png" src="../_images/classes_core_api_api_client.png" />
+<p>core.api.api_client diagram should be here…</p>
+<div class="graphviz"><img src="../_images/inheritance-85fc4dd666c847d5d424327b9fa7847d6dd808e9.png" alt="Inheritance diagram of core.api.api_client" usemap="#inheritance4759e062d0" class="inheritance graphviz" /></div>
+<map id="inheritance4759e062d0" name="inheritance4759e062d0">
+<area shape="rect" id="node1" href="../core.api.html#core.api.api_client.APIClient" target="_top" title="`APIClient` class provides a central interface for interacting with web APIs." alt="" coords="5,5,83,31"/>
+</map></section>
+</section>
+<hr class="docutils" />
+<section id="core-pages">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">core.pages</a><a class="headerlink" href="#core-pages" title="Link to this heading"></a></h3>
+<p>Classes</p>
+<img alt="../_images/classes_core_pages.png" src="../_images/classes_core_pages.png" />
+<p>Packages</p>
+<hr class="docutils" />
+<section id="core-pages-admin-rooms-page">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">core.pages.admin_rooms_page</a><a class="headerlink" href="#core-pages-admin-rooms-page" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>core.pages.admin_rooms_page diagram should be here…</p>
+</div></blockquote>
+<div class="graphviz"><img src="../_images/inheritance-082cdb5d451c845e6dcaac8f2f67a03b2e3f3a24.png" alt="Inheritance diagram of core.pages.admin_rooms_page" usemap="#inheritancee228e83849" class="inheritance graphviz" /></div>
+<map id="inheritancee228e83849" name="inheritancee228e83849">
+<area shape="rect" id="node1" href="../core.pages.html#core.pages.admin_rooms_page.AdminRoomsFrontPage" target="_top" title="Represents the admin rooms front page in the application." alt="" coords="321,5,698,31"/>
+<area shape="rect" id="node2" href="../core.pages.html#core.pages.base_page.BaseFrontPage" target="_top" title="The BaseFrontPage class provides common functionality for UI pages" alt="" coords="5,5,273,31"/>
+</map></section>
+<hr class="docutils" />
+<section id="core-pages-home-page">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">core.pages.home_page</a><a class="headerlink" href="#core-pages-home-page" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>core.pages.home_page diagram should be here…</p>
+</div></blockquote>
+<div class="graphviz"><img src="../_images/inheritance-5eb19be721da7afd9082f2e1ae08961c6a47c71a.png" alt="Inheritance diagram of core.pages.home_page" usemap="#inheritance687a4ce604" class="inheritance graphviz" /></div>
+<map id="inheritance687a4ce604" name="inheritance687a4ce604">
+<area shape="rect" id="node1" href="../core.pages.html#core.pages.base_page.BaseFrontPage" target="_top" title="The BaseFrontPage class provides common functionality for UI pages" alt="" coords="5,5,273,31"/>
+<area shape="rect" id="node2" href="../core.pages.html#core.pages.home_page.HomeFrontPage" target="_top" title="The HomeFrontPage class represents the actions and elements on the Home page of the UI." alt="" coords="321,5,601,31"/>
+</map></section>
+<hr class="docutils" />
+<section id="core-pages-login-page">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">core.pages.login_page</a><a class="headerlink" href="#core-pages-login-page" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>core.pages.login_page diagram should be here…</p>
+</div></blockquote>
+<div class="graphviz"><img src="../_images/inheritance-d19de808c98251733a713365ce5ecfb943ae8a6a.png" alt="Inheritance diagram of core.pages.login_page" usemap="#inheritance612a682436" class="inheritance graphviz" /></div>
+<map id="inheritance612a682436" name="inheritance612a682436">
+<area shape="rect" id="node1" href="../core.pages.html#core.pages.base_page.BaseFrontPage" target="_top" title="The BaseFrontPage class provides common functionality for UI pages" alt="" coords="5,5,273,31"/>
+<area shape="rect" id="node2" href="../core.pages.html#core.pages.login_page.LoginAdminPage" target="_top" title="Class for performing actions on the admin panel UI of the booking site." alt="" coords="321,5,597,31"/>
+</map><hr class="docutils" />
+<section id="core-data">
+<h5><a class="toc-backref" href="#id9" role="doc-backlink">core.data</a><a class="headerlink" href="#core-data" title="Link to this heading"></a></h5>
+<p>Classes</p>
+<img alt="../_images/classes_core_data.png" src="../_images/classes_core_data.png" />
+<p>Packages</p>
+<img alt="../_images/classes_core_data.png" src="../_images/classes_core_data.png" />
+</section>
+</section>
+</section>
+<section id="core-data-data-models-front-api-booking-object-data-model">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">core.data.data_models.front_api_booking_object_data_model</a><a class="headerlink" href="#core-data-data-models-front-api-booking-object-data-model" title="Link to this heading"></a></h3>
+<div class="graphviz"><img src="../_images/inheritance-18e2ae939456de99b9b7dfb0f0f68885f8059e41.png" alt="Inheritance diagram of core.data.data_models.front_api_booking_object_data_model" usemap="#inheritance5c16f02312" class="inheritance graphviz" /></div>
+<map id="inheritance5c16f02312" name="inheritance5c16f02312">
+<area shape="rect" id="node1" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.AdditionalNeeds" target="_top" title="A class representing any additional needs for the booking." alt="" coords="34,104,558,130"/>
+<area shape="rect" id="node2" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.ApiBookingObjectPayload" target="_top" title="A class representing the payload of a booking object for an API." alt="" coords="5,55,587,80"/>
+<area shape="rect" id="node3" href="../core.data.data_models.html#core.data.data_models.front_api_booking_object_data_model.BookingDates" target="_top" title="A class representing the check&#45;in and check&#45;out dates for a booking." alt="" coords="42,5,550,31"/>
+</map></section>
+</section>
+<hr class="docutils" />
+<section id="tests">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">tests</a><a class="headerlink" href="#tests" title="Link to this heading"></a></h2>
+<p>Classes</p>
+<img alt="../_images/classes_tests.png" src="../_images/classes_tests.png" />
+<p>Packages</p>
+<section id="tests-api-tests">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">tests_api_tests</a><a class="headerlink" href="#tests-api-tests" title="Link to this heading"></a></h3>
+<p>Classes</p>
+<img alt="../_images/classes_tests_api_tests.png" src="../_images/classes_tests_api_tests.png" />
+<p>Packages</p>
+<img alt="../_images/packages_tests_api_tests.png" src="../_images/packages_tests_api_tests.png" />
+</section>
+</section>
+<hr class="docutils" />
+<section id="utilities">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">utilities</a><a class="headerlink" href="#utilities" title="Link to this heading"></a></h2>
+<p>utilities diagram should be here…</p>
+</section>
+<hr class="docutils" />
+<section id="resources">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">resources</a><a class="headerlink" href="#resources" title="Link to this heading"></a></h2>
+<p>resources diagram should be here…</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tests/tests.web_app_tests.tests_home_page.html" class="btn btn-neutral float-left" title="1.1.1.2.1.1.2. tests.web_app_tests.tests_home_page package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classes_relationships.html" class="btn btn-neutral float-right" title="Class relationships" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, si0n4ra.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
