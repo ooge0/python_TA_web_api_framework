@@ -1,38 +1,32 @@
-name: Deploy Documentation to GitHub Pages
+name: Deploy Sphinx Docs on GitHub pages
 
 on:
   push:
     branches:
-      - master  # Deploy when changes are pushed to master (or main)
-
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set up Git
-        run: |
-          git config --global user.email "dns.rom@gmail.com"
-          git config --global user.name "ooge0"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      - name: Copy HTML documentation to gh-pages
-        run: |
-          # Prepare the output directory
-          mkdir -p out
-          cp -r docs/html_docs/* out/  # Copy HTML files from your documentation
+      # This step is skipped since you don't need to install dependencies
+      # - name: Install dependencies
+      #   run: |
+      #     pip install sphinx
+      #     pip install -r docs/requirements.txt
 
-      - name: Deploy to gh-pages
-        run: |
-          cd out
-          git init  # Initialize a git repo in the out folder
-          git checkout -b gh-pages  # Create and switch to the gh-pages branch
-          git add .
-          git commit -m "Deploy documentation"
-          git push -f origin gh-pages  # Force push to the gh-pages branch
+      - name: Build documentation
+        run: sphinx-build docs docs/_build/html_docs
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html_docs

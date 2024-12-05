@@ -71,7 +71,8 @@
             1. [Creating initial pytest reports by Allure](#creating-initial-pytest-reports-by-allure-)
    2. [Existing(created) tests by categories](#existingcreated-tests-by-categories)
       1. [Test List](#test-list)
-6[Resources for TA frameworks](#resources-for-ta-frameworks)
+6. [Publishing Sphinx doc on GitHub pages](#publishing-sphinx-doc-on-github-pages)
+7. [Resources for TA frameworks](#resources-for-ta-frameworks)
 
 
 # Resources of web app
@@ -1068,6 +1069,148 @@ Result will be presented in the [list_of_all_project_tests.md](resources/list_of
 All tests are grouping by categories. \
 IMPORTANT!!!
 If you did any changes, please validate path to the test dir in the [make_list_of_tests.py](utilities/make_list_of_tests.py) 
+
+
+# Publishing Sphinx doc on GitHub pages
+<a href="#toc" style="color: green;">go to TOC.</a>
+
+
+1. Generate Sphinx HTML Docs (If docs were not created, see
+   section [Generating documentation by Sphinx](#generating-documentation-by-sphinx))
+2. Create a Separate Branch for Documentation (Optional but Recommended):
+    * You can store the generated documentation in a dedicated branch, such as gh-pages, to keep it separate from your
+      main project code
+      ```bash
+      git checkout --orphan gh-pages
+      git rm -rf .
+      ```
+   * Add the generated HTML files: 
+     ```bash
+     cp -R docs/_build/html/* .
+     git add .
+     git commit -m "Publish Sphinx docs"
+     git push origin gh-pages
+     ```
+3. Set Up GitHub Pages:
+   * Go to your repository settings on GitHub.
+   * Under Pages, select the branch (e.g., `gh-pages`) and folder (e.g., `/root` or `/docs`) where your documentation is stored.
+    * Save the settings, and GitHub will publish your documentation at a URL like: 
+    ```shell
+    https://<username>.github.io/<repository-name>/
+    ```
+4. Automate Documentation Updates (Optional):
+Use a CI/CD pipeline (e.g., GitHub Actions) to regenerate and deploy the docs whenever you push updates to your repository. 
+Here's an example workflow:
+
+5. _Latest working config is below_
+```yaml
+name: Deploy Sphinx Docs on GitHub pages
+
+on:
+  push:
+    branches:
+      - master  # Change to your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # This step is skipped since you don't need to install dependencies
+      # - name: Install dependencies
+      #   run: |
+      #     pip install sphinx
+      #     pip install -r docs/requirements.txt
+
+      - name: Build documentation
+        run: sphinx-build docs docs/_build/html_docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html_docs
+
+```
+This config also published only README.MD
+```yaml
+name: Deploy Sphinx Docs on GitHub pages
+
+on:
+  push:
+    branches:
+      - master  # Change to your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install sphinx
+          pip install -r docs/requirements.txt
+
+      - name: Build documentation
+        run: sphinx-build docs docs/_build/html_docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html_docs
+```
+
+_GitHib workflow config that just render README.MD file and not shows exact Sphinx docs is below_ 
+```yaml
+name: Deploy Sphinx Docs
+
+on:
+  push:
+    branches:
+      - master  # Trigger on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install sphinx
+
+      - name: Build Sphinx documentation
+        run: sphinx-build docs docs/_build/html_docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html_docs
+```
 
 # Resources for TA frameworks
 
