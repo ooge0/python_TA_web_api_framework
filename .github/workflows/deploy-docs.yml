@@ -1,33 +1,32 @@
-name: Deploy Sphinx Docs
+name: Deploy Sphinx Docs on GitHub pages
 
 on:
   push:
     branches:
-      - master  # Trigger on pushes to the main branch
-
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install sphinx
+      # This step is skipped since you don't need to install dependencies
+      # - name: Install dependencies
+      #   run: |
+      #     pip install sphinx
+      #     pip install -r docs/requirements.txt
 
-    - name: Build Sphinx documentation
-      run: sphinx-build docs docs/_build/html_docs
+      - name: Build documentation
+        run: sphinx-build docs docs/_build/html_docs
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: docs/_build/html_docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html_docs
