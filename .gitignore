@@ -78,3 +78,4 @@ idea/
 geckodriver.log
 /docs__/
 /docs/source/
+/docs/html_docs/.doctrees/
