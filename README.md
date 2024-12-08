@@ -808,7 +808,7 @@ allowing it to find and import modules from the project directory while building
 
     * on Windows OS
       ```bash
-      sphinx-build -b html docs/source/ docs/html_docs/
+      sphinx-build -b html docs/source/ docs/html/
       ```
       where **_html_docs_** - custom defined name for storing generated html docs.
 
@@ -816,7 +816,7 @@ allowing it to find and import modules from the project directory while building
       Clear the `build/` directory by deleting it or running:
 
          ```bash
-         sphinx-build -b html -E source/ html_docs/
+         sphinx-build -b html -E source/ html/
          ````
       The -E flag forces Sphinx to rebuild everything from scratch, avoiding potential caching issues.
 

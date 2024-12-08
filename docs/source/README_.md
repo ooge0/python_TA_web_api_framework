@@ -749,7 +749,7 @@ This will generate a `source/` directory with .rst files that describe your modu
     
    * on Windows OS 
      ```bash
-     sphinx-build -b html docs/source/ docs/html_docs/
+     sphinx-build -b html docs/source/ docs/html/
      ```
      where **_html_docs_** - custom defined name for storing generated html docs.
     
@@ -757,7 +757,7 @@ This will generate a `source/` directory with .rst files that describe your modu
        Clear the `build/` directory by deleting it or running: 
        
         ```bash
-        sphinx-build -b html -E source/ html_docs/
+        sphinx-build -b html -E source/ html/
         ````
         The -E flag forces Sphinx to rebuild everything from scratch, avoiding potential caching issues.
     
@@ -1130,13 +1130,13 @@ jobs:
       #     pip install -r docs/requirements.txt
 
       - name: Build documentation
-        run: sphinx-build docs docs/_build/html_docs
+        run: sphinx-build docs docs/_build/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_build/html_docs
+          publish_dir: docs/_build/html
 
 ```
 This config also published only README.MD
@@ -1166,13 +1166,13 @@ jobs:
           pip install -r docs/requirements.txt
 
       - name: Build documentation
-        run: sphinx-build docs docs/_build/html_docs
+        run: sphinx-build docs docs/_build/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_build/html_docs
+          publish_dir: docs/_build/html
 ```
 
 _GitHib workflow config that just render README.MD file and not shows exact Sphinx docs is below_ 
@@ -1203,13 +1203,13 @@ jobs:
           pip install sphinx
 
       - name: Build Sphinx documentation
-        run: sphinx-build docs docs/_build/html_docs
+        run: sphinx-build docs docs/_build/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_build/html_docs
+          publish_dir: docs/_build/html
 ```
 
 # Resources for TA frameworks
