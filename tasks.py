@@ -10,7 +10,7 @@ from sphinx.application import Sphinx
 README_SOURCE = "README.md"
 README_DEST = "docs/source/README_.md"
 DOCS_SOURCE_DIR = "docs/source/"
-HTML_OUTPUT_DIR = "docs/html_docs/"
+HTML_OUTPUT_DIR = "docs/html/"
 PDF_SOURCE_DIR = "docs/source_for_pdf/"
 PDF_OUTPUT_DIR = "docs/pdf_docs/"
 
