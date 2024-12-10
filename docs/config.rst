@@ -16,7 +16,7 @@ Submodules
 config.db\_config module
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: config.db_config
+.. automodule:: ../config.db_config
    :members:
    :undoc-members:
    :show-inheritance:
@@ -28,7 +28,7 @@ config.db\_config module
 config.logger\_config module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: config.logger_config
+.. automodule:: ../config.logger_config
    :members:
    :undoc-members:
    :show-inheritance:
