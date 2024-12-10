@@ -4,7 +4,7 @@ resources package
 Module contents
 ---------------
 
-.. automodule:: resources
+.. automodule:: ../resources
    :members:
    :undoc-members:
    :show-inheritance:

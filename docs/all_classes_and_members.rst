@@ -129,7 +129,7 @@ tests.api_tests.business_core package
 `resources` package
 -------------------
 
-.. automodule:: resources
+.. automodule:: ../resources
     :members:
     :undoc-members:
     :private-members:
