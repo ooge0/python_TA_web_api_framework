@@ -60,7 +60,7 @@ html_use_index = True
 
 # ----- auto API configs -----------------------------
 
-autoapi_dirs = ['../../core', '../../config', '../../utilities', '../../resources', '../../tests']   # Add both core and tests directories
+autoapi_dirs = ['core', 'config', 'utilities', 'resources', 'tests']   # Add both core and tests directories
 autoapi_type = 'python'
 autoapi_generate_api_docs = False
 autoapi_add_toctree_entry = False                   # Avoids adding entries to the main toctree
@@ -99,15 +99,3 @@ html_css_files = ['css/customWidth.css']
 
 #---------------------CUSTOM JS----------------------
 #html_js_files = ['some_js_file.js']
-
-# --------------------- expanded/collapsed web element  ----------
-# Add custom CSS file to the list of files to include in the HTML output
-
-
-# def setup(app):
-#     """
-#     Method for managing of document sections.
-#     To make it as expanded/collapsed web element
-#     """
-#     app.add_css_file("css/customExpanCollapseSection.css")
-#     app.add_js_file("js/customExpanCollapseSection.js")
