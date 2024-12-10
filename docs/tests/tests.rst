@@ -10,7 +10,7 @@ tests package
 Package contents
 ---------------
 
-.. automodule:: tests
+.. automodule:: ../tests
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +31,7 @@ Submodules
 tests.conftest module
 ---------------------
 
-.. automodule:: tests.conftest
+.. automodule:: ../tests.conftest
    :members:
    :undoc-members:
    :show-inheritance:

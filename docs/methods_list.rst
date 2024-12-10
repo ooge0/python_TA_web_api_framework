@@ -14,7 +14,7 @@ Table of content
 core.api
 ----------
 
-.. automodule:: core.api
+.. automodule:: ../core.api
     :members:
     :undoc-members:
     :inherited-members:
@@ -29,7 +29,7 @@ See :ref:`top`
 ----------
 core.data
 ----------
-.. automodule:: core.data
+.. automodule:: ../core.data
     :members:
     :undoc-members:
     :inherited-members:
@@ -44,7 +44,7 @@ See :ref:`top`
 --------------
 core.locators
 --------------
-.. automodule:: core.locators
+.. automodule:: ../core.locators
     :members:
     :undoc-members:
     :inherited-members:

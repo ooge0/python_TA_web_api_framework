@@ -4,7 +4,7 @@ tests.api\_tests package
 Package contents
 -----------------
 
-.. automodule:: tests.api_tests
+.. automodule:: ../tests.api_tests
    :members:
    :undoc-members:
    :show-inheritance:

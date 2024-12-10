@@ -4,7 +4,7 @@ core.data package
 Module contents
 ---------------
 
-.. automodule:: core.data
+.. automodule:: ../core.data
    :members:
    :undoc-members:
    :show-inheritance:

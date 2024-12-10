@@ -4,7 +4,7 @@ core package
 Module contents
 ---------------
 
-.. automodule:: core
+.. automodule:: ../core
    :members:
    :undoc-members:
    :show-inheritance:

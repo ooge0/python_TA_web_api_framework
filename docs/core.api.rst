@@ -13,7 +13,7 @@ Function and Class Relationships
 Module contents
 ---------------
 
-.. automodule:: core.api
+.. automodule:: ../core.api
    :members:
    :undoc-members:
    :show-inheritance:
@@ -24,7 +24,7 @@ Submodules
 core.api.api\_client module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: core.api.api_client
+.. automodule:: ../core.api.api_client
    :members:
    :undoc-members:
    :show-inheritance:
@@ -32,7 +32,7 @@ core.api.api\_client module
 core.api.api\_client\_fixtures module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: core.api.api_client_fixtures
+.. automodule:: ../core.api.api_client_fixtures
    :members:
    :undoc-members:
    :show-inheritance:
@@ -40,7 +40,7 @@ core.api.api\_client\_fixtures module
 core.api.backend\_api\_points module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: core.api.backend_api_points
+.. automodule:: ../core.api.backend_api_points
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,7 +48,7 @@ core.api.backend\_api\_points module
 core.api.frontend\_api\_points module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: core.api.frontend_api_points
+.. automodule:: ../core.api.frontend_api_points
    :members:
    :undoc-members:
    :show-inheritance:

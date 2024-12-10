@@ -16,7 +16,7 @@ This page lists all packages, modules in the project along with their members.
 core.api package
 -----------------
 
-.. automodule:: core.api
+.. automodule:: ../core.api
     :members:
     :undoc-members:
     :private-members:
@@ -27,7 +27,7 @@ Go to :ref:`top`
 
 core.api.api_client module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: core.api.api_client
+.. automodule:: ../core.api.api_client
     :members:
     :undoc-members:
     :private-members:
@@ -39,7 +39,7 @@ Go to :ref:`top`
 core.api.api_client_fixtures module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: core.api.api_client_fixtures
+.. automodule:: ../core.api.api_client_fixtures
     :members:
     :undoc-members:
     :private-members:
@@ -51,7 +51,7 @@ Go to :ref:`top`
 core.api.backend_api_points module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: core.api.backend_api_points
+.. automodule:: ../core.api.backend_api_points
     :members:
     :undoc-members:
     :private-members:
@@ -61,7 +61,7 @@ Go to :ref:`top`
 
 core.api.frontend_api_points module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: core.api.frontend_api_points
+.. automodule:: ../core.api.frontend_api_points
     :members:
     :undoc-members:
     :private-members:
@@ -71,7 +71,7 @@ core.api.frontend_api_points module
 
 core.data.data_factory package
 -------------------------------
-.. automodule:: core.data.data_factory
+.. automodule:: ../core.data.data_factory
     :members:
     :undoc-members:
     :private-members:
@@ -80,7 +80,7 @@ core.data.data_factory package
 
 core.data.data_factory.data_factory module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: core.data.data_factory.data_factory
+.. automodule:: ../core.data.data_factory.data_factory
     :members:
     :undoc-members:
     :private-members:
@@ -99,7 +99,7 @@ config package
 
 `tests` package
 ----------------
-.. automodule:: tests
+.. automodule:: ../tests
     :members:
     :undoc-members:
     :private-members:
@@ -108,7 +108,7 @@ config package
 
 tests.api_tests package
 ~~~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: tests.api_tests
+.. automodule:: ../tests.api_tests
     :members:
     :undoc-members:
     :private-members:
@@ -118,7 +118,7 @@ tests.api_tests package
 tests.api_tests.business_core package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: tests.api_tests.business_core
+.. automodule:: ../tests.api_tests.business_core
     :members:
     :undoc-members:
     :private-members:

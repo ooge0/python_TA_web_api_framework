@@ -4,7 +4,7 @@ tests.web\_app\_tests package
 Package contents
 -----------------
 
-.. automodule:: tests.web_app_tests
+.. automodule:: ../tests.web_app_tests
    :members:
    :undoc-members:
    :show-inheritance:
