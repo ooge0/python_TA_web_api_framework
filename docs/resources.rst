@@ -15,6 +15,6 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   resources.test_data
+   ../resources.test_data
 
 
