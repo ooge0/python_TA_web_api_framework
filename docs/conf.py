@@ -60,7 +60,7 @@ html_use_index = True
 
 # ----- auto API configs -----------------------------
 
-autoapi_dirs = ['core', 'config', 'utilities', 'resources', 'tests']   # Add both core and tests directories
+autoapi_dirs = ['../core', '../config', '../utilities', '../resources', '../tests']   # Add both core and tests directories
 autoapi_type = 'python'
 autoapi_generate_api_docs = False
 autoapi_add_toctree_entry = False                   # Avoids adding entries to the main toctree
