@@ -186,17 +186,6 @@ Project packages
    tests
 
 
-Project modules summary
-=======================
-
-.. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :caption: Project modules summary
-
-   modules_summary
-
-
 Project entities
 ================
 
