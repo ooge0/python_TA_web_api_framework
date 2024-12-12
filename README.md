@@ -16,6 +16,9 @@
 **_Test automation framework for testing UI, front-end and back-end API of restful-booker
 web-site - [https://automationintesting.online](https://automationintesting.online)_.**
 
+* Latest project documentation available on [ReadTheDocs: 'Python TA Framework Docs'](https://python-ta-web-api-framework.readthedocs.io/en/latest/index.html)
+* Published documentation has minor issues and not all features of published documents can work as expected    
+
 # Table of contents <div id="toc"></div>
 
 1. [Resources of web app](#resources-of-web-app)
