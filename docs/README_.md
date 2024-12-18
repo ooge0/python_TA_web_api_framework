@@ -404,7 +404,7 @@ Otherwise, you can manually install everything using described steps below or fi
 
   Working script for creating venv with name 'venv' is below:
     ```
-    python -m venv ../env
+    python -m venv ../.venv
     ```
   
   then activate it
