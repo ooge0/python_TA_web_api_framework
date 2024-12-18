@@ -4,6 +4,8 @@ build:
   os: ubuntu-24.04
   tools:
     python: latest
+  apt_packages:
+    - graphviz
 
 sphinx:
   configuration: docs/conf.py
@@ -11,7 +13,3 @@ sphinx:
 python:
   install:
     - requirements: requirements.txt
-
-build:
-  apt_packages:
-    - graphviz
