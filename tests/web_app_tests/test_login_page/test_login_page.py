@@ -40,6 +40,8 @@ class TestLoginPage:
     # @pytest.mark.feature("admin_page_navbar_validation")
     def test_branding_name_validation_by_shared_data_from_excel_with_path(self, branding_text_on_the_header_navbar):
         """
+        Branding name validation using reference from Excel using path to the Excel file.
+
         Here is implemented parametrized fixture usage with external function as parameter and an approach to
         use external file (Excel file) to retrieve stored data.
         Created excel utilit allows to request directly data from the file by path, sheet name and name of cells.
@@ -59,6 +61,8 @@ class TestLoginPage:
     def test_branding_name_validation_by_shared_data_from_excel_cell(self, excel_file_path, sheet_name,
                                                                      row_number, column_number):
         """
+        Branding name validation using reference from Excel cell.
+
         Here is implemented fixture usage and an approach to use external file (Excel file) to retrieve
         stored data.
         Created excel utilit allows to request directly data from the file by path, sheet name and name of cells.
@@ -91,7 +95,7 @@ class TestLoginPage:
     # @pytest.mark.feature("admin_page_navbar_validation")
     def test_admin_page_content_validation_by_shared_data_from_db(self):
         """
-        Tests validation for branding name using data from MySQL database.
+        Branding name validation using reference from MySQL database.
         """
         login_admin_page = LoginAdminPage(self.driver)
         login_admin_page.login_to_admin_panel(user_name="admin", user_password="password")

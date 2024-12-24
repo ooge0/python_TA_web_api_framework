@@ -72,4 +72,5 @@ echo "Running tox with custom tox.ini path..."
 .\.venv\Scripts\tox -c tox.ini
 
 :: Inform the user to activate the virtual environment manually if needed
+echo "Execution of tests by TOX completed."
 echo "To activate the virtual environment manually, run: .\.venv\Scripts\activate"

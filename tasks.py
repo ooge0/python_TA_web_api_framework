@@ -11,7 +11,6 @@ README_SOURCE = "README.md"
 README_DEST = "docs/source/README_.md"
 DOCS_SOURCE_DIR = "docs/source/"
 HTML_OUTPUT_DIR = "docs/html/"
-PDF_SOURCE_DIR = "docs/source_for_pdf/"
 PDF_OUTPUT_DIR = "docs/pdf_docs/"
 
 
@@ -54,13 +53,13 @@ def clean_html(c):
 @task
 def build_pdf(c):
     """Run Sphinx script for building pdf docs"""
-    c.run(f'sphinx-build -b pdf {PDF_SOURCE_DIR} {PDF_OUTPUT_DIR}', echo=True)
+    c.run(f'sphinx-build -b pdf {DOCS_SOURCE_DIR} {PDF_OUTPUT_DIR}', echo=True)
 
 
 @task
 def clean_pdf(c):
-    """Run Sphinx script for building pdf docs"""
-    c.run(f'sphinx-build -M clean {PDF_SOURCE_DIR} {PDF_OUTPUT_DIR}', echo=True)
+    """Run Sphinx script for clean the folder with generated docs docs"""
+    c.run(f'sphinx-build -M clean {DOCS_SOURCE_DIR} {PDF_OUTPUT_DIR}', echo=True)
 
 
 @task
@@ -82,5 +81,26 @@ def list_sphinx_directives(c):
 
 @task
 def make_uml_diagram_for_core_api_api_client(c):
-    c.run(f'pyreverse - o png - p ta_framework_ui_api  core / api / api_client.py', echo=True)
+    """Make UML diagram from .py file | make_uml_diagram_for_core_api_api_client"""
+    c.run(f'pyreverse - o png - p ta_framework_ui_api  core/api/api_client.py', echo=True)
 
+
+@task
+def make_uml_diagram_by_pyreverse(c):
+    try:
+        output_directory = "project_related_data/pic/"
+        print(f"Ensuring output directory exists: {output_directory}")
+        os.makedirs(output_directory, exist_ok=True)
+
+        command = (
+            f'pyreverse -o png -p core_api_frontend_api_points '
+            f'-d {output_directory} core/api/frontend_api_points.py'
+        )
+        print(f"Running command: {command}")
+        c.run(command, echo=True)
+
+        # Check for output files
+        output_files = os.listdir(output_directory)
+        print(f"Generated files: {output_files}")
+    except Exception as e:
+        print(f"Error occurred: {e}")

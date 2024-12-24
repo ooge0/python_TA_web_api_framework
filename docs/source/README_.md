@@ -1059,6 +1059,38 @@ allure serve "resources/test_report/allure_reports"
 
 After successful execution of command allure starts server and provide server URL for checking allure report in the browser.
 
+## Text execution by TOX
+
+### Configuration for TOX
+
+Tox allows to create independent environment for execution test (this project consumes `pytest`)
+</br>
+Execution of `setup_for_tox.bat` creates isolated environment based on commands presented in `tox.ini`. In turn, the creation of isolated tox environment referenced to `requirements.txt`  As far as each test run requires generation test reports `tox.ini` triggers Allure to produce reports and publish reports in HTML format.
+Below is code snippet for creating TOX env `test`, install all dependencies from `requirements.txt` , run test by `pytest` executor in 10 nodes (parallel execution), opening generated Allure reports.  `allowlist_externals = allure` just allow use Allure if tests failed.
+
+```ini
+[testenv:test]
+deps =
+    -rrequirements.txt
+setenv =
+    ALLURE_RESULTS_DIR = {toxinidir}/resources/test_report/allure_reports
+commands =
+    pytest -n 10 --alluredir={env:ALLURE_RESULTS_DIR}
+commands_post =
+    allure serve {env:ALLURE_RESULTS_DIR}
+allowlist_externals = allure
+```
+### Running test by TOX
+TOX allows run some activities without completing basic configuration when you have done this before (like initial configuration by `setup_for_tox.bat`).
+For this point is possible to use name of specific testenv(s), like in example below
+```shell
+tox -e test
+```
+where `test` is name of existing environment.
+For running TOX for several testenvs pass testenv names by coma, like
+```shell
+tox -e test, stage, prod
+```
 
 ## Existing(created) tests by categories
 <a href="#toc" style="color: green;">go to TOC.</a>

@@ -1120,6 +1120,7 @@ pytest --junitxml=resources/project_test_reports/pytest_junit_xml_reports/pytest
 #### Creating initial pytest reports by Allure
 
 <a href="#toc" style="color: green;">go to TOC.</a>
+
 For generating Allure reports on the tests performed, you must first execute tests by pytest.
 You need specify a path for the test results directory in the --alluredir command-line argument when running your tests.
 
