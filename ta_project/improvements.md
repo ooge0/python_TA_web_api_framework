@@ -21,8 +21,37 @@ inferred from reading; I confirm them by running the suite once.
 ## Status
 
 Work happens in `ta_project/` (the original tree stays frozen as the snapshot).
+See `ROADMAP.md` for the milestone view.
 
-**M1 - make the suite honest: in progress.**
+| milestone | state |
+|---|---|
+| M1 make the suite honest | done for the API side (23/6 -> 30/0). UI side -> M8. |
+| M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov` (43%). |
+| M3 make runs repeatable | done - see the M3 block below and `ROADMAP.md`. |
+| M8 re-target the UI layer | started - SUT DOM probed & mapped into `ROADMAP.md`. |
+
+Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59, 65,
+partial 41 / 44 (+ item 2). Remaining: the UI re-target (M8), M4 QA artifacts,
+M5 core cleanup, M6 polish, M7 new coverage.
+
+**M3 - make runs repeatable (done):**
+- item 26/27: `APIClient.session` -> `field(default_factory=requests.Session)`,
+  request `timeout` (`DEFAULT_TIMEOUT = 30`)
+- item 28: `_redact()` masks password/token/cookie/authorization in the API-client
+  logs; `login_page` / `login_fixture` stop logging the password. Fresh
+  `logfile.log` grep for `password123` / `token=<hex>` returns 0.
+- item 29: `read_configuration` parses `config.ini` once (`lru_cache`) and raises
+  `NoSectionError` / `NoOptionError` instead of swallowing them
+- item 30: `connect_to_db` re-raises `sqlite3.Error`
+- item 33: per-worker SQLite - `db_utils` honours `TA_DB_PATH`; `_isolated_db`
+  session fixture gives each `pytest -n` worker its own tmp DB; committed
+  `test_data_for_ta_framework.db` removed (always rebuilt)
+- item 34: booking write tests use the shared `created_backend_booking` fixture
+- credentials single-sourced to `config.ini [credentials]`; `admin_page_url`
+  corrected to `/admin`
+- `pytest -n auto` stays on: repeated full runs give 30 passed / 20 skipped
+
+**M1 detail:**
 
 | item | state | note |
 |---|---|---|

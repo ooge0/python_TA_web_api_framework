@@ -76,6 +76,7 @@ resources/logger_output/
 resources/test_report/
 resources/allure_reports/
 resources/screenshots/
+resources/test_data/*.db
 utilities/resources/
 /tests/.hypothesis
 tests/**/resources/

@@ -18,7 +18,7 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 |---|---|
 | M1 make the suite honest | **done** for the API side (23/6 -> 30/0). UI side: the Selenium layer targets a version of `automationintesting.online` that no longer exists (the site is now a rewritten SPA), so those 20 tests are skipped pending **M8**. The static UI code bugs (items 1, 7, 8, 9, 19, 21) are fixed. |
 | M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported, not gating yet) and `pytest -n auto` with coverage on every push / PR; `deploy-docs.yml` rewritten to actually install deps and build from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done; `pytest-cov` added (coverage **43%**, no floor yet - that comes after M7). Stale test inventory and the committed `logfile.log` untracked. |
-| M3 make runs repeatable | **partly done, pulled forward** - items 15, 26, 27, 34 done: per-client `Session` + `default_factory`, request `timeout`, and PUT/PATCH/DELETE booking tests now create + clean up their own booking. `pytest -n auto` passes the API suite 3x with no races. Remaining M3: SQLite DB per-worker isolation (moot until M8), xdist decision for the UI layer, credential single-source. |
+| M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` no longer swallows errors (parsed once, cached), `connect_to_db` re-raises, per-worker SQLite via `TA_DB_PATH` + the `_isolated_db` session fixture (committed `.db` removed - always built fresh), booking write tests create + clean up their own record, credentials single-sourced to `config.ini [credentials]`. Decision: keep `pytest -n auto` (default in `tox.ini`) - the API suite is stable across repeated parallel runs. |
 | M8 (new) re-target the UI layer | not started - see below. |
 
 ---
@@ -63,21 +63,33 @@ CI sees is clean.
 
 ---
 
-## M3 — Make runs repeatable
+## M3 — Make runs repeatable  ✅ done
 
 **Goal:** the suite is deterministic and safe to run in parallel.
 
-Items: 14, 15, 26, 27, 28, 29, 30, 33, 34.
+Items: 15, 26, 27, 28, 29, 30, 33, 34 (14 was folded into M1).
 
-Covers: one source of truth for credentials; per-client `Session`; request
-timeouts; no secrets in logs; DB rebuilt per session; no hard-coded booking
-IDs — create-then-use, or an isolated data set; decide whether xdist stays on
-against shared public services.
+Done:
+- one source of truth for credentials → `config.ini [credentials]`, read by the
+  fixtures (item, plus `admin_page_url` corrected to `/admin`)
+- per-client `requests.Session` via `default_factory`; request `timeout` (26, 27)
+- secrets redacted in the API-client logs; password no longer logged on login
+  (28) — a fresh log grep for `password123` / `token=<hex>` returns 0
+- `read_configuration` parses once (cached) and raises on a missing
+  section/key instead of returning `None` (29)
+- `connect_to_db` re-raises instead of returning `None` → `TypeError` (30)
+- per-worker SQLite: `db_utils` honours `TA_DB_PATH`; the `_isolated_db`
+  session fixture points each `pytest -n` worker at its own tmp file; the
+  committed `test_data_for_ta_framework.db` is removed (built fresh) (33)
+- PUT/PATCH/DELETE booking tests create + delete their own record (34)
 
-**Done when:**
-- Two consecutive full runs give the same result.
-- A run under `-n auto` has no ID races.
-- Grepping the logs for a password or token returns nothing.
+**Verified:**
+- repeated `pytest -n auto` runs: 30 passed / 20 skipped every time
+- no booking-id races
+- fresh `logfile.log` has no plaintext credential or token
+
+Decision: **`pytest -n auto` stays on** (default in `tox.ini`) - the API suite
+holds up under repeated parallel runs against the shared services.
 
 ---
 

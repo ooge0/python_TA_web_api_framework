@@ -33,8 +33,7 @@ def login_fixture(request, setup_and_teardown):
     login_page = LoginAdminPage(driver)
     try:
         login_page.login_to_admin_panel(user_name, user_password)
-        login_page.logger.info(
-            f"Login successful. Used credentials user_name: {user_name}, user_password: {user_password}")
+        login_page.logger.info(f"Login successful for user_name: {user_name}")
     except TimeoutException:
         login_page.logger.error("Login failed due to timeout reason")
         raise

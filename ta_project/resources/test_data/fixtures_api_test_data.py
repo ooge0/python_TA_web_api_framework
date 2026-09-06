@@ -3,6 +3,7 @@ import faker
 import pytest
 from hamcrest import assert_that, is_, is_not, none
 from core.data.data_models.front_api_booking_object_data_model import BookingDates, ApiBookingObjectPayload
+from utilities.read_configurations import read_configuration
 
 
 ############################## GENERAL ###################################
@@ -36,14 +37,10 @@ def api_invalid_user_creds() -> dict:
 
 @pytest.fixture
 def front_api_valid_user_creds() -> dict:
-    """
-    Provides valid user credentials for FrontEnd API usage.
-
-    :return: A dictionary with valid `username` and `password`.
-    """
+    """Valid front-end (automationintesting.online) credentials, from config.ini."""
     return {
-        "username": "admin",
-        "password": "password"
+        "username": read_configuration("credentials", "admin_user"),
+        "password": read_configuration("credentials", "front_ui_password"),
     }
 
 
@@ -60,18 +57,8 @@ def front_api_valid_credentials_valid_headers(front_api_valid_user_creds, api_va
 
 
 @pytest.fixture
-def front_api_invalid_credentials_valid_headers(request, api_invalid_user_creds, api_valid_headers) -> Tuple[dict, dict]:
-    """
-    Provides invalid credentials and optional headers for FrontEnd API requests.
-
-    :param request: The current test request context.
-    :param api_invalid_user_creds: A dictionary of invalid user credentials.
-    :param api_valid_headers: A dictionary of valid headers.
-    :return: A tuple containing invalid credentials and headers (if requested).
-    """
-    include_headers = getattr(request, 'param', {}).get('include_headers', False)
-    if include_headers:
-        return api_invalid_user_creds, api_valid_headers
+def front_api_invalid_credentials_valid_headers(api_invalid_user_creds, api_valid_headers) -> Tuple[dict, dict]:
+    """Invalid FrontEnd credentials plus a valid Content-Type header."""
     return api_invalid_user_creds, api_valid_headers
 
 
@@ -79,14 +66,10 @@ def front_api_invalid_credentials_valid_headers(request, api_invalid_user_creds,
 
 @pytest.fixture
 def back_api_valid_user_creds() -> dict:
-    """
-    Provides valid user credentials for BackEnd API usage.
-
-    :return: A dictionary with valid `username` and `password` for admin account.
-    """
+    """Valid back-end (restful-booker) credentials, from config.ini."""
     return {
-        "username": "admin",
-        "password": "password123"
+        "username": read_configuration("credentials", "admin_user"),
+        "password": read_configuration("credentials", "back_api_password"),
     }
 
 

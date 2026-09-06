@@ -6,6 +6,7 @@ File with fixtures for general usage in the project that includes:
     - EXCEL fixtures
     - DB fixtures
 """
+import os
 from collections import namedtuple
 
 import allure
@@ -32,6 +33,20 @@ pytest_plugins = [
 ]
 
 utils = GeneralUtils()
+
+
+@pytest.fixture(scope="session", autouse=True)
+def _isolated_db(tmp_path_factory, worker_id):
+    """
+    Give each test session (and each ``pytest -n`` worker) its own fresh SQLite
+    file via ``TA_DB_PATH``, so parallel workers never share/lock one DB and no
+    state carries between runs. ``db_utils.get_db_file_path_from_config`` reads
+    the env var; nothing else changes.
+    """
+    db_path = tmp_path_factory.getbasetemp() / f"ta_test_{worker_id}.db"
+    os.environ["TA_DB_PATH"] = str(db_path)
+    yield
+    os.environ.pop("TA_DB_PATH", None)
 
 
 # LOGGER fixtures

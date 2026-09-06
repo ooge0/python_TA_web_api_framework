@@ -15,60 +15,56 @@ from utilities.test_data_utils import create_booking_details
 logger = get_logger()
 
 
+DBConfig = namedtuple('DBConfig', ['db_dir', 'db_file', 'db_full_path'])
+
+
 def get_db_file_path_from_config():
     """
-    Retrieves the database file path from the configuration.
+    Return the SQLite database location.
 
-    Returns:
-        DBConfig: A namedtuple containing the directory, file name, and full path of the database.
+    ``TA_DB_PATH`` (set per-worker by the test session) wins over ``config.ini``,
+    so ``pytest -n`` workers do not share one file.
     """
+    env_path = os.environ.get("TA_DB_PATH")
+    if env_path:
+        return DBConfig(os.path.dirname(env_path), os.path.basename(env_path), os.path.abspath(env_path))
     db_file = read_configuration("db", "db_file")
     db_dir = read_configuration("db", "db_dir")
-    db_full_path = GeneralUtils().get_path(db_dir, db_file)
-    DBConfig = namedtuple('DBConfig', ['db_dir', 'db_file', 'db_full_path'])
-    return DBConfig(db_dir, db_file, db_full_path)
+    return DBConfig(db_dir, db_file, GeneralUtils().get_path(db_dir, db_file))
 
 
 def make_db():
     """
-    Creates a SQLite database file if it doesn't exist, or connects to the existing database.
+    Open (creating if needed) the SQLite database.
 
     Returns:
-        tuple: A tuple containing the connection and cursor to the SQLite database.
+        tuple: ``(connection, cursor)``.
     """
     db_config = get_db_file_path_from_config()
-
     os.makedirs(os.path.dirname(db_config.db_full_path), exist_ok=True)
-
-    if not os.path.exists(db_config.db_full_path):
-        conn = sqlite3.connect(db_config.db_full_path)
-        cursor = conn.cursor()
-        logger.info(f"DB created. Used configuration: db_dir: {db_config.db_dir}, db_file: {db_config.db_file}")
-        return conn, cursor
-    else:
-        conn = sqlite3.connect(db_config.db_full_path)
-        cursor = conn.cursor()
-        logger.info(
-            f"DB already created. Used configuration:  db_dir: {db_config.db_dir}, db_file: {db_config.db_file}")
-        return conn, cursor
+    existed = os.path.exists(db_config.db_full_path)
+    conn = sqlite3.connect(db_config.db_full_path)
+    logger.info(f"DB {'opened' if existed else 'created'}: {db_config.db_full_path}")
+    return conn, conn.cursor()
 
 
 def connect_to_db(db_file):
     """
-    Connects to the SQLite database specified by the file name.
-
-    Args:
-        db_file (str): The path to the database file.
+    Connect to the SQLite database at ``db_file``.
 
     Returns:
-        tuple: A tuple containing the connection and cursor to the SQLite database.
+        tuple: ``(connection, cursor)``.
+
+    Raises:
+        sqlite3.Error: on connection failure (previously this was swallowed and
+            ``None`` was returned, so callers hit ``TypeError`` on unpack).
     """
     try:
         conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
-        return conn, cursor
-    except sqlite3.Error as e:
-        logger.error(f"DB connection error: {e}")
+        return conn, conn.cursor()
+    except sqlite3.Error as exc:
+        logger.error(f"DB connection error for {db_file}: {exc}")
+        raise
 
 
 def create_database(db_file):

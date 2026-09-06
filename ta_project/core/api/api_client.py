@@ -18,6 +18,16 @@ from config.logger_config import get_logger
 
 DEFAULT_TIMEOUT = 30  # seconds
 
+# header / body keys whose values must never reach the logs
+_SENSITIVE_KEYS = {"password", "token", "authorization", "cookie", "set-cookie", "proxy-authorization"}
+
+
+def _redact(data: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """Return a copy of ``data`` with sensitive values replaced by ``'***'``."""
+    if not isinstance(data, dict):
+        return data
+    return {k: ("***" if str(k).lower() in _SENSITIVE_KEYS else v) for k, v in data.items()}
+
 
 @dataclass
 class APIClient:
@@ -63,13 +73,13 @@ class APIClient:
         try:
             response = self.session.request(method=method, url=url, headers=headers, json=json, params=params,
                                             timeout=self.timeout)
-            self.logger.info(f"{method.upper()} request to {url} with headers={headers}, json={json}, "
-                             f"params={params}, status code: {response.status_code}")
+            self.logger.info(f"{method.upper()} {url} -> {response.status_code}")
+            self.logger.debug(f"  headers={_redact(headers)} json={_redact(json)} params={params}")
             response.raise_for_status()
             return response
         except requests.exceptions.RequestException as e:
-            self.logger.error(
-                f"Failed {method.upper()} request to {url} with headers={headers}, json={json}, params={params}. Error: {e}")
+            self.logger.error(f"{method.upper()} {url} failed: {e} "
+                              f"(headers={_redact(headers)} json={_redact(json)} params={params})")
             raise
 
     def get(self, endpoint: str, headers: Optional[Dict[str, str]] = None,

@@ -144,9 +144,9 @@ class LoginAdminPage(BaseFrontPage):
             self.home_front_page.open_admin_page_by_footer_link()
             self.enter_credentials_into_login_form(user_name, user_password)
             self.click(LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR)
-            self.logger.info(f"login_to_admin_panel completed with user_name: {user_name}, user_password:{user_password}")
+            self.logger.info(f"login_to_admin_panel completed for user_name: {user_name}")
         except TimeoutException:
-            self.logger.error(f"login_to_admin_panel failed due to timeout. Username: {user_name} , user_password: {user_password}")
+            self.logger.error(f"login_to_admin_panel timed out for user_name: {user_name}")
             raise
         except Exception as e:
             self.logger.error(f"login_to_admin_panel failed due to an unexpected error: {e}")
