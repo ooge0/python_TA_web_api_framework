@@ -1,0 +1,18 @@
+/* Default for large screens */
+.wy-nav-content {
+    min-width: 1400px !important;
+}
+
+/* For medium screens (like tablets) */
+@media (max-width: 1200px) {
+    .wy-nav-content {
+        min-width: 1000px !important;
+    }
+}
+
+/* For small screens (like phones) */
+@media (max-width: 768px !important) {
+    .wy-nav-content {
+        min-width: 100%;
+    }
+}

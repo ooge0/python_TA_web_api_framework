@@ -1,0 +1,5 @@
+digraph "classes_ta_framework_ui_api" {
+rankdir=BT
+charset="utf-8"
+"core.api.api_client.APIClient" [color="black", fontcolor="black", label=<{APIClient|base_url : str<br ALIGN="LEFT"/>logger : Logger<br ALIGN="LEFT"/>session : Session<br ALIGN="LEFT"/>|delete(endpoint: str, headers: Optional[Dict[str, str]], params: Optional[Dict[str, Any]]): requests.Response<br ALIGN="LEFT"/>get(endpoint: str, headers: Optional[Dict[str, str]], params: Optional[Dict[str, Any]]): requests.Response<br ALIGN="LEFT"/>patch(endpoint: str, headers: Optional[Dict[str, str]], json: Optional[Dict[str, Any]]): requests.Response<br ALIGN="LEFT"/>post(endpoint: str, headers: Optional[Dict[str, str]], json: Optional[Dict[str, Any]]): requests.Response<br ALIGN="LEFT"/>put(endpoint: str, headers: Optional[Dict[str, str]], json: Optional[Dict[str, Any]]): requests.Response<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+}

@@ -1,0 +1,25 @@
+@startuml
+
+class AdminRoomsFrontPage {
+    locators : dict
+    get_placeholders_from_login_form() : Union[str, str]
+}
+
+class BaseFrontPage {
+    driver
+    logger : Logger
+    clear(locator : TypeVar('Locators', bound=BaseLocators))
+    click(locator : TypeVar('Locators', bound=BaseLocators))
+    close_hacker_hover()
+    find_element_by_locator(locator : TypeVar('Locators', bound=BaseLocators), wait_time) : Union[WebElement, None]
+    get_href_of_element(locator : TypeVar('Locators', bound=BaseLocators)) : Union[str, None]
+    get_placeholder_text_for_element(locator : TypeVar('Locators', bound=BaseLocators)) : Union[str, None]
+    get_text(locator : TypeVar('Locators', bound=BaseLocators)) : str
+    get_text_as_attribute_value(locator : TypeVar('Locators', bound=BaseLocators), attribute_value : str) : Union[str, None]
+    presence_of_static_element_on_the_page(locator : TypeVar('Locators', bound=BaseLocators), wait_time : int) : bool
+    type(text : str, locator : TypeVar('Locators', bound=BaseLocators))
+}
+
+AdminRoomsFrontPage --|> BaseFrontPage
+
+@enduml
