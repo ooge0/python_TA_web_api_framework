@@ -1,7 +1,7 @@
 @echo off
 
-:: Get current working dir and set it as PYTHONPATH
-SET PYTHONPATH="$(pwd)"
+:: Set the project root as PYTHONPATH
+SET PYTHONPATH=%cd%
 
 :: Check if Python is installed
 python --version 2>NUL

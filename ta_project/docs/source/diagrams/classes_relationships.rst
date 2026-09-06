@@ -21,7 +21,7 @@ api client function relationships
    :numbered:
    :caption: Class relationships
 
-1.. include:: api_client_function_relationships.rst
+.. include:: function_and_class_relationships.rst
 
 --------------------------------------------------------------
 

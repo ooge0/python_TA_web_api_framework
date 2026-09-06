@@ -1,140 +1,76 @@
 # /core/data/data_models/front_api_booking_object_data_model.py
 """
-A class representing the check-in and check-out dates for a booking.
+Pydantic models for a booking payload / response.
+
+``from_dict`` / ``to_dict`` are kept as thin helpers over pydantic so existing
+callers keep working; the flattening for the wire format (``bookingdates`` inline,
+``additionalneeds`` as a plain string) lives in ``to_dict``.
 """
-from dataclasses import dataclass, field
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional, Union
+
+from pydantic import BaseModel, ConfigDict
 
 
-@dataclass
-class BookingDates:
-    """
-    A class representing the check-in and check-out dates for a booking.
+class BookingDates(BaseModel):
+    """Check-in / check-out dates for a booking."""
 
-    Attributes
-    ----------
-    checkin : str
-        The check-in date as a string.
-    checkout : str
-        The check-out date as a string.
-    """
-    checkin: str
-    checkout: str
+    checkin: str = ""
+    checkout: str = ""
 
 
-@dataclass
-class AdditionalNeeds:
-    """
-    A class representing any additional needs for the booking.
+class ApiBookingObjectPayload(BaseModel):
+    """A booking as sent to / received from the ``/booking`` endpoint."""
 
-    Attributes
-    ----------
-    needs : str
-        Additional needs or requirements for the booking.
-    """
-    needs: str
+    model_config = ConfigDict(validate_assignment=True)
 
-
-@dataclass
-class ApiBookingObjectPayload:
-    """
-    A class representing the payload of a booking object for an API.
-
-    Attributes
-    ----------
-    firstname : str
-        First name of the person making the booking.
-    lastname : str
-        Last name of the person making the booking.
-    totalprice : int
-        Total price of the booking.
-    depositpaid : str
-        Whether the deposit has been paid (yes/no).
-    bookingdates : BookingDates
-        An instance of BookingDates representing check-in and check-out dates.
-    additionalneeds : AdditionalNeeds
-        An instance of AdditionalNeeds representing any additional requirements.
-    bookingid : Optional[int], optional
-        The ID of the booking, by default None.
-    """
-
-    firstname: str
-    lastname: str
-    totalprice: int
-    depositpaid: str
-    bookingdates: BookingDates
-    additionalneeds: AdditionalNeeds
-    bookingid: Optional[int] = field(default=None)
+    firstname: str = ""
+    lastname: str = ""
+    totalprice: int = 0
+    # the API accepts a bool or the string "true"/"false"; responses use a bool
+    depositpaid: Union[bool, str] = False
+    bookingdates: BookingDates = BookingDates()
+    additionalneeds: str = ""
+    bookingid: Optional[int] = None
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any], is_response: bool = False) -> 'ApiBookingObjectPayload':
+    def from_dict(cls, data: Dict[str, Any], is_response: bool = False) -> "ApiBookingObjectPayload":
         """
-        Create an instance of ApiBookingObjectPayload from a dictionary.
+        Build an instance from a dict.
 
-        Parameters
-        ----------
-        data : dict
-            A dictionary containing the booking data.
-        is_response : bool, optional
-            A flag indicating if the input data is from a response, by default False.
-
-        Returns
-        -------
-        ApiBookingObjectPayload
-            An instance of the ApiBookingObjectPayload class populated with the provided data.
+        ``is_response=True`` unwraps the ``{"bookingid": N, "booking": {...}}``
+        shape returned by ``POST /booking``.
         """
         if is_response:
-            # If response is nested within 'booking'
-            booking_data = data.get("booking", {})
+            booking = data.get("booking", {}) or {}
             bookingid = data.get("bookingid")
         else:
-            booking_data = data
-            bookingid = None
+            booking = data or {}
+            bookingid = booking.get("bookingid")
 
-        bookingdates = BookingDates(
-            checkin=booking_data.get("bookingdates", {}).get("checkin", ""),
-            checkout=booking_data.get("bookingdates", {}).get("checkout", "")
-        )
-        additionalneeds = AdditionalNeeds(
-            needs=booking_data.get("additionalneeds", "")
-        )
+        needs = booking.get("additionalneeds", "")
+        if isinstance(needs, dict):
+            needs = needs.get("needs", "")
 
         return cls(
-            firstname=booking_data.get("firstname", ""),
-            lastname=booking_data.get("lastname", ""),
-            totalprice=booking_data.get("totalprice", 0),
-            depositpaid=booking_data.get("depositpaid", ""),
-            bookingdates=bookingdates,
-            additionalneeds=additionalneeds,
-            bookingid=bookingid
+            firstname=booking.get("firstname", ""),
+            lastname=booking.get("lastname", ""),
+            totalprice=booking.get("totalprice", 0),
+            depositpaid=booking.get("depositpaid", ""),
+            bookingdates=BookingDates(**(booking.get("bookingdates") or {})),
+            additionalneeds=needs,
+            bookingid=bookingid,
         )
 
     def to_dict(self, include_id: bool = False) -> Dict[str, Any]:
-        """
-        Convert the ApiBookingObjectPayload instance into a dictionary.
-
-        Parameters
-        ----------
-        include_id : bool, optional
-            A flag indicating whether to include the booking ID in the dictionary, by default False.
-
-        Returns
-        -------
-        dict
-            A dictionary representation of the ApiBookingObjectPayload instance.
-        """
-        data = {
+        """Flatten to the wire format the API expects."""
+        data: Dict[str, Any] = {
             "firstname": self.firstname,
             "lastname": self.lastname,
             "totalprice": self.totalprice,
             "depositpaid": self.depositpaid,
-            "bookingdates": {
-                "checkin": self.bookingdates.checkin,
-                "checkout": self.bookingdates.checkout
-            },
-            "additionalneeds": self.additionalneeds
+            "bookingdates": {"checkin": self.bookingdates.checkin, "checkout": self.bookingdates.checkout},
+            "additionalneeds": self.additionalneeds,
         }
-
         if include_id and self.bookingid is not None:
             data["bookingid"] = self.bookingid
         return data

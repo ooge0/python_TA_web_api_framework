@@ -7,10 +7,6 @@ Submodules
 core.data.data\_models.api\_header\_data\_models module
 -------------------------------------------------------
 
-.. automodule:: core.data.data_models.api_header_data_models
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 core.data.data\_models.api\_login\_data\_models module
 ------------------------------------------------------
@@ -31,7 +27,7 @@ core.data.data\_models.back\_api\_auth\_data\_models module
 core.data.data\_models.front\_api\_bookingID\_list\_data\_model module
 ----------------------------------------------------------------------
 
-.. automodule:: core.data.data_models.front_api_bookingID_list_data_model
+.. automodule:: core.data.data_models.front_api_booking_id_list_data_model
    :members:
    :undoc-members:
    :show-inheritance:

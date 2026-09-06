@@ -1,11 +1,14 @@
-sphinx_autodoc_typehints
-graphviz
-tach
-sphinx==7.4.7
-myst_parser==4.0.0
-rst2pdf==0.102
-sphinx_rtd_theme==2.0.0
-sphinx-autoapi==3.3.1
-sphinx-tabs==3.4.5
-pydocstyle==6.3.0
+# Doc-build dependencies for ReadTheDocs / the docs CI job.
+# Versions are constrained by the compiled application lock file, so they
+# cannot drift from the app's.
+-c ../requirements.txt
+
+sphinx
+myst-parser
+rst2pdf
+sphinx-rtd-theme
+sphinx-autoapi
+sphinx-tabs
+sphinx-autodoc-typehints
 sphinx-notfound-page
+graphviz

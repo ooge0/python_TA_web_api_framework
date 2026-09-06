@@ -21,7 +21,7 @@ class HomePageReferenceDataFromDB:
     ADMIN_HEADER_BAR_BRANDING_TITLE = 'admin_header_bar_branding_title'
     """The title for the 'Branding' section in the admin header bar."""
 
-    BRANDING_TEXT_ON_THE_HEADER_NAVBAR = 'branding_text_on_the_header_navbar1'
+    BRANDING_TEXT_ON_THE_HEADER_NAVBAR = 'branding_text_on_the_header_navbar'
     """The branding text displayed on the header navbar."""
 
     ADMIN_HEADER_BAR_FRONT_PAGE_TITLE = 'admin_header_bar_front_page_title'

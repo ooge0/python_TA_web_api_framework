@@ -1,62 +1,21 @@
 """
-Utilities class provider
+General helper utilities.
 """
 import os
-import sys
-from typing import Optional
 
 from config.logger_config import get_logger
 
 
-def check_sys_env_issues():
-    """
-    Checks and logs system and environment details including:
-    - Python system prefix
-    - Current working directory
-    - Environment variables
-
-    Logs this information using the configured logger and also prints it to the console.
-    """
-    logger = get_logger()
-    logger.debug(f"SYS.PREFIX: {sys.prefix}")
-    logger.debug(f"OS.GETCWD(): {os.getcwd()}")
-    logger.debug(f"OS.ENVIRON(): {os.environ}")
-
-    print(f"SYS.PREFIX: {sys.prefix}")
-    print(f"OS.GETCWD(): {os.getcwd()}")
-    print(f"OS.ENVIRON(): {os.environ}")
-
-
 class GeneralUtils:
     """
-    A utility class providing helper methods for:
-    - Taking screenshots in Selenium tests
+    Helper methods for:
     - Creating files and writing test names
-    - Validating data retrieved from the database
-    - Handling string-to-boolean conversions
-    - Constructing normalized file paths
+    - Reading a value out of a database result
+    - String-to-boolean conversion
+    - Building a normalised path under the project root
     """
 
     logger = get_logger()
-
-    def take_screenshot(self, filename: Optional[str] = "page_screenshot.png"):
-        """
-        Takes a screenshot of the current web page in a Selenium test.
-
-        Args:
-            filename: Optional; The name of the screenshot file. Defaults to 'page_screenshot.png'.
-
-        The screenshot is saved in the 'resources/screenshots/' directory. If the directory
-        does not exist, it is created. The method logs the result and handles any errors.
-        """
-        screenshot_path = "resources/screenshots/"
-        full_screenshot_path = os.path.join(screenshot_path, filename)
-        try:
-            os.makedirs(screenshot_path, exist_ok=True)  # Create directories if they don't exist
-            self.driver.save_screenshot(full_screenshot_path)
-            self.logger.info(f"Screenshot saved successfully as {full_screenshot_path}")
-        except Exception as e:
-            self.logger.error(f"Error saving screenshot: {e}")
 
     def create_file_and_write_test_names(self, test_list, file_path):
         """

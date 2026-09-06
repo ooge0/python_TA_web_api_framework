@@ -19,6 +19,23 @@ web-site - [https://automationintesting.online](https://automationintesting.onli
 * Latest project documentation available on [ReadTheDocs: 'Python TA Framework Docs'](https://python-ta-web-api-framework.readthedocs.io/en/latest/index.html)
 * Published documentation has minor issues and not all features of published documents can work as expected    
 
+## Quickstart
+
+```bash
+git clone <repo> && cd python_TA_web_api_framework
+python -m venv .venv && .venv/Scripts/activate   # POSIX: source .venv/bin/activate
+pip install -r requirements.txt
+
+pytest -n auto        # full suite in parallel (needs network + the two live SUTs)
+pytest -m api         # API tests only
+tox -e lint           # pylint
+```
+
+The UI (`-m ui`) tests are currently skipped - the Selenium layer is being
+re-targeted at the rebuilt `automationintesting.online` SPA (see `ROADMAP.md`
+M8). Test-design artifacts (feature catalogue, test cases, traceability and
+coverage) live under `docs/source/qa/`.
+
 # Table of contents <div id="toc"></div>
 
 1. [Resources of web app](#resources-of-web-app)

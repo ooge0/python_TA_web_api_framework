@@ -1,4 +1,5 @@
 pytest==7.4.4
+pydantic
 allure-pytest
 pytest-html
 pytest-cov
@@ -17,7 +18,6 @@ hypothesis
 pylint
 pipdeptree
 graphviz
-tach
 invoke
 sphinx==7.4.7
 myst_parser==4.0.0

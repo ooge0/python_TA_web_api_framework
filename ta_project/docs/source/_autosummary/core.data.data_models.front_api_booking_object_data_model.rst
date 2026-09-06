@@ -8,7 +8,6 @@ core.data.data\_models.front\_api\_booking\_object\_data\_model
 
    .. autosummary::
    
-      AdditionalNeeds
       ApiBookingObjectPayload
       BookingDates
    

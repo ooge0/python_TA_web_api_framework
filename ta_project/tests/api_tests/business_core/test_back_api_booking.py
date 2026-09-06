@@ -6,7 +6,7 @@ from hamcrest import assert_that, is_not, is_
 from requests import HTTPError
 
 from config.logger_config import get_logger
-from core.data.data_models.front_api_bookingID_list_data_model import BookingIdList
+from core.data.data_models.front_api_booking_id_list_data_model import BookingIdList
 from core.data.data_models.front_api_booking_object_data_model import ApiBookingObjectPayload
 from utilities.back_api_utils import BackApiUtils
 

@@ -1,10 +1,37 @@
-Note for Contributors
+Notes for Contributors
 ======================
 
-Note for Contributors
+Setup
+-----
 
-.. admonition:: .
+.. code-block:: bash
 
-   Please ensure that you adhere to the project’s coding guidelines when contributing.
+   python -m venv .venv
+   .venv/Scripts/activate            # Windows;  source .venv/bin/activate on POSIX
+   pip install -r requirements.txt
 
-   Use `flake8` or `pylint`  for linting and ensure proper documentation of all functions.
+Dependencies are managed with ``pip-tools``: edit ``requirements.in``, then
+``pip-compile requirements.in`` to refresh the lock file.
+
+Running the checks
+------------------
+
+.. code-block:: bash
+
+   pytest -n auto                    # the full suite, in parallel
+   pytest -m api                     # API tests only
+   pytest -m ui                      # UI tests (currently skipped - see roadmap M8)
+   tox -e lint                       # pylint over core / utilities / tests
+   tox -e test                       # suite + Allure results
+
+CI (``.github/workflows/ci.yml``) runs ``pylint`` and ``pytest`` with coverage on
+every push and pull request. ``pylint`` is reported but does not gate yet.
+
+Conventions
+-----------
+
+* One assertion style per module (PyHamcrest ``assert_that`` is the default).
+* API write tests must create and clean up their own data - no hard-coded ids.
+* New test functions are auto-tagged ``api`` / ``ui`` by path; add a
+  ``TC-*`` row in :ref:`qa_test_cases` and link the requirement.
+* Docstrings: one accurate sentence beats a copy-pasted paragraph.

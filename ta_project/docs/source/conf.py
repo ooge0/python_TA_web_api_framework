@@ -10,10 +10,10 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'ta_framework_ui_api'
-copyright = '2024, si0n4ra'
-author = 'si0n4ra'
-release = '1.0.0'
+project = 'python_TA_web_api_framework'
+copyright = '2024-2026, ooge0'
+author = 'ooge0'
+release = '1.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -45,8 +45,8 @@ source_suffix = {
     '.md': 'markdown',
 }
 
-templates_path = ['_templates']
-exclude_patterns = []
+templates_path = []
+exclude_patterns = ['_build', 'index_old.rst_']
 locale_dirs = []     # Disable translations if not required
 
 

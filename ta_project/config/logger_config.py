@@ -1,25 +1,26 @@
 """
-Configuration for loguru(logger) instances
+loguru configuration.
+
+The file sink path is anchored to the project root (not the current working
+directory) and the ``TA_LOG_DIR`` env var can override it.
 """
+import os
 
 from loguru import logger
 
-logger.add("./resources/logger_output/logfile.log",
-           level="DEBUG",
-           format="{time:YYYY-MM-DD HH:mm:ss.SSSSSS} {level} {name}:{function}:{line} - {message}",
-           rotation="10 MB")
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_LOG_DIR = os.environ.get("TA_LOG_DIR", os.path.join(_PROJECT_ROOT, "resources", "logger_output"))
+
+logger.add(
+    os.path.join(_LOG_DIR, "logfile.log"),
+    level="DEBUG",
+    format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level: <8} {name}:{function}:{line} - {message}",
+    rotation="10 MB",
+    retention=5,
+    enqueue=True,  # safe under pytest-xdist
+)
 
 
 def get_logger():
-    """
-    Retrieve the global logger instance.
-
-    This function returns the pre-configured logger, which can be used for
-    logging messages across the application. The logger should already be
-    initialized with appropriate handlers and formatters elsewhere in the
-    application.
-
-    Returns:
-        logging.Logger: The global logger instance used for logging messages.
-    """
+    """Return the shared loguru logger."""
     return logger

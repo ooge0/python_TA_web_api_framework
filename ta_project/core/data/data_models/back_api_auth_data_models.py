@@ -1,51 +1,19 @@
 # /core/data/data_models/back_api_auth_data_models.py
-"""
-A class representing the authentication payload for an API.
-"""
-from dataclasses import dataclass
+"""Pydantic model for the ``POST /auth`` token response."""
+from typing import Any, Dict, Optional
+
+from pydantic import BaseModel
 
 
-@dataclass
-class BackApiAuthPayload:
-    """
-    A class representing the authentication payload for an API.
+class BackApiAuthPayload(BaseModel):
+    """The authentication token returned by ``POST /auth``."""
 
-    Attributes
-    ----------
-    token : str
-        The authentication token.
-    """
-    token: str
+    token: Optional[str] = None
 
     @classmethod
-    def from_dict(cls, data: dict) -> 'BackApiAuthPayload':
-        """
-        Create an instance of BackApiAuthPayload from a dictionary.
+    def from_dict(cls, data: Dict[str, Any]) -> "BackApiAuthPayload":
+        return cls(token=data.get("token"))
 
-        Parameters
-        ----------
-        data : dict
-            A dictionary containing the authentication data.
-
-        Returns
-        -------
-        BackApiAuthPayload
-            An instance of the BackApiAuthPayload class populated with the provided data.
-        """
-        token_value = data.get("token")
-
-        return cls(
-            token=token_value
-        )
-
-    def to_dict(self) -> str:
-        """
-        Convert the BackApiAuthPayload instance into a string (the token value).
-
-        Returns
-        -------
-        str
-            The token as a string.
-        """
-        token_value = self.token
-        return token_value
+    def to_dict(self) -> Dict[str, Any]:
+        """Dict form (previously this returned a bare string - a contract bug)."""
+        return {"token": self.token}

@@ -19,11 +19,10 @@ core package summary
    core.api.backend_api_points
    core.api.frontend_api_points
    core.data.data_models
-   core.data.data_models.api_header_data_models
    core.data.data_models.api_login_data_models
    core.data.data_models.back_api_auth_data_models
    core.data.data_models.front_api_booking_object_data_model
-   core.data.data_models.front_api_bookingID_list_data_model
+   core.data.data_models.front_api_booking_id_list_data_model
    core.data.data_models.front_api_room_details_data_models
 
 ------------------------

@@ -21,5 +21,3 @@ Subpackages
    core.pages
    core.reference_data
 
---------------------------------
-

@@ -31,10 +31,6 @@ utilities.back\_api\_utils module
 utilities.create\_database\_with\_mock\_data module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: utilities.create_database_with_mock_data
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 utilities.db\_utils module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
