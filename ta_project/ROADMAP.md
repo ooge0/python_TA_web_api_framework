@@ -189,3 +189,31 @@ Scope:
 
 **Done when:** `pytest -m ui` runs with no skips and every UI test passes or
 xfails against a filed issue.
+
+### Current SUT DOM (probed 2026-09-06, headless Firefox)
+
+Home `https://automationintesting.online/` (React SPA, no intro banner):
+- contact form: `#name` `#email` `#phone` `#subject` `#description`
+  (also `[data-testid="ContactName|ContactEmail|ContactPhone|ContactSubject|ContactDescription"]`)
+- contact submit: `//section[@id='contact']//button[normalize-space()='Submit']`
+- nav: `a.nav-link` (Rooms / Booking / Amenities / Location / Contact / Admin)
+- brand: `a.navbar-brand` = "Shady Meadows B&B"
+- footer links (by text): "Mark Winteringham" -> `mwtestconsultancy.co.uk`,
+  "Cookie-Policy" -> `/cookie`, "Privacy-Policy" -> `/privacy`,
+  "Admin panel" -> `/admin`
+- rooms: `section#rooms`, "Book now" -> `/reservation/{id}?checkin=..&checkout=..`
+
+Admin login `https://automationintesting.online/admin` (note: `/admin`, not `/#/admin`):
+- `#username` (placeholder "Enter username"), `#password` (placeholder "Password"),
+  `#doLogin` (text "Login"), heading `h2` "Login"
+- brand: `a.navbar-brand` = "Restful Booker Platform Demo"
+- after login -> `/admin/rooms`; navbar links: "Rooms" (`/admin/rooms`),
+  "Report" (`#reportLink`), "Branding" (`#brandingLink`),
+  "Messages N" (`/admin/message`), "Front Page" (`#frontPageLink`),
+  "Logout" `button`
+- rooms table: `[data-testid='roomlisting']` (`#room1..#room3`), `#createRoom`,
+  `#roomName`
+
+Reference-data drift to fix with this milestone: the `data_validation_admin_page_ui`
+seed still says branding = "B&B Booking Management"; it is now
+"Restful Booker Platform Demo". Footer hrefs are `/cookie` `/privacy` (no `#/`).
