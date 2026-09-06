@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      # Reported, not yet gating - the code does not score 10/10 yet (ROADMAP M6).
+      - name: pylint
+        continue-on-error: true
+        run: pylint core utilities tests --rcfile=config/pylint.rc --fail-under=8.0
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      # The API tests run against the live restful-booker / automationintesting
+      # services (no local stub yet - ROADMAP M3). The UI tests are skipped at
+      # module level (ROADMAP M8), so no browser is needed here.
+      - name: pytest
+        run: >
+          pytest -n auto
+          --cov=core --cov=utilities
+          --cov-report=term-missing --cov-report=xml
+          --junitxml=junit.xml
+      - name: upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            junit.xml
+            coverage.xml

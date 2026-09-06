@@ -42,6 +42,8 @@ colorama==0.4.6
     #   pylint
     #   pytest
     #   sphinx
+coverage[toml]==7.16.0
+    # via pytest-cov
 dill==0.3.8
     # via pylint
 docutils==0.20.1
@@ -77,6 +79,8 @@ importlib-metadata==8.5.0
     # via rst2pdf
 iniconfig==2.0.0
     # via pytest
+invoke==3.0.3
+    # via -r requirements.in
 isort==5.13.2
     # via pylint
 jinja2==3.1.4
@@ -129,6 +133,7 @@ pluggy==1.5.0
     # via
     #   allure-python-commons
     #   pytest
+    #   pytest-cov
 prompt-toolkit==3.0.47
     # via tach
 pycparser==2.22
@@ -159,10 +164,13 @@ pytest==7.4.4
     # via
     #   -r requirements.in
     #   allure-pytest
+    #   pytest-cov
     #   pytest-html
     #   pytest-lazy-fixture
     #   pytest-metadata
     #   pytest-xdist
+pytest-cov==7.1.0
+    # via -r requirements.in
 pytest-html==4.1.1
     # via -r requirements.in
 pytest-lazy-fixture==0.6.3

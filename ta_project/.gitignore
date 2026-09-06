@@ -45,6 +45,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+junit.xml
 *.cover
 *.py,cover
 .hypothesis/
@@ -71,11 +72,13 @@ idea/
 #other
 /assets
 /etc
-/resources/logger_output
-/resources/test_report/
-/resources/allure_reports
-/resources/screenshots
+resources/logger_output/
+resources/test_report/
+resources/allure_reports/
+resources/screenshots/
+utilities/resources/
 /tests/.hypothesis
+tests/**/resources/
 geckodriver.log
 /docs__/
 # NOTE: docs/source/ is hand-written and tracked - do NOT ignore it (was a bug)

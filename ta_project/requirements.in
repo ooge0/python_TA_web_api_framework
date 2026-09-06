@@ -1,6 +1,7 @@
 pytest==7.4.4
 allure-pytest
 pytest-html
+pytest-cov
 requests
 selenium
 pytest-lazy-fixture

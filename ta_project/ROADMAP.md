@@ -17,8 +17,8 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 | milestone | state |
 |---|---|
 | M1 make the suite honest | **done** for the API side (23/6 -> 30/0). UI side: the Selenium layer targets a version of `automationintesting.online` that no longer exists (the site is now a rewritten SPA), so those 20 tests are skipped pending **M8**. The static UI code bugs (items 1, 7, 8, 9, 19, 21) are fixed. |
-| M3 make runs repeatable | **partly done, pulled forward** - items 15, 26, 27, 34 done: per-client `Session` + `default_factory`, request `timeout`, and PUT/PATCH/DELETE booking tests now create + clean up their own booking. `pytest -n auto` passes the API suite 3x with no races. Remaining M3: SQLite DB per-worker isolation (moot until M8), xdist decision for the UI layer. |
-| M2 | item 2 done early: root `pyproject.toml` replaces the mislocated `config/pytest.ini`; markers registered. |
+| M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported, not gating yet) and `pytest -n auto` with coverage on every push / PR; `deploy-docs.yml` rewritten to actually install deps and build from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done; `pytest-cov` added (coverage **43%**, no floor yet - that comes after M7). Stale test inventory and the committed `logfile.log` untracked. |
+| M3 make runs repeatable | **partly done, pulled forward** - items 15, 26, 27, 34 done: per-client `Session` + `default_factory`, request `timeout`, and PUT/PATCH/DELETE booking tests now create + clean up their own booking. `pytest -n auto` passes the API suite 3x with no races. Remaining M3: SQLite DB per-worker isolation (moot until M8), xdist decision for the UI layer, credential single-source. |
 | M8 (new) re-target the UI layer | not started - see below. |
 
 ---
