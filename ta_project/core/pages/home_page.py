@@ -5,6 +5,7 @@ to provide specific interactions for the Home page of the UI. It includes method
 retrieving branding details, interacting with hotel room data, and performing booking actions.
 """
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
 from core.locators.home_page_locators import HomePageLocators
 from core.locators.login_page_locators import LoginPageLocators
@@ -67,7 +68,7 @@ class HomeFrontPage(BaseFrontPage):
         Returns:
             str: The room type text.
         """
-        room_type_element = room_element.self.find_element_by_locator(HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR)
+        room_type_element = room_element.find_element(By.CSS_SELECTOR, HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR.value)
         return room_type_element.text
 
     def get_room_description(self, room_element):
@@ -80,8 +81,8 @@ class HomeFrontPage(BaseFrontPage):
         Returns:
             str: The room description text.
         """
-        room_description_element = room_element.self.find_element_by_locator(
-            HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR)
+        room_description_element = room_element.find_element(
+            By.CSS_SELECTOR, HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR.value)
         return room_description_element.text
 
     # Booking actions

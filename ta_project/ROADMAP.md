@@ -12,6 +12,15 @@ that keeps it honest (M2), then make its results mean something (M3). Only then
 is it worth investing in QA artifacts (M4) and a cleaner core (M5), finishing
 with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 
+## Progress
+
+| milestone | state |
+|---|---|
+| M1 make the suite honest | **done** for the API side (23/6 -> 30/0). UI side: the Selenium layer targets a version of `automationintesting.online` that no longer exists (the site is now a rewritten SPA), so those 20 tests are skipped pending **M8**. The static UI code bugs (items 1, 7, 8, 9, 19, 21) are fixed. |
+| M3 make runs repeatable | **partly done, pulled forward** - items 15, 26, 27, 34 done: per-client `Session` + `default_factory`, request `timeout`, and PUT/PATCH/DELETE booking tests now create + clean up their own booking. `pytest -n auto` passes the API suite 3x with no races. Remaining M3: SQLite DB per-worker isolation (moot until M8), xdist decision for the UI layer. |
+| M2 | item 2 done early: root `pyproject.toml` replaces the mislocated `config/pytest.ini`; markers registered. |
+| M8 (new) re-target the UI layer | not started - see below. |
+
 ---
 
 ## M1 — Make the suite honest
@@ -148,3 +157,35 @@ Not in `improvements.md` (these are new tests, not fixes). Driven by
 
 **Done when:** every `REQ-*` in the catalogue is either automated or explicitly
 marked "manual" / "won't test" with a reason.
+
+---
+
+## M8 — Re-target the Selenium UI layer at the current SUT
+
+**Goal:** the UI tests run against today's `automationintesting.online` and stop
+being skipped.
+
+**Why this exists:** the framework's page objects, locators and
+`setup_and_teardown` flow were written for the pre-2025 restful-booker-platform
+(Bootstrap markup: `//*[@data-target='#collapseBanner']/button`,
+`.hotel-room-info > .col-sm-7 > h3`, `//input[@data-testid='ContactName']`).
+The site is now a client-rendered SPA and none of that markup exists, so every
+UI test errors in setup (`TimeoutException` on the intro banner). The front-end
+API had the same drift and was fixed in M1 (path moved to `/api`, token now in
+the response body, `401` not `403`); the UI layer is the larger remaining piece.
+
+Scope:
+- Re-capture locators against the current DOM; move to `(By.X, "selector")`
+  tuples while doing it (this also delivers item 41).
+- Rework `BaseFrontPage` / `HomeFrontPage` / `LoginAdminPage` /
+  `AdminRoomsFrontPage` for the SPA (waits for async render, no intro banner).
+- Rework the `setup_and_teardown` fixture and drop `close_hacker_hover` if the
+  banner is gone for good.
+- Decide the admin login URL/flow (`/#/admin` vs a new route).
+- Re-enable the three `web_app_tests/` modules (remove the module-level
+  `pytest.mark.skip`) one at a time as they go green.
+- Confirm the DB-backed UI tests still make sense; finish the SQLite per-worker
+  isolation (the deferred half of M3) here.
+
+**Done when:** `pytest -m ui` runs with no skips and every UI test passes or
+xfails against a filed issue.

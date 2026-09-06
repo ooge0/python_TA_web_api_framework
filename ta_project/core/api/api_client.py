@@ -9,12 +9,14 @@ This class offers methods to:
   - Handle request headers, JSON bodies, and query parameters.
   - Log API requests and responses.
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, Dict, Any
 
 import requests
 
 from config.logger_config import get_logger
+
+DEFAULT_TIMEOUT = 30  # seconds
 
 
 @dataclass
@@ -34,7 +36,8 @@ class APIClient:
         - Log API requests and responses.
     """
     base_url: str
-    session: requests.Session = requests.Session()
+    session: requests.Session = field(default_factory=requests.Session)
+    timeout: int = DEFAULT_TIMEOUT
     logger = get_logger()
 
     def _request(self, method: str, endpoint: str, headers: Optional[Dict[str, str]] = None,
@@ -58,7 +61,8 @@ class APIClient:
 
         url = f"{self.base_url}{endpoint}"
         try:
-            response = self.session.request(method=method, url=url, headers=headers, json=json, params=params)
+            response = self.session.request(method=method, url=url, headers=headers, json=json, params=params,
+                                            timeout=self.timeout)
             self.logger.info(f"{method.upper()} request to {url} with headers={headers}, json={json}, "
                              f"params={params}, status code: {response.status_code}")
             response.raise_for_status()

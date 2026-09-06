@@ -6,6 +6,16 @@ import pytest
 from selenium.common import TimeoutException
 
 from core.pages.login_page import LoginAdminPage
+from utilities import excel_utils
+
+
+@pytest.fixture
+def branding_text_on_the_header_navbar(excel_file_path):
+    """
+    Expected admin-navbar branding text, read from the shared Excel data
+    (`data_validation_admin_page_ui` sheet, row 3 / column 5).
+    """
+    return excel_utils.get_cell_data(excel_file_path, "data_validation_admin_page_ui", 3, 5)
 
 
 @pytest.fixture

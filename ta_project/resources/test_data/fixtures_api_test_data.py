@@ -1,7 +1,7 @@
 from typing import Tuple
 import faker
 import pytest
-from hamcrest import assert_that, is_, is_not
+from hamcrest import assert_that, is_, is_not, none
 from core.data.data_models.front_api_booking_object_data_model import BookingDates, ApiBookingObjectPayload
 
 
@@ -161,8 +161,30 @@ def get_back_end_token(
                                        json=back_api_valid_user_creds)
     assert_that(response.status_code, is_(200))
     token = response.json().get('token')
-    assert_that(token, is_not("None"))
+    assert_that(token, is_not(none()))
     return token
+
+
+@pytest.fixture
+def created_backend_booking(backend_api_client, back_end_api_booking_endpoint, backend_api_post_test_payload,
+                            get_back_end_token) -> Tuple[int, dict, ApiBookingObjectPayload]:
+    """
+    Create a booking on restful-booker and yield ``(booking_id, auth_headers, payload)``;
+    delete it on teardown.
+
+    Using a freshly-created booking (instead of a hard-coded id) makes the
+    PUT / PATCH / DELETE tests independent and safe to run under ``pytest -n``.
+    """
+    payload, headers = backend_api_post_test_payload
+    resp = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
+    assert_that(resp.status_code, is_(200), "precondition: booking creation failed")
+    booking_id = resp.json()["bookingid"]
+    auth_headers = {"Content-Type": "application/json", "Cookie": f"token={get_back_end_token}"}
+    yield booking_id, auth_headers, payload
+    try:
+        backend_api_client.delete(f"{back_end_api_booking_endpoint}/{booking_id}", headers=auth_headers)
+    except Exception:  # noqa: BLE001 - best-effort cleanup
+        pass
 
 
 @pytest.fixture

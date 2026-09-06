@@ -179,7 +179,12 @@ def create_initial_test_data(cursor):
     Args:
         cursor: The SQLite cursor used to execute SQL commands.
     """
-    name, email, phone, email_subject, contact_message_details = create_booking_details("tests")
+    details = create_booking_details("tests")
+    name = details["name"]
+    email = details["email"]
+    phone = details["phone"]
+    email_subject = details["email_subject"]
+    contact_message_details = details["contact_message_details"]
 
     cursor.execute("SELECT id FROM user_details WHERE id = 1")
     if not cursor.fetchone():

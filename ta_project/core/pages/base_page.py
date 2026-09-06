@@ -62,9 +62,15 @@ class BaseFrontPage:
 
     def close_hacker_hover(self):
         """
-        Closes a default popup on the home page by clicking the "Let me hack" button.
+        Close the "Let me hack" intro banner if it is present.
+
+        The banner does not exist on every version of the SUT, so a missing
+        button is not an error.
         """
-        self.click(HomePageLocators.LET_ME_HACK_BUTTON_XPATH_LOCATOR)
+        try:
+            self.click(HomePageLocators.LET_ME_HACK_BUTTON_XPATH_LOCATOR)
+        except (TimeoutException, NoSuchElementException):
+            self.logger.info("'Let me hack' banner not present - nothing to close")
 
     def find_element_by_locator(self, locator: TypeVar('Locators', bound=BaseLocators), wait_time=10) -> Union[WebElement, None]:
         """

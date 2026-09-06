@@ -80,25 +80,27 @@ class GeneralUtils:
 
     def get_validation_data_from_db(self, data, key):
         """
-        Validates and retrieves data from a database response.
+        Retrieve ``data[0][key]`` from a database result.
 
         Args:
             data: A list of dictionary objects returned from the database.
-            key: The key whose corresponding value needs to be retrieved from the data.
+            key: The key whose value to retrieve from the first row.
 
         Returns:
-            The value from the database data corresponding to the provided key.
+            The value from the first row for the given key.
 
-        If the key is not found, an error is logged. This method assumes the data is
-        structured as a list of dictionaries and attempts to retrieve data from the first
-        dictionary.
+        Raises:
+            KeyError: if the key is not present in the first row (previously this
+                was swallowed and the whole input list was returned instead,
+                which silently broke the caller's assertions).
         """
         try:
-            data = data[0][key]
-            self.logger.debug(f"Retrieved from DB: {data} by key {key}")
-        except KeyError as e:
-            self.logger.error(f"Error. Check DB table or related enum class for missing key {key}")
-        return data
+            value = data[0][key]
+        except (KeyError, IndexError):
+            self.logger.error(f"Missing key '{key}' in DB row - check the table or the related enum class")
+            raise
+        self.logger.debug(f"Retrieved from DB: {value} by key {key}")
+        return value
 
     @staticmethod
     def str_to_bool(s: str) -> bool:

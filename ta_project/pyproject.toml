@@ -1,0 +1,26 @@
+[tool.pytest.ini_options]
+# Root pytest configuration. Replaces config/pytest.ini, which lived outside the
+# rootdir (so `pytest` never auto-loaded it) and carried another project's
+# absolute `pythonpath`.
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+filterwarnings = [
+    "ignore::UserWarning",
+]
+markers = [
+    "api: back-end / front-end API tests",
+    "ui: Selenium UI tests",
+    "smoke: minimal fast subset",
+    "regression: full regression subset",
+    "unit: unit tests",
+    "end_to_end: end to end tests",
+    "feature: mark a test as part of a feature",
+]
+
+# Parallel runs: `pytest-xdist` is installed. Run the suite across CPUs with
+#   pytest -n auto
+# and force a single process for debugging with
+#   pytest -n0
+# The API tests are parallel-safe (each write test creates and cleans up its own
+# booking). The UI tests are currently skipped (see ROADMAP.md M8).

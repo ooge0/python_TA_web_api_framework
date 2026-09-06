@@ -113,6 +113,16 @@ def pytest_runtest_makereport(item):
     setattr(item, "rep_" + rep.when, rep)
 
 
+def pytest_collection_modifyitems(items):
+    """Auto-tag tests by location so `pytest -m api` / `-m ui` work."""
+    for item in items:
+        path = str(item.fspath).replace("\\", "/")
+        if "/api_tests/" in path:
+            item.add_marker("api")
+        elif "/web_app_tests/" in path:
+            item.add_marker("ui")
+
+
 @pytest.fixture()
 def setup_and_teardown(request, session_logger):
     """
@@ -160,7 +170,7 @@ def excel_file_path():
 
     :return:  path to Excel file that si retrieved from config file
     """
-    return read_configuration("Excel", "excel_file_path")
+    return read_configuration("excel", "excel_file_path")
 
 
 @pytest.fixture(scope="session")
@@ -170,7 +180,7 @@ def data_factory():
 
     :return: File path to the Excel file with test data.
     """
-    return DataFactory(read_configuration("Excel", "excel_file_path"))
+    return DataFactory(read_configuration("excel", "excel_file_path"))
 
 
 @pytest.fixture(scope="session")

@@ -75,9 +75,9 @@ class TestBackApiBooking:
         """
         payload, headers = backend_api_post_test_payload
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
-        assert_that(response.status_code, self.ref_response_status_code_ok,
+        assert_that(response.status_code, is_(self.ref_response_status_code_ok),
                     f"Status code is not {self.ref_response_status_code_ok}, but {response.status_code}")
-        self.logger.info(f"Response status code validated: {response.status_code} seconds")
+        self.logger.info(f"Response status code validated: {response.status_code}")
 
     def test_back_end_api_create_booking_with_no_token(self, backend_api_client, front_end_login_endpoint,
                                                        back_end_api_booking_endpoint,
@@ -140,22 +140,15 @@ class TestBackApiBooking:
     """ ##################################### PUT - booking update ########################## """
 
     def test_backend_api_booking_update(self, backend_api_client, back_end_api_booking_endpoint,
-                                        backend_api_put_test_payload, back_end_auth_api_endpoint,
-                                        api_valid_headers, back_api_valid_user_creds, get_back_end_token):
+                                        created_backend_booking):
         """
-        Booking update test by PUT API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_put_test_payload:
+        PUT /booking/{id} replaces the booking. Uses a freshly-created booking
+        (not a hard-coded id) so the test is independent and parallel-safe.
         """
-        booking_id = 3
-        token = get_back_end_token
-        booking_payload, headers = backend_api_put_test_payload
-        headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        response = backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
-                                          json=booking_payload.to_dict())
+        booking_id, auth_headers, payload = created_backend_booking
+        payload.lastname = "_UpdatedUser"
+        response = backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}", headers=auth_headers,
+                                          json=payload.to_dict())
         booking_model = ApiBookingObjectPayload.from_dict(response.json())
         assert_that(response.status_code, is_(self.ref_response_status_code_ok))
         assert_that(booking_model.lastname, is_("_UpdatedUser"), "Booking object was not updated")
@@ -163,45 +156,14 @@ class TestBackApiBooking:
     """ ##################################### PATCH - booking update ########################## """
 
     def test_backend_api_booking_patch_response_is_edited_ok(self, backend_api_client, back_end_api_booking_endpoint,
-                                                             backend_api_patch_test_payload, get_back_end_token):
+                                                             created_backend_booking):
         """
-        Booking update test by PATCH API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_patch_test_payload:
-        :return:
+        PATCH /booking/{id} partially updates the booking. Uses a freshly-created
+        booking so the test is independent and parallel-safe.
         """
-        booking_id = 3
-        token = get_back_end_token
-        booking_payload, headers = backend_api_patch_test_payload
-        headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
-                                            json=booking_payload.to_dict())
-        booking_model = ApiBookingObjectPayload.from_dict(response.json())
-        assert_that(response.status_code, is_(self.ref_response_status_code_ok))
-        assert_that(booking_model.lastname, is_("_PatchedUser"), "Booking object was not updated")
-
-    """ ##################################### DELETE - booking deletion ########################## """
-
-    def test_backend_api_booking_patch_response_is_edited_ok(self, backend_api_client, back_end_api_booking_endpoint,
-                                                             backend_api_patch_test_payload, get_back_end_token):
-        """
-        Booking update test by PUT API call using 'back_end_api_booking_endpoint'.
-        Test checks that updated booking object has 'bookingid'.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_patch_test_payload:
-        :return:
-        """
-        booking_id = 3
-        token = get_back_end_token
-        booking_payload, headers = backend_api_patch_test_payload
-        headers = {"Content-Type": "application/json", "Cookie": f"token={token}"}
-        response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
-                                            json=booking_payload.to_dict())
+        booking_id, auth_headers, _ = created_backend_booking
+        response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}", headers=auth_headers,
+                                            json={"lastname": "_PatchedUser"})
         booking_model = ApiBookingObjectPayload.from_dict(response.json())
         assert_that(response.status_code, is_(self.ref_response_status_code_ok))
         assert_that(booking_model.lastname, is_("_PatchedUser"), "Booking object was not updated")

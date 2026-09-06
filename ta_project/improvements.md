@@ -18,6 +18,58 @@ inferred from reading; I confirm them by running the suite once.
 
 ---
 
+## Status
+
+Work happens in `ta_project/` (the original tree stays frozen as the snapshot).
+
+**M1 - make the suite honest: in progress.**
+
+| item | state | note |
+|---|---|---|
+| 1 | done | `UiTestLoginActionFlow` -> `TestLoginActionFlow`, `ttest_` -> `test_`; collection 38 -> 50 |
+| 4 | done | front API `/api` prefix (was: false-positive `to_dict` finding) |
+| 5, 6 | done | perf `NameError` / `param=` `TypeError` - module rewritten |
+| 7 | done | added `branding_text_on_the_header_navbar` fixture |
+| 8 | done | `home_page.py` room getters: `room_element.self.find_...` -> `room_element.find_element(By.CSS_SELECTOR, ...)` |
+| 9 | done | `admin_rooms_page.py` rewritten to use the `LoginPageLocators` enum |
+| 11 | done | `db_utils.create_initial_test_data` dict-unpack fixed |
+| 12 | done | `read_configuration("Excel", ...)` -> `"excel"` |
+| 13 | done | `assert_that(x, 200)` -> `assert_that(x, is_(200))` |
+| 14 | done | perf write tests: real booking id + token (was: false-positive `password123` finding) |
+| 16 | done | front-auth Hypothesis test rewritten so it actually runs |
+| 17 | done | the two identical back-auth tests replaced with `missing_password` / `missing_username` |
+| 18 | done | `test_front_api_create_booking_with_valid_token` -> `test_backend_api_create_booking_returns_int_bookingid` |
+| 19, 21 | done | `test_home_page.py` duplicate removed; `instance_of(list)` -> `instance_of(tuple)` |
+| 20 | done | shadowed duplicate `test_backend_api_booking_patch_response_is_edited_ok` removed |
+| 25 | done | `get_validation_data_from_db` now raises on missing key instead of returning the input list |
+
+Baseline API run: **23 passed / 6 failed** -> **30 passed / 0 failed**
+(also stable 3x under `pytest -n auto`). Full suite: 30 passed, 20 skipped.
+
+**Parallel runs (pulled forward from M3):** items 15, 26, 27, 34 done -
+per-client `requests.Session` via `default_factory`, request `timeout`,
+`get_back_end_token` no-op assert fixed, and a shared `created_backend_booking`
+fixture so PUT/PATCH/DELETE booking tests create + delete their own record
+instead of hard-coding id 2/3. `pytest -n auto` is the default in `tox.ini`.
+
+**Item 2 (M2) done early:** root `pyproject.toml` now holds the pytest config
+(markers, `testpaths`, `filterwarnings`); the mislocated `config/pytest.ini`
+with its foreign `pythonpath` was deleted.
+
+**Also picked up early:** item 35 (`.gitignore` `/docs/source/` bug), headless
+browser default (`config.ini browser_headless_mode = 1`), partial item 41 (room
+getters now use `(By.CSS_SELECTOR, ...)`).
+
+**New milestone M8 (see ROADMAP.md):** the Selenium UI layer targets a version
+of `automationintesting.online` that no longer exists - the site is now a
+rewritten SPA, so all 20 UI tests error in setup on the missing intro banner.
+They are skipped at module level (`pytestmark = pytest.mark.skip`, honest
+reason) until M8 re-targets the locators and page objects. Item 1 (class name)
+and the other static UI bugs are still fixed - the tests collect, they just
+can't pass against the new markup yet.
+
+---
+
 ## Blockers
 
 1. `[tests]` `tests/web_app_tests/test_login_page/test_login_actions_validation.py`
@@ -42,11 +94,15 @@ inferred from reading; I confirm them by running the suite once.
    Fix: add a test/lint workflow (install `requirements.txt`, `pytest`, `pylint`);
    repair or delete the docs workflow (build from `docs/source/`, install deps).
 
-4. `[data]` `core/data/data_models/front_api_booking_object_data_model.py`
-   `ApiBookingObjectPayload.to_dict()` emits `"additionalneeds": self.additionalneeds`
-   — an `AdditionalNeeds` object, not a string — so `requests(json=payload.to_dict())`
-   raises `TypeError` on every booking POST/PUT/PATCH test. *(verify on run)*
-   Fix: `"additionalneeds": self.additionalneeds.needs`.
+4. `[api]` **DONE (M1).** `core/api/frontend_api_points.py` — `FrontEndPoints`
+   paths (`/auth/login`, `/booking`, `/room`) return **404**: the SUT behind
+   `automationintesting.online` (restful-booker-platform) serves its REST API
+   under `/api`. All three front-API tests were failing.
+   Fixed: prefixed the paths with `/api` (`/api/auth/login`, ...).
+   *(Original item 4 - "`to_dict()` emits an `AdditionalNeeds` object" - was a
+   false positive: the fixtures build the payload with `additionalneeds` as a
+   plain string, so every booking POST/PUT/PATCH test passes. The field's type
+   annotation is still inconsistent - folded into item 39.)*
 
 5. `[tests]` `tests/api_tests/other/test_api_performance.py`
    `test_backend_api_booking_delete_call_response_time_check` references bare
@@ -106,12 +162,19 @@ inferred from reading; I confirm them by running the suite once.
     status-code check does nothing.
     Fix: `assert_that(response.status_code, is_(200))`.
 
-14. `[tests]` `resources/test_data/fixtures_api_test_data.py`
-    `back_api_valid_user_creds` returns `password123`, while
-    `front_api_valid_user_creds` and the UI tests use `password`. Back-end
-    "valid creds" auth tests actually get `Bad credentials`, so
-    `test_back_api_creation_token_by_valid_creds` (asserts token not `None`)
-    fails. Need a single source of truth.
+14. `[tests]` **DONE (M1).** `tests/api_tests/other/test_api_performance.py` -
+    the PUT / PATCH / DELETE booking latency tests sent only `Content-Type` and
+    no auth token, so restful-booker answered **403 Forbidden**; they also
+    passed `param=` (not a kwarg of `APIClient`) and one referenced undefined
+    bare names.
+    Fixed: rewrote the module - each write test now creates its own booking via
+    a `created_booking` fixture, sends `Cookie: token=...`, targets
+    `/booking/{id}`, and cleans up. `assert_that(x, 200)` no-op replaced with
+    `is_(200)`.
+    *(Original item 14 - "`back_api_valid_user_creds` = `password123` is wrong"
+    - was a false positive: `admin` / `password123` is the correct
+    restful-booker default; `admin` / `password` is correct for
+    automationintesting. `test_back_api_creation_token_by_valid_creds` passes.)*
 
 15. `[tests]` same file, `get_back_end_token` asserts `token is_not("None")` —
     the string `"None"`, not `none()`. A real `None` token passes.

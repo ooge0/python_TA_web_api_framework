@@ -1,6 +1,9 @@
 # /core/api/frontend_api_points.py
 """
 Module as class to define the frontend API endpoints as constants.
+
+The restful-booker-platform behind ``automationintesting.online`` serves its
+REST API under ``/api``; the bare paths (``/auth/login`` ...) return 404.
 """
 class FrontEndPoints:
     """A class to define the frontend API endpoints as constants.
@@ -17,7 +20,7 @@ class FrontEndPoints:
         ROOM (str): The endpoint for accessing room information.
     """
 
-    AUTH = "/auth"
-    LOGIN = "/auth/login"
-    BOOKING = "/booking"
-    ROOM = "/room"
+    AUTH = "/api/auth"
+    LOGIN = "/api/auth/login"
+    BOOKING = "/api/booking"
+    ROOM = "/api/room"

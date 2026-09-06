@@ -60,48 +60,34 @@ class TestBackApiAuth:
                     "Expected 'Bad credentials' reason in response.")
 
     @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_valid_user_creds_and_no_headers(self, backend_api_client,
-                                                                        back_end_auth_api_endpoint,
-                                                                        back_api_invalid_credentials):
+    def test_back_api_creation_token_with_missing_password(self, backend_api_client, back_end_auth_api_endpoint,
+                                                          back_api_valid_credentials_valid_headers):
         """
-        Test to check token creation by invalid credentials.
-        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-        
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-        :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
+        A payload with a username but no password must not yield a token.
+        restful-booker answers 200 with ``{"reason": "Bad credentials"}``.
         """
-        user_creds = back_api_invalid_credentials
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
-        self.logger.info(
-            f"Login attempted with invalid credentials. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code),
-                    f"Expected status code 200, but got {response.status_code}")
-        response_json = response.json()
-        assert_that(response_json.get("reason"), equal_to("Bad credentials"),
-                    "Expected 'Bad credentials' reason in response.")
+        creds, headers = back_api_valid_credentials_valid_headers
+        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers,
+                                           json={"username": creds["username"]})
+        self.logger.info(f"Missing-password login. Status code: {response.status_code}, "
+                         f"Response time: {measure_response_time(response)}")
+        assert_that(response.status_code, is_(self.ref_response_status_code))
+        assert_that(response.json().get("reason"), equal_to("Bad credentials"))
 
     @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_no_user_creds_and_valid_headers(self, backend_api_client,
-                                                                        back_end_auth_api_endpoint,
-                                                                        back_api_invalid_credentials):
+    def test_back_api_creation_token_with_missing_username(self, backend_api_client, back_end_auth_api_endpoint,
+                                                          back_api_valid_credentials_valid_headers):
         """
-        Test to check token creation by invalid credentials.
-        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-        :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
+        A payload with a password but no username must not yield a token.
+        restful-booker answers 200 with ``{"reason": "Bad credentials"}``.
         """
-        user_creds = back_api_invalid_credentials
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
-        self.logger.info(
-            f"Login attempted with invalid credentials. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code),
-                    f"Expected status code 200, but got {response.status_code}")
-        response_json = response.json()
-        assert_that(response_json.get("reason"), equal_to("Bad credentials"),
-                    "Expected 'Bad credentials' reason in response.")
+        creds, headers = back_api_valid_credentials_valid_headers
+        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers,
+                                           json={"password": creds["password"]})
+        self.logger.info(f"Missing-username login. Status code: {response.status_code}, "
+                         f"Response time: {measure_response_time(response)}")
+        assert_that(response.status_code, is_(self.ref_response_status_code))
+        assert_that(response.json().get("reason"), equal_to("Bad credentials"))
 
     @allure.feature("back-end Auth feature")
     def test_back_api_creation_token_by_empty_user_creds_and_no_headers(self, backend_api_client,

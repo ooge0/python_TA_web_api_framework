@@ -17,6 +17,11 @@ from utilities import read_configurations, excel_utils, general_utils
 from utilities.db_utils import get_data_from_db_as_dict
 from utilities.read_configurations import read_configuration
 
+pytestmark = pytest.mark.skip(
+    reason="Selenium UI layer targets the pre-2025 restful-booker-platform markup; "
+           "automationintesting.online is now a rewritten SPA - re-targeting is ROADMAP.md M8"
+)
+
 
 @pytest.mark.parametrize(
     'setup_and_teardown',
@@ -27,7 +32,7 @@ from utilities.read_configurations import read_configuration
     indirect=True
 )
 @pytest.mark.usefixtures("setup_and_teardown", "log_failure_by_picture", "setup_database")
-class UiTestLoginActionFlow:
+class TestLoginActionFlow:
     driver = None
     utils = general_utils.GeneralUtils()
     logger = get_logger()
@@ -144,7 +149,7 @@ class UiTestLoginActionFlow:
     @pytest.mark.parametrize("user_name, user_password", [
         ("admin", "password")
     ])
-    def ttest_ui_Login_process_validation_Admin_login_by_valid_creds(self, user_name, user_password):
+    def test_ui_Login_process_validation_Admin_login_by_valid_creds(self, user_name, user_password):
         home_front_page = HomeFrontPage(self.driver)
         login_admin_page = LoginAdminPage(self.driver)
         with allure.step("Open the login page"):

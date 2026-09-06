@@ -12,6 +12,11 @@ from core.reference_data.home_page_validation_data import HomePageReferenceDataF
 from utilities import read_configurations, excel_utils, general_utils
 from utilities.db_utils import get_data_from_db_as_dict
 
+pytestmark = pytest.mark.skip(
+    reason="Selenium UI layer targets the pre-2025 restful-booker-platform markup; "
+           "automationintesting.online is now a rewritten SPA - re-targeting is ROADMAP.md M8"
+)
+
 
 @pytest.mark.parametrize(
     'setup_and_teardown',

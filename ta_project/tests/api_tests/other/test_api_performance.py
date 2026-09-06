@@ -1,128 +1,77 @@
 """
-Module contains tests that are related checking performance of back-end and front-end endpoints.
+Response-time checks for the back-end API (restful-booker).
+
+Each write test (PUT / PATCH / DELETE) creates its own booking first, so it does
+not depend on a hard-coded id existing on the shared public service, and sends
+the auth-token cookie those verbs require.
 """
 import allure
-import pytest
-from hamcrest import assert_that
+from hamcrest import assert_that, is_
 
 from config.logger_config import get_logger
 from utilities.api_utils import assert_that_less_then
 
 
 class TestApiPerformance:
-    """
-    Class for tests that are related checking performance of back-end and front-end endpoints.
-    """
+    """Response-time checks for the back-end API."""
+
     logger = get_logger()
     ref_response_time_in_seconds = 2
-    ref_response_status_code = 200
+    ref_status_ok = 200
+    ref_status_deleted = 201
 
     ########### BACK-END AUTH API #######################
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_auth_post_call_response_time_check(self, backend_api_client,
-                                                            back_end_api_booking_endpoint,
-                                                            backend_api_booking_valid_payload_test_data):
-        """
-        Test checks the time of back-end API call for /auth
+    @allure.feature("API performance")
+    def test_auth_post_response_time(self, backend_api_client, back_end_auth_api_endpoint,
+                                     back_api_valid_credentials_valid_headers):
+        """POST /auth responds within the threshold."""
+        creds, headers = back_api_valid_credentials_valid_headers
+        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=creds)
+        assert_that_less_then(self, self.ref_status_ok, self.ref_response_time_in_seconds, response)
 
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        payload, headers = backend_api_booking_valid_payload_test_data
-
-        response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
-        assert_that_less_then(self, self.ref_response_status_code, self.ref_response_time_in_seconds, response)
-
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_auth_post_call_response_code_check(self, backend_api_client,
-                                                            back_end_api_booking_endpoint,
-                                                            backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response status code of back-end API call for POST /auth.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        payload, headers = backend_api_booking_valid_payload_test_data
-        response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
-        assert_that(response.status_code, self.ref_response_status_code,
-                    f"Status code is not {self.ref_response_status_code}, but {response.status_code}")
-        self.logger.info(f"Response status code validated: {response.status_code} seconds")
+    @allure.feature("API performance")
+    def test_auth_post_response_code(self, backend_api_client, back_end_auth_api_endpoint,
+                                     back_api_valid_credentials_valid_headers):
+        """POST /auth returns 200."""
+        creds, headers = back_api_valid_credentials_valid_headers
+        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=creds)
+        assert_that(response.status_code, is_(self.ref_status_ok),
+                    f"expected {self.ref_status_ok}, got {response.status_code}")
 
     ########### BACK-END BOOKING API #######################
     @allure.feature("API performance")
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_booking_post_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
-                                                               backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response status code of back-end API call for POST /booking.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        payload, headers = backend_api_booking_valid_payload_test_data
+    def test_booking_post_response_time(self, backend_api_client, back_end_api_booking_endpoint,
+                                        backend_api_post_test_payload):
+        """POST /booking responds within the threshold."""
+        payload, headers = backend_api_post_test_payload
         response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers, json=payload.to_dict())
-        assert_that_less_then(self, self.ref_response_status_code, self.ref_response_time_in_seconds, response)
+        assert_that_less_then(self, self.ref_status_ok, self.ref_response_time_in_seconds, response)
 
-    # @allure.feature("API performance")
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_booking_put_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
-                                                              backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response time of back-end API call for POST /booking.
+    @allure.feature("API performance")
+    def test_booking_get_response_time(self, backend_api_client, back_end_api_booking_endpoint, api_valid_headers):
+        """GET /booking responds within the threshold."""
+        response = backend_api_client.get(back_end_api_booking_endpoint, headers=api_valid_headers)
+        assert_that_less_then(self, self.ref_status_ok, self.ref_response_time_in_seconds, response)
 
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        payload, headers = backend_api_booking_valid_payload_test_data
-        get_latest_created_booking_id = 2
-        booking_id = get_latest_created_booking_id
-        response = backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers,
-                                          json=payload.to_dict())
-        assert_that_less_then(self, self.ref_response_status_code, self.ref_response_time_in_seconds, response)
+    @allure.feature("API performance")
+    def test_booking_put_response_time(self, backend_api_client, back_end_api_booking_endpoint, created_backend_booking):
+        """PUT /booking/{id} responds within the threshold."""
+        booking_id, auth_headers, payload = created_backend_booking
+        response = backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}",
+                                          headers=auth_headers, json=payload.to_dict())
+        assert_that_less_then(self, self.ref_status_ok, self.ref_response_time_in_seconds, response)
 
-    # @allure.feature("API performance")
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_booking_patch_call_response_time_check(self, backend_api_client, back_end_api_booking_endpoint,
-                                                                backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response time of back-end API call for PATCH /booking.
+    @allure.feature("API performance")
+    def test_booking_patch_response_time(self, backend_api_client, back_end_api_booking_endpoint, created_backend_booking):
+        """PATCH /booking/{id} responds within the threshold."""
+        booking_id, auth_headers, _ = created_backend_booking
+        response = backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}",
+                                            headers=auth_headers, json={"firstname": "Patched"})
+        assert_that_less_then(self, self.ref_status_ok, self.ref_response_time_in_seconds, response)
 
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        payload, headers = backend_api_booking_valid_payload_test_data
-        param = 3
-        '''
-        TODO !! 
-        create get_latest_created_booking_id for using temporary existing booking instance
-        '''
-        response = backend_api_client.patch(back_end_api_booking_endpoint, param=param, headers=headers,
-                                            json=payload.to_dict())
-        assert_that_less_then(self, self.ref_response_status_code, self.ref_response_time_in_seconds, response)
-
-    # @allure.feature("API performance")
-    @pytest.mark.parametrize('backend_api_booking_valid_payload_test_data', [{'include_headers': True}], indirect=True)
-    def test_backend_api_booking_delete_call_response_time_check(self, backend_api_client,
-                                                                 back_end_api_booking_endpoint,
-                                                                 backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response time of back-end API call for DELETE /booking.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        """
-        _, headers = backend_api_booking_valid_payload_test_data
-        param = 3
-        '''
-        TODO !! 
-        create get_latest_created_booking_id for using temporary existing booking instance
-        '''
-        response = backend_api_client.delete(back_end_api_booking_endpoint, param=param, headers=headers)
-        assert_that_less_then(self, ref_response_status_code, ref_response_time_in_seconds, response)
+    @allure.feature("API performance")
+    def test_booking_delete_response_time(self, backend_api_client, back_end_api_booking_endpoint, created_backend_booking):
+        """DELETE /booking/{id} responds within the threshold (restful-booker returns 201)."""
+        booking_id, auth_headers, _ = created_backend_booking
+        response = backend_api_client.delete(f"{back_end_api_booking_endpoint}/{booking_id}", headers=auth_headers)
+        assert_that_less_then(self, self.ref_status_deleted, self.ref_response_time_in_seconds, response)
