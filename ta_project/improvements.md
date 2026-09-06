@@ -73,8 +73,9 @@ Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59,
 | 20 | done | shadowed duplicate `test_backend_api_booking_patch_response_is_edited_ok` removed |
 | 25 | done | `get_validation_data_from_db` now raises on missing key instead of returning the input list |
 
-Baseline API run: **23 passed / 6 failed** -> **30 passed / 0 failed**
-(also stable 3x under `pytest -n auto`). Full suite: 30 passed, 20 skipped.
+Baseline API run: **23 passed / 6 failed** -> **30 passed / 0 failed** (M1) ->
+**40 passed** (M7 API gap-fill). Stable under `pytest -n auto`. Full suite:
+40 passed, 20 skipped. Requirement coverage: 21 of 52 (see `docs/source/qa/`).
 
 **Parallel runs (pulled forward from M3):** items 15, 26, 27, 34 done -
 per-client `requests.Session` via `default_factory`, request `timeout`,

@@ -224,3 +224,64 @@ class TestBackApiBooking:
                         "Expected HTTPError with status code 404 but got different status code")
             assert_that(ex.response.text, is_("Not Found"),
                         "Expected 'Not Found' message but received different content")
+
+class TestBackApiBookingNegative:
+    """
+    Negative cases for the back-end ``/booking`` endpoint (M7 gap-fill).
+    ``APIClient`` calls ``raise_for_status()``, so a 4xx/5xx surfaces as
+    ``requests.HTTPError``.
+    """
+
+    logger = get_logger()
+
+    # ---- auth is required for writes (REQ-BE-BOOKING-08/10/12) ----
+
+    def test_backend_api_booking_put_without_token_forbidden(self, backend_api_client, back_end_api_booking_endpoint,
+                                                             created_backend_booking, api_valid_headers):
+        """TC-BE-BOOK-012: PUT /booking/{id} without a token -> 403."""
+        booking_id, _, payload = created_backend_booking
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.put(f"{back_end_api_booking_endpoint}/{booking_id}",
+                                   headers=api_valid_headers, json=payload.to_dict())
+        assert_that(exc.value.response.status_code, is_(403))
+
+    def test_backend_api_booking_patch_without_token_forbidden(self, backend_api_client, back_end_api_booking_endpoint,
+                                                               created_backend_booking, api_valid_headers):
+        """TC-BE-BOOK-013: PATCH /booking/{id} without a token -> 403."""
+        booking_id, _, _ = created_backend_booking
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.patch(f"{back_end_api_booking_endpoint}/{booking_id}",
+                                     headers=api_valid_headers, json={"firstname": "NoToken"})
+        assert_that(exc.value.response.status_code, is_(403))
+
+    def test_backend_api_booking_delete_without_token_forbidden(self, backend_api_client, back_end_api_booking_endpoint,
+                                                                created_backend_booking):
+        """TC-BE-BOOK-014: DELETE /booking/{id} without a token -> 403."""
+        booking_id, _, _ = created_backend_booking
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.delete(f"{back_end_api_booking_endpoint}/{booking_id}")
+        assert_that(exc.value.response.status_code, is_(403))
+
+    # ---- lookups and payload validation ----
+
+    def test_backend_api_booking_get_missing_id_not_found(self, backend_api_client, back_end_api_booking_endpoint,
+                                                          api_valid_headers):
+        """TC-BE-BOOK-015: GET /booking/{missing id} -> 404."""
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.get(f"{back_end_api_booking_endpoint}/99999999", headers=api_valid_headers)
+        assert_that(exc.value.response.status_code, is_(404))
+
+    def test_backend_api_booking_create_with_empty_payload_rejected(self, backend_api_client,
+                                                                    back_end_api_booking_endpoint, api_valid_headers):
+        """TC-BE-BOOK-016: POST /booking with an empty body is rejected (restful-booker answers 500)."""
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.post(back_end_api_booking_endpoint, headers=api_valid_headers, json={})
+        assert_that(exc.value.response.status_code, is_(500))
+
+    def test_backend_api_booking_create_missing_dates_rejected(self, backend_api_client, back_end_api_booking_endpoint,
+                                                               api_valid_headers):
+        """TC-BE-BOOK-017: POST /booking without ``bookingdates`` is rejected."""
+        payload = {"firstname": "Jim", "lastname": "NoDates", "totalprice": 10, "depositpaid": True}
+        with pytest.raises(HTTPError) as exc:
+            backend_api_client.post(back_end_api_booking_endpoint, headers=api_valid_headers, json=payload)
+        assert_that(exc.value.response.status_code, is_(500))

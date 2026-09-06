@@ -47,12 +47,12 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-009", "REQ-BE-BOOKING-07", "PUT /booking/{id} with a token replaces the booking", "positive", "High", "Automated", "TestBackApiBooking::test_backend_api_booking_update"
    "TC-BE-BOOK-010", "REQ-BE-BOOKING-09", "PATCH /booking/{id} with a token partially updates the booking", "positive", "High", "Automated", "::test_backend_api_booking_patch_response_is_edited_ok"
    "TC-BE-BOOK-011", "REQ-BE-BOOKING-11", "DELETE /booking/{id} with a token; booking then 404s", "positive / e2e", "High", "Automated", "::test_backend_api_booking_delete_booking_by_valid_id"
-   "TC-BE-BOOK-012", "REQ-BE-BOOKING-08", "PUT /booking/{id} without a token -> 403", "negative", "High", "Not implemented", "-"
-   "TC-BE-BOOK-013", "REQ-BE-BOOKING-10", "PATCH /booking/{id} without a token -> 403", "negative", "High", "Not implemented", "-"
-   "TC-BE-BOOK-014", "REQ-BE-BOOKING-12", "DELETE /booking/{id} without a token -> 403", "negative", "High", "Not implemented", "-"
-   "TC-BE-BOOK-015", "REQ-BE-BOOKING-04", "GET /booking/{missing id} -> 404", "negative", "Medium", "Not implemented", "-"
-   "TC-BE-BOOK-016", "REQ-BE-BOOKING-13", "POST /booking with a missing required field -> 4xx/5xx", "negative", "High", "Not implemented", "-"
-   "TC-BE-BOOK-017", "REQ-BE-BOOKING-13", "POST /booking with a malformed date -> error", "negative", "Medium", "Not implemented", "-"
+   "TC-BE-BOOK-012", "REQ-BE-BOOKING-08", "PUT /booking/{id} without a token -> 403", "negative", "High", "Automated", "TestBackApiBookingNegative::test_backend_api_booking_put_without_token_forbidden"
+   "TC-BE-BOOK-013", "REQ-BE-BOOKING-10", "PATCH /booking/{id} without a token -> 403", "negative", "High", "Automated", "::test_backend_api_booking_patch_without_token_forbidden"
+   "TC-BE-BOOK-014", "REQ-BE-BOOKING-12", "DELETE /booking/{id} without a token -> 403", "negative", "High", "Automated", "::test_backend_api_booking_delete_without_token_forbidden"
+   "TC-BE-BOOK-015", "REQ-BE-BOOKING-04", "GET /booking/{missing id} -> 404", "negative", "Medium", "Automated", "::test_backend_api_booking_get_missing_id_not_found"
+   "TC-BE-BOOK-016", "REQ-BE-BOOKING-13", "POST /booking with an empty body -> 500", "negative", "High", "Automated", "::test_backend_api_booking_create_with_empty_payload_rejected"
+   "TC-BE-BOOK-017", "REQ-BE-BOOKING-13", "POST /booking without bookingdates -> 500", "negative", "Medium", "Automated", "::test_backend_api_booking_create_missing_dates_rejected"
    "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname= filters the list", "positive", "Low", "Not implemented", "-"
 
 Back-end API - Ping
@@ -62,7 +62,7 @@ Back-end API - Ping
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
    :widths: 14, 14, 34, 9, 6, 14, 24
 
-   "TC-BE-PING-001", "REQ-BE-PING-01", "GET /ping -> 201", "health", "Medium", "Not implemented", "-"
+   "TC-BE-PING-001", "REQ-BE-PING-01", "GET /ping -> 201", "health", "Medium", "Automated", "TestBackApiPing::test_backend_api_ping_returns_201"
 
 Back-end API - Response time  (``test_api_performance.py``)
 ===========================================================
@@ -92,15 +92,15 @@ Front-end API - Auth & booking  (``test_front_api_auth.py``, ``test_front_api_bo
    "TC-FE-AUTH-004", "REQ-FE-AUTH-01", "front login returns a token (smoke)", "positive", "Medium", "Automated", "TestFrontApiBooking::test_front_api_create_token"
    "TC-FE-AUTH-005", "REQ-FE-AUTH-03", "token validation - valid token accepted, tampered token rejected", "positive/negative", "Medium", "Not implemented", "-"
    "TC-FE-AUTH-006", "REQ-FE-AUTH-04", "logout invalidates the token", "positive", "Medium", "Not implemented", "-"
-   "TC-FE-ROOM-001", "REQ-FE-ROOM-01", "GET /api/room returns the room list", "positive", "High", "Not implemented", "-"
+   "TC-FE-ROOM-001", "REQ-FE-ROOM-01", "GET /api/room returns the room list", "positive", "High", "Automated", "TestFrontApiResources::test_front_api_room_list"
    "TC-FE-ROOM-002", "REQ-FE-ROOM-02", "GET /api/room/{id} returns room details", "positive", "Medium", "Not implemented", "-"
    "TC-FE-ROOM-003", "REQ-FE-ROOM-03", "POST /api/room with a token creates a room", "positive", "Medium", "Not implemented", "-"
    "TC-FE-ROOM-004", "REQ-FE-ROOM-04", "DELETE /api/room/{id} with a token deletes a room", "positive", "Medium", "Not implemented", "-"
    "TC-FE-BOOK-001", "REQ-FE-BOOKING-02", "POST /api/booking creates a reservation (public 'Book now')", "positive", "High", "Not implemented", "-"
    "TC-FE-BOOK-002", "REQ-FE-BOOKING-03", "POST /api/booking with overlapping dates is rejected", "negative", "High", "Not implemented", "-"
    "TC-FE-BOOK-003", "REQ-FE-BOOKING-01", "GET /api/booking?roomid= with a token returns room bookings", "positive", "Medium", "Not implemented", "-"
-   "TC-FE-BRAND-001", "REQ-FE-BRANDING-01", "GET /api/branding returns branding data", "positive", "Medium", "Not implemented", "-"
-   "TC-FE-MSG-001", "REQ-FE-MESSAGE-01", "POST /api/message creates a contact message", "positive", "High", "Not implemented", "-"
+   "TC-FE-BRAND-001", "REQ-FE-BRANDING-01", "GET /api/branding returns branding data", "positive", "Medium", "Automated", "::test_front_api_branding"
+   "TC-FE-MSG-001", "REQ-FE-MESSAGE-01", "POST /api/message creates a contact message", "positive", "High", "Automated", "::test_front_api_create_message"
    "TC-FE-MSG-002", "REQ-FE-MESSAGE-02", "GET /api/message with a token lists messages + unread count", "positive", "Medium", "Not implemented", "-"
    "TC-FE-REPORT-001", "REQ-FE-REPORT-01", "GET /api/report with a token returns the report", "positive", "Low", "Not implemented", "-"
 
