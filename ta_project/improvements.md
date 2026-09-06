@@ -28,11 +28,12 @@ See `ROADMAP.md` for the milestone view.
 | M1 make the suite honest | done for the API side (23/6 -> 30/0). UI side -> M8. |
 | M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov` (43%). |
 | M3 make runs repeatable | done - see the M3 block below and `ROADMAP.md`. |
+| M4 QA artifacts | in progress - `docs/source/qa/` (test plan, feature catalogue, test cases, traceability matrix, coverage table) + a standalone README section. Items 61, 62, 63(doc), 64, 66 done as docs; 63(CI check), 68 remain. |
 | M8 re-target the UI layer | started - SUT DOM probed & mapped into `ROADMAP.md`. |
 
-Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59, 65,
-partial 41 / 44 (+ item 2). Remaining: the UI re-target (M8), M4 QA artifacts,
-M5 core cleanup, M6 polish, M7 new coverage.
+Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59,
+61, 62, 64, 65, 66, partial 41 / 44 / 63 (+ item 2). Remaining: 63(CI diff),
+67, 68; the UI re-target (M8); M5 core cleanup; M6 polish; M7 new coverage.
 
 **M3 - make runs repeatable (done):**
 - item 26/27: `APIClient.session` -> `field(default_factory=requests.Session)`,

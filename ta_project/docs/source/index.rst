@@ -72,6 +72,21 @@ In teh current project used `pytest` framework approach and all related informat
    tests/tests
 
 
+Test Design & QA Artifacts
+==========================
+The test-design layer: features and requirements of the systems under test, the
+test cases that verify them (existing and planned), the requirements
+traceability matrix and the coverage-by-feature view. The pytest modules
+documented above are the *implementation*; this section is the *specification*.
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: Test Design & QA
+
+   qa/index
+
+
 Diagrams and Graphs
 ===================
 This section contains visualization of framework components, relationships, and dependencies. Most important part is in `core` package and here you can find detailed description on how it was built and used in UI/API tests.

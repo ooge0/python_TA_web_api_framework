@@ -1219,3 +1219,78 @@ the [make_list_of_tests.py](utilities/make_list_of_tests.py)
         - was available at 18 June 2024
     - [tutorialsninja.com - web app](https://tutorialsninja.com/demo/)
         - was available at 18 June 2024
+# Test design & QA artifacts (working notes)
+
+> Standalone section. To be moved into the Sphinx docs (`docs/source/qa/`) later.
+> These notes describe the gap between *automated test scripts* (which this repo
+> has) and a *test-design layer* (which it does not yet have), and what is being
+> added to close it.
+
+## 1. Script vs. test case
+
+- **What this repo has** — pytest functions such as
+  `test_back_api_creation_token_by_invalid_creds`. They execute a check, they
+  live only in code, and only a developer can read them. Their docstrings try to
+  state intent but are copy-pasted and frequently describe a different test.
+- **What a test case is** — a specification that exists independently of the
+  code:
+    - an ID (`TC-BE-AUTH-002`)
+    - the requirement it verifies (`REQ-BE-AUTH-02`)
+    - type (negative), priority (High)
+    - preconditions, steps, expected result
+    - status: automated / manual / not implemented, plus the pytest node id
+- The pytest function is the *implementation* of a test case. Until now the case
+  itself was never written down.
+
+## 2. The test-design layer (the chain)
+
+1. **Features / requirements** — what the SUT is supposed to do
+   (`restful-booker`: auth, booking CRUD, `/ping`; the SPA: rooms, branding,
+   messages, admin). Not enumerated anywhere in the repo.
+2. **Test conditions** — per feature, what is worth checking (valid login,
+   invalid login, missing field, expired token, ...). Not listed.
+3. **Test cases** — each condition written up as in section 1. Not written.
+4. **Automation** — the subset of cases worth scripting -> the pytest functions.
+   This is the only layer that existed.
+5. **Traceability matrix** — requirement -> case -> automated test -> last
+   result. Shows untested requirements and orphan tests. Did not exist.
+6. **Coverage view** — feature -> planned / automated / passing / gaps. Did not
+   exist.
+
+## 3. What was missing
+
+- No test plan (scope, environments, entry/exit criteria, risks).
+- No feature / requirements catalogue with stable IDs.
+- No test-case documents.
+- No traceability matrix, no coverage-by-feature table.
+- No code-coverage measurement (`pytest-cov` was not wired - now added).
+- `@allure.feature("...")` labels are inconsistent
+  (`"back-end Auth feature"`, `"Booking"`, `"login_flow"`), so even that
+  grouping cannot be trusted as a map.
+- `resources/list_of_all_project_tests.md` was a list of *function names*, not
+  cases, and it was stale.
+
+## 4. Why it matters
+
+- Cannot answer *"what does this suite actually cover?"* - only *"N tests pass"*.
+- Cannot answer *"which requirements have zero tests?"* (`/ping`,
+  `/auth/logout`, `/room`, admin rooms - all uncovered, and nothing recorded
+  that as a known gap).
+- Cannot tell a trivial test from a critical one - no priority, no risk.
+- A non-developer (PM, BA, manual QA, an interviewer) cannot review the test
+  design - it is locked inside Python.
+- A mid-level test-automation engineer hands over a coverage report mapped to
+  requirements; a junior hands over a green checkmark.
+
+## 5. What is being added
+
+Under `docs/source/qa/` (Sphinx), and summarised in the roadmap milestone **M4**:
+
+- `feature_catalogue` - `FEAT-*` / `REQ-*` for the back-end API, the front-end
+  API and the UI.
+- `test_cases` - every existing pytest test written up as a `TC-*` with its
+  feature, requirement, type, priority and node id; plus **placeholder** cases
+  (`Status: Not implemented`) for the valuable features that have no test yet.
+- `traceability_matrix` - `REQ-* -> TC-* -> pytest node -> result`.
+- `coverage_by_feature` - planned / automated / passing / gaps per feature.
+- `test_plan` - a short plan (scope, environments, data strategy, risks).
