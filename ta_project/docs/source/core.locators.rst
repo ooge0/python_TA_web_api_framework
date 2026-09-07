@@ -15,10 +15,6 @@ Submodules
 core.locators.base\_locators module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: core.locators.base_locators
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 core.locators.home\_page\_locators module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

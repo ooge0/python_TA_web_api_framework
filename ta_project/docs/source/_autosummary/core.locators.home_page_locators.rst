@@ -9,4 +9,5 @@ core.locators.home\_page\_locators
    .. autosummary::
    
       HomePageLocators
+      ReservationPageLocators
    

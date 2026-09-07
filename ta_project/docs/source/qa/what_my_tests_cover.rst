@@ -8,8 +8,8 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **47 API tests passing**, 20 UI tests skipped (roadmap M8).
-API calls go through the per-resource service objects in
+Current run: **47 API + 13 UI tests passing** (1 skipped = the episode
+reminder). API calls go through the per-resource service objects in
 :mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi`` ...).
 
 Back-end API - authentication
@@ -72,19 +72,23 @@ Front-end API (the platform)
    ``GET /api/message`` + ``/count`` (token) return the inbox and the total.
 #. **Report.** ``GET /api/report`` (token) returns ``200``.
 
-UI - paused (roadmap M8)
-========================
+UI (Selenium, re-targeted in M8)
+===============================
 
-The Selenium tests are written but skipped: ``automationintesting.online`` was
-rebuilt as a React SPA and the old locators no longer match. Once re-targeted
-they cover:
+#. **Home page.** The footer is present; the four footer links have the right
+   text and hrefs; the nav brand is "Shady Meadows B&B"; each room's "Book now"
+   link points at ``/reservation/{id}``.
+#. **Contact form.** A valid submit shows the "Thanks for getting in touch"
+   confirmation; an empty submit shows the field-validation errors.
+#. **Admin login.** Valid credentials reach the admin area; wrong credentials
+   show "Invalid credentials" and stay on the form; the inputs carry the
+   "Enter username" / "Password" placeholders.
+#. **Admin navigation.** The post-login navbar shows Rooms / Report / Branding /
+   Messages / Front Page; the brand is "Restful Booker Platform Demo"; Logout
+   ends the session; the rooms table lists 101 / 102 / 103 with a Create button.
 
-* the home-page footer links and the nav bar,
-* the contact form - a valid submit, and the field-validation messages,
-* admin login - valid credentials land on ``/admin/rooms``, invalid ones are
-  rejected,
-* the admin navbar and the branding text (now "Restful Booker Platform Demo"),
-* the rooms table.
+Each UI test runs a fresh headless Firefox and waits for the SPA to render -
+no ``time.sleep``.
 
 Not covered yet
 ===============

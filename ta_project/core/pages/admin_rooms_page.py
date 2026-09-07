@@ -1,43 +1,26 @@
 # /core/pages/admin_rooms_page.py
 """
-This class provides methods to interact with the admin rooms front page,
-including retrieving placeholders from the login form.
+``AdminRoomsFrontPage`` - the ``/admin/rooms`` management page.
 """
-from typing import Tuple
+from typing import List
 
-from core.locators.login_page_locators import LoginPageLocators
+from selenium.webdriver.remote.webelement import WebElement
+
+from core.locators.login_page_locators import AdminRoomsLocators as L
 from core.pages.base_page import BaseFrontPage
 
 
 class AdminRoomsFrontPage(BaseFrontPage):
-    """
-    Represents the admin rooms front page in the application.
+    """Read / act on the rooms table."""
 
-    Inherits from:
-        :class:`BaseFrontPage`: common navigation and element interactions.
+    def room_rows(self) -> List[WebElement]:
+        return self.find_all(L.ROOM_ROWS)
 
-    Attributes:
-        driver: The WebDriver instance used to interact with the web application.
-    """
+    def room_count(self) -> int:
+        return len(self.driver.find_elements(*L.ROOM_ROWS))
 
-    def __init__(self, driver):
-        """
-        Initializes the AdminRoomsFrontPage with the given WebDriver.
+    def room_numbers(self) -> List[str]:
+        return [row.text.split("\n", 1)[0] for row in self.room_rows()]
 
-        Args:
-            driver: The WebDriver instance for controlling the browser.
-        """
-        super().__init__(driver)
-
-    def get_placeholders_from_login_form(self) -> Tuple[str, str]:
-        """
-        Retrieves the placeholder texts from the username and password inputs.
-
-        Returns:
-            tuple: (username placeholder, password placeholder).
-        """
-        user_name_placeholder = self.get_placeholder_text_for_element(
-            LoginPageLocators.USERNAME_INPUT_LINK_XPATH_LOCATOR)
-        user_password_placeholder = self.get_placeholder_text_for_element(
-            LoginPageLocators.PASSWORD_INPUT_XPATH_LOCATOR)
-        return user_name_placeholder, user_password_placeholder
+    def create_button_visible(self) -> bool:
+        return self.is_visible(L.CREATE_ROOM_BUTTON)

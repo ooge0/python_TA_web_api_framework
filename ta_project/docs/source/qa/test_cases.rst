@@ -116,45 +116,38 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
-   :widths: 14, 15, 32, 9, 6, 12, 26
+   :widths: 14, 15, 34, 9, 6, 14, 28
 
-   "TC-UI-HOME-001", "REQ-UI-HOME-01", "the home page footer is present", "positive", "High", "Blocked", "TestHomePage::test_check_home_page_footer_presence"
-   "TC-UI-HOME-002", "REQ-UI-HOME-02", "footer link texts and hrefs (inline expected data)", "positive", "Medium", "Blocked", "::test_check_home_page_footer_content_old"
-   "TC-UI-HOME-003", "REQ-UI-HOME-02", "footer link texts and hrefs (fixture-driven expected data)", "positive", "Medium", "Blocked", "::test_check_home_page_footer_content_new"
+   "TC-UI-HOME-001", "REQ-UI-HOME-01", "the home page footer is present", "positive", "High", "Automated", "TestHomePage::test_footer_is_present"
+   "TC-UI-HOME-002", "REQ-UI-HOME-02", "the four footer links - texts + hrefs", "positive", "Medium", "Automated", "::test_footer_links"
    "TC-UI-HOME-004", "REQ-UI-HOME-03", "nav links scroll to their sections", "positive", "Low", "Not implemented", "-"
-   "TC-UI-CONTACT-001", "REQ-UI-CONTACT-01", "contact form submits with valid data -> confirmation", "positive", "High", "Blocked", "::test_booking_request_valid_check (no assertion; needs a confirmation check)"
-   "TC-UI-CONTACT-002", "REQ-UI-CONTACT-02", "contact form field validation (name / email / phone length / subject / message)", "negative", "High", "Not implemented", "-"
-   "TC-UI-RES-001", "REQ-UI-RES-01", "'Book now' opens /reservation/{id} with date params", "positive", "High", "Not implemented", "-"
-   "TC-UI-RES-002", "REQ-UI-RES-02", "complete a reservation with valid data", "positive", "High", "Not implemented", "-"
+   "TC-UI-CONTACT-001", "REQ-UI-CONTACT-01", "contact form valid submit -> confirmation", "positive", "High", "Automated", "::test_contact_form_valid_submit_shows_confirmation"
+   "TC-UI-CONTACT-002", "REQ-UI-CONTACT-02", "empty contact form -> field-validation errors", "negative", "High", "Automated", "::test_contact_form_shows_validation_errors_when_empty"
+   "TC-UI-RES-001", "REQ-UI-RES-01", "each room 'Book now' link points at /reservation/{id}", "positive", "High", "Automated", "::test_book_now_links_point_at_reservation_pages"
+   "TC-UI-RES-002", "REQ-UI-RES-02", "complete a reservation (calendar flow)", "positive", "High", "Not implemented", "-"
 
-UI - Admin login & navigation  (``test_login_page/*``)
-======================================================
+UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
+======================================================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
-   :widths: 14, 14, 32, 9, 6, 12, 27
+   :widths: 14, 14, 32, 9, 6, 14, 30
 
-   "TC-UI-LOGIN-001", "REQ-UI-LOGIN-01", "valid admin credentials log in", "positive", "High", "Blocked", "TestLoginPage::test_login_by_valid_admin_creds_by_shared_data_from_excel_by_data_from_fixture ; TestLoginActionFlow::test_ui_Login_process_validation_Valid_admin_creds_by_shared_data_from_excel ; ::_Admin_creds_by_shared_data_from_excel_by_data_from_fixture ; ::_Valid_admin_creds_by_constants"
-   "TC-UI-LOGIN-002", "REQ-UI-LOGIN-03", "login form placeholder texts", "positive", "Low", "Blocked", "TestLoginActionFlow::test_ui_Login_form_Placeholder_text_validation"
-   "TC-UI-LOGIN-003", "REQ-UI-LOGIN-02", "invalid admin credentials are rejected (single / multiple sets from Excel)", "negative", "High", "Blocked", "TestLoginActionFlow::test_ui_Login_process_validation_By_single_set_of_invalid_admin_creds ; ::_By_multiple_sets_of_invalid_admin_creds"
-   "TC-UI-NAV-001", "REQ-UI-NAV-02", "admin brand text is 'Restful Booker Platform Demo' (expected data from Excel / DB)", "positive", "Medium", "Blocked", "TestLoginPage::test_branding_name_validation_by_shared_data_from_excel_with_path ; ::_cell ; ::_for_specific_cases ; ::test_admin_page_content_validation_by_shared_data_from_db ; TestLoginActionFlow::test_ui_Admin_page_Branding_name_* "
-   "TC-UI-NAV-002", "REQ-UI-NAV-01", "post-login navbar content (from DB reference data)", "positive", "Medium", "Blocked", "TestLoginActionFlow::test_ui_Admin_page_Navbar_content_validation_by_shared_data_from_db"
-   "TC-UI-NAV-003", "REQ-UI-NAV-03", "Logout returns to the login form", "positive", "Medium", "Not implemented", "-"
-
-.. warning::
-
-   TC-UI-NAV-001 expected value is stale: the DB / Excel reference data still
-   says branding = ``B&B Booking Management``; the current SUT shows
-   ``Restful Booker Platform Demo``. Fix the reference data as part of M8.
+   "TC-UI-LOGIN-001", "REQ-UI-LOGIN-01", "valid admin credentials log in", "positive", "High", "Automated", "TestAdminLogin::test_valid_credentials_log_in"
+   "TC-UI-LOGIN-002", "REQ-UI-LOGIN-02", "invalid admin credentials -> 'Invalid credentials', stays on the form", "negative", "High", "Automated", "::test_invalid_credentials_are_rejected"
+   "TC-UI-LOGIN-003", "REQ-UI-LOGIN-03", "login form placeholders ('Enter username' / 'Password')", "positive", "Low", "Automated", "::test_login_form_placeholders"
+   "TC-UI-NAV-001", "REQ-UI-NAV-01", "post-login navbar shows Rooms / Report / Branding / Messages / Front Page", "positive", "Medium", "Automated", "TestAdminNavigation::test_navbar_links"
+   "TC-UI-NAV-002", "REQ-UI-NAV-02", "admin brand text is 'Restful Booker Platform Demo'", "positive", "Medium", "Automated", "::test_brand_text"
+   "TC-UI-NAV-003", "REQ-UI-NAV-03", "Logout ends the admin session", "positive", "Medium", "Automated", "::test_logout_leaves_the_admin_area"
 
 UI - Admin rooms / branding / report / messages
 ===============================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
-   :widths: 14, 15, 36, 9, 6, 14, 16
+   :widths: 14, 15, 34, 9, 6, 14, 22
 
-   "TC-UI-ROOMS-001", "REQ-UI-ROOMS-01", "rooms table lists existing rooms", "positive", "High", "Not implemented", "-"
+   "TC-UI-ROOMS-001", "REQ-UI-ROOMS-01", "rooms table lists existing rooms (101/102/103) + Create button", "positive", "High", "Automated", "TestAdminNavigation::test_rooms_table_lists_rooms"
    "TC-UI-ROOMS-002", "REQ-UI-ROOMS-02", "Create adds a room and it appears in the table", "positive", "High", "Not implemented", "-"
    "TC-UI-ROOMS-003", "REQ-UI-ROOMS-03", "a room can be deleted", "positive", "Medium", "Not implemented", "-"
    "TC-UI-BRAND-001", "REQ-UI-BRAND-01", "branding page shows and edits B&B details", "positive", "Low", "Not implemented", "-"

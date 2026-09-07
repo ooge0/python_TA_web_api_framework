@@ -1,4 +1,4 @@
-core.locators
+﻿core.locators
 =============
 
 .. automodule:: core.locators
@@ -10,6 +10,5 @@ core.locators
    :toctree:
    :recursive:
 
-   base_locators
    home_page_locators
    login_page_locators

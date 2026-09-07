@@ -11,7 +11,7 @@ One row per requirement from :ref:`qa_feature_catalogue`, its test cases from
 ``Blocked`` = cases exist but cannot run (UI, pending M8).
 ``Gap`` = no case implemented.
 
-Snapshot: 47 API tests passing, 20 UI tests skipped (M8).
+Snapshot: 47 API + 13 UI tests passing (1 skipped = the episode reminder).
 
 Back-end API
 ============
@@ -68,22 +68,22 @@ UI
    :header: "Requirement", "Test cases", "Status", "Coverage"
    :widths: 22, 24, 26, 16
 
-   "REQ-UI-HOME-01", "TC-UI-HOME-001", "Blocked (M8)", "Blocked"
-   "REQ-UI-HOME-02", "TC-UI-HOME-002, 003", "Blocked (M8)", "Blocked"
+   "REQ-UI-HOME-01", "TC-UI-HOME-001", "Automated", "Covered"
+   "REQ-UI-HOME-02", "TC-UI-HOME-002", "Automated", "Covered"
    "REQ-UI-HOME-03", "TC-UI-HOME-004", "Not implemented", "Gap"
    "REQ-UI-HOME-04", "-", "-", "Gap"
-   "REQ-UI-CONTACT-01", "TC-UI-CONTACT-001", "Blocked (no assertion + M8)", "Blocked"
-   "REQ-UI-CONTACT-02", "TC-UI-CONTACT-002", "Not implemented", "Gap (High)"
-   "REQ-UI-RES-01", "TC-UI-RES-001", "Not implemented", "Gap (High)"
-   "REQ-UI-RES-02", "TC-UI-RES-002", "Not implemented", "Gap (High)"
-   "REQ-UI-LOGIN-01", "TC-UI-LOGIN-001", "Blocked (M8)", "Blocked"
-   "REQ-UI-LOGIN-02", "TC-UI-LOGIN-003", "Blocked (M8)", "Blocked"
-   "REQ-UI-LOGIN-03", "TC-UI-LOGIN-002", "Blocked (M8)", "Blocked"
-   "REQ-UI-NAV-01", "TC-UI-NAV-002", "Blocked (M8)", "Blocked"
-   "REQ-UI-NAV-02", "TC-UI-NAV-001", "Blocked (M8, stale expected value)", "Blocked"
-   "REQ-UI-NAV-03", "TC-UI-NAV-003", "Not implemented", "Gap"
-   "REQ-UI-ROOMS-01", "TC-UI-ROOMS-001", "Not implemented", "Gap (High)"
-   "REQ-UI-ROOMS-02", "TC-UI-ROOMS-002", "Not implemented", "Gap (High)"
+   "REQ-UI-CONTACT-01", "TC-UI-CONTACT-001", "Automated", "Covered"
+   "REQ-UI-CONTACT-02", "TC-UI-CONTACT-002", "Automated", "Covered"
+   "REQ-UI-RES-01", "TC-UI-RES-001", "Automated", "Covered"
+   "REQ-UI-RES-02", "TC-UI-RES-002", "Not implemented", "Gap (calendar flow)"
+   "REQ-UI-LOGIN-01", "TC-UI-LOGIN-001", "Automated", "Covered"
+   "REQ-UI-LOGIN-02", "TC-UI-LOGIN-002", "Automated", "Covered"
+   "REQ-UI-LOGIN-03", "TC-UI-LOGIN-003", "Automated", "Covered"
+   "REQ-UI-NAV-01", "TC-UI-NAV-001", "Automated", "Covered"
+   "REQ-UI-NAV-02", "TC-UI-NAV-002", "Automated", "Covered"
+   "REQ-UI-NAV-03", "TC-UI-NAV-003", "Automated", "Covered"
+   "REQ-UI-ROOMS-01", "TC-UI-ROOMS-001", "Automated", "Covered"
+   "REQ-UI-ROOMS-02", "TC-UI-ROOMS-002", "Not implemented", "Gap"
    "REQ-UI-ROOMS-03", "TC-UI-ROOMS-003", "Not implemented", "Gap"
    "REQ-UI-BRAND-01", "TC-UI-BRAND-001", "Not implemented", "Gap"
    "REQ-UI-REPORT-01", "TC-UI-REPORT-001", "Not implemented", "Gap"

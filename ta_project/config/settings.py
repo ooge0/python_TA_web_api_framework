@@ -33,6 +33,10 @@ class Settings(BaseModel):
         return f"{self.front_url.rstrip('/')}/api"
 
     @property
+    def admin_url(self) -> str:
+        return f"{self.front_url.rstrip('/')}/admin"
+
+    @property
     def back_api_valid_creds(self) -> dict:
         return {"username": self.admin_user, "password": self.back_api_password}
 

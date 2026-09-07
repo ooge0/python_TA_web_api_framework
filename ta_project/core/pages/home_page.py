@@ -1,176 +1,60 @@
 # /core/pages/home_page.py
 """
-Module defines the `HomeFrontPage` class, which extends the `BaseFrontPage` class
-to provide specific interactions for the Home page of the UI. It includes methods for
-retrieving branding details, interacting with hotel room data, and performing booking actions.
+``HomeFrontPage`` - the public ``automationintesting.online`` home page: nav bar,
+rooms, contact form, footer.
 """
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
+from typing import Dict, List
 
-from core.locators.home_page_locators import HomePageLocators
-from core.locators.login_page_locators import LoginPageLocators
+from core.locators.home_page_locators import HomePageLocators as L
 from core.pages.base_page import BaseFrontPage
-from utilities.test_data_utils import create_booking_details
 
 
 class HomeFrontPage(BaseFrontPage):
-    """
-    The HomeFrontPage class represents the actions and elements on the Home page of the UI.
-    It extends the BaseFrontPage class and provides methods to interact with various elements
-    on the Home page, such as branding details, hotel room information, and booking forms.
+    """Actions and reads on the home page."""
 
-    Attributes:
-        driver: WebDriver instance used to interact with the web page.
-    """
+    def wait_until_loaded(self) -> "HomeFrontPage":
+        self.find(L.NAV_BRAND)
+        return self
 
-    def __init__(self, driver):
-        """
-        Initializes the HomeFrontPage with a WebDriver instance, inheriting from BaseFrontPage.
+    def open_admin(self) -> "HomeFrontPage":
+        self.click(L.NAV_ADMIN_LINK)
+        return self
 
-        Args:
-            driver: Selenium WebDriver used to interact with the web browser.
-        """
-        super().__init__(driver)
+    def brand_text(self) -> str:
+        return self.text_of(L.NAV_BRAND)
 
-    # Main actions on the Home page
-    def get_branding_name_details(self) -> str:
-        """
-        Retrieves the branding name details displayed on the login page.
+    # ---- footer ----
 
-        Returns:
-            str: The branding name text.
-        """
-        return self.get_text(LoginPageLocators.BRANDING_NAME_DETAILS_XPATH_LOCATOR)
+    def footer_present(self) -> bool:
+        return self.is_visible(L.FOOTER)
 
-    def open_admin_page_by_footer_link(self):
-        """
-        Opens the admin page by clicking the footer link for the admin panel.
-        """
-        self.click(HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR)
+    def footer_link_texts(self) -> List[str]:
+        return [self.text_of(loc) for loc, _ in L.FOOTER_POLICY_LINKS]
 
-    # Hotel room data
-    def get_hotel_room_item(self):
-        """
-        Retrieves the hotel room information section from the page.
-        Returns:
-            WebElement: The hotel room section element.
-        """
-        hotel_room_item = self.find_element_by_locator(HomePageLocators.HOTEL_ROOM_INFO_SECTION_CLASS_LOCATOR)
-        return hotel_room_item
+    def footer_link_hrefs(self) -> List[str]:
+        return [self.attr_of(loc, "href") for loc, _ in L.FOOTER_POLICY_LINKS]
 
-    def get_room_type(self, room_element):
-        """
-        Retrieves the room type text from a given room element.
+    # ---- rooms ----
 
-        Args:
-            room_element: WebElement representing the hotel room.
+    def book_now_hrefs(self) -> List[str]:
+        return [e.get_attribute("href") for e in self.find_all(L.ROOM_BOOK_NOW_LINKS)]
 
-        Returns:
-            str: The room type text.
-        """
-        room_type_element = room_element.find_element(By.CSS_SELECTOR, HomePageLocators.HOTEL_ROOM_TYPE_CSS_LOCATOR.value)
-        return room_type_element.text
+    # ---- contact form ----
 
-    def get_room_description(self, room_element):
-        """
-        Retrieves the room description text from a given room element.
+    def fill_contact_form(self, data: Dict[str, str]) -> "HomeFrontPage":
+        self.type(L.CONTACT_NAME, data["name"])
+        self.type(L.CONTACT_EMAIL, data["email"])
+        self.type(L.CONTACT_PHONE, data["phone"])
+        self.type(L.CONTACT_SUBJECT, data["email_subject"])
+        self.type(L.CONTACT_MESSAGE, data["contact_message_details"])
+        return self
 
-        Args:
-            room_element: WebElement representing the hotel room.
+    def submit_contact_form(self) -> "HomeFrontPage":
+        self.click(L.CONTACT_SUBMIT)
+        return self
 
-        Returns:
-            str: The room description text.
-        """
-        room_description_element = room_element.find_element(
-            By.CSS_SELECTOR, HomePageLocators.HOTEL_ROOM_DESCRIPTION_CSS_LOCATOR.value)
-        return room_description_element.text
+    def contact_confirmation_shown(self) -> bool:
+        return self.is_visible(L.CONTACT_THANKS, timeout=10)
 
-    # Booking actions
-    def create_booking_request(self, booking_details_data_flag: str):
-        """
-        Creates a booking request by filling the booking form and submitting it.
-
-        Args:
-            booking_details_data_flag (str): A flag to indicate which booking details data to use.
-        """
-        booking_details = create_booking_details(booking_details_data_flag)
-        self.logger.info(f"Booking request details: {booking_details}")
-        self.fill_booking_form(booking_details)
-        self.submit_booking_form()
-        self.logger.info(f"Booking request successfully completed")
-
-    def submit_booking_form(self):
-        """
-        Submits the booking form by clicking the submit button.
-        """
-        try:
-            self.click(HomePageLocators.BUTTON_SUBMIT_XPATH_LOCATOR)
-            self.logger.info(f"Booking form successfully submitted")
-        except NoSuchElementException as e:
-            self.logger.error(f"Element not found: {e.msg}")
-
-    def fill_booking_form(self, booking_details):
-        """
-        Fills out the booking form with the provided details.
-
-        Args:
-            booking_details (dict): A dictionary containing booking details such as name, email, phone, etc.
-        """
-        try:
-            self.type(booking_details["name"], HomePageLocators.INPUT_NAME_FORM_XPATH_LOCATOR)
-            self.type(booking_details["email"], HomePageLocators.INPUT_EMAIL_FORM_XPATH_LOCATOR)
-            self.type(booking_details["phone"], HomePageLocators.INPUT_PHONE_FORM_XPATH_LOCATOR)
-            self.type(booking_details["email_subject"], HomePageLocators.INPUT_SUBJECT_FORM_XPATH_LOCATOR)
-            self.type(booking_details["contact_message_details"],
-                      HomePageLocators.TEXT_AREA_CONTACT_DESCRIPTION_FORM_XPATH_LOCATOR)
-            self.logger.info(f"Booking form successfully filled using: {booking_details}")
-        except NoSuchElementException as e:
-            self.logger.error(f"Element not found: {e.msg}")
-
-    ############### FOOTER ############################
-
-    def get_footer(self):
-        """
-        Retrieves the footer element from the page.
-
-        Returns:
-            WebElement: The footer element.
-        """
-        footer_element = self.find_element_by_locator(HomePageLocators.FOOTER_BAR_ID_LOCATOR)
-        return footer_element
-
-    def get_footer_elements_text(self) -> tuple:
-        """
-        Retrieves the text from all footer links.
-
-        Returns:
-            tuple: A tuple containing the text of all footer link elements.
-        """
-        footer_elements_text = []
-        footer_elements = [HomePageLocators.FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR]
-        for element in footer_elements:
-            linked_text = self.get_text(element)
-            footer_elements_text.append(linked_text)
-        return tuple(footer_elements_text)
-
-    def get_footer_elements_urls(self) -> tuple:
-        """
-        Retrieves the 'href' URLs from all footer links.
-
-        Returns:
-            tuple: A tuple containing the href URLs of all footer link elements.
-        """
-        footer_elements_hrefs = []
-        footer_elements = [HomePageLocators.FOOTER_LINK_FOR_MARK_W_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_COOKIE_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_POLICY_XPATH_LOCATOR,
-                           HomePageLocators.FOOTER_LINK_FOR_ADMIN_PANEL_XPATH_LOCATOR]
-        for element in footer_elements:
-            linked_href = self.get_href_of_element(element)
-            if linked_href:
-                footer_elements_hrefs.append(linked_href)
-        return tuple(footer_elements_hrefs)
-
+    def contact_error_text(self) -> str:
+        return self.text_of(L.CONTACT_ERROR)

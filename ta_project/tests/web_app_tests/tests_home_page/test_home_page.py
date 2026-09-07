@@ -1,60 +1,77 @@
 """
-Tests for Home page
+UI tests for the public home page - nav bar, footer, contact form, rooms.
 """
+import faker
 import pytest
-from hamcrest import assert_that, instance_of, contains_inanyorder, equal_to, is_not
+from hamcrest import assert_that, contains_string, has_length, is_, greater_than
 
+from config.settings import get_settings
 from core.pages.home_page import HomeFrontPage
-from utilities import read_configurations
 
-pytestmark = pytest.mark.skip(
-    reason="Selenium UI layer targets the pre-2025 restful-booker-platform markup; "
-           "automationintesting.online is now a rewritten SPA - re-targeting is ROADMAP.md M8"
-)
+pytestmark = [
+    pytest.mark.parametrize(
+        "setup_and_teardown",
+        [{
+            "url": get_settings().front_url,
+            "browser": get_settings().browser,
+            "browser_headless_mode": "1" if get_settings().headless else "0",
+        }],
+        indirect=True,
+    ),
+    pytest.mark.usefixtures("setup_and_teardown", "log_failure_by_picture"),
+]
 
 
-@pytest.mark.parametrize(
-    'setup_and_teardown',
-    [{"url": read_configurations.read_configuration("basic info", "front_home_page_url"),
-      "browser": read_configurations.read_configuration("basic info", "browser"),
-      "browser_headless_mode": read_configurations.read_configuration("basic info", "browser_headless_mode")
-      }],
-    indirect=True
-)
-@pytest.mark.usefixtures("setup_and_teardown", "log_failure_by_picture")
+def _valid_contact_details() -> dict:
+    fake = faker.Faker()
+    return {
+        "name": fake.name(),
+        "email": fake.email(),
+        "phone": "0" + fake.numerify("##########"),          # 11 digits (min is 11)
+        "email_subject": "Automated UI check " + fake.word(),  # >= 5 chars
+        "contact_message_details": fake.paragraph(nb_sentences=3),  # >= 20 chars
+    }
+
+
 class TestHomePage:
 
-    def test_check_home_page_footer_presence(self):
-        home_page = HomeFrontPage(self.driver)
-        footer_element = home_page.get_footer()
-        assert_that(footer_element, is_not(None))
+    def test_footer_is_present(self):
+        """TC-UI-HOME-001."""
+        assert_that(HomeFrontPage(self.driver).footer_present(), is_(True))
 
-    def test_check_home_page_footer_content_old(self):
-        home_page = HomeFrontPage(self.driver)
-        footer_elements_text = home_page.get_footer_elements_text()
-        footer_links = home_page.get_footer_elements_urls()
-        assert_that(footer_elements_text, instance_of(tuple),
-                    f"Expected a tuple, but got {type(footer_elements_text)}")
-        assert_that(len(footer_elements_text), equal_to(4),
-                    f"Expected footer elements to have length 4, but got {len(footer_elements_text)}")
-        expected_linked_text = ["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"]
-        expected_links = ["http://www.mwtestconsultancy.co.uk/", "https://automationintesting.online/#/cookie",
-                          "https://automationintesting.online/#/privacy", "https://automationintesting.online/#/admin"]
-        assert_that(footer_links, contains_inanyorder(*expected_links))
-        assert_that(footer_elements_text, contains_inanyorder(*expected_linked_text))
+    def test_footer_links(self):
+        """TC-UI-HOME-002: the four policy footer links, texts + hrefs."""
+        home = HomeFrontPage(self.driver)
+        assert_that(home.footer_link_texts(),
+                    is_(["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"]))
+        hrefs = home.footer_link_hrefs()
+        assert_that(hrefs, has_length(4))
+        assert_that(hrefs[0], contains_string("mwtestconsultancy.co.uk"))
+        assert_that(hrefs[1], contains_string("/cookie"))
+        assert_that(hrefs[2], contains_string("/privacy"))
+        assert_that(hrefs[3], contains_string("/admin"))
 
-    def test_check_home_page_footer_content_new(self, expected_footer_data):
-        home_page = HomeFrontPage(self.driver)
-        footer_elements_text = home_page.get_footer_elements_text()
-        footer_links = home_page.get_footer_elements_urls()
+    def test_nav_brand(self):
+        """TC-UI-HOME-01 area: the brand text."""
+        assert_that(HomeFrontPage(self.driver).brand_text(), is_("Shady Meadows B&B"))
 
-        # Assert using data from the fixture
-        assert_that(footer_elements_text, instance_of(tuple))
-        assert_that(len(footer_elements_text), equal_to(len(expected_footer_data["footer_elements_text"])))
-        assert_that(footer_links, contains_inanyorder(*expected_footer_data["footer_elements_links"]))
-        assert_that(footer_elements_text, contains_inanyorder(*expected_footer_data["footer_elements_text"]))
+    def test_book_now_links_point_at_reservation_pages(self):
+        """TC-UI-RES-01: each room's 'Book now' opens /reservation/{id}."""
+        hrefs = HomeFrontPage(self.driver).book_now_hrefs()
+        assert_that(len(hrefs), greater_than(0))
+        for href in hrefs:
+            assert_that(href, contains_string("/reservation/"))
 
-    @pytest.mark.skip(reason="no assertion yet - needs a booking-confirmation locator/check (ROADMAP M7)")
-    def test_booking_request_valid_check(self):
-        home_page = HomeFrontPage(self.driver)
-        home_page.create_booking_request("tests")
+    def test_contact_form_valid_submit_shows_confirmation(self):
+        """TC-UI-CONTACT-01."""
+        home = HomeFrontPage(self.driver)
+        home.fill_contact_form(_valid_contact_details()).submit_contact_form()
+        assert_that(home.contact_confirmation_shown(), is_(True))
+
+    def test_contact_form_shows_validation_errors_when_empty(self):
+        """TC-UI-CONTACT-02: submitting an empty form lists the field errors."""
+        home = HomeFrontPage(self.driver)
+        home.submit_contact_form()
+        error = home.contact_error_text()
+        assert_that(error, contains_string("Subject must be between"))
+        assert_that(error, contains_string("Message must be between"))

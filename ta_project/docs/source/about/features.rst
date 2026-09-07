@@ -13,8 +13,8 @@ How I built it
 #. **Pydantic models.** The booking / auth / room payloads are pydantic v2
    models with ``from_dict`` / ``to_dict`` helpers; ``/booking`` responses are
    also validated against a JSON Schema.
-#. **Page-object model** for the UI - Selenium, explicit waits only, no
-   ``sleep``. (Being re-targeted at the rebuilt SPA - roadmap **M8**.)
+#. **Page-object model** for the UI - Selenium, ``(By, "selector")`` tuple
+   locators, explicit waits only, no ``sleep``.
 #. **Three test-data sources**, on purpose: inline constants, an Excel workbook,
    and a per-worker SQLite reference store.
 

@@ -14,12 +14,14 @@ import pytest
 from allure_commons.types import AttachmentType
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from config.logger_config import get_logger
 from core.data.data_factory.data_factory import DataFactory
-from core.pages.home_page import HomeFrontPage
 from utilities import excel_utils
 from utilities.db_utils import get_data_from_db_as_dict, create_tables, create_initial_test_data, make_db
 from utilities.general_utils import GeneralUtils
@@ -169,12 +171,14 @@ def setup_and_teardown(request, session_logger):
             "Acceptable browsers are: 'chrome', 'firefox', 'edge'")
         raise ValueError(f"Unsupported browser: {browser}")
 
-    url = request.param.get("url")
-    driver.get(url)
-    home_page = HomeFrontPage(driver)
-    home_page.close_hacker_hover()
+    driver.set_window_size(1500, 2200)
+    driver.get(request.param.get("url"))
+    # wait for the SPA shell to render (a nav link or the admin login field)
+    WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "a.nav-link, #username"))
+    )
 
-    request.cls.driver = driver  # Attaching driver to the class under tests
+    request.cls.driver = driver  # attach the driver to the test class
     yield driver
     driver.quit()
 

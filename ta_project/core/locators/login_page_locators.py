@@ -1,28 +1,38 @@
 # /core/locators/login_page_locators.py
 """
-Module contains the locators for the elements on the Login Page.
-
-It includes specific XPATH and CSS selectors for key elements
-used in automated tests for interacting with the application's home page.
+Locators for the admin area (``/admin``, ``/admin/rooms`` ...).
+Each is a ``(By, "selector")`` tuple.
 """
-from core.locators.base_locators import BaseLocators
+from selenium.webdriver.common.by import By
 
 
-class LoginPageLocators(BaseLocators):
-    """
-    Class contains the locators for the elements on the Login Page.
+class LoginPageLocators:
+    """The ``/admin`` login form."""
 
-    It inherits from BaseLocators and defines various XPATH and CSS selectors
-    for key elements, such as buttons, images, and sections that can be used
-    in automated tests for interacting with the home page of the application.
-    """
-    USERNAME_INPUT_LINK_XPATH_LOCATOR = "//input[@data-testid='username']"
-    PASSWORD_INPUT_XPATH_LOCATOR = "//input[@data-testid='password']"
-    SUBMIT_BUTTON_ID_LOCATOR = "doLogin"
-    BRANDING_NAME_DETAILS_XPATH_LOCATOR = "//div[@class='mx-auto order-0']/a"
-    ROOMS_NAVBAR_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav mr-auto']/li[1]"
-    REPORT_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav mr-auto']/li[2]"
-    NAVBAR_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav mr-auto']/li[3]"
-    INBOX_NAVBAR_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav ml-auto']/li[1]"
-    FRONT_PAGE_NAVBAR_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav ml-auto']/li[2]"
-    LOGOUT_NAVBAR_LINK_XPATH_LOCATOR = "//ul[@class='navbar-nav ml-auto']/li[3]"
+    USERNAME = (By.ID, "username")
+    PASSWORD = (By.ID, "password")
+    SUBMIT = (By.ID, "doLogin")
+    LOGIN_HEADING = (By.XPATH, "//h2[normalize-space()='Login']")
+    ERROR_ALERT = (By.CSS_SELECTOR, ".alert-danger")
+
+
+class AdminNavLocators:
+    """The navbar shown after a successful admin login."""
+
+    BRAND = (By.CSS_SELECTOR, "a.navbar-brand")
+    NAV_LINKS = (By.CSS_SELECTOR, "nav a.nav-link")
+    ROOMS_LINK = (By.CSS_SELECTOR, "a.nav-link[href$='/admin/rooms']")
+    REPORT_LINK = (By.ID, "reportLink")
+    BRANDING_LINK = (By.ID, "brandingLink")
+    MESSAGES_LINK = (By.CSS_SELECTOR, "a.nav-link[href*='/admin/message']")
+    FRONT_PAGE_LINK = (By.ID, "frontPageLink")
+    LOGOUT_BUTTON = (By.XPATH, "//button[normalize-space()='Logout']")
+
+
+class AdminRoomsLocators:
+    """The ``/admin/rooms`` page."""
+
+    ROOM_ROWS = (By.CSS_SELECTOR, "[data-testid='roomlisting']")
+    CREATE_ROOM_BUTTON = (By.ID, "createRoom")
+    ROOM_NAME_INPUT = (By.ID, "roomName")
+    ROOM_PRICE_INPUT = (By.ID, "roomPrice")

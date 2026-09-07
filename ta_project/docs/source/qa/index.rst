@@ -28,8 +28,8 @@ What I test, and where
        body of ``POST /api/auth/login``.
    * - UI
      - ``https://automationintesting.online``
-     - *restful-booker-platform* front end (React SPA). Being re-targeted -
-       roadmap **M8**; the UI tests are skipped for now.
+     - *restful-booker-platform* front end (React SPA). The Selenium layer
+       was re-targeted at this build in **M8**; 13 UI tests pass.
 
 How I test
 ==========
@@ -60,9 +60,8 @@ Naming
 * ``TC-<AREA>-<NAME>-<nnn>`` - a test case that verifies one or more
   requirements.
 
-A case is ``Automated`` (a pytest test exists and passes), ``Blocked`` (the test
-exists but cannot run - the UI set, pending M8) or ``Not implemented`` (the case
-is written down here, no test yet).
+A case is ``Automated`` (a pytest test exists and passes) or ``Not
+implemented`` (the case is written down here, no test yet).
 
 Pages in this section
 =====================

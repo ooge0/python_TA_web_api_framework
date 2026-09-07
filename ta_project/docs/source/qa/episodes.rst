@@ -24,10 +24,13 @@ the token moved into the response body, ``401`` replaced ``403``).
 -on session was Dec 2024. Nobody ran it against the live site after that.
 
 **What I did.** Fixed the front-end API in M1/M7 (it is now fully covered).
-Skipped the 20 UI tests at module level with a reason pointing at **M8**, kept
-them collectable, and mapped the current DOM into ``ROADMAP.md``. A standing
-skipped test (``tests/web_app_tests/test_sut_drift_episode.py``) keeps this
-episode in every run.
+Skipped the UI tests, kept them collectable, and mapped the current DOM into
+``ROADMAP.md``. **M8** then rebuilt the layer: ``(By, "selector")`` tuple
+locators, a rewritten ``BaseFrontPage``, new page objects for the SPA, and a
+``setup_and_teardown`` fixture that waits for the async render instead of
+clicking a banner. 13 UI tests now pass against the live site. A standing
+skipped test (``tests/web_app_tests/test_sut_drift_episode.py``) keeps the
+episode visible.
 
 **Lesson.** Run the suite in CI, on a schedule, against the live SUT. A green
 suite is the definition of done - not "the code looks right".

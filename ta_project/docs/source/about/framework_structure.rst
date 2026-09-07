@@ -48,5 +48,5 @@ How the pieces connect
 
 .. note::
 
-   The Selenium UI layer targets a pre-2025 version of the SUT and is being
-   rebuilt - see roadmap **M8**. The API layer is current.
+   The Selenium UI layer was rebuilt for the current SPA in **M8**
+   (episode 1 in :ref:`qa_episodes`).

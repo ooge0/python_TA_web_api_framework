@@ -8,5 +8,7 @@ core.locators.login\_page\_locators
 
    .. autosummary::
    
+      AdminNavLocators
+      AdminRoomsLocators
       LoginPageLocators
    
