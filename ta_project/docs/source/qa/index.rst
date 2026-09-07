@@ -76,4 +76,5 @@ Pages in this section
    test_cases
    traceability_matrix
    coverage_by_feature
+   episodes
    ../tests/tests
