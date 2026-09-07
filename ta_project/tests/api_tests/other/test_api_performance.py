@@ -16,39 +16,46 @@ STATUS_OK = 200
 STATUS_DELETED = 201
 
 
-@allure.feature("API performance")
+@allure.epic("Back-end API")
+@allure.story("Performance")
 class TestApiPerformance:
-    """Per-verb latency checks for restful-booker."""
+    """Per-verb single-request latency checks for restful-booker."""
 
     logger = get_logger()
 
+    @allure.feature("Authentication")
     def test_auth_post_response_time(self, back_auth_api, back_api_valid_user_creds):
         """POST /auth answers within the threshold."""
         response = back_auth_api.create_token(back_api_valid_user_creds)
         assert_response_time_under(response, THRESHOLD_SECONDS, STATUS_OK)
 
+    @allure.feature("Bookings")
     def test_booking_post_response_time(self, back_booking_api, backend_api_post_test_payload):
         """POST /booking answers within the threshold."""
         payload, _ = backend_api_post_test_payload
         assert_response_time_under(back_booking_api.create(payload), THRESHOLD_SECONDS, STATUS_OK)
 
+    @allure.feature("Bookings")
     def test_booking_get_response_time(self, back_booking_api, created_backend_booking):
         """GET /booking/{id} answers within the threshold."""
         booking_id, _, _ = created_backend_booking
         assert_response_time_under(back_booking_api.get(booking_id), THRESHOLD_SECONDS, STATUS_OK)
 
+    @allure.feature("Bookings")
     def test_booking_put_response_time(self, back_booking_api, created_backend_booking, get_back_end_token):
         """PUT /booking/{id} answers within the threshold."""
         booking_id, _, payload = created_backend_booking
         response = back_booking_api.update(booking_id, payload, get_back_end_token)
         assert_response_time_under(response, THRESHOLD_SECONDS, STATUS_OK)
 
+    @allure.feature("Bookings")
     def test_booking_patch_response_time(self, back_booking_api, created_backend_booking, get_back_end_token):
         """PATCH /booking/{id} answers within the threshold."""
         booking_id, _, _ = created_backend_booking
         response = back_booking_api.patch(booking_id, {"firstname": "Patched"}, get_back_end_token)
         assert_response_time_under(response, THRESHOLD_SECONDS, STATUS_OK)
 
+    @allure.feature("Bookings")
     def test_booking_delete_response_time(self, back_booking_api, created_backend_booking, get_back_end_token):
         """DELETE /booking/{id} answers within the threshold (restful-booker returns 201)."""
         booking_id, _, _ = created_backend_booking

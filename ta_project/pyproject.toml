@@ -23,4 +23,26 @@ markers = [
 # and force a single process for debugging with
 #   pytest -n0
 # The API tests are parallel-safe (each write test creates and cleans up its own
-# record). The UI tests run against the live SPA (re-targeted in M8).
+# record). The UI tests share one admin account on the live SPA and can race
+# under -n auto - run them with `-m ui -n0` (see known_issues KI-11). CI runs
+# `-m "not ui"`.
+
+
+[tool.coverage.run]
+source = ["core", "utilities"]
+branch = true
+omit = [
+    "*/_devtools/*",   # developer-only doc scripts, not test targets
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+# Floor for the CI run (`-m "not ui"`, so page objects are only partly hit).
+# Raise this as coverage rises - see known_issues KI-14.
+fail_under = 70
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

@@ -1,12 +1,15 @@
 """
 Health-check test for the back-end API (M7 gap-fill).
 """
+import allure
 from hamcrest import assert_that, is_
 
 from config.logger_config import get_logger
 from core.api.backend_api_points import BackEndPoints
 
 
+@allure.epic("Back-end API")
+@allure.feature("Health")
 class TestBackApiPing:
     """``GET /ping`` health check."""
 

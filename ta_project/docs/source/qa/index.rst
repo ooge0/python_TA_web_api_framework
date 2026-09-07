@@ -64,6 +64,22 @@ Naming
 A case is ``Automated`` (a pytest test exists and passes) or ``Not
 implemented`` (the case is written down here, no test yet).
 
+Allure labels
+=============
+
+The same vocabulary drives Allure's *Behaviors* view, so it doubles as a
+coverage lens:
+
+* ``@allure.epic`` - the system / layer: ``Back-end API`` / ``Front-end API`` /
+  ``Web UI`` (the three sections of :ref:`qa_feature_catalogue`).
+* ``@allure.feature`` - the ``FEAT-*`` feature in plain words: ``Authentication``,
+  ``Bookings``, ``Rooms``, ``Branding``, ``Messages``, ``Report``, ``Health``,
+  ``Home page``, ``Contact form``, ``Reservation``, ``Admin login``,
+  ``Admin navigation``, ``Admin rooms``. Feature names repeat across epics
+  (``Authentication`` exists for both APIs) - the epic disambiguates.
+* ``@allure.story`` - only where a class is an approach rather than a feature:
+  ``Negative``, ``Performance``, ``Schema validation``.
+
 Pages in this section
 =====================
 
@@ -76,5 +92,6 @@ Pages in this section
    test_cases
    traceability_matrix
    coverage_by_feature
+   known_issues
    episodes
    ../tests/tests

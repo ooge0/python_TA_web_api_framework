@@ -23,7 +23,8 @@ from utilities.excel_data_provider import ExcelDataProvider
 _EXCEL_INVALID_LOGINS = ExcelDataProvider(get_settings().excel_file_path).get_invalid_data("login_test_data")
 
 
-@allure.feature("front-end auth")
+@allure.epic("Front-end API")
+@allure.feature("Authentication")
 class TestFrontApiAuth:
     """``POST /api/auth/login`` via ``front_auth_api``."""
 

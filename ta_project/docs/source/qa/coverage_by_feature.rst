@@ -6,7 +6,7 @@ Coverage by Feature
 
 Derived from :ref:`qa_feature_catalogue`, :ref:`qa_test_cases` and
 :ref:`qa_traceability`. "Automated / passing" is from the last run
-(47 API + 13 UI tests passing).
+(49 API + 13 UI tests passing).
 
 This is **requirement** coverage, not code coverage. Code coverage
 (``pytest-cov``) is reported separately by CI.
@@ -17,7 +17,7 @@ This is **requirement** coverage, not code coverage. Code coverage
 
    "FEAT-BE-AUTH", "3", "9", "9", "-", "Covered"
    "FEAT-BE-PING", "1", "1", "1", "-", "Covered"
-   "FEAT-BE-BOOKING", "13", "24", "23", "GET filter (018, Low)", "Covered bar one Low case"
+   "FEAT-BE-BOOKING", "13", "24", "24", "-", "Covered"
    "FEAT-FE-AUTH", "4", "6", "6", "-", "Covered"
    "FEAT-FE-ROOM", "4", "4", "4", "-", "Covered"
    "FEAT-FE-BOOKING", "3", "3", "3", "-", "Covered"
@@ -41,10 +41,10 @@ Summary
    :header: "", "Reqs", "Covered", "Gap"
    :widths: 20, 12, 12, 12
 
-   "Back-end API", "17", "16", "1"
+   "Back-end API", "17", "17", "0"
    "Front-end API", "15", "15", "0"
    "UI", "20", "10", "10"
-   "**Total**", "**52**", "**41**", "**11**"
+   "**Total**", "**52**", "**42**", "**10**"
 
 History
 =======
@@ -60,16 +60,18 @@ History
    "M5 - service-object migration", "46", "30"
    "M7 - /auth/logout", "47", "31"
    "M8 - UI re-target", "47 API + 13 UI", "41"
+   "M9 - QA loop (name filter, taxonomy)", "49 API + 13 UI", "42"
 
 Reading of this
 ===============
 
-* The **front-end API is fully covered** (15/15) - all through the
-  ``core/api/services`` service objects.
+* **Both APIs are fully covered** - back-end 17/17, front-end 15/15 - all
+  through the ``core/api/services`` service objects.
 * The **UI layer is re-targeted and green** (13 tests): home footer + nav +
   brand, the contact form (valid submit + field validation), the "Book now"
   links, admin login (valid / invalid / placeholders), the admin navbar +
   branding text, logout, and the rooms table.
-* **Gaps** (all Low/Medium): the calendar-based reservation completion, admin
-  room create/delete, the branding / report / messages admin pages, the
-  nav-anchor scroll, and the back-end ``?firstname=`` filter.
+* **The 10 remaining gaps are all UI** (Low/Medium): the calendar-based
+  reservation completion, admin room create/delete, the branding / report /
+  messages admin pages, and the nav-anchor scroll. A dedicated UI-coverage
+  milestone (:ref:`qa_known_issues` KI-12).

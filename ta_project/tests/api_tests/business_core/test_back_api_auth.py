@@ -16,7 +16,8 @@ from core.data.data_models.back_api_auth_data_models import BackApiAuthPayload
 from resources.test_data.headers_mimo_types import MimeType
 
 
-@allure.feature("back-end auth")
+@allure.epic("Back-end API")
+@allure.feature("Authentication")
 class TestBackApiAuth:
     """``POST /auth`` token creation."""
 

@@ -1,6 +1,7 @@
 """
 UI tests for the public home page - nav bar, footer, contact form, rooms.
 """
+import allure
 import faker
 import pytest
 import pytest_check as check
@@ -34,12 +35,15 @@ def _valid_contact_details() -> dict:
     }
 
 
+@allure.epic("Web UI")
 class TestHomePage:
 
+    @allure.feature("Home page")
     def test_footer_is_present(self):
         """TC-UI-HOME-001."""
         assert_that(HomeFrontPage(self.driver).footer_present(), is_(True))
 
+    @allure.feature("Home page")
     def test_footer_links(self):
         """TC-UI-HOME-002: the four policy footer links - texts + hrefs.
 
@@ -53,10 +57,12 @@ class TestHomePage:
         for got, want in zip(hrefs, ("mwtestconsultancy.co.uk", "/cookie", "/privacy", "/admin")):
             check.is_in(want, got)
 
+    @allure.feature("Home page")
     def test_nav_brand(self):
         """TC-UI-HOME-01 area: the brand text."""
         assert_that(HomeFrontPage(self.driver).brand_text(), is_("Shady Meadows B&B"))
 
+    @allure.feature("Reservation")
     def test_book_now_links_point_at_reservation_pages(self):
         """TC-UI-RES-01: each room's 'Book now' opens /reservation/{id}."""
         hrefs = HomeFrontPage(self.driver).book_now_hrefs()
@@ -64,12 +70,14 @@ class TestHomePage:
         for href in hrefs:
             assert_that(href, contains_string("/reservation/"))
 
+    @allure.feature("Contact form")
     def test_contact_form_valid_submit_shows_confirmation(self):
         """TC-UI-CONTACT-01."""
         home = HomeFrontPage(self.driver)
         home.fill_contact_form(_valid_contact_details()).submit_contact_form()
         assert_that(home.contact_confirmation_shown(), is_(True))
 
+    @allure.feature("Contact form")
     def test_contact_form_shows_validation_errors_when_empty(self):
         """TC-UI-CONTACT-02: submitting an empty form lists the field errors."""
         home = HomeFrontPage(self.driver)

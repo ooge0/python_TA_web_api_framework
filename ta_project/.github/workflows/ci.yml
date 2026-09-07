@@ -38,11 +38,12 @@ jobs:
       # services (no local stub yet - ROADMAP M3). The Selenium UI tests
       # (``-m ui``) need a real browser and are left to local / a future
       # browser job; CI runs the API suite.
+      # Coverage source / omit / fail_under live in pyproject.toml
+      # ([tool.coverage.*]); the floor fails the job if coverage drops.
       - name: pytest
         run: >
           pytest -n auto -m "not ui"
-          --cov=core --cov=utilities
-          --cov-report=term-missing --cov-report=xml
+          --cov --cov-report=term-missing --cov-report=xml
           --junitxml=junit.xml
       - name: upload reports
         if: always()

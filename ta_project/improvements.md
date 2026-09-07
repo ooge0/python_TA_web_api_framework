@@ -28,15 +28,17 @@ See `ROADMAP.md` for the milestone view.
 | M1 make the suite honest | done (API 23/6 -> 30/0; UI static bugs). |
 | M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov`. |
 | M3 make runs repeatable | done - see the M3 block below and `ROADMAP.md`. |
-| M4 QA artifacts | done as docs - `docs/source/qa/` (test plan, feature catalogue, test cases, traceability matrix, coverage table). Items 61, 62, 64, 66 done; 63(CI diff) and 68 (Allure taxonomy) still open. |
+| M4 QA artifacts | done - `docs/source/qa/` (test plan, catalogue, test cases, traceability, coverage, known-issues, episodes). Items 61, 62, 64, 66 here; 63 open. |
 | M5 clean the core | done - 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 51. |
 | M6 finish the edges | done - 10, 22, 23, 24, 31, 32, 49, 50, 52, 53, 54, 55, 56, 58, 60. |
-| M7 expand coverage | API done - 48 tests, front-end API 15/15, back-end one Low case short. |
+| M7 expand coverage | API done - both APIs fully covered (BE 17/17, FE 15/15). |
 | M8 re-target the UI layer | done - tuple locators, rewritten page objects, 13 UI tests pass against the SPA. |
+| M9 close the QA loop | done bar 63 - 65 (coverage floor), 67 (known-issues log), 68 (Allure taxonomy), `?firstname=` filter test. |
 
-Items done: 1-60 except 63 (CI diff only), 67, 68. Remaining backlog: 63(CI
-diff), 67 (formal known-issues log), 68 (Allure taxonomy); plus home-page /
-reservation-calendar UI coverage, which would be a new milestone.
+Items done: 1-62, 64-68. **Open: 63** (a CI step that diffs tagged tests against
+the catalogue). Beyond the backlog: a UI-coverage milestone for the 10
+remaining UI requirements (home-page room listing, reservation calendar, admin
+room create/delete, branding/report/messages pages).
 
 **M3 - make runs repeatable (done):**
 - item 26/27: `APIClient.session` -> `field(default_factory=requests.Session)`,

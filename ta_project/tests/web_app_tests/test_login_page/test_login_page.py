@@ -2,6 +2,7 @@
 UI tests for the admin area - the ``/admin`` login form, the post-login navbar,
 logout, and the rooms table.
 """
+import allure
 import pytest
 import pytest_check as check
 from hamcrest import assert_that, contains_string, has_items, is_
@@ -27,6 +28,8 @@ pytestmark = [
 ]
 
 
+@allure.epic("Web UI")
+@allure.feature("Admin login")
 class TestAdminLogin:
 
     def test_login_form_placeholders(self):
@@ -50,6 +53,8 @@ class TestAdminLogin:
         assert_that(page.is_logged_in(timeout=2), is_(False))
 
 
+@allure.epic("Web UI")
+@allure.feature("Admin navigation")
 class TestAdminNavigation:
 
     @pytest.fixture(autouse=True)
@@ -79,6 +84,7 @@ class TestAdminNavigation:
         WebDriverWait(self.driver, 10).until(lambda d: "/admin" not in d.current_url)
         assert_that(page.is_logged_in(timeout=2), is_(False))
 
+    @allure.feature("Admin rooms")
     def test_rooms_table_lists_rooms(self):
         """TC-UI-ROOMS-01."""
         rooms = AdminRoomsFrontPage(self.driver)

@@ -75,7 +75,8 @@ Exit criteria
 * All non-``Blocked`` cases automated and passing in CI.
 * Every ``REQ-*`` is either covered by an ``Automated`` case or listed as a
   known gap in :ref:`qa_coverage`.
-* Coverage report published (no hard floor until the M7 gap-fill is done).
+* Coverage report published; CI fails below the ``fail_under`` floor in
+  ``pyproject.toml`` (currently 70%, raised as coverage rises).
 
 Risks
 =====

@@ -6,6 +6,7 @@ and room administration. Uses the service objects from
 import random
 from datetime import date, timedelta
 
+import allure
 import faker
 import pytest
 from hamcrest import assert_that, is_, is_not, none, greater_than_or_equal_to
@@ -33,6 +34,8 @@ def _far_future_window(nights: int = 2):
     return start.isoformat(), (start + timedelta(days=nights)).isoformat()
 
 
+@allure.epic("Front-end API")
+@allure.feature("Bookings")
 class TestFrontApiReservation:
     """``POST /api/booking`` - the public 'Book now' flow."""
 
@@ -76,11 +79,13 @@ class TestFrontApiReservation:
         assert_that(any(b.get("bookingid") == booking_id for b in bookings), is_(True))
 
 
+@allure.epic("Front-end API")
 class TestFrontApiRoomAdmin:
-    """``POST`` / ``DELETE /api/room`` - needs a token."""
+    """``POST`` / ``DELETE /api/room`` and the room report - need a token."""
 
     logger = get_logger()
 
+    @allure.feature("Rooms")
     def test_create_and_delete_room(self, front_room_api, front_token):
         """TC-FE-ROOM-003 / 004: create a room, see it in the list, delete it."""
         fake = faker.Faker()
@@ -103,6 +108,7 @@ class TestFrontApiRoomAdmin:
         assert_that(resp.status_code, is_(202))
         assert_that([r for r in front_room_api.list() if r.roomName == name], is_([]))
 
+    @allure.feature("Report")
     def test_report_is_reachable(self, front_report_api, front_token):
         """TC-FE-REPORT-001: GET /api/report (token) -> 200."""
         assert_that(front_report_api.get(front_token).status_code, is_(200))

@@ -4,11 +4,14 @@ every report - even though the episode is now resolved (M8).
 
 Full write-up: docs/source/qa/episodes.rst (episode 1).
 """
+import allure
 import pytest
 
 pytestmark = pytest.mark.ui
 
 
+@allure.epic("Web UI")
+@allure.feature("Episodes")
 @pytest.mark.skip(reason=(
     "EPISODE 1 (resolved M8): the whole Selenium UI layer was written against "
     "the 2024 server-rendered automationintesting.online - Bootstrap markup, a "

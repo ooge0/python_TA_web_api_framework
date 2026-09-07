@@ -18,6 +18,12 @@ class BookingApi(BaseApi):
         resp = self.client.get(self.endpoint, headers=headers or {"Content-Type": "application/json"})
         return BookingIdList.from_list(resp.json())
 
+    def find(self, *, firstname: Optional[str] = None, lastname: Optional[str] = None) -> BookingIdList:
+        """``GET /booking?firstname=&lastname=`` - the name filter."""
+        params = {k: v for k, v in (("firstname", firstname), ("lastname", lastname)) if v is not None}
+        resp = self.client.get(self.endpoint, headers={"Content-Type": "application/json"}, params=params)
+        return BookingIdList.from_list(resp.json())
+
     def get(self, booking_id: int):
         return self.client.get(f"{self.endpoint}/{booking_id}",
                                headers={"Content-Type": "application/json"})

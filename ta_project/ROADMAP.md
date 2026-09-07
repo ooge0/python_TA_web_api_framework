@@ -16,14 +16,15 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 
 | milestone | state |
 |---|---|
-| M1 make the suite honest | **done** for the API side (23/6 -> 30/0). UI side: the Selenium layer targets a version of `automationintesting.online` that no longer exists (the site is now a rewritten SPA), so those 20 tests are skipped pending **M8**. The static UI code bugs (items 1, 7, 8, 9, 19, 21) are fixed. |
-| M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported, not gating yet) and `pytest -n auto` with coverage on every push / PR; `deploy-docs.yml` rewritten to actually install deps and build from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done; `pytest-cov` added (coverage **43%**, no floor yet - that comes after M7). Stale test inventory and the committed `logfile.log` untracked. |
-| M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` no longer swallows errors (parsed once, cached), `connect_to_db` re-raises, per-worker SQLite via `TA_DB_PATH` + the `_isolated_db` session fixture (committed `.db` removed - always built fresh), booking write tests create + clean up their own record, credentials single-sourced to `config.ini [credentials]`. Decision: keep `pytest -n auto` (default in `tox.ini`) - the API suite is stable across repeated parallel runs. |
-| M4 QA artifacts | **in progress.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, plus a `what_my_tests_cover` page. The Sphinx site was restructured: "Tests" + "Test Design & QA" merged into one **QA & Testing** section; the thin setup pages merged into one; intro/features/structure pages rewritten in first person; Sphinx now builds with **0 errors** (dropped `viewcode`, fixed stale includes/encodings). `README.md` has a standalone "Test design & QA artifacts" section. Still to do: `pytest-cov` floor, Allure taxonomy (68), a CI matrix-vs-catalogue diff (63). |
-| M7 expand coverage | **API done (47 tests, 31/52 reqs).** Back-end +10 (negative-auth 403, missing-id 404, malformed 500, `/ping`); front-end +9 (`/api/room` get/create/delete, public reservation + overlap 409, room bookings, message inbox, token validate, logout, report). **Front-end API is fully covered - 15/15.** Back-end is one Low case short (`?firstname=` filter). Remaining API is trivial; the rest is the UI set (M8). |
+| M1 make the suite honest | **done.** API side 23/6 -> 30/0; the static UI code bugs (items 1, 7, 8, 9, 19, 21) fixed. The UI layer targeted a version of the SPA that no longer existed - re-targeted in **M8**. |
+| M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported) and `pytest -n auto -m "not ui"` with coverage on every push / PR; `deploy-docs.yml` builds from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done. Coverage floor (`fail_under`) set in **M9**. |
+| M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` parsed once + cached + no longer swallows errors, per-test data ownership (create + clean up), credentials single-sourced to `config.ini [credentials]`. `pytest -n auto` is the default. (The per-worker SQLite fixture landed here and was then deleted in M5 - nothing used it after M8.) |
+| M4 QA artifacts | **done.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, `what_my_tests_cover`, an episode log, and a known-issues log (M9). Sphinx restructured into one **QA & Testing** section, builds with **0 errors**. Items 61, 62, 64, 66 done here; 65 (cov floor) + 68 (Allure taxonomy) + 67 (known-issues) done in **M9**; 63 (CI matrix diff) is the one open item. |
+| M7 expand coverage | **API done - both APIs fully covered.** Back-end 17/17, front-end 15/15 (the `?firstname=` filter closed in **M9**). Back-end +10 (negative-auth 403, missing-id 404, malformed 500, `/ping`); front-end +9 (`/api/room` CRUD, public reservation + overlap 409, room bookings, message inbox, token validate, logout, report). The remaining gaps are all UI (see M9 / KI-12). |
 | M5 clean the core | **done.** 39 (pydantic models), 42 (typed cached `config/settings.py`), 40 (`core/api/services/` - `AuthApi` / `BookingApi` / `RoomApi` / `BrandingApi` / `MessageApi` / `ReportApi` / `PlatformBookingApi`; **every** API test module now calls through them - `test_api_performance.py` and `test_api_json_schema_validation.py` migrated, the last raw-client calls in the front booking flow gone), 41 (locator tuples, delivered in M8), 36 (Excel: `excel_utils.py` + `DataFactory` + `LoginCredentials` deleted, `ExcelDataProvider` kept and wired into one real data-driven test), 37 (SQLite apparatus - `db_utils`, `test_data_utils`, `core/reference_data/`, the `_isolated_db` / `validation_data` / `setup_database` fixtures - all deleted, nothing used them after M8), 38 (`utilities/_devtools/` for the doc scripts; `back_api_utils.py` / `get_names_of_tests.py` / the disabled `fix_path_*` file removed), 43/44 (dead code, `config/db_config.py`, dead fixtures), 46 (`pytest-check` soft assertions in the multi-field checks), 47 (test flag gone with `LoginCredentials`), 51 (logger path), 52 (rename). `pytest-lazy-fixture` + `regex` dropped from the deps. |
 | M6 finish the edges | **done.** 10 (`BackApiAuthPayload.to_dict` returns a dict; the model is now used by the back-auth test), 22 (`HeaderModel` deleted), 23/31/32 (base-page waits, delivered in M8), 24 (`navbar1` typo), 49 (`docs/requirements.txt` constrained by the lock file), 50 (dropped unconfigured `tach`; contributor guide rewritten to the real tooling), 52/53 (naming + a docstring pass over conftest / fixtures / the migrated tests), 54 (README quickstart), 55 (deleted `index_old.rst_`, `favicon1.ico`, stale `list_of_all_project_tests*`, `facepalm.jpg`, placeholders; fixed broken includes), 56 (`pylint.rc` -> UTF-8, `project_tree.txt`), 58 (`conf.py` author, dead `templates_path`), 60 (`tasks.py`, `setup_env.bat`). **Sphinx builds with 0 errors** (stale autodoc entries for the deleted modules cleaned; RST title underlines in the QA docs fixed). |
-| M8 re-target the UI layer | **done.** New `(By, "selector")` tuple locators (delivers item 41), a rewritten `BaseFrontPage` (`find/click/type/text_of/is_visible`, delivers items 31/32), new page objects for the SPA (`HomeFrontPage`, `LoginAdminPage`, `AdminRoomsFrontPage`), and a `setup_and_teardown` that waits for the async render instead of clicking the gone intro banner. `test_login_actions_validation.py` (the stalest, most duplicated file) removed; `test_home_page.py` + `test_login_page.py` rewritten. **13 UI tests pass** against the live SPA (6 home, 7 admin). `base_locators.py` (Enum) deleted. Reference data `home_page_validation_data.py` + the DB-backed UI test are gone. Total requirement coverage 31 -> 41 of 52. |
+| M8 re-target the UI layer | **done.** New `(By, "selector")` tuple locators (delivers item 41), a rewritten `BaseFrontPage` (`find/click/type/text_of/is_visible`, delivers items 31/32), new page objects for the SPA (`HomeFrontPage`, `LoginAdminPage`, `AdminRoomsFrontPage`), and a `setup_and_teardown` that waits for the async render instead of clicking the gone intro banner. `test_login_actions_validation.py` removed; `test_home_page.py` + `test_login_page.py` rewritten. **13 UI tests pass** against the live SPA. `base_locators.py` (Enum), `home_page_validation_data.py` and the DB-backed UI test gone. Requirement coverage 31 -> 41 of 52. |
+| M9 close the QA loop | **done bar one item.** 68 (Allure `epic → feature → story` normalised to the catalogue - 3 epics, 13 features; documented in `qa/index.rst`), 67 (`qa/known_issues.rst` - SUT quirks + framework limitations), 65 (`[tool.coverage.*]` in `pyproject.toml`, `fail_under = 70`, `_devtools` omitted; CI fails below the floor), the `GET /booking?firstname=` filter test (back-end now 17/17). Requirement coverage 41 -> **42 of 52** (the last 10 are all UI). **Open: 63** - a CI step that diffs the traceability matrix against the catalogue. |
 
 ---
 
@@ -177,6 +178,37 @@ Not in `improvements.md` (these are new tests, not fixes). Driven by
 
 **Done when:** every `REQ-*` in the catalogue is either automated or explicitly
 marked "manual" / "won't test" with a reason.
+
+---
+
+## M9 — Close the QA loop  ✅ done bar 63
+
+**Goal:** finish the M4/M7 tail so the test-design layer is self-consistent and
+CI-checked.
+
+Items: 68 (Allure taxonomy), 67 (known-issues log), 65 (coverage floor), the
+`GET /booking?firstname=` filter test, the stale ROADMAP rows, 63 (CI diff).
+
+- **68** — `@allure.epic` = `Back-end API` / `Front-end API` / `Web UI`;
+  `@allure.feature` = the `FEAT-*` feature in plain words; `@allure.story` only
+  for an *approach* (`Negative` / `Performance` / `Schema validation`).
+  Documented in `qa/index.rst`.
+- **67** — `docs/source/qa/known_issues.rst`: SUT quirks the tests work around
+  (logout doesn't invalidate, `/count` is the unread badge, DELETE = 201/202,
+  500 on bad body) + framework limitations (live services, no retry, UI gaps).
+- **65** — `[tool.coverage.run]` / `[tool.coverage.report]` in
+  `pyproject.toml`; `fail_under = 70`, `_devtools` omitted; CI passes `--cov`
+  (config-driven) and fails below the floor. Current: ~77%.
+- **`?firstname=` filter** — `BookingApi.find(firstname=, lastname=)` +
+  `test_name_filter_returns_the_matching_booking`. Back-end now 17/17.
+
+**Done when:** ✅ (bar 63)
+- Every test carries a catalogue-keyed epic + feature; the Allure Behaviors
+  view is a usable coverage lens.
+- `qa/known_issues.rst` exists and is wired into the QA toctree.
+- CI enforces a coverage floor.
+- **Open:** 63 — a CI step that tags tests with `REQ-*` and fails on an orphan
+  test or an uncovered requirement.
 
 ---
 

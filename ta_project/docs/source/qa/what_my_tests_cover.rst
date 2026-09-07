@@ -8,7 +8,7 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **48 API + 13 UI tests passing** (1 skipped = the episode
+Current run: **49 API + 13 UI tests passing** (1 skipped = the episode
 reminder). API calls go through the per-resource service objects in
 :mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi``,
 ``ReportApi`` ...).
@@ -36,7 +36,8 @@ Back-end API - bookings
 =======================
 
 **Reading.** ``GET /booking`` returns a list of ids and none are null;
-``GET /booking/{id}`` returns the full object; a made-up id returns ``404``.
+``GET /booking/{id}`` returns the full object; a made-up id returns ``404``;
+``GET /booking?firstname=&lastname=`` returns the booking that matches.
 
 **Creating.** ``POST /booking`` (no token needed) creates a booking and returns
 a real ``bookingid``; the response matches the JSON schema; an empty body or a
@@ -99,7 +100,10 @@ no ``time.sleep``.
 Not covered yet
 ===============
 
-Placeholders exist in :ref:`qa_test_cases` for these:
+Both APIs are fully covered. The open gaps are all UI - placeholders exist in
+:ref:`qa_test_cases`, and :ref:`qa_known_issues` KI-12 tracks them:
 
-* the whole **UI set** until M8 lands,
-* back-end ``GET /booking?firstname=`` filtering (Low).
+* the reservation-calendar completion (``REQ-UI-RES-02``),
+* admin room create / delete (``REQ-UI-ROOMS-02/03``),
+* the branding / report / messages admin pages,
+* the nav-anchor scroll (``REQ-UI-HOME-03``).

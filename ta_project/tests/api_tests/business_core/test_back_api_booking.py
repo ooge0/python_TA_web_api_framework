@@ -13,7 +13,8 @@ from requests import HTTPError
 from config.logger_config import get_logger
 
 
-@allure.feature("back-end booking")
+@allure.epic("Back-end API")
+@allure.feature("Bookings")
 class TestBackApiBooking:
     """Happy-path CRUD over ``/booking``."""
 
@@ -36,6 +37,12 @@ class TestBackApiBooking:
         """TC-BE-BOOK-008 area: GET /booking/{id} returns the object."""
         booking_id, _, payload = created_backend_booking
         assert_that(back_booking_api.get(booking_id).json().get("firstname"), is_(payload.firstname))
+
+    def test_name_filter_returns_the_matching_booking(self, back_booking_api, created_backend_booking):
+        """TC-BE-BOOK-018 (REQ-BE-BOOKING-02): GET /booking?firstname=&lastname= filters the list."""
+        booking_id, _, payload = created_backend_booking
+        ids = back_booking_api.find(firstname=payload.firstname, lastname=payload.lastname).get_booking_ids()
+        assert_that(booking_id in ids, is_(True), "the filtered list should contain the booking we just created")
 
     # ---- create ----
 
@@ -83,7 +90,9 @@ class TestBackApiBooking:
         assert_that(exc.value.response.status_code, is_(404))
 
 
-@allure.feature("back-end booking")
+@allure.epic("Back-end API")
+@allure.feature("Bookings")
+@allure.story("Negative")
 class TestBackApiBookingNegative:
     """Negative cases - ``APIClient`` turns a 4xx/5xx into ``requests.HTTPError``."""
 

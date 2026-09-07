@@ -8,10 +8,9 @@ Every case is tied to a feature and one or more requirements from
 :ref:`qa_feature_catalogue`. ``Node`` is the pytest ``Class::method`` (file
 implied by the section). Placeholder rows (``Not implemented``) are cases that
 *should* exist to cover a valuable requirement but have no test yet - they are
-the M7 backlog.
+the UI-coverage backlog (:ref:`qa_known_issues` KI-12).
 
 Legend - **Status**: ``Automated`` = test exists and passes ·
-``Blocked`` = test exists, cannot run (UI, pending M8) ·
 ``Not implemented`` = placeholder, no test.
 
 Back-end API - Auth  (``test_back_api_auth.py``)
@@ -53,7 +52,7 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-015", "REQ-BE-BOOKING-04", "GET /booking/{missing id} -> 404", "negative", "Medium", "Automated", "::test_get_missing_id_is_404"
    "TC-BE-BOOK-016", "REQ-BE-BOOKING-13", "POST /booking with an empty body -> 500", "negative", "High", "Automated", "::test_create_with_empty_body_is_rejected"
    "TC-BE-BOOK-017", "REQ-BE-BOOKING-13", "POST /booking without bookingdates -> 500", "negative", "Medium", "Automated", "::test_create_without_dates_is_rejected"
-   "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname= filters the list", "positive", "Low", "Not implemented", "-"
+   "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname=&lastname= filters the list", "positive", "Low", "Automated", "TestBackApiBooking::test_name_filter_returns_the_matching_booking"
 
 Back-end API - Ping
 ===================

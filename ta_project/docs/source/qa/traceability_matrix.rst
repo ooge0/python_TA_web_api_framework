@@ -8,10 +8,13 @@ One row per requirement from :ref:`qa_feature_catalogue`, its test cases from
 :ref:`qa_test_cases`, and whether it is currently covered by a passing test.
 
 ``Covered`` = at least one ``Automated`` (passing) case.
-``Blocked`` = cases exist but cannot run (UI, pending M8).
 ``Gap`` = no case implemented.
 
-Snapshot: 47 API + 13 UI tests passing (1 skipped = the episode reminder).
+Snapshot: 49 API + 13 UI tests passing (1 skipped = the episode reminder).
+Back-end API and front-end API are fully covered. The open gaps are all UI:
+the nav-anchor scroll, the reservation-calendar completion, admin room
+create / delete, and the branding / report / messages admin pages - see
+:ref:`qa_known_issues` KI-12.
 
 Back-end API
 ============
@@ -25,7 +28,7 @@ Back-end API
    "REQ-BE-AUTH-03", "TC-BE-AUTH-006", "Automated", "Covered"
    "REQ-BE-PING-01", "TC-BE-PING-001", "Automated", "Covered"
    "REQ-BE-BOOKING-01", "TC-BE-BOOK-001/002, TC-BE-PERF-004", "Automated", "Covered"
-   "REQ-BE-BOOKING-02", "TC-BE-BOOK-018", "Not implemented", "Gap"
+   "REQ-BE-BOOKING-02", "TC-BE-BOOK-018", "Automated", "Covered"
    "REQ-BE-BOOKING-03", "TC-BE-BOOK-008", "Automated", "Covered"
    "REQ-BE-BOOKING-04", "TC-BE-BOOK-015", "Automated", "Covered"
    "REQ-BE-BOOKING-05", "TC-BE-BOOK-003..007, TC-BE-PERF-003", "Automated", "Covered"

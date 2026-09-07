@@ -10,7 +10,9 @@ from core.data.json_schemas.booking_schema import BOOKING_SCHEMA_MAIN, BOOKING_S
 from utilities.api_utils import validate_json
 
 
-@allure.feature("Booking")
+@allure.epic("Back-end API")
+@allure.feature("Bookings")
+@allure.story("Schema validation")
 class TestJsonValidation:
     """``POST /booking`` and ``GET /booking/{id}`` responses match their schemas."""
 
