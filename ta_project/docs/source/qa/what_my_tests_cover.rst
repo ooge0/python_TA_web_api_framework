@@ -8,7 +8,9 @@ A plain-English walk through what the suite actually checks, by area. For the
 IDs, priorities and pytest node names see :ref:`qa_test_cases`; for the
 requirement-by-requirement view see :ref:`qa_traceability`.
 
-Current run: **40 API tests passing**, 20 UI tests skipped (roadmap M8).
+Current run: **48 API tests passing**, 20 UI tests skipped (roadmap M8).
+API calls go through the per-resource service objects in
+:mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi`` ...).
 
 Back-end API - authentication
 =============================
@@ -48,18 +50,25 @@ Back-end API - health and speed
 ``GET /ping`` returns ``201``. Every verb on ``/auth`` and ``/booking`` answers
 within 2 seconds (single-request latency check).
 
-Front-end API
-=============
+Front-end API (the platform)
+============================
 
 #. **Auth.** ``POST /api/auth/login`` with valid credentials returns ``200``
    with a token in the body; invalid credentials return ``401``; fuzzed
-   credentials always ``401``.
-#. **Rooms.** ``GET /api/room`` returns the room list and each room has the
-   fields I expect (id, name, type, price).
+   credentials always ``401``. ``POST /api/auth/validate`` says ``{"valid":
+   true}`` for a real token and ``403`` for a tampered one.
+#. **Rooms.** ``GET /api/room`` returns the list; ``GET /api/room/{id}`` the
+   details. With a token I can ``POST`` a new room, find it in the list, and
+   ``DELETE`` it again.
+#. **Reservations.** ``POST /api/booking`` (public "Book now") creates a
+   reservation and returns a ``bookingid``; a second booking that overlaps it
+   is rejected with ``409``. ``GET /api/booking?roomid=`` (token) lists a room's
+   bookings.
 #. **Branding.** ``GET /api/branding`` returns the B&B name, map and contact
    block.
-#. **Messages.** ``POST /api/message`` (the public contact form) is accepted
-   with ``{"success": true}``.
+#. **Messages.** ``POST /api/message`` (the public contact form) is accepted;
+   ``GET /api/message`` + ``/count`` (token) return the inbox and the total.
+#. **Report.** ``GET /api/report`` (token) returns ``200``.
 
 UI - paused (roadmap M8)
 ========================
@@ -78,10 +87,9 @@ they cover:
 Not covered yet
 ===============
 
-Placeholders exist in :ref:`qa_test_cases` for these, ordered by value:
+Placeholders exist in :ref:`qa_test_cases` for these:
 
-* front-end **reservation** flow (the public "Book now"),
-* front-end **room create / delete** and the **message inbox**,
-* ``GET /booking?firstname=`` filtering,
-* front-end **token validate / logout**,
-* the whole **UI set** until M8 lands.
+* the whole **UI set** until M8 lands,
+* back-end ``GET /booking?firstname=`` filtering (Low),
+* platform ``/auth/logout`` (the request shape is unclear - returns 400 for
+  every form I have tried).

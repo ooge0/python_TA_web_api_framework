@@ -1,4 +1,4 @@
-core.api
+﻿core.api
 ========
 
 .. automodule:: core.api
@@ -14,3 +14,4 @@ core.api
    api_client_fixtures
    backend_api_points
    frontend_api_points
+   services

@@ -1,12 +1,11 @@
 """
-Front-end API (restful-booker-platform, ``/api``) resource reads / contact form.
-M7 gap-fill - the front-end API had only auth coverage before this.
+Front-end API (restful-booker-platform, ``/api``) - rooms, branding, messages,
+token validation. Uses the service objects from :mod:`core.api.services`.
 """
 import faker
-from hamcrest import assert_that, is_, is_not, none, has_key
+from hamcrest import assert_that, is_, is_not, none, greater_than_or_equal_to
 
 from config.logger_config import get_logger
-from core.api.frontend_api_points import FrontEndPoints
 
 
 class TestFrontApiResources:
@@ -14,27 +13,28 @@ class TestFrontApiResources:
 
     logger = get_logger()
 
-    def test_front_api_room_list(self, frontend_api_client):
+    def test_front_api_room_list(self, front_room_api):
         """TC-FE-ROOM-001: GET /api/room returns the room list."""
-        response = frontend_api_client.get(FrontEndPoints.ROOM)
-        assert_that(response.status_code, is_(200))
-        body = response.json()
-        assert_that(body, has_key("rooms"))
-        assert_that(len(body["rooms"]), is_not(0))
-        first = body["rooms"][0]
-        for field in ("roomid", "roomName", "type", "roomPrice"):
-            assert_that(first, has_key(field))
+        rooms = front_room_api.list()
+        assert_that(len(rooms), greater_than_or_equal_to(1))
+        first = rooms[0]
+        assert_that(first.roomid, is_not(none()))
+        assert_that(first.type, is_not(""))
 
-    def test_front_api_branding(self, frontend_api_client):
+    def test_front_api_room_by_id(self, front_room_api):
+        """TC-FE-ROOM-002: GET /api/room/{id} returns room details."""
+        room = front_room_api.get(1)
+        assert_that(room.roomid, is_(1))
+        assert_that(room.features, is_not(none()))
+
+    def test_front_api_branding(self, front_branding_api):
         """TC-FE-BRAND-001: GET /api/branding returns branding data."""
-        response = frontend_api_client.get(FrontEndPoints.BRANDING)
-        assert_that(response.status_code, is_(200))
-        body = response.json()
+        body = front_branding_api.get().json()
         for field in ("name", "map", "logoUrl", "contact"):
-            assert_that(body, has_key(field))
+            assert_that(field in body, is_(True), f"branding is missing '{field}'")
         assert_that(body["name"], is_not(none()))
 
-    def test_front_api_create_message(self, frontend_api_client, api_valid_headers):
+    def test_front_api_create_message(self, front_message_api):
         """TC-FE-MSG-001: POST /api/message (contact form) is accepted."""
         fake = faker.Faker()
         payload = {
@@ -44,6 +44,24 @@ class TestFrontApiResources:
             "subject": "Automated check " + fake.word(),
             "description": fake.sentence(nb_words=12),
         }
-        response = frontend_api_client.post(FrontEndPoints.MESSAGE, headers=api_valid_headers, json=payload)
-        assert_that(response.status_code, is_(200))
-        assert_that(response.json().get("success"), is_(True))
+        assert_that(front_message_api.send(payload).json().get("success"), is_(True))
+
+    def test_front_api_message_inbox(self, front_message_api, front_token):
+        """TC-FE-MSG-002: GET /api/message (token) lists messages + a count."""
+        messages = front_message_api.list(front_token).json().get("messages", [])
+        count = front_message_api.count(front_token).json().get("count")
+        assert_that(count, greater_than_or_equal_to(len(messages)))
+        for message in messages[:1]:
+            for field in ("id", "name", "subject", "read"):
+                assert_that(field in message, is_(True), f"message is missing '{field}'")
+
+    def test_front_api_token_validation(self, front_auth_api, front_token):
+        """TC-FE-AUTH-005: a valid token validates; a tampered one is rejected."""
+        assert_that(front_auth_api.validate(front_token).json().get("valid"), is_(True))
+        try:
+            front_auth_api.validate("not-a-real-token")
+        except Exception as exc:  # APIClient raises HTTPError on 403
+            assert_that(getattr(exc, "response", None) is not None, is_(True))
+            assert_that(exc.response.status_code, is_(403))
+        else:
+            raise AssertionError("a bogus token should not validate")

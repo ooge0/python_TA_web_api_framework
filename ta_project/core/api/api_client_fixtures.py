@@ -57,6 +57,12 @@ def front_auth_api(frontend_api_client) -> AuthApi:
 
 
 @pytest.fixture
+def front_token(front_auth_api) -> str:
+    """A valid platform auth token (string)."""
+    return front_auth_api.token_for(get_settings().front_api_valid_creds)
+
+
+@pytest.fixture
 def front_room_api(frontend_api_client) -> RoomApi:
     return RoomApi(frontend_api_client)
 

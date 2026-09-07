@@ -20,8 +20,8 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 | M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported, not gating yet) and `pytest -n auto` with coverage on every push / PR; `deploy-docs.yml` rewritten to actually install deps and build from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done; `pytest-cov` added (coverage **43%**, no floor yet - that comes after M7). Stale test inventory and the committed `logfile.log` untracked. |
 | M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` no longer swallows errors (parsed once, cached), `connect_to_db` re-raises, per-worker SQLite via `TA_DB_PATH` + the `_isolated_db` session fixture (committed `.db` removed - always built fresh), booking write tests create + clean up their own record, credentials single-sourced to `config.ini [credentials]`. Decision: keep `pytest -n auto` (default in `tox.ini`) - the API suite is stable across repeated parallel runs. |
 | M4 QA artifacts | **in progress.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, plus a plain-English `what_my_tests_cover` page. The Sphinx site was restructured: "Tests" + "Test Design & QA" merged into one **QA & Testing** section; the thin setup pages merged into one; intro/features/structure pages rewritten in first person; Sphinx now builds with **0 errors** (dropped `viewcode`, fixed stale includes/encodings). `README.md` has a standalone "Test design & QA artifacts" section. Still to do: `pytest-cov` floor, Allure taxonomy (68), a CI matrix-vs-catalogue diff (63). |
-| M7 expand coverage | **API in progress.** +10 tests (30 -> 40): back-end negative-auth on booking writes (403), missing-id 404, malformed-payload 500, `/ping` 201; front-end `/api/room` list, `/api/branding`, `/api/message`. Requirement coverage 14 -> 21 of 52. Remaining API: front reservation flow, room CRUD, message inbox. UI blocked on M8. |
-| M5 clean the core | **in progress.** Done: item 39 (data models -> pydantic v2, fixes 10/22/old-4), 37 (deleted the 2nd DB module), 43 (deleted unused `config/db_config.py`), 44 (deleted `HeaderModel`, `take_screenshot`, `check_sys_env_issues`, dead fixture branch), 51 (logger path anchored to project root, xdist-safe), 52 (renamed `front_api_bookingID_list_data_model` -> snake_case). Also fixed a real M3 bug: `_isolated_db` required the xdist-only `worker_id` fixture, so the suite failed without `-n`. Deferred: 36 (Excel dedup), 38 (utilities package split), 40 (per-resource service objects), 41 (locator tuples -> M8), 42 (typed settings), 46 (soft assertions -> M8). |
+| M7 expand coverage | **API done (48 tests, 30/52 reqs).** Back-end +10 (negative-auth 403, missing-id 404, malformed 500, `/ping`); front-end +8 (`/api/room` get/create/delete, public reservation + overlap 409, room bookings, message inbox, token validate, report). Front-end API went from auth-only to 14/15 requirements. Remaining: back-end `?firstname=` filter (Low), platform `/auth/logout` (request shape unclear), the UI set (M8). |
+| M5 clean the core | **in progress.** Done: 39 (pydantic models), 37/43/44 (dead code), 51 (logger path), 52 (rename), **42 (typed `config/settings.py`)**, **40 (per-resource service objects - `core/api/services/`, wired as fixtures; new front-end tests use them; migrating the existing back-end tests is the next slice)**. Also fixed a real M3 bug: `_isolated_db` needed the xdist-only `worker_id` fixture. Deferred: 36 (Excel dedup), 38 (utilities package split), 41 (locator tuples -> M8), 46 (soft assertions -> M8). |
 | M6 finish the edges | **in progress.** Done: item 24 (`navbar1` typo), 49 (`docs/requirements.txt` now constrained by the lock file), 50 (dropped unconfigured `tach`; contributor guide rewritten to the real tooling), 54 (README quickstart at the top), 55 (deleted `index_old.rst_`, `favicon1.ico`, stale `list_of_all_project_tests*`, `facepalm.jpg`, placeholder text; fixed broken `.. include::` and `\|RST\|`), 56 (`pylint.rc` -> UTF-8, `project_tree.txt` regenerated), 58 (`conf.py` author -> `ooge0`, dead `templates_path`), 60 (`tasks.py` rewritten, `setup_env.bat` bash-ism). **Sphinx now builds with 0 errors.** Deferred: 23/31/32 (base-page waits -> M8), 53 (docstring pass). |
 | M8 (new) re-target the UI layer | not started - see below. |
 
@@ -230,6 +230,20 @@ Admin login `https://automationintesting.online/admin` (note: `/admin`, not `/#/
 - rooms table: `[data-testid='roomlisting']` (`#room1..#room3`), `#createRoom`,
   `#roomName`
 
+More detail (probed 2026-09-07):
+- **invalid login**: stays on the form, shows ``div.alert.alert-danger`` with
+  text "Invalid credentials".
+- **contact form validation**: an empty submit shows one ``#contact .alert-danger``
+  div listing every error ("Subject must be between 5 and 100 characters." ...).
+- **contact success**: no ``.alert-success`` - the ``#contact`` card is replaced
+  with a "Thanks for getting in touch <name>! ..." block.
+- **admin rooms**: ``[data-testid='roomlisting']`` rows ``#room1..``, ``#createRoom``.
+- ``DELETE /api/room/{id}`` and ``DELETE /api/booking/{id}`` return **202**.
+
 Reference-data drift to fix with this milestone: the `data_validation_admin_page_ui`
 seed still says branding = "B&B Booking Management"; it is now
 "Restful Booker Platform Demo". Footer hrefs are `/cookie` `/privacy` (no `#/`).
+
+A first pass at the new ``(By, "selector")`` locators + a rewritten
+``BaseFrontPage`` was drafted and reverted (the user redirected). Start from
+the DOM map above.
