@@ -10,20 +10,19 @@ The tree
 .. code-block:: text
 
    core/
-     api/         APIClient + the endpoint constant registries
+     api/         APIClient + endpoint registries + per-resource service objects
+       services/  AuthApi / BookingApi / RoomApi / BrandingApi / MessageApi / ReportApi / PlatformBookingApi
      pages/       Selenium page objects (BaseFrontPage -> Home / LoginAdmin / AdminRooms)
      locators/    locator registries, one class per page
      data/
        data_models/    pydantic models with from_dict / to_dict
-       data_factory/   DataFactory -> ExcelDataProvider (openpyxl)
        json_schemas/   JSON Schemas for the /booking responses
-     reference_data/   string-constant classes = DB column names
-   config/        config.ini, logger_config.py (loguru), pylint.rc
-   utilities/     config reader, api/db/excel helpers, assertions
+   config/        config.ini, settings.py (typed, cached), logger_config.py (loguru), pylint.rc
+   utilities/     config reader, api helpers, Excel data provider; _devtools/ for doc scripts
    resources/     test data - fixtures, the MIME catalogue, the Excel workbook
    tests/
      conftest.py            the only project conftest; composes fixtures via pytest_plugins
-     api_tests/             requests-based - business_core/ (auth, booking) + other/ (schema, perf)
+     api_tests/             requests-based - business_core/ (auth, booking, resources) + other/ (schema, perf)
      web_app_tests/         Selenium - test_login_page/ + tests_home_page/
    docs/          this Sphinx site
    pyproject.toml pytest config (markers, testpaths)
@@ -32,16 +31,17 @@ The tree
 How the pieces connect
 ======================
 
-#. **API calls** go through ``APIClient._request`` - one dispatcher, then thin
-   ``get/post/put/patch/delete`` wrappers. Endpoints are string constants in
-   ``BackEndPoints`` / ``FrontEndPoints``; the test assembles endpoint + client
-   + payload.
+#. **API calls** go through a per-resource **service object**
+   (:mod:`core.api.services`) that binds an endpoint, an :class:`APIClient` and
+   the pydantic models; the client itself is one ``_request`` dispatcher with
+   thin ``get/post/put/patch/delete`` wrappers.
 #. **Fixtures** are composed in ``tests/conftest.py`` via ``pytest_plugins``
-   from ``core/api/api_client_fixtures.py``,
+   from ``core/api/api_client_fixtures.py`` (clients + service objects),
    ``resources/test_data/fixtures_api_test_data.py`` and the two
    ``fixtures_for_*_tests.py`` files.
-#. **Test data** comes from inline constants, the Excel workbook, or the SQLite
-   store (rebuilt per session, per xdist worker).
+#. **Test data** is inline constants and ``Faker`` for most cases; one
+   data-driven case reads invalid-login rows from an Excel workbook via
+   ``ExcelDataProvider``.
 #. **Reporting** - Allure decorators, screenshot-on-failure via the
    ``pytest_runtest_makereport`` hook, loguru file/console logging, per-test
    start/outcome logging from an autouse fixture.

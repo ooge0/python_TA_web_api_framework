@@ -19,5 +19,4 @@ Subpackages
    core.data
    core.locators
    core.pages
-   core.reference_data
 

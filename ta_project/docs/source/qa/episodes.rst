@@ -8,7 +8,7 @@ Things that went wrong in this framework and what I took from them. Kept here so
 the mistakes stay visible instead of being quietly fixed and forgotten.
 
 Episode 1 - the UI layer targeted a SUT that no longer exists
-============================================================
+=============================================================
 
 **What happened.** The Selenium page objects, locators and the
 ``setup_and_teardown`` fixture were all written against the 2024
@@ -36,7 +36,7 @@ episode visible.
 suite is the definition of done - not "the code looks right".
 
 Episode 2 - a read-only review is a guess until you run it
-=======================================================
+==========================================================
 
 **What happened.** The first pass over the code (reading only, no execution)
 produced ``improvements.md``. Two of its findings were wrong - the
@@ -50,7 +50,7 @@ no auth token.
 before acting. The run is cheap; a wrong "fix" is not.
 
 Episode 3 - a fixture that only worked in parallel
-===============================================
+==================================================
 
 **What happened.** The ``_isolated_db`` session fixture (per-worker SQLite)
 depended on ``worker_id``, which ``pytest-xdist`` only provides when running
@@ -62,7 +62,7 @@ Read ``request.config.workerinput`` directly and default sensibly. Test the
 non-default path too (here: run once without ``-n``).
 
 Episode 4 - the probe was broken, not the SUT
-==========================================
+=============================================
 
 **What happened.** A quick ``curl`` probe of ``POST /api/auth/logout`` returned
 ``400`` for every request shape, and I wrote it up as "the endpoint's contract
@@ -74,7 +74,7 @@ endpoint returns ``{"success": true}``.
 **Lesson.** When a probe gives a surprising result, check the probe first.
 
 Episode 5 - no CI means copy-paste drift compounds
-===============================================
+==================================================
 
 **What happened.** Over the life of the project several things slipped in and
 stayed: two test methods with the same name in one file (Python keeps the last,

@@ -21,8 +21,8 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 | M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` no longer swallows errors (parsed once, cached), `connect_to_db` re-raises, per-worker SQLite via `TA_DB_PATH` + the `_isolated_db` session fixture (committed `.db` removed - always built fresh), booking write tests create + clean up their own record, credentials single-sourced to `config.ini [credentials]`. Decision: keep `pytest -n auto` (default in `tox.ini`) - the API suite is stable across repeated parallel runs. |
 | M4 QA artifacts | **in progress.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, plus a `what_my_tests_cover` page. The Sphinx site was restructured: "Tests" + "Test Design & QA" merged into one **QA & Testing** section; the thin setup pages merged into one; intro/features/structure pages rewritten in first person; Sphinx now builds with **0 errors** (dropped `viewcode`, fixed stale includes/encodings). `README.md` has a standalone "Test design & QA artifacts" section. Still to do: `pytest-cov` floor, Allure taxonomy (68), a CI matrix-vs-catalogue diff (63). |
 | M7 expand coverage | **API done (47 tests, 31/52 reqs).** Back-end +10 (negative-auth 403, missing-id 404, malformed 500, `/ping`); front-end +9 (`/api/room` get/create/delete, public reservation + overlap 409, room bookings, message inbox, token validate, logout, report). **Front-end API is fully covered - 15/15.** Back-end is one Low case short (`?firstname=` filter). Remaining API is trivial; the rest is the UI set (M8). |
-| M5 clean the core | **mostly done.** 39 (pydantic models), 37/43/44 (dead code), 51 (logger path), 52 (rename), **42 (typed `config/settings.py`)**, **40 (`core/api/services/` - `AuthApi` / `BookingApi` / `RoomApi` / `BrandingApi` / `MessageApi` / `PlatformBookingApi`; the back-end auth+booking and front-end auth test modules now call the API through them; `test_front_api_booking.py` (misfiled) removed)**. Also fixed a real M3 bug: `_isolated_db` needed the xdist-only `worker_id` fixture. Deferred: 36 (Excel dedup), 38 (utilities package split), 41 (locator tuples -> M8), 46 (soft assertions -> M8); `test_api_performance.py` + `test_api_json_schema_validation.py` still use the bare client (low value to churn). |
-| M6 finish the edges | **in progress.** Done: item 24 (`navbar1` typo), 49 (`docs/requirements.txt` now constrained by the lock file), 50 (dropped unconfigured `tach`; contributor guide rewritten to the real tooling), 54 (README quickstart at the top), 55 (deleted `index_old.rst_`, `favicon1.ico`, stale `list_of_all_project_tests*`, `facepalm.jpg`, placeholder text; fixed broken `.. include::` and `\|RST\|`), 56 (`pylint.rc` -> UTF-8, `project_tree.txt` regenerated), 58 (`conf.py` author -> `ooge0`, dead `templates_path`), 60 (`tasks.py` rewritten, `setup_env.bat` bash-ism). **Sphinx now builds with 0 errors.** Deferred: 23/31/32 (base-page waits -> M8), 53 (docstring pass). |
+| M5 clean the core | **done.** 39 (pydantic models), 42 (typed cached `config/settings.py`), 40 (`core/api/services/` - `AuthApi` / `BookingApi` / `RoomApi` / `BrandingApi` / `MessageApi` / `ReportApi` / `PlatformBookingApi`; **every** API test module now calls through them - `test_api_performance.py` and `test_api_json_schema_validation.py` migrated, the last raw-client calls in the front booking flow gone), 41 (locator tuples, delivered in M8), 36 (Excel: `excel_utils.py` + `DataFactory` + `LoginCredentials` deleted, `ExcelDataProvider` kept and wired into one real data-driven test), 37 (SQLite apparatus - `db_utils`, `test_data_utils`, `core/reference_data/`, the `_isolated_db` / `validation_data` / `setup_database` fixtures - all deleted, nothing used them after M8), 38 (`utilities/_devtools/` for the doc scripts; `back_api_utils.py` / `get_names_of_tests.py` / the disabled `fix_path_*` file removed), 43/44 (dead code, `config/db_config.py`, dead fixtures), 46 (`pytest-check` soft assertions in the multi-field checks), 47 (test flag gone with `LoginCredentials`), 51 (logger path), 52 (rename). `pytest-lazy-fixture` + `regex` dropped from the deps. |
+| M6 finish the edges | **done.** 10 (`BackApiAuthPayload.to_dict` returns a dict; the model is now used by the back-auth test), 22 (`HeaderModel` deleted), 23/31/32 (base-page waits, delivered in M8), 24 (`navbar1` typo), 49 (`docs/requirements.txt` constrained by the lock file), 50 (dropped unconfigured `tach`; contributor guide rewritten to the real tooling), 52/53 (naming + a docstring pass over conftest / fixtures / the migrated tests), 54 (README quickstart), 55 (deleted `index_old.rst_`, `favicon1.ico`, stale `list_of_all_project_tests*`, `facepalm.jpg`, placeholders; fixed broken includes), 56 (`pylint.rc` -> UTF-8, `project_tree.txt`), 58 (`conf.py` author, dead `templates_path`), 60 (`tasks.py`, `setup_env.bat`). **Sphinx builds with 0 errors** (stale autodoc entries for the deleted modules cleaned; RST title underlines in the QA docs fixed). |
 | M8 re-target the UI layer | **done.** New `(By, "selector")` tuple locators (delivers item 41), a rewritten `BaseFrontPage` (`find/click/type/text_of/is_visible`, delivers items 31/32), new page objects for the SPA (`HomeFrontPage`, `LoginAdminPage`, `AdminRoomsFrontPage`), and a `setup_and_teardown` that waits for the async render instead of clicking the gone intro banner. `test_login_actions_validation.py` (the stalest, most duplicated file) removed; `test_home_page.py` + `test_login_page.py` rewritten. **13 UI tests pass** against the live SPA (6 home, 7 admin). `base_locators.py` (Enum) deleted. Reference data `home_page_validation_data.py` + the DB-backed UI test are gone. Total requirement coverage 31 -> 41 of 52. |
 
 ---
@@ -130,10 +130,13 @@ Covers: one Excel path; one DB module; `pydantic` models; `(By.X, "selector")`
 locators; a typed settings object loaded once; `utilities/` split into a real
 package; dead code removed; soft assertions where a test checks several things.
 
-**Done when:**
-- No duplicated abstraction remains (Excel, DB, serialization).
-- `core/` has no module that only exists to be unused.
-- A new page object or API resource follows one obvious pattern.
+**Done when:** ✅ (all met)
+- No duplicated abstraction remains (Excel, DB, serialization) - one Excel
+  provider, no DB layer, pydantic for serialization.
+- `core/` has no module that only exists to be unused - the dead factory /
+  reference-data / login-model modules are gone.
+- A new API resource follows one obvious pattern: a `BaseApi` subclass in
+  `core/api/services/` plus a fixture. Every API test uses that path.
 
 ---
 
@@ -149,11 +152,12 @@ latent bugs (`HeaderModel` header name, navbar index mismatch, `to_dict`
 returning a str); `tach`/`mypy` either configured or dropped; the broken
 `tasks.py` / `setup_env.bat` lines.
 
-**Done when:**
+**Done when:** ✅ (all met)
 - README opens with clone → venv → `pytest`.
-- `git grep -i` for the known typos returns nothing.
-- Every declared dev tool is either wired into pre-commit/CI or removed from the
-  deps.
+- The known typos / bad encodings / `tasks.py` + `setup_env.bat` lines are
+  fixed; `HeaderModel` and the `to_dict`-returns-a-str bug are gone.
+- Every declared dev tool is either used or removed (`tach`, `pytest-lazy-fixture`,
+  `regex` dropped; `pylint` runs in CI).
 
 ---
 

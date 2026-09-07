@@ -1178,13 +1178,10 @@ browser.
 
 ### Test List
 
-List of existing tests for the current project is possible to generate by executing python
-script [make_list_of_tests.py](utilities/make_list_of_tests.py).
-Result will be presented in the [list_of_all_project_tests.md](resources/list_of_all_project_tests.md). \
-All tests are grouping by categories. \
-IMPORTANT!!!
-If you did any changes, please validate path to the test dir in
-the [make_list_of_tests.py](utilities/make_list_of_tests.py)
+A list of the current tests can be generated with the developer script
+[make_list_of_tests.py](utilities/_devtools/make_list_of_tests.py); the
+authoritative view is the QA & Testing section of the Sphinx docs
+(`docs/source/qa/`), which maps every test to a requirement.
 
 # Publishing Sphinx doc on GitHub pages
 

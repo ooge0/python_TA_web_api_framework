@@ -12,6 +12,7 @@ from hypothesis.strategies import text
 from requests import HTTPError
 
 from config.logger_config import get_logger
+from core.data.data_models.back_api_auth_data_models import BackApiAuthPayload
 from resources.test_data.headers_mimo_types import MimeType
 
 
@@ -22,9 +23,9 @@ class TestBackApiAuth:
     logger = get_logger()
 
     def test_valid_credentials_return_a_token(self, back_auth_api, back_api_valid_user_creds):
-        """TC-BE-AUTH-001."""
-        token = back_auth_api.create_token(back_api_valid_user_creds).json().get("token")
-        assert_that(token, is_not(none()), "no token was issued for valid credentials")
+        """TC-BE-AUTH-001: valid credentials -> a token (validated through the response model)."""
+        payload = BackApiAuthPayload.from_dict(back_auth_api.create_token(back_api_valid_user_creds).json())
+        assert_that(payload.token, is_not(none()), "no token was issued for valid credentials")
 
     def test_invalid_credentials_are_rejected(self, back_auth_api, api_invalid_user_creds):
         """TC-BE-AUTH-002."""

@@ -3,6 +3,7 @@ Front-end API (restful-booker-platform, ``/api``) - rooms, branding, messages,
 token validation. Uses the service objects from :mod:`core.api.services`.
 """
 import faker
+import pytest_check as check
 from hamcrest import assert_that, is_, is_not, none, greater_than_or_equal_to
 
 from config.logger_config import get_logger
@@ -28,11 +29,15 @@ class TestFrontApiResources:
         assert_that(room.features, is_not(none()))
 
     def test_front_api_branding(self, front_branding_api):
-        """TC-FE-BRAND-001: GET /api/branding returns branding data."""
+        """TC-FE-BRAND-001: GET /api/branding returns the full branding block.
+
+        Soft assertions (``pytest_check``): every missing field is reported, not
+        just the first.
+        """
         body = front_branding_api.get().json()
         for field in ("name", "map", "logoUrl", "contact"):
-            assert_that(field in body, is_(True), f"branding is missing '{field}'")
-        assert_that(body["name"], is_not(none()))
+            check.is_in(field, body, f"branding is missing '{field}'")
+        check.is_true(bool(body.get("name")), "branding 'name' is empty")
 
     def test_front_api_create_message(self, front_message_api):
         """TC-FE-MSG-001: POST /api/message (contact form) is accepted."""

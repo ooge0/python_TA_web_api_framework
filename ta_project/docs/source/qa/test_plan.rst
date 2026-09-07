@@ -32,9 +32,9 @@ Scope
      - home page, contact form, admin login, admin navigation, rooms table
      - visual regression, accessibility, cross-device
    * - Data
-     - inline constants, Excel (``booker_test_data.xlsx``), SQLite reference
-       store
-     -
+     - inline constants, ``Faker``, and one data-driven case reading the
+       invalid-login rows from ``booker_test_data.xlsx``
+     - external / database-backed test data
 
 Test types
 ==========
@@ -57,10 +57,11 @@ Credentials (public demo accounts, ``config.ini [credentials]``):
 Data strategy
 =============
 
-* API write tests create and then delete their own booking (no hard-coded ids).
-* The SQLite reference DB is rebuilt per test session, per xdist worker
-  (``TA_DB_PATH``).
-* Excel data is read-only.
+* API write tests create and then delete their own record (no hard-coded ids),
+  which is what makes ``pytest -n auto`` safe.
+* Most data is inline constants or ``Faker``.
+* One data-driven case: ``ExcelDataProvider`` reads the invalid-login rows from
+  ``booker_test_data.xlsx`` (read-only) into a ``parametrize``.
 
 Entry criteria
 ==============

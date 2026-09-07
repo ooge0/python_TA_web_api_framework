@@ -35,11 +35,12 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       # The API tests run against the live restful-booker / automationintesting
-      # services (no local stub yet - ROADMAP M3). The UI tests are skipped at
-      # module level (ROADMAP M8), so no browser is needed here.
+      # services (no local stub yet - ROADMAP M3). The Selenium UI tests
+      # (``-m ui``) need a real browser and are left to local / a future
+      # browser job; CI runs the API suite.
       - name: pytest
         run: >
-          pytest -n auto
+          pytest -n auto -m "not ui"
           --cov=core --cov=utilities
           --cov-report=term-missing --cov-report=xml
           --junitxml=junit.xml

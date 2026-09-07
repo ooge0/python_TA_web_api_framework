@@ -40,8 +40,9 @@ How I test
 #. **Against the live services.** There is no local stub yet - the tests hit
    the real practice servers. Each write test creates and deletes its own
    booking, so nothing depends on data that another run left behind.
-#. **Data from three sources, on purpose.** Inline constants, an Excel workbook
-   and a per-worker SQLite store - I wired all three to show the pattern.
+#. **Data.** Inline constants and ``Faker`` for most cases; one data-driven
+   example - the invalid-login rows in an Excel workbook feed the front-end auth
+   negative test.
 #. **Parallel by default.** ``pytest -n auto`` (xdist); the API suite is
    parallel-safe.
 #. **More than one assertion style where it earns its place.** PyHamcrest

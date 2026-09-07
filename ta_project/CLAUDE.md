@@ -16,183 +16,175 @@ end and to sample a wide modern tooling stack (see
 `docs/source/about/about_this_guide.rst`). It is a learning and portfolio
 project, not a production suite.
 
-Active Sep–Dec 2024, 33 commits, single author, Windows-primary. No packaging
-(`pyproject.toml`/`setup.py` absent).
+Originally active Sep–Dec 2024 (33 commits, single author, Windows-primary).
+This copy is the working tree for the `ROADMAP.md` milestones; see
+`## 10. Where M1–M8 landed` for what has changed since the review.
 
 ## 2. Layout and how the pieces connect
 
 ```
 core/
-  api/         APIClient (requests.Session wrapper) + endpoint constant registries
+  api/         APIClient (requests.Session wrapper) + endpoint registries
+    services/  per-resource service objects: AuthApi / BookingApi / RoomApi /
+               BrandingApi / MessageApi / ReportApi / PlatformBookingApi
   pages/       Selenium page objects: BaseFrontPage -> Home / LoginAdmin / AdminRooms
-  locators/    Enum locator registries (BaseLocators + per-page subclasses)
+  locators/    (By, "selector") tuple locator classes, one per page
   data/
-    data_models/    @dataclass models with hand-written from_dict / to_dict
-    data_factory/   DataFactory -> ExcelDataProvider (openpyxl)
+    data_models/    pydantic v2 models with from_dict / to_dict shims
     json_schemas/   plain-dict JSON Schemas for /booking
-  reference_data/  string-constant classes = DB column names
-config/        config.ini (configparser), logger_config.py (loguru), pytest.ini, pylint.rc
-utilities/     13 helper modules: config reader, api/db/excel helpers, assertions, doc-graph generators
-resources/test_data/  fixtures_api_test_data.py, MIME catalogue, committed .xlsx + .db
+config/        config.ini (configparser), settings.py (typed + cached),
+               logger_config.py (loguru), pylint.rc
+utilities/     api_utils, excel_data_provider, general_utils, read_configurations;
+               _devtools/ holds the doc-generation scripts
+resources/test_data/  fixtures_api_test_data.py, MIME catalogue, booker_test_data.xlsx
 tests/
   conftest.py            the only project conftest; composes fixtures via pytest_plugins
-  api_tests/             requests-based; business_core/ (auth, booking) + other/ (schema, perf)
-  web_app_tests/         Selenium; test_login_page/ + tests_home_page/
-docs/          large Sphinx site (source/) + committed build output (html/)
-tasks.py       invoke tasks — docs build only
+  api_tests/             requests-based; business_core/ (auth, booking, resources) + other/ (schema, perf)
+  web_app_tests/         Selenium; test_login_page/ + tests_home_page/ + test_sut_drift_episode.py
+docs/          large Sphinx site (source/); build output is git-ignored
+.github/workflows/  ci.yml (lint + test + coverage), deploy-docs.yml
+tasks.py       invoke tasks — docs + UML build only
+pyproject.toml root pytest config (markers, testpaths, addopts)
 tox.ini        py312 / lint / test(+allure) / pdf docs / html docs
 ```
 
 How I wired the moving parts — know this before editing:
 
-1. **API calls** go through `APIClient._request()` (`core/api/api_client.py`) —
-   one dispatcher with logging + `raise_for_status()`, thin `get/post/put/patch/
-   delete` wrappers. Endpoints are bare string constants in `BackEndPoints` /
-   `FrontEndPoints`. Nothing binds an endpoint to a client and a model; tests
-   assemble the three by hand.
-2. **Locator strategy is chosen by parsing the Enum member-name suffix**
-   (`core/pages/base_page.py::find_element_by_locator`): `..._XPATH_LOCATOR` ->
-   `By.XPATH`, `..._CSS_LOCATOR` -> `By.CSS_SELECTOR`, etc. A locator that is not
-   named this way will not resolve.
-3. **Waits are explicit only** — `WebDriverWait(driver, 10)`, no `time.sleep`, no
-   implicit wait. The timeout is hard-coded per method.
-4. **Models** use a uniform hand-written `from_dict()` / `to_dict()`
-   (`from_list` / `to_list`) contract. No pydantic yet.
-5. **Test data has three interchangeable sources**, on purpose: inline
-   constants, Excel (`resources/test_data/booker_test_data.xlsx`), and SQLite
-   (`resources/test_data/test_data_for_ta_framework.db`, auto-created and seeded
-   by the `setup_database` fixture).
-6. **Fixtures** are composed in `tests/conftest.py` via `pytest_plugins` from
-   `core/api/api_client_fixtures.py`,
+1. **API calls** go through a **per-resource service object**
+   (`core/api/services/`) that binds an endpoint, an `APIClient` and the pydantic
+   models. `APIClient._request()` is still the single dispatcher underneath
+   (logging + secret redaction + `timeout` + `raise_for_status()`), with thin
+   `get/post/put/patch/delete` wrappers. Endpoint strings live in `BackEndPoints`
+   / `FrontEndPoints`. Negative tests that need a raw call use `service.client`.
+2. **Locators are `(By.X, "selector")` tuples** in per-page classes
+   (`core/locators/`). `BaseFrontPage` (`core/pages/base_page.py`) takes those
+   tuples directly: `find / find_all / click / type / text_of / attr_of /
+   is_visible`.
+3. **Waits are explicit only** — `WebDriverWait`, no `time.sleep`, no implicit
+   wait. `DEFAULT_WAIT = 15`, `SHORT_WAIT = 4` on `BaseFrontPage`.
+4. **Models** are pydantic v2 (`core/data/data_models/`) with `from_dict` /
+   `to_dict` compatibility shims; `/booking` responses are also JSON-Schema
+   validated.
+5. **Config** is read once into a cached, typed `Settings` object
+   (`config/settings.py`, `get_settings()`); import that, do not call
+   `read_configuration` directly. Credentials come from `config.ini
+   [credentials]` (public demo creds, not secrets).
+6. **Test data** is inline constants + `Faker` for most cases. One data-driven
+   case: `ExcelDataProvider` reads the invalid-login rows from
+   `booker_test_data.xlsx` into a `parametrize` on the front-end auth negative
+   test.
+7. **Fixtures** are composed in `tests/conftest.py` via `pytest_plugins` from
+   `core/api/api_client_fixtures.py` (clients + service objects),
    `resources/test_data/fixtures_api_test_data.py` and the two
    `fixtures_for_*_tests.py` files.
-7. **Reporting**: Allure decorators, screenshot-on-failure attached to Allure via
+8. **Reporting**: Allure decorators, screenshot-on-failure attached to Allure via
    the `log_failure_by_picture` fixture + `pytest_runtest_makereport` hook,
    loguru file/console logging, per-test start/outcome logging via an autouse
-   fixture.
+   fixture. `pytest-check` for soft assertions in the multi-field checks.
 
 ## 3. Running things
 
 ```bash
-# tests (root has NO pytest config; config/pytest.ini is NOT auto-loaded)
-pytest                              # default settings, live services required
-pytest -c config/pytest.ini        # to pick up markers / testpaths
-pytest -n 10                        # parallel (pytest-xdist)
+pytest                     # root pyproject.toml is picked up automatically
+pytest -n auto             # parallel (pytest-xdist) - the default in tox / CI
+pytest -m api              # or -m ui; markers are auto-applied by path
+pytest --cov               # coverage (also runs in CI)
 
-tox -c tox.ini                      # py312 + lint + docs + allure test env
-python -m invoke build-html         # Sphinx HTML into docs/html/
+tox -c tox.ini             # py312 + lint + docs + allure test env
+python -m invoke build-html   # Sphinx HTML into docs/_build/html
 ```
 
-The suite hits **live shared public services** and uses **hard-coded record
-IDs** (booking 2 and 3). It is network-dependent, creates real data with no
-cleanup, and races under `-n`. Fixing that is `ROADMAP.md` M3.
+The suite hits **live shared public services**. It is network-dependent, but
+every write test now **creates and deletes its own record** (no hard-coded
+ids), so it is deterministic and safe under `-n auto`. The Selenium layer runs
+against today's SPA (rebuilt in M8).
 
 ## 4. Feature inventory (what exists)
 
-**API testing**
-- `APIClient`: shared `requests.Session`, all five verbs, central dispatch with
-  structured logging and `raise_for_status`.
-- Endpoint registries for front and back APIs.
-- Auth: token via `POST /auth` (cookie) / `POST /auth/login` (`Set-Cookie`),
-  regex token extraction, manual `Cookie: token=` header assembly.
-- JSON-Schema validation of `/booking` responses (`jsonschema`), happy-path.
-- Latency assertions (`response.elapsed`), threshold 2 s.
-- Property-based fuzzing of auth params (`hypothesis`).
-- Content-Type negative matrix from a ~70-entry MIME catalogue.
+**API testing** (48 tests)
+- Per-resource service objects over one `APIClient` (`requests.Session`,
+  all five verbs, central dispatch with secret-redacting logging, `timeout`,
+  `raise_for_status`).
+- Back-end: auth (`POST /auth`, negative matrix, Hypothesis fuzz, ~70-entry MIME
+  matrix), `/booking` CRUD incl. no-token 403 / missing-id 404 / malformed 500,
+  `/ping`, JSON-Schema validation, single-request latency checks.
+- Front-end (platform, `/api`): auth (login / validate / logout, incl.
+  data-driven invalid rows from Excel), `/room` get+create+delete, public
+  reservation + overlap 409, room bookings, branding, message inbox, report.
+- Front-end API is fully covered (15/15 requirements); back-end is one Low case
+  short (`?firstname=` filter).
 
-**UI testing**
-- Selenium page-object model: `BaseFrontPage` + `HomeFrontPage`,
-  `LoginAdminPage`, `AdminRoomsFrontPage`.
-- Enum locator registries, `__str__` -> value.
-- Browser factory fixture: chrome / firefox / edge, headless toggle, driver
-  attached to the test class, quit on teardown.
-- Explicit waits throughout; fluent `type/click/clear` returning `self`.
+**UI testing** (13 tests, Selenium, re-targeted at the SPA in M8)
+- Page objects `HomeFrontPage` / `LoginAdminPage` / `AdminRoomsFrontPage` over
+  `BaseFrontPage`; `(By, "selector")` tuple locators; explicit waits only.
+- Home: footer, nav brand, contact form (valid + empty), "Book now" links.
+- Admin: login (valid / invalid / placeholders), navbar, logout, rooms table.
+- Browser factory fixture: chrome / firefox / edge, headless toggle, driver on
+  the test class, quit on teardown; waits for the async render.
+- One skipped test (`test_sut_drift_episode.py`) as a standing reminder of the
+  SUT-drift episode.
 
 **Data**
-- `@dataclass` models with `from_dict`/`to_dict`; nested models for booking.
-- `DataFactory` + `ExcelDataProvider` (openpyxl) with valid/invalid selection.
-- `Faker` generators for contact/booking details.
-- SQLite reference store: schema-as-data table definitions, idempotent seeding,
-  read-as-dict / read-as-namedtuple helpers.
+- pydantic v2 models with `from_dict` / `to_dict` shims; nested booking model.
+- `Faker` for contact / booking / reservation details.
+- One data-driven example: `ExcelDataProvider` (openpyxl) reads the invalid
+  rows from `booker_test_data.xlsx`.
 
 **Test infrastructure**
 - Single conftest with plugin composition, autouse logging, screenshot-on-fail,
   `pytest_runtest_makereport` report attribute hook.
-- Parametrisation via `parametrize` (incl. `indirect`), `lazy_fixture`, Excel,
-  SQLite, Faker, Hypothesis.
-- PyHamcrest matchers as the main assertion style.
+- Parametrisation via `parametrize` (incl. `indirect`), Excel, Faker, Hypothesis.
+- PyHamcrest matchers as the main assertion style; `pytest-check` for the
+  multi-field soft assertions.
+- Markers (`api` / `ui` / ...) auto-applied by path; `pytest -n auto` by default.
 
 **Orchestration / tooling**
-- `tox`: `py312`, `lint` (pylint on `tests/`), `test` (+Allure, auto `allure
-  serve`), `make_pdf_docs`, `make_html_docs`.
+- CI: `.github/workflows/ci.yml` - pylint (reported) + `pytest -n auto -m "not
+  ui"` with coverage on every push / PR.
+- `tox`: `py312`, `lint`, `test` (+Allure), `make_pdf_docs`, `make_html_docs`.
 - `invoke` tasks for Sphinx HTML/PDF build and pyreverse UML.
 - `pip-tools`: `requirements.in` -> compiled `requirements.txt`.
-- Cross-platform bootstrap: `setup_env.bat` / `.sh`, `setup_for_tox.bat`.
 
 **Documentation**
-- Sphinx site: 12 extensions, autosummary + AutoAPI, `rst2pdf`, RTD theme.
-- Hand-written guide pages (`about/`, `config/`), a substantial glossary,
-  pyreverse UML + inline graphviz diagrams.
-- Dual publish: ReadTheDocs + GitHub Pages (currently served from committed
-  pre-built HTML).
-- 39 KB README acting as a personal pytest/Sphinx manual.
+- Sphinx site: autodoc + autosummary + AutoAPI, `rst2pdf`, RTD theme; build
+  output is git-ignored, published from CI.
+- Guide pages (`about/`, `config/`), a glossary, pyreverse UML, and the QA &
+  Testing section (`docs/source/qa/`).
+- Large embedded README that doubles as a personal pytest / Sphinx manual.
 
-**QA / QC artifacts**
-- Generated test inventory: `resources/list_of_all_project_tests.md` (+ `.rst`),
-  built from `pytest --collect-only` by `utilities/make_list_of_tests.py`.
-  Stale.
-- Allure behaviour labels (`@allure.feature`, one full `epic/story/severity`),
-  inconsistent strings.
-- SUT pages/endpoints described in prose in `README.md §1`.
-- That is the whole set — see §5 and §8.
+**QA / QC artifacts** (built in M4, under `docs/source/qa/`)
+- Test plan; feature / requirements catalogue with stable IDs
+  (`FEAT-*` / `REQ-*` / `TC-*`); test cases mapped to requirements (plus
+  placeholders for the gaps); requirements traceability matrix;
+  coverage-by-feature table; `what_my_tests_cover` summary; an episode log.
+- `pytest-cov` wired (no enforced floor yet).
+- Still open: normalise the Allure taxonomy (item 68); a CI catalogue-vs-matrix
+  diff (item 63); a formal known-issues log (item 67).
 
-## 5. What is missing
+## 5. What is still missing
 
-**CI / process**
-- No workflow that runs tests or lint. The only workflow (`deploy-docs.yml`) is
-  docs-only and does not currently build. No coverage measurement, no branch
-  protection, no dependency automation.
-- No lint/format enforcement: black/isort/ruff absent; `mypy`, `flake8`,
-  `pydocstyle`, `tach` are declared or mentioned but unconfigured.
+Most of the original gap list was closed in M1–M8 (see §10). What remains:
 
-**API coverage**
-- `/ping` (health), `/auth/logout`, `/room` (front and back) — untested.
-- Front `/booking` via the front client — the fixture exists, no test uses it.
-- No auth-required negative tests on `PUT`/`PATCH`/`DELETE` booking.
-- No malformed-payload / schema-failure tests.
+**Coverage**
+- Back-end `GET /booking?firstname=` filter — the one Low requirement with no
+  test.
+- Home-page room listing / room details / the reservation calendar — no UI
+  tests (out of M8 scope; would be a new milestone).
+- No load testing, contract testing, visual or accessibility testing.
 
-**UI coverage**
-- Admin Rooms management, Report page, Messages/Inbox, Logout action, Front-Page
-  nav link — no tests (locators exist).
-- Home-page room listing / "Book this room" / room details / reservation
-  calendar — no tests (page methods exist but are broken).
-- Contact-form negative validation — skipped.
-- Negative login coverage is written but not collected (see `improvements.md`).
-
-**Engineering**
-- No environment layering (dev/test/prod) beyond one unused `[env]` key; no
-  settings object; no `.env`/dotenv.
-- No isolation from live services: no stubbed backend, no ephemeral data, no
-  cleanup, no rerun/flake handling.
+**Isolation / infra**
+- Still runs against the live shared public services — no local stub, no
+  ephemeral environment, no rerun/flake handling.
 - No Docker / devcontainer / Selenium Grid / remote WebDriver; drivers assumed
   on PATH.
-- No secrets handling: credentials are hard-coded in fixtures and `config.ini`
-  and logged in cleartext.
-- "Performance" tests are single-request latency asserts — no load testing;
-  also no contract, visual, or accessibility testing.
 
 **QA / QC artifacts**
-- No test plan (scope, approach, environments, entry/exit criteria, risks).
-- No SUT feature/requirements catalogue with stable IDs.
-- No test-case specifications (ID, preconditions, steps, expected, priority,
-  type) — cases live only as code.
-- No requirements traceability matrix (requirement → case → automated test →
-  result).
-- No coverage matrix by feature; untested areas are not recorded as known gaps.
-- No code-coverage measurement (`pytest-cov` / `coverage.py` not wired).
-- No defect / known-issues log; bugs sit in scattered code comments.
-- Allure `epic/feature/story` taxonomy is inconsistent, so it cannot stand in
-  for a feature map.
+- `pytest-cov` runs but there is no enforced floor yet.
+- The Allure `epic/feature/story` taxonomy is still not normalised
+  (`improvements.md` item 68); the CI does not yet diff the traceability matrix
+  against the catalogue (item 63).
+- No formal defect / known-issues log — the episode log
+  (`docs/source/qa/episodes.rst`) and `improvements.md` carry that for now.
 
 ## 6. My approach on this project
 
@@ -209,9 +201,9 @@ From how I built it, the `about/` guide, and the commit history:
 3. **Structure and documentation up front.** Layered package tree from the
    start, module/class/method docstrings almost everywhere, type hints on nearly
    every signature, a Sphinx site generated from them.
-4. **Data-driven testing as the headline theme.** My UI test docstrings
-   literally narrate "here is an approach to use constants / Excel / DB as test
-   data" — I wrote the tests to demonstrate the technique.
+4. **Data-driven testing as a theme.** I wanted to demonstrate the technique;
+   after M5 it survives as one honest example (Excel invalid-login rows feeding
+   the front-end auth negative test) rather than three parallel unused sources.
 5. **Documentation as a deliverable in its own right.** The README and Sphinx
    guide are teaching material and my own reference (full pytest and
    Sphinx-from-scratch tutorials embedded), not repo onboarding.
@@ -225,49 +217,21 @@ From how I built it, the `about/` guide, and the commit history:
 
 ## 7. Where the project stands
 
-The architecture is further along than the execution. The layering, the
-`APIClient` dispatcher, the fixture composition, the toolchain — that is the
-shape I want, and it holds up:
+At the review the architecture was ahead of the execution: the layering, the
+`APIClient` dispatcher, the fixture composition and the toolchain were the shape
+I wanted, but the verification discipline had not caught up — untested code
+paths, a whole UI class that did not collect, no-op assertions, no CI.
 
-- Correct layering (`api` / `pages` / `locators` / `data` / `config` /
-  `utilities` / `tests`), centralised config and logging.
-- Central `APIClient._request` with logging and `raise_for_status`.
-- Explicit Selenium waits, zero `sleep`.
-- Real pytest use: `pytest_plugins` composition, autouse logging, the
-  `makereport` hook, screenshot-on-failure, `indirect` parametrisation,
-  Hypothesis, a MIME negative matrix.
-- Uniform model contract, schema validation available, Faker for data.
-- A working `pip-tools` + `tox` + `invoke` + Sphinx toolchain, documented.
+M1–M8 closed that gap (see §10). The suite now collects cleanly, runs green
+(48 API + 13 UI, 1 skipped), runs under CI with coverage, and the test design
+is written down under `docs/source/qa/`. The remaining work is coverage breadth
+and the isolation-from-live-services problem, not correctness of what exists.
 
-What has not caught up:
+## 8. QA / QC artifacts — the reference I built them from
 
-- Code paths I never actually ran: `room_element.self.find_element_by_locator`,
-  `AdminRoomsFrontPage` passing strings into an enum-only API,
-  `ApiBookingObjectPayload.to_dict()` leaving a nested object unserialised,
-  `param=` kwarg to `patch`/`delete`, dict-unpacking in
-  `create_initial_test_data`.
-- A whole UI test class (`UiTestLoginActionFlow`) that silently does not
-  collect — my negative-login coverage went with it.
-- Assertions that pass without checking anything (`assert_that(x, 200)` — an int
-  is not a matcher).
-- Locator strategy that depends on naming discipline I have already broken.
-- "catch, log, continue / return None" error handling that hides failures.
-- `read_configuration` re-parses the INI on every call and swallows lookup
-  errors; no settings object.
-- Secrets logged at INFO; a shared mutable `Session` as a dataclass default.
-- No CI, so nothing forced any of the above to surface.
-- On the QC side: no test plan, no feature catalogue, no traceability matrix,
-  no coverage matrix, no coverage measurement — test design lives only inside
-  the test functions.
-
-The patterns are all here; the gap is verification discipline, not knowledge.
-`ROADMAP.md` is how I close it.
-
-## 8. QA / QC artifacts — how I build the missing ones
-
-The framework runs checks but has almost no test-design paper trail. I will add
-these under a new `docs/qa/` folder (plain Markdown / CSV so it diffs and
-reviews), generated from code where possible. Scheduled as `ROADMAP.md` M4.
+Built in M4 under `docs/source/qa/` (test plan, feature / requirements
+catalogue, test cases, traceability matrix, coverage-by-feature, episode log).
+The references below are what I used and would extend them with.
 
 1. **SUT feature / requirements catalogue** — one table with stable IDs
    (`REQ-AUTH-01`, `REQ-BOOK-03`, …) for restful-booker: auth (`/auth`,
@@ -299,8 +263,8 @@ reviews), generated from code where possible. Scheduled as `ROADMAP.md` M4.
    `docs/qa/traceability-matrix.csv`, or semi-automate: tag tests
    (`@allure.label("requirement", "REQ-BOOK-01")` or `@pytest.mark.req(...)`),
    export with `pytest --collect-only -q` + a small script (reuse
-   `utilities/make_list_of_tests.py` as the seed), and diff against the
-   catalogue in CI.
+   `utilities/_devtools/make_list_of_tests.py` as the seed), and diff against
+   the catalogue in CI.
    Refs: ISTQB glossary, "traceability matrix" <https://glossary.istqb.org/>;
    ISO/IEC/IEEE 29119-3 §"Traceability"; Ministry of Testing, "How to create a
    requirements traceability matrix" <https://www.ministryoftesting.com/>.
@@ -319,8 +283,8 @@ reviews), generated from code where possible. Scheduled as `ROADMAP.md` M4.
 
 6. **Test plan** — one short page: objective, in/out of scope, test levels &
    types, environments (the two public services + browsers), data strategy
-   (constants / Excel / SQLite), entry & exit criteria, risks (shared live
-   services, no cleanup, xdist races), reporting (Allure).
+   (constants / Faker / one Excel case), entry & exit criteria, risks (shared
+   live services, xdist races), reporting (Allure).
    Refs: ISO/IEC/IEEE 29119-3 test-plan template; IEEE 829-2008 (historic).
 
 7. **Defect / known-issues log** — `docs/qa/known-issues.md`: ID, area,
@@ -342,10 +306,38 @@ if I decide I want living feature-oriented specs.
 
 ## 9. Reminders when I work here
 
-- `pytest` from the repo root does **not** load `config/pytest.ini`. Use
-  `-c config/pytest.ini` or expect no markers / `testpaths`.
-- The generated `resources/list_of_all_project_tests.md` is **stale** — names
-  and counts do not match the code. Do not trust it.
-- Duplicate method names exist within single test files (Python keeps the last).
+- Config is `pyproject.toml` at the root; `pytest` picks it up with no `-c`.
+- Call `get_settings()` (cached), not `read_configuration` directly.
+- API tests go through the service objects in `core/api/services/`; use
+  `service.client` only for the deliberate raw / negative calls.
+- Locators are `(By.X, "selector")` tuples — no enum name-suffix dispatch any
+  more.
 - Editing a model's `to_dict` affects live POST bodies — check callers.
 - The suite needs network and the two public services to be up.
+- The Selenium layer targets the **current** SPA; if `automationintesting.online`
+  changes again, re-capture locators (episode 1 in `qa/episodes.rst`).
+
+## 10. Where M1–M8 landed
+
+- **M1** made the suite honest: every test collects; no assertion that cannot
+  fail; the front-end API drift fixed (`/api` prefix, token in body, 401).
+- **M2** put it under CI (`.github/workflows/ci.yml`): pylint + `pytest -n auto`
+  + coverage on every push / PR.
+- **M3** made runs repeatable: per-client `Session`, request `timeout`, secrets
+  redacted in logs, credentials single-sourced to `config.ini [credentials]`,
+  every write test creates + cleans up its own record.
+- **M4** wrote the test-design layer under `docs/source/qa/` (test plan,
+  feature / requirements catalogue with IDs, test cases, traceability matrix,
+  coverage-by-feature) and merged the Sphinx sections.
+- **M5** cleaned the core: pydantic models, typed cached `Settings`,
+  per-resource service objects, `(By, "selector")` locators, `utilities/` split
+  (`_devtools/`), the dead Excel-factory / SQLite / reference-data apparatus
+  removed (one Excel data-driven example kept), `pytest-check` soft assertions.
+- **M6** finished the edges: naming / encodings, README quickstart, docs cruft
+  removed, `tasks.py` / `setup_env.bat` fixed, docstring pass. Sphinx builds
+  with 0 errors.
+- **M7** filled the API coverage gaps: back-end +10, front-end +9; front-end API
+  fully covered.
+- **M8** re-targeted the Selenium layer at the current React SPA: new tuple
+  locators, rewritten `BaseFrontPage` and page objects, a render-aware
+  `setup_and_teardown`. 13 UI tests pass.

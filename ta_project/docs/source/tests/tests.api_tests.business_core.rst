@@ -28,6 +28,14 @@ tests.api\_tests.business\_core.test\_back\_api\_booking module
    :undoc-members:
    :show-inheritance:
 
+tests.api\_tests.business\_core.test\_back\_api\_ping module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: tests.api_tests.business_core.test_back_api_ping
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tests.api\_tests.business\_core.test\_front\_api\_auth module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -36,10 +44,18 @@ tests.api\_tests.business\_core.test\_front\_api\_auth module
    :undoc-members:
    :show-inheritance:
 
-tests.api\_tests.business\_core.test\_front\_api\_booking module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests.api\_tests.business\_core.test\_front\_api\_booking\_flow module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: tests.api_tests.business_core.test_front_api_booking
+.. automodule:: tests.api_tests.business_core.test_front_api_booking_flow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tests.api\_tests.business\_core.test\_front\_api\_resources module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: tests.api_tests.business_core.test_front_api_resources
    :members:
    :undoc-members:
    :show-inheritance:

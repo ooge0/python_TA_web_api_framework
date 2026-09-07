@@ -13,7 +13,7 @@ from core.api.backend_api_points import BackEndPoints
 from core.api.frontend_api_points import FrontEndPoints
 from core.api.services.auth_api import AuthApi
 from core.api.services.booking_api import BookingApi
-from core.api.services.room_api import BrandingApi, MessageApi, PlatformBookingApi, RoomApi
+from core.api.services.room_api import BrandingApi, MessageApi, PlatformBookingApi, ReportApi, RoomApi
 
 # --------------------------------------------------------------------------- #
 # clients
@@ -83,25 +83,6 @@ def front_booking_api(frontend_api_client) -> PlatformBookingApi:
     return PlatformBookingApi(frontend_api_client)
 
 
-# --------------------------------------------------------------------------- #
-# endpoint constants (kept for the not-yet-migrated tests)
-# --------------------------------------------------------------------------- #
-
 @pytest.fixture
-def back_end_api_booking_endpoint() -> str:
-    return BackEndPoints.BOOKING
-
-
-@pytest.fixture
-def back_end_auth_api_endpoint() -> str:
-    return BackEndPoints.AUTH
-
-
-@pytest.fixture
-def front_end_login_endpoint() -> str:
-    return FrontEndPoints.LOGIN
-
-
-@pytest.fixture
-def front_end_api_booking_endpoint() -> str:
-    return FrontEndPoints.BOOKING
+def front_report_api(frontend_api_client) -> ReportApi:
+    return ReportApi(frontend_api_client)

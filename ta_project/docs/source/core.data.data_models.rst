@@ -4,18 +4,6 @@ core.data.data\_models package
 Submodules
 ----------
 
-core.data.data\_models.api\_header\_data\_models module
--------------------------------------------------------
-
-
-core.data.data\_models.api\_login\_data\_models module
-------------------------------------------------------
-
-.. automodule:: core.data.data_models.api_login_data_models
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 core.data.data\_models.back\_api\_auth\_data\_models module
 -----------------------------------------------------------
 

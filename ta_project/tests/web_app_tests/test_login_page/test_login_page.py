@@ -3,6 +3,7 @@ UI tests for the admin area - the ``/admin`` login form, the post-login navbar,
 logout, and the rooms table.
 """
 import pytest
+import pytest_check as check
 from hamcrest import assert_that, contains_string, has_items, is_
 
 from config.settings import get_settings
@@ -62,11 +63,13 @@ class TestAdminNavigation:
         assert_that(LoginAdminPage(self.driver).brand_text(), is_("Restful Booker Platform Demo"))
 
     def test_navbar_links(self):
-        """TC-UI-NAV-01."""
+        """TC-UI-NAV-01: the post-login navbar carries every admin section.
+
+        Soft assertions (``pytest_check``): a missing link does not hide the rest.
+        """
         texts = " ".join(LoginAdminPage(self.driver).nav_link_texts())
-        assert_that(LoginAdminPage(self.driver).nav_link_texts(),
-                    has_items("Rooms", "Report", "Branding", "Front Page"))
-        assert_that(texts, contains_string("Messages"))
+        for expected in ("Rooms", "Report", "Branding", "Messages", "Front Page"):
+            check.is_in(expected, texts)
 
     def test_logout_leaves_the_admin_area(self):
         """TC-UI-NAV-03: Logout ends the admin session (redirects to the public site)."""

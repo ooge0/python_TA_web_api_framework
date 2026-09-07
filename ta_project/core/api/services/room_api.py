@@ -34,6 +34,15 @@ class BrandingApi(BaseApi):
         return self.client.get(self.endpoint)
 
 
+class ReportApi(BaseApi):
+    """Platform ``/api/report`` - the admin room-occupancy report (needs a token)."""
+
+    endpoint = "/api/report"
+
+    def get(self, token: str):
+        return self.client.get(self.endpoint, headers=self.cookie_headers(token))
+
+
 class MessageApi(BaseApi):
     """Platform ``/api/message`` - the public contact form + the admin inbox."""
 
@@ -63,3 +72,6 @@ class PlatformBookingApi(BaseApi):
     def for_room(self, room_id: int, token: str):
         return self.client.get(self.endpoint, headers=self.cookie_headers(token),
                                params={"roomid": room_id})
+
+    def delete(self, booking_id: int, token: str):
+        return self.client.delete(f"{self.endpoint}/{booking_id}", headers=self.cookie_headers(token))

@@ -1,7 +1,7 @@
 """
-Module contains tests related top JSON validation of API responses
+JSON-Schema validation of the back-end ``/booking`` responses. Calls go through
+``back_booking_api`` (:mod:`core.api.services`).
 """
-
 import allure
 from hamcrest import assert_that, is_
 
@@ -10,44 +10,22 @@ from core.data.json_schemas.booking_schema import BOOKING_SCHEMA_MAIN, BOOKING_S
 from utilities.api_utils import validate_json
 
 
+@allure.feature("Booking")
 class TestJsonValidation:
-    """
-    Class for tests that are related to JSON validation for back-end and front-end endpoints.
-    """
+    """``POST /booking`` and ``GET /booking/{id}`` responses match their schemas."""
+
     logger = get_logger()
-    ref_response_status_code = 200
 
-    @allure.feature("Booking")
-    def test_backend_api_create_booking_response_check_via_json_validation(self, backend_api_client,
-                                                                           back_end_api_booking_endpoint,
-                                                                           backend_api_booking_valid_payload_test_data):
-        """
-        Test checks response content and doing JSON validation
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data:
-        :return:
-        """
-        booking_payload, headers = backend_api_booking_valid_payload_test_data
-        response = backend_api_client.post(back_end_api_booking_endpoint, headers=headers,
-                                           json=booking_payload.to_dict())
-        assert_that(response.status_code, is_(self.ref_response_status_code))
+    def test_create_booking_response_matches_schema(self, back_booking_api, backend_api_post_test_payload):
+        """POST /booking -> 200 and the body matches the create-response schema."""
+        payload, _ = backend_api_post_test_payload
+        response = back_booking_api.create(payload)
+        assert_that(response.status_code, is_(200))
         validate_json(response.json(), BOOKING_SCHEMA_MAIN)
 
-    @allure.feature("Booking")
-    def test_backend_api_existing_booking_by_id_response_check_via_json_validation(self, backend_api_client,
-                                                                                   back_end_api_booking_endpoint,
-                                                                                   backend_api_booking_valid_payload_test_data):
-        """
-        Get booking by specific 'bookingid' by GET API call using 'back_end_api_booking_endpoint'.
-
-        :param backend_api_client:
-        :param back_end_api_booking_endpoint:
-        :param backend_api_booking_valid_payload_test_data: Fixture, returned valid test data: payload and headers
-        """
-        _, headers = backend_api_booking_valid_payload_test_data
-        booking_id = 2
-        response = backend_api_client.get(f"{back_end_api_booking_endpoint}/{booking_id}", headers=headers)
-        assert_that(response.status_code, is_(self.ref_response_status_code))
+    def test_get_booking_by_id_response_matches_schema(self, back_booking_api, created_backend_booking):
+        """GET /booking/{id} (for a booking this test created) matches the booking schema."""
+        booking_id, _, _ = created_backend_booking
+        response = back_booking_api.get(booking_id)
+        assert_that(response.status_code, is_(200))
         validate_json(response.json(), BOOKING_SCHEMA_SECONDARY)

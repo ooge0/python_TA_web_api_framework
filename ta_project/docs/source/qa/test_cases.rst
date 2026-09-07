@@ -127,7 +127,7 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
    "TC-UI-RES-002", "REQ-UI-RES-02", "complete a reservation (calendar flow)", "positive", "High", "Not implemented", "-"
 
 UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
-======================================================================
+=======================================================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"

@@ -25,15 +25,18 @@ See `ROADMAP.md` for the milestone view.
 
 | milestone | state |
 |---|---|
-| M1 make the suite honest | done for the API side (23/6 -> 30/0). UI side -> M8. |
-| M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov` (43%). |
+| M1 make the suite honest | done (API 23/6 -> 30/0; UI static bugs). |
+| M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov`. |
 | M3 make runs repeatable | done - see the M3 block below and `ROADMAP.md`. |
-| M4 QA artifacts | in progress - `docs/source/qa/` (test plan, feature catalogue, test cases, traceability matrix, coverage table) + a standalone README section. Items 61, 62, 63(doc), 64, 66 done as docs; 63(CI check), 68 remain. |
-| M8 re-target the UI layer | started - SUT DOM probed & mapped into `ROADMAP.md`. |
+| M4 QA artifacts | done as docs - `docs/source/qa/` (test plan, feature catalogue, test cases, traceability matrix, coverage table). Items 61, 62, 64, 66 done; 63(CI diff) and 68 (Allure taxonomy) still open. |
+| M5 clean the core | done - 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 51. |
+| M6 finish the edges | done - 10, 22, 23, 24, 31, 32, 49, 50, 52, 53, 54, 55, 56, 58, 60. |
+| M7 expand coverage | API done - 48 tests, front-end API 15/15, back-end one Low case short. |
+| M8 re-target the UI layer | done - tuple locators, rewritten page objects, 13 UI tests pass against the SPA. |
 
-Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59,
-61, 62, 64, 65, 66, partial 41 / 44 / 63 (+ item 2). Remaining: 63(CI diff),
-67, 68; the UI re-target (M8); M5 core cleanup; M6 polish; M7 new coverage.
+Items done: 1-60 except 63 (CI diff only), 67, 68. Remaining backlog: 63(CI
+diff), 67 (formal known-issues log), 68 (Allure taxonomy); plus home-page /
+reservation-calendar UI coverage, which would be a new milestone.
 
 **M3 - make runs repeatable (done):**
 - item 26/27: `APIClient.session` -> `field(default_factory=requests.Session)`,
@@ -74,8 +77,9 @@ Items done so far: 1-21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 45, 48, 57, 59,
 | 25 | done | `get_validation_data_from_db` now raises on missing key instead of returning the input list |
 
 Baseline API run: **23 passed / 6 failed** -> **30 passed / 0 failed** (M1) ->
-**40 passed** (M7 API gap-fill). Stable under `pytest -n auto`. Full suite:
-40 passed, 20 skipped. Requirement coverage: 21 of 52 (see `docs/source/qa/`).
+**40** (M7) -> **48 passed** (M5 migration + Excel data-driven case). Full
+suite: **48 API + 13 UI passed, 1 skipped** (the episode reminder). Stable
+under `pytest -n auto`. Requirement coverage: 41 of 52 (see `docs/source/qa/`).
 
 **Parallel runs (pulled forward from M3):** items 15, 26, 27, 34 done -
 per-client `requests.Session` via `default_factory`, request `timeout`,
@@ -91,13 +95,48 @@ with its foreign `pythonpath` was deleted.
 browser default (`config.ini browser_headless_mode = 1`), partial item 41 (room
 getters now use `(By.CSS_SELECTOR, ...)`).
 
-**New milestone M8 (see ROADMAP.md):** the Selenium UI layer targets a version
-of `automationintesting.online` that no longer exists - the site is now a
-rewritten SPA, so all 20 UI tests error in setup on the missing intro banner.
-They are skipped at module level (`pytestmark = pytest.mark.skip`, honest
-reason) until M8 re-targets the locators and page objects. Item 1 (class name)
-and the other static UI bugs are still fixed - the tests collect, they just
-can't pass against the new markup yet.
+**M5 - clean the core (done):**
+- 39: pydantic v2 models; `api_header_data_models` (`HeaderModel`) deleted.
+- 42: `config/settings.py` - one cached, typed `Settings`; `get_settings()`.
+- 40: `core/api/services/` - `AuthApi` / `BookingApi` / `RoomApi` / `BrandingApi`
+  / `MessageApi` / `ReportApi` / `PlatformBookingApi`. Every API test module now
+  calls through them; `test_api_performance.py` + `test_api_json_schema_validation.py`
+  migrated off the bare client, the endpoint-constant fixtures deleted.
+- 36: `excel_utils.py` (duplicate), `core/data/data_factory/`, `LoginCredentials`
+  removed; `ExcelDataProvider` kept and wired into a real data-driven test
+  (`test_invalid_rows_from_the_data_file_are_rejected`).
+- 37: the SQLite apparatus (`db_utils`, `test_data_utils`,
+  `core/reference_data/`, the `_isolated_db` / `validation_data` /
+  `setup_database` / `data_factory` / `excel_data_from_sheet` fixtures) deleted -
+  nothing used it after M8. `config.ini [db]` / `[allure]` sections removed.
+- 38: `utilities/_devtools/` for `make_list_of_tests` + `generate_graphs_*`;
+  `back_api_utils.py`, `get_names_of_tests.py`, the disabled `fix_path_*` file
+  removed.
+- 44: dead fixtures removed (`front_end_*_endpoint`, `back_api_*_credentials*`,
+  `backend_api_put/patch_test_payload`); `GeneralUtils.get_validation_data_from_db`
+  and `.get_path` removed.
+- 46: `pytest-check` soft assertions in `test_front_api_branding`,
+  `test_footer_links`, `test_navbar_links`.
+- 47: the test `valid` flag went with `LoginCredentials`.
+- deps: `pytest-lazy-fixture` + `regex` dropped; `pytest-check` added; lock file
+  recompiled.
+
+**M6 - finish the edges (done):**
+- 10: `BackApiAuthPayload.to_dict()` returns `{"token": ...}` and the model is
+  now used by the back-auth valid-token test.
+- 22: `HeaderModel` (bad `user_agent -> Accept` mapping) deleted.
+- 23/31/32: base-page waits - delivered by the M8 `BaseFrontPage` rewrite.
+- 53: docstring pass over `conftest.py`, `fixtures_api_test_data.py` and the
+  migrated test modules (copy-paste `:param:` boilerplate removed).
+- Sphinx: stale autodoc entries for the deleted modules cleaned; the two
+  deleted-test-module import warnings fixed; RST title underlines in the QA
+  docs normalised. Build: 0 errors.
+
+**M7 / M8:** see `ROADMAP.md`. M7 brought the API suite to 48 tests (front-end
+API 15/15). M8 rebuilt the Selenium layer for the current SPA - `(By, "selector")`
+tuple locators, new `BaseFrontPage` + page objects, a render-aware
+`setup_and_teardown`; 13 UI tests pass, `test_login_actions_validation.py`
+removed, a single skipped `test_sut_drift_episode.py` kept as a reminder.
 
 ---
 

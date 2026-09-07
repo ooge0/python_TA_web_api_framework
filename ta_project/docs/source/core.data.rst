@@ -15,6 +15,5 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   core.data.data_factory
    core.data.data_models
    core.data.json_schemas

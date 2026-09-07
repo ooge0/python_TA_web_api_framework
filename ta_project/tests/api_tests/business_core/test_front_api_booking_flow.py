@@ -39,7 +39,7 @@ class TestFrontApiReservation:
     logger = get_logger()
 
     @pytest.fixture
-    def created_reservation(self, front_booking_api, front_token, frontend_api_client):
+    def created_reservation(self, front_booking_api, front_token):
         """Reserve room 2 for a random far-future window; delete it on teardown."""
         checkin, checkout = _far_future_window()
         payload = _reservation(2, checkin, checkout)
@@ -48,8 +48,7 @@ class TestFrontApiReservation:
         booking_id = resp.json()["bookingid"]
         yield booking_id, payload
         try:
-            frontend_api_client.delete(f"/api/booking/{booking_id}",
-                                       headers={"Cookie": f"token={front_token}"})
+            front_booking_api.delete(booking_id, front_token)
         except Exception:  # noqa: BLE001 - best-effort cleanup
             pass
 
@@ -104,7 +103,6 @@ class TestFrontApiRoomAdmin:
         assert_that(resp.status_code, is_(202))
         assert_that([r for r in front_room_api.list() if r.roomName == name], is_([]))
 
-    def test_report_is_reachable(self, frontend_api_client, front_token):
+    def test_report_is_reachable(self, front_report_api, front_token):
         """TC-FE-REPORT-001: GET /api/report (token) -> 200."""
-        resp = frontend_api_client.get("/api/report", headers={"Cookie": f"token={front_token}"})
-        assert_that(resp.status_code, is_(200))
+        assert_that(front_report_api.get(front_token).status_code, is_(200))

@@ -3,15 +3,14 @@ pydantic
 allure-pytest
 pytest-html
 pytest-cov
+pytest-check
 requests
 selenium
-pytest-lazy-fixture
 pytest-xdist
 loguru
 openpyxl
 faker
 PyHamcrest
-regex
 typing_extensions
 jsonschema
 hypothesis

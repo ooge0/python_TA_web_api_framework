@@ -8,9 +8,10 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **47 API + 13 UI tests passing** (1 skipped = the episode
+Current run: **48 API + 13 UI tests passing** (1 skipped = the episode
 reminder). API calls go through the per-resource service objects in
-:mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi`` ...).
+:mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi``,
+``ReportApi`` ...).
 
 Back-end API - authentication
 =============================
@@ -24,7 +25,12 @@ I check that valid admin credentials return a token, then I try to break it:
 #. random fuzzed strings from Hypothesis.
 
 Every one of those must come back ``200`` with ``{"reason": "Bad credentials"}``
-and no token.
+and no token. The valid-token check is validated through the
+``BackApiAuthPayload`` response model.
+
+On the front end, the same negative check is also **data-driven**: the invalid
+rows in ``resources/test_data/booker_test_data.xlsx`` are read by
+``ExcelDataProvider`` and each one must be rejected with ``401``.
 
 Back-end API - bookings
 =======================
@@ -73,7 +79,7 @@ Front-end API (the platform)
 #. **Report.** ``GET /api/report`` (token) returns ``200``.
 
 UI (Selenium, re-targeted in M8)
-===============================
+================================
 
 #. **Home page.** The footer is present; the four footer links have the right
    text and hrefs; the nav brand is "Shady Meadows B&B"; each room's "Book now"

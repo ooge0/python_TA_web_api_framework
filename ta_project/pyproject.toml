@@ -23,4 +23,4 @@ markers = [
 # and force a single process for debugging with
 #   pytest -n0
 # The API tests are parallel-safe (each write test creates and cleans up its own
-# booking). The UI tests are currently skipped (see ROADMAP.md M8).
+# record). The UI tests run against the live SPA (re-targeted in M8).

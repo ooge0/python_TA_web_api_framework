@@ -86,3 +86,4 @@ geckodriver.log
 /docs/html/
 /docs/pdf_docs/
 /docs/_build/
+/docs/source/_autosummary/

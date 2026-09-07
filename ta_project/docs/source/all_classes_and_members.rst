@@ -57,10 +57,12 @@ core.api.backend_api_points module
     :private-members:
     :special-members:
     :show-inheritance:
+
 Go to :ref:`top`
 
 core.api.frontend_api_points module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. automodule:: core.api.frontend_api_points
     :members:
     :undoc-members:
@@ -68,24 +70,6 @@ core.api.frontend_api_points module
     :special-members:
     :show-inheritance:
 
-
-core.data.data_factory package
--------------------------------
-.. automodule:: core.data.data_factory
-    :members:
-    :undoc-members:
-    :private-members:
-    :special-members:
-    :show-inheritance:
-
-core.data.data_factory.data_factory module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. automodule:: core.data.data_factory.data_factory
-    :members:
-    :undoc-members:
-    :private-members:
-    :special-members:
-    :show-inheritance:
 
 config package
 ---------------

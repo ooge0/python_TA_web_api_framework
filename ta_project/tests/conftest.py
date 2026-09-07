@@ -1,14 +1,14 @@
 #/tests/conftest.py
 """
-File with fixtures for general usage in the project that includes:
-    - LOGGER fixtures
-    - General fixtures
-    - EXCEL fixtures
-    - DB fixtures
-"""
-import os
-from collections import namedtuple
+Project-wide fixtures:
+    - logging (session logger, per-test start/outcome, screenshot-on-failure)
+    - the Selenium ``setup_and_teardown`` browser fixture
+    - marker auto-tagging by path
 
+API-client / service-object fixtures live in
+``core/api/api_client_fixtures.py``; API test data in
+``resources/test_data/fixtures_api_test_data.py``.
+"""
 import allure
 import pytest
 from allure_commons.types import AttachmentType
@@ -21,11 +21,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from config.logger_config import get_logger
-from core.data.data_factory.data_factory import DataFactory
-from utilities import excel_utils
-from utilities.db_utils import get_data_from_db_as_dict, create_tables, create_initial_test_data, make_db
 from utilities.general_utils import GeneralUtils
-from config.settings import get_settings
 
 pytest_plugins = [
     "tests.web_app_tests.tests_home_page.fixtures_for_home_page_tests",
@@ -35,21 +31,6 @@ pytest_plugins = [
 ]
 
 utils = GeneralUtils()
-
-
-@pytest.fixture(scope="session", autouse=True)
-def _isolated_db(request, tmp_path_factory):
-    """
-    Give each test session (and each ``pytest -n`` worker) its own fresh SQLite
-    file via ``TA_DB_PATH``, so parallel workers never share/lock one DB and no
-    state carries between runs. ``db_utils.get_db_file_path_from_config`` reads
-    the env var; nothing else changes.
-    """
-    worker_id = getattr(request.config, "workerinput", {}).get("workerid", "master")
-    db_path = tmp_path_factory.getbasetemp() / f"ta_test_{worker_id}.db"
-    os.environ["TA_DB_PATH"] = str(db_path)
-    yield
-    os.environ.pop("TA_DB_PATH", None)
 
 
 # LOGGER fixtures
@@ -67,19 +48,7 @@ def session_logger():
 
 @pytest.fixture(scope='function', autouse=True)
 def log_test_name(request, session_logger):
-    """
-      Logs messages about the test's execution status using Loguru.
-
-      This fixture automatically logs when a test starts, passes, fails, or is skipped.
-      It uses the `session_logger` to record these events with appropriate log levels.
-
-      :param request: The pytest `request` object, which provides access to the test context.
-                      Used here to obtain the name of the currently running test and its outcome.
-      :param session_logger: A logger instance configured by Loguru to handle log messages.
-                              It is used to log test execution details.
-
-      :return: None
-      """
+    """Log when each test starts and whether it passed, failed or was skipped."""
     test_name = request.node.name
     session_logger.info(f"Starting test: {test_name}")
     yield
@@ -93,17 +62,6 @@ def log_test_name(request, session_logger):
 
 
 # General fixtures
-
-@pytest.fixture(scope="session")
-def env():
-    """
-    Fixture get env name for test execution
-
-    :return: env name as string
-    """
-    from utilities.read_configurations import read_configuration
-    return read_configuration("env", "env_to_test")
-
 
 @pytest.fixture()
 def log_failure_by_picture(request):
@@ -145,7 +103,11 @@ def pytest_collection_modifyitems(items):
 @pytest.fixture()
 def setup_and_teardown(request, session_logger):
     """
-    Setup browser and make first steps on the home page
+    Start a browser, open ``request.param["url"]`` and wait for the SPA shell to
+    render, then attach the driver to the test class. Quit on teardown.
+
+    ``request.param`` is ``{"url", "browser", "browser_headless_mode"}`` - set by
+    an indirect ``parametrize`` on the test module.
     """
     browser = request.param.get("browser")
     browser_headless_mode = utils.str_to_bool(request.param.get("browser_headless_mode"))
@@ -181,85 +143,3 @@ def setup_and_teardown(request, session_logger):
     request.cls.driver = driver  # attach the driver to the test class
     yield driver
     driver.quit()
-
-
-# EXCEL fixtures
-@pytest.fixture
-def excel_file_path():
-    """
-    Fixture returns the path to Excel file with test data
-
-    :return:  path to Excel file that si retrieved from config file
-    """
-    return get_settings().excel_file_path
-
-
-@pytest.fixture(scope="session")
-def data_factory():
-    """
-    Fixture retrieves path to Excel file from project configuration file.
-
-    :return: File path to the Excel file with test data.
-    """
-    return DataFactory(get_settings().excel_file_path)
-
-
-@pytest.fixture(scope="session")
-def login_test_by_invalid_data_for_single(data_factory):
-    """
-    Fixture retrieves single invalid login credentials from Excel file.
-    
-    :return: Single invalid login credentials set from Excel file
-    """
-    return data_factory.create_login_test_data("login_test_data", False, excel_test_data_index=0)
-
-
-@pytest.fixture(scope="session")
-def login_test_by_invalid_data_for_all(data_factory):
-    """
-    Fixture retrieves all invalid login credentials from Excel file.
-
-    :return: All invalid login credentials from Excel file 
-    """
-    data = data_factory.create_login_test_data("login_test_data", False, excel_test_data_index="all")
-    return data
-
-
-@pytest.fixture(params=["login_test_data"])
-def excel_data_from_sheet(request, excel_file_path):
-    """
-    Returns data from Excel file via requested Excel sheet name.
-    
-    :param request: login_test_data.
-    :param excel_file_path: Path to the Excel file with test data.
-        
-    :return: None
-    """
-    sheet_name = request.param
-    return excel_utils.get_data_as_list(excel_file_path, sheet_name)
-
-
-# DB fixtures
-@pytest.fixture(scope="function")
-def validation_data():
-    """
-    Fixture fetches validation data from the database.
-    
-    :returns: Validation data as namedtuple.
-    """
-    data = get_data_from_db_as_dict("validation_data")
-    ValidationData = namedtuple('ValidationData', data[0].keys())
-    return ValidationData(*data[0].values())
-
-
-@pytest.fixture(scope='session')
-def setup_database():
-    """
-    Create test database and push initial test data.
-    """
-    conn, cursor = make_db()
-    create_tables(cursor)
-    create_initial_test_data(cursor)
-    conn.commit()
-    yield conn, cursor
-    conn.close()

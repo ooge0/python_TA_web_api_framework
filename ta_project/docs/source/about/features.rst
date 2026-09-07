@@ -15,8 +15,10 @@ How I built it
    also validated against a JSON Schema.
 #. **Page-object model** for the UI - Selenium, ``(By, "selector")`` tuple
    locators, explicit waits only, no ``sleep``.
-#. **Three test-data sources**, on purpose: inline constants, an Excel workbook,
-   and a per-worker SQLite reference store.
+#. **Test data** is inline constants and ``Faker`` for most cases, plus one
+   data-driven example: the invalid-login rows in an Excel workbook feed the
+   front-end auth negative test through
+   :class:`~utilities.excel_data_provider.ExcelDataProvider`.
 
 How I run it
 ============

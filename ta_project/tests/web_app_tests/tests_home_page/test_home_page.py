@@ -3,7 +3,8 @@ UI tests for the public home page - nav bar, footer, contact form, rooms.
 """
 import faker
 import pytest
-from hamcrest import assert_that, contains_string, has_length, is_, greater_than
+import pytest_check as check
+from hamcrest import assert_that, contains_string, is_, greater_than
 
 from config.settings import get_settings
 from core.pages.home_page import HomeFrontPage
@@ -40,16 +41,17 @@ class TestHomePage:
         assert_that(HomeFrontPage(self.driver).footer_present(), is_(True))
 
     def test_footer_links(self):
-        """TC-UI-HOME-002: the four policy footer links, texts + hrefs."""
+        """TC-UI-HOME-002: the four policy footer links - texts + hrefs.
+
+        Soft assertions (``pytest_check``): one run reports every wrong link.
+        """
         home = HomeFrontPage(self.driver)
-        assert_that(home.footer_link_texts(),
-                    is_(["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"]))
+        check.equal(home.footer_link_texts(),
+                    ["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"])
         hrefs = home.footer_link_hrefs()
-        assert_that(hrefs, has_length(4))
-        assert_that(hrefs[0], contains_string("mwtestconsultancy.co.uk"))
-        assert_that(hrefs[1], contains_string("/cookie"))
-        assert_that(hrefs[2], contains_string("/privacy"))
-        assert_that(hrefs[3], contains_string("/admin"))
+        check.equal(len(hrefs), 4)
+        for got, want in zip(hrefs, ("mwtestconsultancy.co.uk", "/cookie", "/privacy", "/admin")):
+            check.is_in(want, got)
 
     def test_nav_brand(self):
         """TC-UI-HOME-01 area: the brand text."""
