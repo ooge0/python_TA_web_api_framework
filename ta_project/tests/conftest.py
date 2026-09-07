@@ -23,7 +23,7 @@ from core.pages.home_page import HomeFrontPage
 from utilities import excel_utils
 from utilities.db_utils import get_data_from_db_as_dict, create_tables, create_initial_test_data, make_db
 from utilities.general_utils import GeneralUtils
-from utilities.read_configurations import read_configuration
+from config.settings import get_settings
 
 pytest_plugins = [
     "tests.web_app_tests.tests_home_page.fixtures_for_home_page_tests",
@@ -99,6 +99,7 @@ def env():
 
     :return: env name as string
     """
+    from utilities.read_configurations import read_configuration
     return read_configuration("env", "env_to_test")
 
 
@@ -186,7 +187,7 @@ def excel_file_path():
 
     :return:  path to Excel file that si retrieved from config file
     """
-    return read_configuration("excel", "excel_file_path")
+    return get_settings().excel_file_path
 
 
 @pytest.fixture(scope="session")
@@ -196,7 +197,7 @@ def data_factory():
 
     :return: File path to the Excel file with test data.
     """
-    return DataFactory(read_configuration("excel", "excel_file_path"))
+    return DataFactory(get_settings().excel_file_path)
 
 
 @pytest.fixture(scope="session")

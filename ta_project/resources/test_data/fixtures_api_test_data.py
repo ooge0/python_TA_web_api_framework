@@ -2,8 +2,9 @@ from typing import Tuple
 import faker
 import pytest
 from hamcrest import assert_that, is_, is_not, none
+
+from config.settings import get_settings
 from core.data.data_models.front_api_booking_object_data_model import BookingDates, ApiBookingObjectPayload
-from utilities.read_configurations import read_configuration
 
 
 ############################## GENERAL ###################################
@@ -37,11 +38,8 @@ def api_invalid_user_creds() -> dict:
 
 @pytest.fixture
 def front_api_valid_user_creds() -> dict:
-    """Valid front-end (automationintesting.online) credentials, from config.ini."""
-    return {
-        "username": read_configuration("credentials", "admin_user"),
-        "password": read_configuration("credentials", "front_ui_password"),
-    }
+    """Valid front-end (automationintesting.online) credentials."""
+    return get_settings().front_api_valid_creds
 
 
 @pytest.fixture
@@ -66,11 +64,8 @@ def front_api_invalid_credentials_valid_headers(api_invalid_user_creds, api_vali
 
 @pytest.fixture
 def back_api_valid_user_creds() -> dict:
-    """Valid back-end (restful-booker) credentials, from config.ini."""
-    return {
-        "username": read_configuration("credentials", "admin_user"),
-        "password": read_configuration("credentials", "back_api_password"),
-    }
+    """Valid back-end (restful-booker) credentials."""
+    return get_settings().back_api_valid_creds
 
 
 @pytest.fixture
