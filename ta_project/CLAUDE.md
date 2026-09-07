@@ -88,8 +88,9 @@ How I wired the moving parts — know this before editing:
 pytest                     # root pyproject.toml is picked up automatically
 pytest -n auto             # parallel (pytest-xdist) - the default in tox / CI
 pytest -m api              # or -m ui; markers are auto-applied by path
-pytest --cov               # coverage (also runs in CI)
+pytest --cov               # coverage (also runs in CI; floor = 70)
 
+python -m utilities._devtools.check_traceability   # REQ-* vs the catalogue (CI gate)
 tox -c tox.ini             # py312 + lint + docs + allure test env
 python -m invoke build-html   # Sphinx HTML into docs/_build/html
 ```
@@ -101,18 +102,19 @@ against today's SPA (rebuilt in M8).
 
 ## 4. Feature inventory (what exists)
 
-**API testing** (48 tests)
+**API testing** (49 tests)
 - Per-resource service objects over one `APIClient` (`requests.Session`,
   all five verbs, central dispatch with secret-redacting logging, `timeout`,
   `raise_for_status`).
 - Back-end: auth (`POST /auth`, negative matrix, Hypothesis fuzz, ~70-entry MIME
-  matrix), `/booking` CRUD incl. no-token 403 / missing-id 404 / malformed 500,
-  `/ping`, JSON-Schema validation, single-request latency checks.
+  matrix), `/booking` CRUD incl. no-token 403 / missing-id 404 / malformed 500 /
+  `?firstname=` filter, `/ping`, JSON-Schema validation, latency checks.
 - Front-end (platform, `/api`): auth (login / validate / logout, incl.
   data-driven invalid rows from Excel), `/room` get+create+delete, public
   reservation + overlap 409, room bookings, branding, message inbox, report.
-- Front-end API is fully covered (15/15 requirements); back-end is one Low case
-  short (`?firstname=` filter).
+- Both APIs are fully covered (BE 17/17, FE 15/15). Every test carries an
+  `@allure` epic/feature and a `@pytest.mark.req("REQ-...")`; a CI job
+  (`check_traceability.py`) fails on an uncovered requirement or an orphan tag.
 
 **UI testing** (13 tests, Selenium, re-targeted at the SPA in M8)
 - Page objects `HomeFrontPage` / `LoginAdminPage` / `AdminRoomsFrontPage` over
@@ -152,25 +154,28 @@ against today's SPA (rebuilt in M8).
   Testing section (`docs/source/qa/`).
 - Large embedded README that doubles as a personal pytest / Sphinx manual.
 
-**QA / QC artifacts** (built in M4, under `docs/source/qa/`)
+**QA / QC artifacts** (built in M4, extended in M9, under `docs/source/qa/`)
 - Test plan; feature / requirements catalogue with stable IDs
   (`FEAT-*` / `REQ-*` / `TC-*`); test cases mapped to requirements (plus
   placeholders for the gaps); requirements traceability matrix;
-  coverage-by-feature table; `what_my_tests_cover` summary; an episode log.
-- `pytest-cov` wired (no enforced floor yet).
-- Still open: normalise the Allure taxonomy (item 68); a CI catalogue-vs-matrix
-  diff (item 63); a formal known-issues log (item 67).
+  coverage-by-feature table; `what_my_tests_cover` summary; a known-issues log;
+  an episode log.
+- `pytest-cov` with an enforced floor (`fail_under = 70` in `pyproject.toml`).
+- The Allure taxonomy is normalised to the catalogue.
+- `utilities/_devtools/check_traceability.py` + a CI job gate the
+  `@pytest.mark.req` markers against the catalogue (`_known_gaps.txt` is the
+  allowlist).
 
 ## 5. What is still missing
 
-Most of the original gap list was closed in M1–M8 (see §10). What remains:
+Most of the original gap list was closed in M1–M9 (see §10). What remains:
 
-**Coverage**
-- Back-end `GET /booking?firstname=` filter — the one Low requirement with no
-  test.
-- Home-page room listing / room details / the reservation calendar — no UI
-  tests (out of M8 scope; would be a new milestone).
-- No load testing, contract testing, visual or accessibility testing.
+**Coverage** — 44 of 52 requirements (gate-counted). The 8 gaps are all UI
+(`docs/source/qa/_known_gaps.txt` / KI-12): the reservation-calendar
+completion, admin room create/delete, the branding / report / messages admin
+pages, the nav-anchor scroll, the Admin-link click. A dedicated UI-coverage
+milestone would close them. No load / contract / visual / accessibility
+testing.
 
 **Isolation / infra**
 - Still runs against the live shared public services — no local stub, no
@@ -178,13 +183,9 @@ Most of the original gap list was closed in M1–M8 (see §10). What remains:
 - No Docker / devcontainer / Selenium Grid / remote WebDriver; drivers assumed
   on PATH.
 
-**QA / QC artifacts**
-- `pytest-cov` runs but there is no enforced floor yet.
-- The Allure `epic/feature/story` taxonomy is still not normalised
-  (`improvements.md` item 68); the CI does not yet diff the traceability matrix
-  against the catalogue (item 63).
-- No formal defect / known-issues log — the episode log
-  (`docs/source/qa/episodes.rst`) and `improvements.md` carry that for now.
+**QA / QC artifacts** — the M4/M9 layer is complete. What is left is coverage
+breadth, not artifacts: 8 UI requirements (`docs/source/qa/_known_gaps.txt` /
+KI-12) are the allowlisted gaps.
 
 ## 6. My approach on this project
 
@@ -316,8 +317,13 @@ if I decide I want living feature-oriented specs.
 - The suite needs network and the two public services to be up.
 - The Selenium layer targets the **current** SPA; if `automationintesting.online`
   changes again, re-capture locators (episode 1 in `qa/episodes.rst`).
+- **A new test needs three things:** `@allure.epic`/`@allure.feature` keyed to
+  the catalogue, a `@pytest.mark.req("REQ-...")`, and a `TC-*` row in
+  `qa/test_cases.rst`. A new requirement goes in `qa/feature_catalogue.rst`
+  first — otherwise `check_traceability.py` fails CI. If it genuinely won't be
+  automated, add it to `qa/_known_gaps.txt` with a `qa/known_issues.rst` KI row.
 
-## 10. Where M1–M8 landed
+## 10. Where M1–M9 landed
 
 - **M1** made the suite honest: every test collects; no assertion that cannot
   fail; the front-end API drift fixed (`/api` prefix, token in body, 401).
@@ -341,3 +347,8 @@ if I decide I want living feature-oriented specs.
 - **M8** re-targeted the Selenium layer at the current React SPA: new tuple
   locators, rewritten `BaseFrontPage` and page objects, a render-aware
   `setup_and_teardown`. 13 UI tests pass.
+- **M9** closed the QA loop: Allure taxonomy normalised to the catalogue, a
+  known-issues log, an enforced coverage floor, a `@pytest.mark.req` marker on
+  every test + `check_traceability.py` (a CI gate), and the `?firstname=`
+  filter test. Requirement coverage gate-counted at **44 of 52** (the 8 gaps
+  are all UI).

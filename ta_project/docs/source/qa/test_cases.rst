@@ -10,6 +10,11 @@ implied by the section). Placeholder rows (``Not implemented``) are cases that
 *should* exist to cover a valuable requirement but have no test yet - they are
 the UI-coverage backlog (:ref:`qa_known_issues` KI-12).
 
+Every automated test also carries a ``@pytest.mark.req("REQ-...")`` marker;
+``utilities/_devtools/check_traceability.py`` (a CI job) fails the build if a
+catalogue requirement has no test, a marker names an id that is not in the
+catalogue, or a test carries no marker.
+
 Legend - **Status**: ``Automated`` = test exists and passes ·
 ``Not implemented`` = placeholder, no test.
 
@@ -41,8 +46,8 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-004", "REQ-BE-BOOKING-05", "POST /booking - response status check", "positive", "Medium", "Automated", "::test_create_booking_returns_ok"
    "TC-BE-BOOK-005", "REQ-BE-BOOKING-05", "POST /booking - returned bookingid is not null", "positive", "Medium", "Automated", "::test_create_booking_returns_a_booking_id"
    "TC-BE-BOOK-006", "REQ-BE-BOOKING-05", "POST /booking works without a token (documented behaviour)", "positive", "Low", "Automated", "::test_create_booking_needs_no_token"
-   "TC-BE-BOOK-007", "REQ-BE-BOOKING-06", "POST /booking response matches the create schema", "schema", "High", "Automated", "TestJsonValidation::test_backend_api_create_booking_response_check_via_json_validation"
-   "TC-BE-BOOK-008", "REQ-BE-BOOKING-03 / 06", "GET /booking/{id} response matches the single-booking schema", "schema", "Medium", "Automated", "::test_backend_api_existing_booking_by_id_response_check_via_json_validation"
+   "TC-BE-BOOK-007", "REQ-BE-BOOKING-06", "POST /booking response matches the create schema", "schema", "High", "Automated", "TestJsonValidation::test_create_booking_response_matches_schema"
+   "TC-BE-BOOK-008", "REQ-BE-BOOKING-03 / 06", "GET /booking/{id} response matches the single-booking schema", "schema", "Medium", "Automated", "::test_get_booking_by_id_response_matches_schema"
    "TC-BE-BOOK-009", "REQ-BE-BOOKING-07", "PUT /booking/{id} with a token replaces the booking", "positive", "High", "Automated", "TestBackApiBooking::test_put_replaces_the_booking"
    "TC-BE-BOOK-010", "REQ-BE-BOOKING-09", "PATCH /booking/{id} with a token partially updates the booking", "positive", "High", "Automated", "::test_patch_updates_the_booking"
    "TC-BE-BOOK-011", "REQ-BE-BOOKING-11", "DELETE /booking/{id} with a token; booking then 404s", "positive / e2e", "High", "Automated", "::test_delete_then_get_is_404"
@@ -70,16 +75,15 @@ Back-end API - Response time  (``test_api_performance.py``)
    :header: "TC", "Req", "Title", "Prio", "Status", "Node"
    :widths: 14, 16, 34, 6, 12, 30
 
-   "TC-BE-PERF-001", "REQ-BE-AUTH-01", "POST /auth responds < 2 s", "Low", "Automated", "TestApiPerformance::test_auth_post_response_time"
-   "TC-BE-PERF-002", "REQ-BE-AUTH-01", "POST /auth returns 200", "Low", "Automated", "::test_auth_post_response_code"
+   "TC-BE-PERF-001", "REQ-BE-AUTH-01", "POST /auth responds < 2 s (and returns 200)", "Low", "Automated", "TestApiPerformance::test_auth_post_response_time"
    "TC-BE-PERF-003", "REQ-BE-BOOKING-05", "POST /booking responds < 2 s", "Low", "Automated", "::test_booking_post_response_time"
    "TC-BE-PERF-004", "REQ-BE-BOOKING-01", "GET /booking responds < 2 s", "Low", "Automated", "::test_booking_get_response_time"
    "TC-BE-PERF-005", "REQ-BE-BOOKING-07", "PUT /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_put_response_time"
    "TC-BE-PERF-006", "REQ-BE-BOOKING-09", "PATCH /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_patch_response_time"
    "TC-BE-PERF-007", "REQ-BE-BOOKING-11", "DELETE /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_delete_response_time"
 
-Front-end API - Auth & booking  (``test_front_api_auth.py``, ``test_front_api_booking.py``)
-===========================================================================================
+Front-end API  (``test_front_api_auth.py``, ``test_front_api_resources.py``, ``test_front_api_booking_flow.py``)
+=============================================================================================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
@@ -89,6 +93,7 @@ Front-end API - Auth & booking  (``test_front_api_auth.py``, ``test_front_api_bo
    "TC-FE-AUTH-002", "REQ-FE-AUTH-02", "POST /api/auth/login invalid creds -> 401", "negative", "High", "Automated", "::test_invalid_credentials_are_rejected"
    "TC-FE-AUTH-003", "REQ-FE-AUTH-02", "fuzzed creds always -> 401 (Hypothesis)", "negative", "Low", "Automated", "::test_fuzzed_credentials_are_always_rejected"
    "TC-FE-AUTH-004", "REQ-FE-AUTH-01", "front login returns a token (smoke)", "positive", "Medium", "Automated", "TestFrontApiAuth::test_valid_credentials_return_a_token"
+   "TC-FE-AUTH-007", "REQ-FE-AUTH-02", "data-driven: every invalid row in booker_test_data.xlsx -> 401", "negative", "Low", "Automated", "TestFrontApiAuth::test_invalid_rows_from_the_data_file_are_rejected"
    "TC-FE-AUTH-005", "REQ-FE-AUTH-03", "token validation - valid token accepted, tampered token rejected", "positive/negative", "Medium", "Automated", "TestFrontApiResources::test_front_api_token_validation"
    "TC-FE-AUTH-006", "REQ-FE-AUTH-04", "POST /api/auth/logout -> success (SUT does not actually invalidate the token)", "positive", "Medium", "Automated", "TestFrontApiResources::test_front_api_logout"
    "TC-FE-ROOM-001", "REQ-FE-ROOM-01", "GET /api/room returns the room list", "positive", "High", "Automated", "TestFrontApiResources::test_front_api_room_list"
@@ -102,13 +107,6 @@ Front-end API - Auth & booking  (``test_front_api_auth.py``, ``test_front_api_bo
    "TC-FE-MSG-001", "REQ-FE-MESSAGE-01", "POST /api/message creates a contact message", "positive", "High", "Automated", "::test_front_api_create_message"
    "TC-FE-MSG-002", "REQ-FE-MESSAGE-02", "GET /api/message + /count with a token", "positive", "Medium", "Automated", "TestFrontApiResources::test_front_api_message_inbox"
    "TC-FE-REPORT-001", "REQ-FE-REPORT-01", "GET /api/report with a token -> 200", "positive", "Low", "Automated", "TestFrontApiRoomAdmin::test_report_is_reachable"
-
-.. note::
-
-   ``TestBackApiBooking::test_create_booking_returns_a_booking_id``
-   lives in ``test_front_api_booking.py`` but exercises the **back-end**
-   ``/booking`` endpoint - it maps to TC-BE-BOOK-005, not to a front-end case.
-   Move it in M5.
 
 UI - Home & contact  (``tests_home_page/test_home_page.py``)
 ============================================================

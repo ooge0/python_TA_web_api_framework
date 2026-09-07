@@ -13,9 +13,7 @@ markers = [
     "ui: Selenium UI tests",
     "smoke: minimal fast subset",
     "regression: full regression subset",
-    "unit: unit tests",
-    "end_to_end: end to end tests",
-    "feature: mark a test as part of a feature",
+    "req(*ids): the REQ-* requirements this test verifies - checked against docs/source/qa/feature_catalogue.rst by utilities/_devtools/check_traceability.py",
 ]
 
 # Parallel runs: `pytest-xdist` is installed. Run the suite across CPUs with

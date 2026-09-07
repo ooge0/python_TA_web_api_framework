@@ -55,12 +55,14 @@ class TestFrontApiReservation:
         except Exception:  # noqa: BLE001 - best-effort cleanup
             pass
 
+    @pytest.mark.req("REQ-FE-BOOKING-02")
     def test_public_reservation_is_created(self, created_reservation):
         """TC-FE-BOOK-001: a valid reservation returns 201 with a bookingid."""
         booking_id, _ = created_reservation
         assert_that(booking_id, is_not(none()))
         assert_that(isinstance(booking_id, int), is_(True))
 
+    @pytest.mark.req("REQ-FE-BOOKING-03")
     def test_overlapping_reservation_is_rejected(self, front_booking_api, created_reservation):
         """TC-FE-BOOK-002: a reservation overlapping an existing one -> 409."""
         _, existing = created_reservation
@@ -72,6 +74,7 @@ class TestFrontApiReservation:
             front_booking_api.reserve(overlap)
         assert_that(exc.value.response.status_code, is_(409))
 
+    @pytest.mark.req("REQ-FE-BOOKING-01")
     def test_bookings_for_room(self, front_booking_api, front_token, created_reservation):
         """TC-FE-BOOK-003: GET /api/booking?roomid= (token) returns room bookings."""
         booking_id, _ = created_reservation
@@ -86,6 +89,7 @@ class TestFrontApiRoomAdmin:
     logger = get_logger()
 
     @allure.feature("Rooms")
+    @pytest.mark.req("REQ-FE-ROOM-03", "REQ-FE-ROOM-04")
     def test_create_and_delete_room(self, front_room_api, front_token):
         """TC-FE-ROOM-003 / 004: create a room, see it in the list, delete it."""
         fake = faker.Faker()
@@ -109,6 +113,7 @@ class TestFrontApiRoomAdmin:
         assert_that([r for r in front_room_api.list() if r.roomName == name], is_([]))
 
     @allure.feature("Report")
+    @pytest.mark.req("REQ-FE-REPORT-01")
     def test_report_is_reachable(self, front_report_api, front_token):
         """TC-FE-REPORT-001: GET /api/report (token) -> 200."""
         assert_that(front_report_api.get(front_token).status_code, is_(200))

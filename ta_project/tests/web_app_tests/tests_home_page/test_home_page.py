@@ -39,11 +39,13 @@ def _valid_contact_details() -> dict:
 class TestHomePage:
 
     @allure.feature("Home page")
+    @pytest.mark.req("REQ-UI-HOME-01")
     def test_footer_is_present(self):
         """TC-UI-HOME-001."""
         assert_that(HomeFrontPage(self.driver).footer_present(), is_(True))
 
     @allure.feature("Home page")
+    @pytest.mark.req("REQ-UI-HOME-02")
     def test_footer_links(self):
         """TC-UI-HOME-002: the four policy footer links - texts + hrefs.
 
@@ -58,11 +60,13 @@ class TestHomePage:
             check.is_in(want, got)
 
     @allure.feature("Home page")
+    @pytest.mark.req("REQ-UI-HOME-01")
     def test_nav_brand(self):
         """TC-UI-HOME-01 area: the brand text."""
         assert_that(HomeFrontPage(self.driver).brand_text(), is_("Shady Meadows B&B"))
 
     @allure.feature("Reservation")
+    @pytest.mark.req("REQ-UI-RES-01")
     def test_book_now_links_point_at_reservation_pages(self):
         """TC-UI-RES-01: each room's 'Book now' opens /reservation/{id}."""
         hrefs = HomeFrontPage(self.driver).book_now_hrefs()
@@ -71,6 +75,7 @@ class TestHomePage:
             assert_that(href, contains_string("/reservation/"))
 
     @allure.feature("Contact form")
+    @pytest.mark.req("REQ-UI-CONTACT-01")
     def test_contact_form_valid_submit_shows_confirmation(self):
         """TC-UI-CONTACT-01."""
         home = HomeFrontPage(self.driver)
@@ -78,6 +83,7 @@ class TestHomePage:
         assert_that(home.contact_confirmation_shown(), is_(True))
 
     @allure.feature("Contact form")
+    @pytest.mark.req("REQ-UI-CONTACT-02")
     def test_contact_form_shows_validation_errors_when_empty(self):
         """TC-UI-CONTACT-02: submitting an empty form lists the field errors."""
         home = HomeFrontPage(self.driver)

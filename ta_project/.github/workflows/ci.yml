@@ -24,6 +24,20 @@ jobs:
         continue-on-error: true
         run: pylint core utilities tests --rcfile=config/pylint.rc --fail-under=8.0
 
+  traceability:
+    # No network needed - collect-only. Fails if a catalogue REQ-* has no test,
+    # a test's `req` id is not in the catalogue, or a test carries no `req`.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: requirements traceability
+        run: python -m utilities._devtools.check_traceability
+
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15

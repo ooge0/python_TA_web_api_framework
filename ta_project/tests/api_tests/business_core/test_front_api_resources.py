@@ -4,6 +4,7 @@ token validation. Uses the service objects from :mod:`core.api.services`.
 """
 import allure
 import faker
+import pytest
 import pytest_check as check
 from hamcrest import assert_that, is_, is_not, none, greater_than_or_equal_to
 
@@ -17,6 +18,7 @@ class TestFrontApiResources:
     logger = get_logger()
 
     @allure.feature("Rooms")
+    @pytest.mark.req("REQ-FE-ROOM-01")
     def test_front_api_room_list(self, front_room_api):
         """TC-FE-ROOM-001: GET /api/room returns the room list."""
         rooms = front_room_api.list()
@@ -26,6 +28,7 @@ class TestFrontApiResources:
         assert_that(first.type, is_not(""))
 
     @allure.feature("Rooms")
+    @pytest.mark.req("REQ-FE-ROOM-02")
     def test_front_api_room_by_id(self, front_room_api):
         """TC-FE-ROOM-002: GET /api/room/{id} returns room details."""
         room = front_room_api.get(1)
@@ -33,6 +36,7 @@ class TestFrontApiResources:
         assert_that(room.features, is_not(none()))
 
     @allure.feature("Branding")
+    @pytest.mark.req("REQ-FE-BRANDING-01")
     def test_front_api_branding(self, front_branding_api):
         """TC-FE-BRAND-001: GET /api/branding returns the full branding block.
 
@@ -45,6 +49,7 @@ class TestFrontApiResources:
         check.is_true(bool(body.get("name")), "branding 'name' is empty")
 
     @allure.feature("Messages")
+    @pytest.mark.req("REQ-FE-MESSAGE-01")
     def test_front_api_create_message(self, front_message_api):
         """TC-FE-MSG-001: POST /api/message (contact form) is accepted."""
         fake = faker.Faker()
@@ -58,6 +63,7 @@ class TestFrontApiResources:
         assert_that(front_message_api.send(payload).json().get("success"), is_(True))
 
     @allure.feature("Messages")
+    @pytest.mark.req("REQ-FE-MESSAGE-02")
     def test_front_api_message_inbox(self, front_message_api, front_token):
         """TC-FE-MSG-002: GET /api/message (token) lists messages, /count returns the unread badge."""
         messages = front_message_api.list(front_token).json().get("messages", [])
@@ -69,6 +75,7 @@ class TestFrontApiResources:
                 assert_that(field in message, is_(True), f"message is missing '{field}'")
 
     @allure.feature("Authentication")
+    @pytest.mark.req("REQ-FE-AUTH-03")
     def test_front_api_token_validation(self, front_auth_api, front_token):
         """TC-FE-AUTH-005: a valid token validates; a tampered one is rejected."""
         assert_that(front_auth_api.validate(front_token).json().get("valid"), is_(True))
@@ -81,6 +88,7 @@ class TestFrontApiResources:
             raise AssertionError("a bogus token should not validate")
 
     @allure.feature("Authentication")
+    @pytest.mark.req("REQ-FE-AUTH-04")
     def test_front_api_logout(self, front_auth_api, front_api_valid_user_creds):
         """
         TC-FE-AUTH-006: POST /api/auth/logout with a token returns

@@ -1,0 +1,13 @@
+# Requirements from feature_catalogue.rst that are deliberately not automated yet.
+# check_traceability.py treats these as expected gaps (not a CI failure).
+# Every entry must correspond to a row in known_issues.rst (KI-12).
+# Remove an id from here when its test lands.
+
+REQ-UI-HOME-03    # nav links scroll to their sections (Low)
+REQ-UI-HOME-04    # the Admin nav link / footer Admin panel link open /admin (Medium)
+REQ-UI-RES-02     # complete a reservation via the calendar flow (High) - needs a new page object
+REQ-UI-ROOMS-02   # Create adds a room via the UI (High)
+REQ-UI-ROOMS-03   # a room can be deleted via the UI (Medium)
+REQ-UI-BRAND-01   # the branding admin page shows / edits B&B details (Low)
+REQ-UI-REPORT-01  # the report admin page shows the booking calendar (Low)
+REQ-UI-MSG-01     # the messages admin page lists submissions / marks read (Medium)

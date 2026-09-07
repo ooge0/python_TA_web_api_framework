@@ -19,12 +19,12 @@ with the cosmetic debt (M6) and new coverage the artifacts will expose (M7).
 | M1 make the suite honest | **done.** API side 23/6 -> 30/0; the static UI code bugs (items 1, 7, 8, 9, 19, 21) fixed. The UI layer targeted a version of the SPA that no longer existed - re-targeted in **M8**. |
 | M2 put it under CI | **done.** `.github/workflows/ci.yml` runs `pylint` (reported) and `pytest -n auto -m "not ui"` with coverage on every push / PR; `deploy-docs.yml` builds from `docs/source`. Items 2, 3, 45, 48, 57, 59, 65 done. Coverage floor (`fail_under`) set in **M9**. |
 | M3 make runs repeatable | **done.** items 15, 26, 27, 28, 29, 30, 33, 34: per-client `Session` + `default_factory`, request `timeout`, secrets redacted in logs, `read_configuration` parsed once + cached + no longer swallows errors, per-test data ownership (create + clean up), credentials single-sourced to `config.ini [credentials]`. `pytest -n auto` is the default. (The per-worker SQLite fixture landed here and was then deleted in M5 - nothing used it after M8.) |
-| M4 QA artifacts | **done.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, `what_my_tests_cover`, an episode log, and a known-issues log (M9). Sphinx restructured into one **QA & Testing** section, builds with **0 errors**. Items 61, 62, 64, 66 done here; 65 (cov floor) + 68 (Allure taxonomy) + 67 (known-issues) done in **M9**; 63 (CI matrix diff) is the one open item. |
+| M4 QA artifacts | **done.** `docs/source/qa/` = test plan, feature/requirements catalogue, test cases (`TC-*`, every test mapped + placeholders), traceability matrix, coverage-by-feature, `what_my_tests_cover`, an episode log, and a known-issues log (M9). Sphinx restructured into one **QA & Testing** section, builds with **0 errors**. Items 61, 62, 64, 66 done here; 63 + 65 + 67 + 68 done in **M9**. |
 | M7 expand coverage | **API done - both APIs fully covered.** Back-end 17/17, front-end 15/15 (the `?firstname=` filter closed in **M9**). Back-end +10 (negative-auth 403, missing-id 404, malformed 500, `/ping`); front-end +9 (`/api/room` CRUD, public reservation + overlap 409, room bookings, message inbox, token validate, logout, report). The remaining gaps are all UI (see M9 / KI-12). |
 | M5 clean the core | **done.** 39 (pydantic models), 42 (typed cached `config/settings.py`), 40 (`core/api/services/` - `AuthApi` / `BookingApi` / `RoomApi` / `BrandingApi` / `MessageApi` / `ReportApi` / `PlatformBookingApi`; **every** API test module now calls through them - `test_api_performance.py` and `test_api_json_schema_validation.py` migrated, the last raw-client calls in the front booking flow gone), 41 (locator tuples, delivered in M8), 36 (Excel: `excel_utils.py` + `DataFactory` + `LoginCredentials` deleted, `ExcelDataProvider` kept and wired into one real data-driven test), 37 (SQLite apparatus - `db_utils`, `test_data_utils`, `core/reference_data/`, the `_isolated_db` / `validation_data` / `setup_database` fixtures - all deleted, nothing used them after M8), 38 (`utilities/_devtools/` for the doc scripts; `back_api_utils.py` / `get_names_of_tests.py` / the disabled `fix_path_*` file removed), 43/44 (dead code, `config/db_config.py`, dead fixtures), 46 (`pytest-check` soft assertions in the multi-field checks), 47 (test flag gone with `LoginCredentials`), 51 (logger path), 52 (rename). `pytest-lazy-fixture` + `regex` dropped from the deps. |
 | M6 finish the edges | **done.** 10 (`BackApiAuthPayload.to_dict` returns a dict; the model is now used by the back-auth test), 22 (`HeaderModel` deleted), 23/31/32 (base-page waits, delivered in M8), 24 (`navbar1` typo), 49 (`docs/requirements.txt` constrained by the lock file), 50 (dropped unconfigured `tach`; contributor guide rewritten to the real tooling), 52/53 (naming + a docstring pass over conftest / fixtures / the migrated tests), 54 (README quickstart), 55 (deleted `index_old.rst_`, `favicon1.ico`, stale `list_of_all_project_tests*`, `facepalm.jpg`, placeholders; fixed broken includes), 56 (`pylint.rc` -> UTF-8, `project_tree.txt`), 58 (`conf.py` author, dead `templates_path`), 60 (`tasks.py`, `setup_env.bat`). **Sphinx builds with 0 errors** (stale autodoc entries for the deleted modules cleaned; RST title underlines in the QA docs fixed). |
 | M8 re-target the UI layer | **done.** New `(By, "selector")` tuple locators (delivers item 41), a rewritten `BaseFrontPage` (`find/click/type/text_of/is_visible`, delivers items 31/32), new page objects for the SPA (`HomeFrontPage`, `LoginAdminPage`, `AdminRoomsFrontPage`), and a `setup_and_teardown` that waits for the async render instead of clicking the gone intro banner. `test_login_actions_validation.py` removed; `test_home_page.py` + `test_login_page.py` rewritten. **13 UI tests pass** against the live SPA. `base_locators.py` (Enum), `home_page_validation_data.py` and the DB-backed UI test gone. Requirement coverage 31 -> 41 of 52. |
-| M9 close the QA loop | **done bar one item.** 68 (Allure `epic → feature → story` normalised to the catalogue - 3 epics, 13 features; documented in `qa/index.rst`), 67 (`qa/known_issues.rst` - SUT quirks + framework limitations), 65 (`[tool.coverage.*]` in `pyproject.toml`, `fail_under = 70`, `_devtools` omitted; CI fails below the floor), the `GET /booking?firstname=` filter test (back-end now 17/17). Requirement coverage 41 -> **42 of 52** (the last 10 are all UI). **Open: 63** - a CI step that diffs the traceability matrix against the catalogue. |
+| M9 close the QA loop | **done.** 68 (Allure `epic → feature → story` normalised to the catalogue - 3 epics, 13 features; documented in `qa/index.rst`), 67 (`qa/known_issues.rst` - SUT quirks + framework limitations), 65 (`[tool.coverage.*]` in `pyproject.toml`, `fail_under = 70`, `_devtools` omitted; CI fails below the floor), 63 (every test tagged `@pytest.mark.req("REQ-...")`; `utilities/_devtools/check_traceability.py` + a CI job fail on an uncovered requirement / orphan tag / untagged test; `_known_gaps.txt` is the allowlist), the `GET /booking?firstname=` filter test. **Requirement coverage now gate-counted: 44 of 52** (BE 17/17, FE 15/15, UI 12/20; the 8 UI gaps are KI-12). |
 
 ---
 
@@ -181,13 +181,14 @@ marked "manual" / "won't test" with a reason.
 
 ---
 
-## M9 — Close the QA loop  ✅ done bar 63
+## M9 — Close the QA loop  ✅ done
 
 **Goal:** finish the M4/M7 tail so the test-design layer is self-consistent and
 CI-checked.
 
 Items: 68 (Allure taxonomy), 67 (known-issues log), 65 (coverage floor), the
-`GET /booking?firstname=` filter test, the stale ROADMAP rows, 63 (CI diff).
+`GET /booking?firstname=` filter test, the stale ROADMAP rows, 63 (CI
+traceability gate).
 
 - **68** — `@allure.epic` = `Back-end API` / `Front-end API` / `Web UI`;
   `@allure.feature` = the `FEAT-*` feature in plain words; `@allure.story` only
@@ -201,14 +202,19 @@ Items: 68 (Allure taxonomy), 67 (known-issues log), 65 (coverage floor), the
   (config-driven) and fails below the floor. Current: ~77%.
 - **`?firstname=` filter** — `BookingApi.find(firstname=, lastname=)` +
   `test_name_filter_returns_the_matching_booking`. Back-end now 17/17.
+- **63** — every test carries `@pytest.mark.req("REQ-...")`;
+  `utilities/_devtools/check_traceability.py` reads the markers off the
+  collected tests and fails if a catalogue requirement is neither covered nor
+  in `docs/source/qa/_known_gaps.txt` (the 8-entry UI allowlist), if a marker
+  names an id not in the catalogue, or if a test has no marker. A `traceability`
+  CI job runs it (no network needed). Requirement coverage is now
+  **gate-counted: 44 of 52**.
 
-**Done when:** ✅ (bar 63)
-- Every test carries a catalogue-keyed epic + feature; the Allure Behaviors
-  view is a usable coverage lens.
+**Done when:** ✅
+- Every test carries a catalogue-keyed epic + feature and a `req` marker; the
+  Allure Behaviors view is a usable coverage lens.
 - `qa/known_issues.rst` exists and is wired into the QA toctree.
-- CI enforces a coverage floor.
-- **Open:** 63 — a CI step that tags tests with `REQ-*` and fails on an orphan
-  test or an uncovered requirement.
+- CI enforces a coverage floor and the traceability gate.
 
 ---
 

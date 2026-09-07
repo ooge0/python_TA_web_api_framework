@@ -31,21 +31,25 @@ class TestFrontApiAuth:
     logger = get_logger()
     ref_bad_creds = 401
 
+    @pytest.mark.req("REQ-FE-AUTH-01")
     def test_valid_credentials_return_a_token(self, front_auth_api, front_api_valid_user_creds):
         """TC-FE-AUTH-001 / 004: valid credentials -> 200 with a token in the body."""
         response = front_auth_api.create_token(front_api_valid_user_creds)
         assert_that(response.status_code, is_(200))
         assert_that(bool(response.json().get("token")), is_(True), "no token in the response body")
 
+    @pytest.mark.req("REQ-FE-AUTH-02")
     def test_invalid_credentials_are_rejected(self, front_auth_api, api_invalid_user_creds):
         """TC-FE-AUTH-002: random invalid credentials -> 401."""
         self._assert_rejected(front_auth_api, api_invalid_user_creds)
 
     @pytest.mark.parametrize("username,password", _EXCEL_INVALID_LOGINS)
+    @pytest.mark.req("REQ-FE-AUTH-02")
     def test_invalid_rows_from_the_data_file_are_rejected(self, front_auth_api, username, password):
         """TC-FE-AUTH-007: data-driven - every invalid row in the workbook -> 401."""
         self._assert_rejected(front_auth_api, {"username": username, "password": password})
 
+    @pytest.mark.req("REQ-FE-AUTH-02")
     def test_fuzzed_credentials_are_always_rejected(self, front_auth_api):
         """TC-FE-AUTH-003: Hypothesis - every random pair must be rejected with 401."""
 

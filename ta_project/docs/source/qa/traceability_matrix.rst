@@ -10,11 +10,14 @@ One row per requirement from :ref:`qa_feature_catalogue`, its test cases from
 ``Covered`` = at least one ``Automated`` (passing) case.
 ``Gap`` = no case implemented.
 
-Snapshot: 49 API + 13 UI tests passing (1 skipped = the episode reminder).
-Back-end API and front-end API are fully covered. The open gaps are all UI:
-the nav-anchor scroll, the reservation-calendar completion, admin room
-create / delete, and the branding / report / messages admin pages - see
-:ref:`qa_known_issues` KI-12.
+This table is kept honest by ``utilities/_devtools/check_traceability.py``: it
+reads the ``@pytest.mark.req`` markers off the collected tests and fails CI if a
+catalogue requirement is neither covered nor listed in ``_known_gaps.txt``, or
+if a marker names an id that is not in the catalogue.
+
+Snapshot: **44 of 52 requirements covered** (49 API + 13 UI tests passing, 1
+skipped). Back-end and front-end API are fully covered (17/17, 15/15); the
+8 gaps are all UI - see :ref:`qa_known_issues` KI-12 and ``_known_gaps.txt``.
 
 Back-end API
 ============

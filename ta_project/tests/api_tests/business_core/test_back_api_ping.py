@@ -2,6 +2,7 @@
 Health-check test for the back-end API (M7 gap-fill).
 """
 import allure
+import pytest
 from hamcrest import assert_that, is_
 
 from config.logger_config import get_logger
@@ -15,6 +16,7 @@ class TestBackApiPing:
 
     logger = get_logger()
 
+    @pytest.mark.req("REQ-BE-PING-01")
     def test_backend_api_ping_returns_201(self, backend_api_client):
         """TC-BE-PING-001: GET /ping -> 201."""
         response = backend_api_client.get(BackEndPoints.PING)

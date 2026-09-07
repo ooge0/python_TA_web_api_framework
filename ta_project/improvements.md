@@ -28,17 +28,17 @@ See `ROADMAP.md` for the milestone view.
 | M1 make the suite honest | done (API 23/6 -> 30/0; UI static bugs). |
 | M2 put it under CI | done - `ci.yml` (lint + test + coverage on push/PR), `deploy-docs.yml` fixed, `pytest-cov`. |
 | M3 make runs repeatable | done - see the M3 block below and `ROADMAP.md`. |
-| M4 QA artifacts | done - `docs/source/qa/` (test plan, catalogue, test cases, traceability, coverage, known-issues, episodes). Items 61, 62, 64, 66 here; 63 open. |
+| M4 QA artifacts | done - `docs/source/qa/` (test plan, catalogue, test cases, traceability, coverage, known-issues, episodes). Items 61, 62, 64, 66 here; 63/65/67/68 in M9. |
 | M5 clean the core | done - 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 51. |
 | M6 finish the edges | done - 10, 22, 23, 24, 31, 32, 49, 50, 52, 53, 54, 55, 56, 58, 60. |
 | M7 expand coverage | API done - both APIs fully covered (BE 17/17, FE 15/15). |
 | M8 re-target the UI layer | done - tuple locators, rewritten page objects, 13 UI tests pass against the SPA. |
-| M9 close the QA loop | done bar 63 - 65 (coverage floor), 67 (known-issues log), 68 (Allure taxonomy), `?firstname=` filter test. |
+| M9 close the QA loop | done - 63 (traceability gate), 65 (coverage floor), 67 (known-issues log), 68 (Allure taxonomy), `?firstname=` filter test. |
 
-Items done: 1-62, 64-68. **Open: 63** (a CI step that diffs tagged tests against
-the catalogue). Beyond the backlog: a UI-coverage milestone for the 10
-remaining UI requirements (home-page room listing, reservation calendar, admin
-room create/delete, branding/report/messages pages).
+**Items 1-68 done.** Nothing left on this backlog. Beyond it: a UI-coverage
+milestone for the 8 remaining UI requirements (`docs/source/qa/_known_gaps.txt`
+/ KI-12) - reservation calendar, admin room create/delete, branding / report /
+messages pages, the nav-anchor scroll, the Admin-link click.
 
 **M3 - make runs repeatable (done):**
 - item 26/27: `APIClient.session` -> `field(default_factory=requests.Session)`,
@@ -139,6 +139,29 @@ API 15/15). M8 rebuilt the Selenium layer for the current SPA - `(By, "selector"
 tuple locators, new `BaseFrontPage` + page objects, a render-aware
 `setup_and_teardown`; 13 UI tests pass, `test_login_actions_validation.py`
 removed, a single skipped `test_sut_drift_episode.py` kept as a reminder.
+
+**M9 - close the QA loop (done):**
+- 68: Allure taxonomy - `@allure.epic` (`Back-end API` / `Front-end API` /
+  `Web UI`) + `@allure.feature` (the `FEAT-*` name in plain words) + `@allure.story`
+  (only for an approach: `Negative` / `Performance` / `Schema validation`) on
+  every class/method. Vocabulary documented in `qa/index.rst`.
+- 67: `docs/source/qa/known_issues.rst` - SUT quirks (logout doesn't invalidate,
+  `/count` = unread badge, DELETE = 201/202, 500 on a bad body, shared live
+  services) + framework limitations (no stub, no retry, UI-parallel race, UI
+  coverage gaps, cov floor). Wired into the QA toctree.
+- 65: `[tool.coverage.run]` / `[tool.coverage.report]` in `pyproject.toml` -
+  `source`, `branch`, `omit _devtools`, `fail_under = 70`. CI runs
+  `pytest --cov` (config-driven) and fails below the floor. Current ~77%.
+- 63: every test carries `@pytest.mark.req("REQ-...")`;
+  `utilities/_devtools/check_traceability.py` + a `traceability` CI job
+  (collect-only, no network) fail on an uncovered requirement, an orphan tag
+  (id not in the catalogue), or an untagged test.
+  `docs/source/qa/_known_gaps.txt` is the 8-entry UI allowlist.
+- `BookingApi.find(firstname=, lastname=)` + `test_name_filter_returns_the_matching_booking`
+  - `REQ-BE-BOOKING-02` covered, back-end API now 17/17.
+- Requirement coverage is now **gate-counted: 44 of 52** (BE 17/17, FE 15/15,
+  UI 12/20). The QA docs (traceability matrix, coverage-by-feature, test cases)
+  reconciled to that number.
 
 ---
 

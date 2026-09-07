@@ -32,18 +32,21 @@ pytestmark = [
 @allure.feature("Admin login")
 class TestAdminLogin:
 
+    @pytest.mark.req("REQ-UI-LOGIN-03")
     def test_login_form_placeholders(self):
         """TC-UI-LOGIN-003."""
         page = LoginAdminPage(self.driver).wait_for_form()
         assert_that(page.attr_of(LoginPageLocators.USERNAME, "placeholder"), is_("Enter username"))
         assert_that(page.attr_of(LoginPageLocators.PASSWORD, "placeholder"), is_("Password"))
 
+    @pytest.mark.req("REQ-UI-LOGIN-01")
     def test_valid_credentials_log_in(self):
         """TC-UI-LOGIN-001: valid admin credentials -> the admin area."""
         page = LoginAdminPage(self.driver)
         page.login(_S.admin_user, _S.front_ui_password)
         assert_that(page.is_logged_in(), is_(True))
 
+    @pytest.mark.req("REQ-UI-LOGIN-02")
     def test_invalid_credentials_are_rejected(self):
         """TC-UI-LOGIN-002: invalid credentials -> error, still on the form."""
         page = LoginAdminPage(self.driver)
@@ -63,10 +66,12 @@ class TestAdminNavigation:
         page.login(_S.admin_user, _S.front_ui_password)
         assert page.is_logged_in(), "precondition: admin login failed"
 
+    @pytest.mark.req("REQ-UI-NAV-02")
     def test_brand_text(self):
         """TC-UI-NAV-02."""
         assert_that(LoginAdminPage(self.driver).brand_text(), is_("Restful Booker Platform Demo"))
 
+    @pytest.mark.req("REQ-UI-NAV-01")
     def test_navbar_links(self):
         """TC-UI-NAV-01: the post-login navbar carries every admin section.
 
@@ -76,6 +81,7 @@ class TestAdminNavigation:
         for expected in ("Rooms", "Report", "Branding", "Messages", "Front Page"):
             check.is_in(expected, texts)
 
+    @pytest.mark.req("REQ-UI-NAV-03")
     def test_logout_leaves_the_admin_area(self):
         """TC-UI-NAV-03: Logout ends the admin session (redirects to the public site)."""
         page = LoginAdminPage(self.driver)
@@ -85,6 +91,7 @@ class TestAdminNavigation:
         assert_that(page.is_logged_in(timeout=2), is_(False))
 
     @allure.feature("Admin rooms")
+    @pytest.mark.req("REQ-UI-ROOMS-01")
     def test_rooms_table_lists_rooms(self):
         """TC-UI-ROOMS-01."""
         rooms = AdminRoomsFrontPage(self.driver)
