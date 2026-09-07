@@ -15,14 +15,8 @@ from core.data.data_models.front_api_booking_object_data_model import ApiBooking
 
 
 # --------------------------------------------------------------------------- #
-# credentials / headers
+# credentials
 # --------------------------------------------------------------------------- #
-
-@pytest.fixture
-def api_valid_headers() -> dict:
-    """A plain JSON ``Content-Type`` header."""
-    return {"Content-Type": "application/json"}
-
 
 @pytest.fixture
 def api_invalid_user_creds() -> dict:
