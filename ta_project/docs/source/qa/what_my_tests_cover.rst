@@ -8,7 +8,7 @@ A plain-English walk through what the suite actually checks, by area. For the
 IDs, priorities and pytest node names see :ref:`qa_test_cases`; for the
 requirement-by-requirement view see :ref:`qa_traceability`.
 
-Current run: **48 API tests passing**, 20 UI tests skipped (roadmap M8).
+Current run: **46 API tests passing**, 20 UI tests skipped (roadmap M8).
 API calls go through the per-resource service objects in
 :mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi`` ...).
 

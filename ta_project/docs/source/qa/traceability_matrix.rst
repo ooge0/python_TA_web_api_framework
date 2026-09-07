@@ -11,7 +11,7 @@ One row per requirement from :ref:`qa_feature_catalogue`, its test cases from
 ``Blocked`` = cases exist but cannot run (UI, pending M8).
 ``Gap`` = no case implemented.
 
-Snapshot: 48 API tests passing, 20 UI tests skipped (M8).
+Snapshot: 46 API tests passing, 20 UI tests skipped (M8).
 
 Back-end API
 ============
@@ -92,8 +92,6 @@ UI
 Orphan tests (no requirement)
 =============================
 
-.. csv-table::
-   :header: "Test", "Note"
-   :widths: 45, 55
-
-   "TestFrontApiBooking::test_backend_api_create_booking_returns_int_bookingid", "misfiled - exercises the back-end endpoint; = TC-BE-BOOK-005. Relocate in M5."
+None. The misfiled ``test_front_api_create_booking_with_valid_token`` was
+removed in the M5 service-object migration; its checks are covered by
+``TestBackApiBooking::test_create_booking_returns_a_booking_id`` (TC-BE-BOOK-005).

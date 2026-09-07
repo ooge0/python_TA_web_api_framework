@@ -47,10 +47,11 @@ class TestFrontApiResources:
         assert_that(front_message_api.send(payload).json().get("success"), is_(True))
 
     def test_front_api_message_inbox(self, front_message_api, front_token):
-        """TC-FE-MSG-002: GET /api/message (token) lists messages + a count."""
+        """TC-FE-MSG-002: GET /api/message (token) lists messages, /count returns the unread badge."""
         messages = front_message_api.list(front_token).json().get("messages", [])
         count = front_message_api.count(front_token).json().get("count")
-        assert_that(count, greater_than_or_equal_to(len(messages)))
+        assert_that(count, greater_than_or_equal_to(0))
+        assert_that(isinstance(count, int), is_(True))
         for message in messages[:1]:
             for field in ("id", "name", "subject", "read"):
                 assert_that(field in message, is_(True), f"message is missing '{field}'")

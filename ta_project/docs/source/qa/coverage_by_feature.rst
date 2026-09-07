@@ -6,7 +6,7 @@ Coverage by Feature
 
 Derived from :ref:`qa_feature_catalogue`, :ref:`qa_test_cases` and
 :ref:`qa_traceability`. "Automated / passing" is from the last run
-(48 API tests passing, 20 UI tests skipped - M8).
+(46 API tests passing, 20 UI tests skipped - M8).
 
 This is **requirement** coverage, not code coverage. Code coverage
 (``pytest-cov``) is reported separately by CI.
@@ -56,7 +56,8 @@ History
    "Original snapshot", "23 (of ~38, ~6 failing/dead)", "not tracked"
    "M1 - suite honest", "30", "14"
    "M7 - back-end gap-fill", "40", "21"
-   "M7 - front-end gap-fill (this)", "48", "30"
+   "M7 - front-end gap-fill", "48", "30"
+   "M5 - service-object migration", "46 (2 dup tests removed)", "30"
 
 Reading of this
 ===============

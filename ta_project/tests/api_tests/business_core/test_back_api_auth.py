@@ -1,171 +1,76 @@
 """
-Module contains tests related to the authorisation flow of back-end API
+Back-end auth flow - ``POST /auth`` on restful-booker.
+
+Valid credentials return a token; every kind of bad input (wrong password,
+a missing field, empty strings, a non-JSON ``Content-Type``, fuzzed strings)
+must fail to authenticate.
 """
 import allure
-from hamcrest import assert_that, is_, equal_to, is_not
+from hamcrest import assert_that, equal_to, is_, is_not, none
 from hypothesis import given, settings
 from hypothesis.strategies import text
+from requests import HTTPError
 
 from config.logger_config import get_logger
-from core.data.data_models.back_api_auth_data_models import BackApiAuthPayload
 from resources.test_data.headers_mimo_types import MimeType
-from utilities.api_utils import measure_response_time
 
 
+@allure.feature("back-end auth")
 class TestBackApiAuth:
-    """
-    Class for collecting tests related to the authorisation flow of back-end API
-    """
+    """``POST /auth`` token creation."""
+
     logger = get_logger()
-    ref_response_status_code = 200
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_valid_creds(self, backend_api_client, back_end_auth_api_endpoint,
-                                                    back_api_valid_credentials_valid_headers):
-        """
-        Test to check token creation by valid credentials
-        
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-        :param back_api_valid_credentials_valid_headers: Fixture that returns valid user credentials and headers for the current test.
-        """
-        user_creds, headers = back_api_valid_credentials_valid_headers
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
-        self.logger.info(
-            f"Login completed. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-        auth_payload = BackApiAuthPayload.from_dict(response.json())
-        token = auth_payload.token
-        self.logger.debug(f"Extracted token '{token}' from {response.request.url} endpoint")
-        assert_that(token, is_not(None), "Auth token was successfully received")
+    def test_valid_credentials_return_a_token(self, back_auth_api, back_api_valid_user_creds):
+        """TC-BE-AUTH-001."""
+        token = back_auth_api.create_token(back_api_valid_user_creds).json().get("token")
+        assert_that(token, is_not(none()), "no token was issued for valid credentials")
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_invalid_creds(self, backend_api_client, back_end_auth_api_endpoint,
-                                                      back_api_invalid_credentials):
-        """
-        Test to check token creation by invalid credentials.
-        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
-        
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: BackEnd API endpoint for token generation
-        :param back_api_invalid_credentials: Fixture that returns invalid user credentials for the current test.
-        """
-        user_creds, headers = back_api_invalid_credentials
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
-        self.logger.info(
-            f"Login attempted with invalid credentials. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code),
-                    f"Expected status code 200, but got {response.status_code}")
-        response_json = response.json()
-        assert_that(response_json.get("reason"), equal_to("Bad credentials"),
-                    "Expected 'Bad credentials' reason in response.")
+    def test_invalid_credentials_are_rejected(self, back_auth_api, api_invalid_user_creds):
+        """TC-BE-AUTH-002."""
+        body = back_auth_api.create_token(api_invalid_user_creds).json()
+        assert_that(body.get("reason"), equal_to("Bad credentials"))
+        assert_that(body.get("token"), is_(None))
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_with_missing_password(self, backend_api_client, back_end_auth_api_endpoint,
-                                                          back_api_valid_credentials_valid_headers):
-        """
-        A payload with a username but no password must not yield a token.
-        restful-booker answers 200 with ``{"reason": "Bad credentials"}``.
-        """
-        creds, headers = back_api_valid_credentials_valid_headers
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers,
-                                           json={"username": creds["username"]})
-        self.logger.info(f"Missing-password login. Status code: {response.status_code}, "
-                         f"Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code))
-        assert_that(response.json().get("reason"), equal_to("Bad credentials"))
+    def test_missing_password_is_rejected(self, back_auth_api, back_api_valid_user_creds):
+        """TC-BE-AUTH-003."""
+        body = back_auth_api.create_token({"username": back_api_valid_user_creds["username"]}).json()
+        assert_that(body.get("reason"), equal_to("Bad credentials"))
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_with_missing_username(self, backend_api_client, back_end_auth_api_endpoint,
-                                                          back_api_valid_credentials_valid_headers):
-        """
-        A payload with a password but no username must not yield a token.
-        restful-booker answers 200 with ``{"reason": "Bad credentials"}``.
-        """
-        creds, headers = back_api_valid_credentials_valid_headers
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers,
-                                           json={"password": creds["password"]})
-        self.logger.info(f"Missing-username login. Status code: {response.status_code}, "
-                         f"Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code))
-        assert_that(response.json().get("reason"), equal_to("Bad credentials"))
+    def test_missing_username_is_rejected(self, back_auth_api, back_api_valid_user_creds):
+        """TC-BE-AUTH-004."""
+        body = back_auth_api.create_token({"password": back_api_valid_user_creds["password"]}).json()
+        assert_that(body.get("reason"), equal_to("Bad credentials"))
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_empty_user_creds_and_no_headers(self, backend_api_client,
-                                                                        back_end_auth_api_endpoint):
-        """
-        Test to check token creation by invalid credentials.
-        This test verifies that a token is not created when invalid credentials are used, even if the response is 200 OK.
+    def test_empty_credentials_are_rejected(self, back_auth_api):
+        """TC-BE-AUTH-005."""
+        body = back_auth_api.create_token({"username": "", "password": ""}).json()
+        assert_that(body.get("reason"), equal_to("Bad credentials"))
 
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: Endpoint for login
+    def test_non_json_content_type_never_authenticates(self, back_auth_api, back_api_valid_user_creds):
         """
-        user_creds = {"username": "", "password": ""}
-        response = backend_api_client.post(back_end_auth_api_endpoint, headers={}, json=user_creds)
-        self.logger.info(
-            f"Login attempted with invalid credentials. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-        assert_that(response.status_code, is_(self.ref_response_status_code),
-                    f"Expected status code 200, but got {response.status_code}")
-        response_json = response.json()
-        assert_that(response_json.get("reason"), equal_to("Bad credentials"),
-                    "Expected 'Bad credentials' reason in response.")
+        TC-BE-AUTH-006: valid credentials + any non-JSON ``Content-Type``.
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_valid_user_creds_and_wrong_type_of_headers(self, backend_api_client,
-                                                                                   back_end_auth_api_endpoint,
-                                                                                   back_api_valid_credentials):
+        restful-booker answers ``400`` for most non-JSON media types and ``200``
+        ``{"reason": "Bad credentials"}`` for a few - in every case no token is
+        issued.
         """
-        Test to check token creation by invalid credentials.
-        This test verifies that a token is not created when invalid credentials are used.
-        """
-        user_creds = back_api_valid_credentials
-        mime_types = MimeType()
-        excluded_types = {"application": ["application/json"]}  # Exclude "application/json" from application category
-        # Get the remaining MIME types without the excluded ones
-        filtered_mime_types = mime_types.all_mime_types(exclude=excluded_types)
-        for mime_type in filtered_mime_types:
-            headers = {"Content-Type": mime_type}
+        for mime_type in MimeType().all_mime_types(exclude={"application": ["application/json"]}):
             try:
-                response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
+                body = back_auth_api.create_token(back_api_valid_user_creds,
+                                                  headers={"Content-Type": mime_type}).json()
+            except HTTPError as exc:
+                assert_that(exc.response.status_code, is_(400), f"unexpected status for {mime_type}")
+                continue
+            assert_that(body.get("token"), is_(None), f"a token was issued for Content-Type {mime_type}")
 
-            except Exception as ex:
-                self.logger.error(f"Request failed for mime_type: {mime_type}")
-                self.logger.error(f"Error: {ex.__context__}")
-            response_json = response.json()
-            assert_that(response_json.get("reason"), is_("Bad credentials"),
-                        f"Expected 'Bad credentials' reason in response but had {response.content}. Test data user_creds {user_creds} or headers: {headers} failed test")
+    def test_fuzzed_credentials_never_authenticate(self, back_auth_api):
+        """TC-BE-AUTH-007: Hypothesis - random username/password pairs must not authenticate."""
 
-            self.logger.info(
-                f"Login attempted with invalid credentials and Content-Type {mime_type}. "
-                f"Status code: {response.status_code}, Response time: {measure_response_time(response)}")
+        @settings(max_examples=10, deadline=None)
+        @given(username=text(min_size=0, max_size=10), password=text(min_size=0, max_size=10))
+        def check(username, password):
+            body = back_auth_api.create_token({"username": username, "password": password}).json()
+            assert_that(body.get("token"), is_(None))
 
-    @allure.feature("back-end Auth feature")
-    def test_back_api_creation_token_by_invalid_creds_hypothesis_check(self, backend_api_client,
-                                                                       back_end_auth_api_endpoint,
-                                                                       front_api_valid_credentials_valid_headers):
-        """
-        Test to check token creation by invalid credentials using Hypothesis.
-        This test verifies that a token is not created when invalid credentials are used.
-
-        :param backend_api_client: Client to interact with the backend API
-        :param back_end_auth_api_endpoint: Endpoint for token generation
-        """
-
-        @settings(max_examples=10,
-                  deadline=None)  # Limit the number of examples for faster execution during development. Disable the deadline to avoid timing issues
-        @given(
-            username=text(min_size=0, max_size=10),  # Generate strings with length from min_size to maz_size characters
-            password=text(min_size=0, max_size=10)  # Generate strings with length from min_size to maz_size characters
-        )
-        def hypothesis_test(username, password):
-            self.logger.info(f"Testing with username: '{username}' and password: '{password}'")
-            user_creds, headers = front_api_valid_credentials_valid_headers
-            response = backend_api_client.post(back_end_auth_api_endpoint, headers=headers, json=user_creds)
-            self.logger.info(
-                f"Login attempt. Status code: {response.status_code}, Response time: {measure_response_time(response)}")
-            assert_that(response.status_code, is_(self.ref_response_status_code),
-                        f"Expected status code 200, but got {response.status_code}")
-            response_json = response.json()
-            assert_that(response_json.get("reason"), equal_to("Bad credentials"),
-                        "Expected 'Bad credentials' reason in response.")
-
-        hypothesis_test()
+        check()
