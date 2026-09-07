@@ -1,4 +1,4 @@
-.. ta_framework_ui_api documentation master file created by sphinx-quickstart.
+.. python_TA_web_api_framework documentation master file.
 
 .. figure:: /_static/images/logo_m.png
     :align: center
@@ -7,30 +7,27 @@
 
     Where Python makes magic...
 
-=========================
-Python TA Framework Docs
-=========================
+===========================
+Python TA Web/API Framework
+===========================
 
-Welcome to the Python Hybrid Test Automation Framework documentation!
+My hybrid test-automation framework for the *restful-booker* practice stack -
+the UI and front-end API at `automationintesting.online
+<https://automationintesting.online>`_ and the back-end API at
+`restful-booker.herokuapp.com <https://restful-booker.herokuapp.com>`_.
 
-This project focuses on testing the UI, front-end, and back-end API of restful-booker web-site: `<https://automationintesting.online>`_
-
-For more details about the web site that is using for tests please, visit `<https://www.ministryoftesting.com/>`_.
-
--------------------------
-
-
-**Table of Contents**
+I built it to practise assembling, documenting and publishing a framework end to
+end. These docs are both the guide and my own reference.
 
 .. contents::
    :local:
-   :depth: 3
+   :depth: 2
    :backlinks: top
 
 
-Project Overview
-================
-This section includes high-level information about the project, including framework components, setup instructions, and key features.
+Overview
+========
+What the framework is, how it is laid out, and the tools it uses.
 
 .. toctree::
    :maxdepth: 2
@@ -38,62 +35,47 @@ This section includes high-level information about the project, including framew
    :caption: Overview
 
    about/about_this_guide
-   readme
    about/framework_structure
    about/features
+   readme
 
 
-Framework Setup
+Setup & Running
 ===============
-This section contains Instructions for setting up the project, installing dependencies, configuring test environments and running tests.
+Getting the framework installed and the suite running.
 
 .. toctree::
    :maxdepth: 2
    :numbered:
-   :caption: Setup Guide
+   :caption: Setup & Running
 
-   about/installation_guide
+   config/setup_and_running
    config/environment_setup
-   config/virtual_env
-   config/running_tests
 
 
-Tests
-=====
-This section contains details about the UI, API, and backend tests included in the framework.
-In teh current project used `pytest` framework approach and all related information about packages, test, some helpful information you can find below.
-
-
-.. toctree::
-   :maxdepth: 2
-   :numbered:
-   :caption: Test Details
-
-   tests/tests
-
-
-Test Design & QA Artifacts
-==========================
-The test-design layer: features and requirements of the systems under test, the
-test cases that verify them (existing and planned), the requirements
-traceability matrix and the coverage-by-feature view. The pytest modules
-documented above are the *implementation*; this section is the *specification*.
+QA & Testing
+============
+The whole testing story in one section: what I test and how, a plain-English
+description of what the tests check, the feature / requirements catalogue, the
+test cases with their pytest node names, the traceability matrix, the
+coverage-by-feature view, and the auto-generated reference for the test modules.
 
 .. toctree::
    :maxdepth: 2
    :numbered:
-   :caption: Test Design & QA
+   :caption: QA & Testing
 
    qa/index
 
 
-Diagrams and Graphs
-===================
-This section contains visualization of framework components, relationships, and dependencies. Most important part is in `core` package and here you can find detailed description on how it was built and used in UI/API tests.
+Diagrams & Graphs
+=================
+Visualisations of the ``core`` package - class and package relationships and
+how ``APIClient`` is wired.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Diagrams and Graphs
+   :caption: Diagrams & Graphs
 
    diagrams/graphs
    diagrams/classes_relationships
@@ -101,39 +83,23 @@ This section contains visualization of framework components, relationships, and 
    diagrams/function_and_class_relationships
 
 
-Additional Notes
-================
-This section was created for contributors, guidelines, and troubleshooting.
+Contributors & FAQ
+==================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contributors and FAQ
+   :caption: Contributors & FAQ
 
    about/contributors_guide
    about/faq
 
-Module Index
-=============
-Here you can find references on most important python modules (files) that is used in the project.
+
+Reference
+=========
 
 .. toctree::
-   :caption: Python Module Index
-   :numbered:
+   :caption: Reference
    :glob:
 
    modindex
-
-
-Glossary
-=============
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :caption: Glossary
-
    glossary
-
-Glossary section contains most important references and terms that are used in the project.
-My focus was concentrated on basics and building clear and short references for most important entities of the project.
-

@@ -25,16 +25,15 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.autosummary',       # This can help with summarizing
     'myst_parser',                  # markDown parser
-    'sphinx.ext.viewcode',          # To include links to source code
     'sphinx.ext.graphviz',          # For Graphviz support
     'sphinx_autodoc_typehints',     # For type hints support
-    'rst2pdf.pdfbuilder',           # for making PDF docs
     'sphinx.ext.inheritance_diagram',      #  <<< !!!!
     'autoapi.extension',
-    'sphinx.ext.duration', # extension measures durations of Sphinx processing and show its result at end of the build. It is useful for inspecting what document is slowly built
-    'sphinx_tabs.tabs', # for rendering tables from the source code in rst files
-    'notfound.extension', # Create a custom 404 page with absolute URLs hardcoded.
-
+    'sphinx_tabs.tabs',             # tabbed code blocks
+    'notfound.extension',           # custom 404 page
+    'rst2pdf.pdfbuilder',           # `sphinx-build -b pdf` (used by `invoke build-pdf`)
+    # sphinx.ext.viewcode is intentionally omitted - it hits an IndexError on
+    # this codebase (a Sphinx bug with certain source files).
 ]
 
 # ------------------- SOURCE FILE SUFFIXES ----------------------------

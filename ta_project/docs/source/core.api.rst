@@ -4,12 +4,6 @@ core.api package
 Function and Class Relationships
 =================================
 
-.. image:: _static/images/facepalm.jpg
-  :width: 300
-  :height: 200
-
-.. include:: function_class_relationships.rst
-
 Module contents
 ---------------
 

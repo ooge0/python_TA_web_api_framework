@@ -1,23 +1,20 @@
 .. _qa_index:
 
-===========================
-Test Design & QA Artifacts
-===========================
+=============
+QA & Testing
+=============
 
-This section holds the *test-design layer* of the project: what the systems
-under test are supposed to do, the test cases that verify it, which of those
-cases are automated, and where the gaps are.
+This section is the whole testing story in one place: what I test, how I test
+it, what the tests actually check, and where the coverage gaps are. The pytest
+modules are the *implementation*; the pages here are the *specification and the
+coverage view* around them.
 
-It is deliberately separate from the auto-generated API docs. The pytest
-functions are the *implementation* of the cases listed here; this section is the
-specification and the coverage view.
-
-Systems under test
-==================
+What I test, and where
+======================
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 30 50
+   :widths: 18 34 48
 
    * - Area
      - Base URL
@@ -27,29 +24,56 @@ Systems under test
      - Classic *restful-booker*. Stable. Token auth via ``POST /auth``.
    * - Front-end API
      - ``https://automationintesting.online/api``
-     - *restful-booker-platform* (SPA backend). Token returned in the response
-       body by ``POST /api/auth/login``.
+     - *restful-booker-platform* (SPA backend). The token comes back in the
+       body of ``POST /api/auth/login``.
    * - UI
      - ``https://automationintesting.online``
-     - *restful-booker-platform* front end (React SPA). Re-target in progress -
-       see roadmap **M8**; the UI cases below are ``Blocked``.
+     - *restful-booker-platform* front end (React SPA). Being re-targeted -
+       roadmap **M8**; the UI tests are skipped for now.
 
-ID scheme
-=========
+How I test
+==========
 
-* ``FEAT-<AREA>-<NAME>`` - a feature of a SUT (``AREA`` = ``BE`` / ``FE`` / ``UI``).
-* ``REQ-<AREA>-<NAME>-<nn>`` - a single verifiable requirement of a feature.
-* ``TC-<AREA>-<NAME>-<nnn>`` - a test case that verifies one or more requirements.
+#. **API first.** The back-end and front-end APIs carry most of the value and
+   run fast, so that is where the coverage is deepest. The UI layer is a thin
+   set of page objects on top.
+#. **Against the live services.** There is no local stub yet - the tests hit
+   the real practice servers. Each write test creates and deletes its own
+   booking, so nothing depends on data that another run left behind.
+#. **Data from three sources, on purpose.** Inline constants, an Excel workbook
+   and a per-worker SQLite store - I wired all three to show the pattern.
+#. **Parallel by default.** ``pytest -n auto`` (xdist); the API suite is
+   parallel-safe.
+#. **More than one assertion style where it earns its place.** PyHamcrest
+   matchers for the bulk of it, JSON-Schema validation for ``/booking``
+   responses, Hypothesis to fuzz the auth payloads, a ~70-entry MIME matrix for
+   the negative Content-Type case, and single-request latency checks.
+#. **Everything is reported.** Allure, pytest-html, ``pytest-cov`` and JUnit XML
+   come out of every CI run and ``tox -e test``.
 
-Case status values: ``Automated`` (pytest test exists and passes),
-``Blocked`` (test exists but cannot run - e.g. skipped pending M8),
-``Not implemented`` (placeholder - the case is defined, no test yet).
+Naming
+======
+
+* ``FEAT-<AREA>-<NAME>`` - a feature of a system under test (``AREA`` = ``BE`` /
+  ``FE`` / ``UI``).
+* ``REQ-<AREA>-<NAME>-<nn>`` - one verifiable requirement of a feature.
+* ``TC-<AREA>-<NAME>-<nnn>`` - a test case that verifies one or more
+  requirements.
+
+A case is ``Automated`` (a pytest test exists and passes), ``Blocked`` (the test
+exists but cannot run - the UI set, pending M8) or ``Not implemented`` (the case
+is written down here, no test yet).
+
+Pages in this section
+=====================
 
 .. toctree::
    :maxdepth: 1
 
+   what_my_tests_cover
    test_plan
    feature_catalogue
    test_cases
    traceability_matrix
    coverage_by_feature
+   ../tests/tests

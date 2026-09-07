@@ -1,36 +1,42 @@
-Project features
-=================
+========
+Features
+========
 
-Framework
----------
+How I built it
+==============
 
-- **Layered design** - ``core/{api,pages,locators,data}``, ``config``,
-  ``utilities``, ``tests``.
-- **API client** - one ``APIClient`` with a single request dispatcher, per-client
-  session, request timeout, and secret-redacting logs.
-- **Page-object model** - Selenium, explicit waits only, Enum locator registries
-  (UI layer re-target in progress, roadmap M8).
-- **Data-driven testing** - test data from inline constants, an Excel workbook,
-  or a per-worker SQLite reference store.
-- **Data models** - dataclasses with ``from_dict`` / ``to_dict``; JSON-schema
-  validation of ``/booking`` responses.
-- **Property-based testing** - Hypothesis fuzzing of the auth payloads.
+#. **Layered.** ``core/{api,pages,locators,data}``, plus ``config``,
+   ``utilities`` and ``tests``. Config and logging are centralised.
+#. **One API client.** ``APIClient`` has a single request dispatcher
+   (``_request``) with structured, secret-redacting logging, a request timeout
+   and ``raise_for_status``; the verb methods are thin wrappers.
+#. **Pydantic models.** The booking / auth / room payloads are pydantic v2
+   models with ``from_dict`` / ``to_dict`` helpers; ``/booking`` responses are
+   also validated against a JSON Schema.
+#. **Page-object model** for the UI - Selenium, explicit waits only, no
+   ``sleep``. (Being re-targeted at the rebuilt SPA - roadmap **M8**.)
+#. **Three test-data sources**, on purpose: inline constants, an Excel workbook,
+   and a per-worker SQLite reference store.
 
-Execution & reporting
----------------------
+How I run it
+============
 
-- **Parallel** - ``pytest -n auto`` (xdist); the API suite is parallel-safe
-  (each write test owns its data).
-- **Markers** - ``-m api`` / ``-m ui`` (auto-applied by path).
-- **Allure** report, **pytest-html** report, **pytest-cov** (HTML + XML),
-  JUnit XML - all produced by CI and ``tox -e test``.
-- **CI** - ``.github/workflows/ci.yml`` runs lint + tests + coverage on every
-  push / PR.
+#. **Parallel by default** - ``pytest -n auto`` (xdist). The API suite is
+   parallel-safe: every write test creates and deletes its own booking.
+#. **Sliceable** - ``-m api`` / ``-m ui``, auto-applied by path.
+#. **Property-based** - Hypothesis fuzzes the auth payloads; a ~70-entry MIME
+   matrix drives the negative Content-Type case.
+#. **Reported four ways** - Allure, pytest-html, ``pytest-cov`` (HTML + XML) and
+   JUnit XML, all from CI and ``tox -e test``.
+#. **Under CI** - ``.github/workflows/ci.yml`` runs lint + tests + coverage on
+   every push and pull request.
 
-Test design (:ref:`qa_index`)
------------------------------
+The test-design layer
+=====================
 
-- Feature / requirements catalogue with stable IDs.
-- Test cases mapped to requirements (existing + placeholders for gaps).
-- Requirements traceability matrix.
-- Coverage-by-feature table and a short test plan.
+See :ref:`qa_index`. In short:
+
+* a feature / requirements catalogue with stable IDs,
+* test cases mapped to those requirements (plus placeholders for the gaps),
+* a requirements traceability matrix,
+* a coverage-by-feature table and a short test plan.

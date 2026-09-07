@@ -2,10 +2,6 @@
 About this Guide
 *******************************************************************************
 
-.. include:: ../index.rst
-   :start-after: logo-begin-content
-   :end-before: logo-end-content
-
 The Story
 ===============================================================================
 
@@ -17,13 +13,13 @@ All references you can find in this guide or on the :ref:`glossary_page` page
 
 Scope
 ===============================================================================
-The scope of the guide are:
-* describing and explaining structure of test framework, see :ref:`framework_structure_page`,
-* created test automation framework,
-* framework features:
-* utilized Sphinx options,
-* reStructured format features for making documents
-* usage of PlantUML Standard Library (:term:`PlantUMLStdlib`) for building graphs and trees to visualize implemented solutions in my test automation frameworks.
+The scope of the guide is:
+
+* the structure of the framework - see :ref:`framework_structure_page`,
+* the framework's features - see :doc:`features`,
+* what I test and how - see :ref:`qa_index`,
+* the Sphinx / reStructuredText setup used to publish these docs,
+* pyreverse UML + graphviz diagrams of the ``core`` package.
 
 
 This guide does NOT provide detailed instructions on how to create a test automation framework, but it can help people how is new in test automation to learn the features developed and reuse them on their own.
