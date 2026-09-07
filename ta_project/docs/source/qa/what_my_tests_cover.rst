@@ -4,11 +4,11 @@
 What My Tests Cover
 =======================
 
-A plain-English walk through what the suite actually checks, by area. For the
-IDs, priorities and pytest node names see :ref:`qa_test_cases`; for the
-requirement-by-requirement view see :ref:`qa_traceability`.
+What the suite checks, by area. For the IDs, priorities and pytest node names
+see :ref:`qa_test_cases`; for the requirement-by-requirement view see
+:ref:`qa_traceability`.
 
-Current run: **46 API tests passing**, 20 UI tests skipped (roadmap M8).
+Current run: **47 API tests passing**, 20 UI tests skipped (roadmap M8).
 API calls go through the per-resource service objects in
 :mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi`` ...).
 
@@ -55,8 +55,10 @@ Front-end API (the platform)
 
 #. **Auth.** ``POST /api/auth/login`` with valid credentials returns ``200``
    with a token in the body; invalid credentials return ``401``; fuzzed
-   credentials always ``401``. ``POST /api/auth/validate`` says ``{"valid":
-   true}`` for a real token and ``403`` for a tampered one.
+   credentials always ``401``. ``POST /api/auth/validate`` accepts a real token
+   and rejects a tampered one with ``403``. ``POST /api/auth/logout`` returns
+   ``{"success": true}`` (though the SUT does not actually invalidate the
+   token afterwards).
 #. **Rooms.** ``GET /api/room`` returns the list; ``GET /api/room/{id}`` the
    details. With a token I can ``POST`` a new room, find it in the list, and
    ``DELETE`` it again.
@@ -90,6 +92,4 @@ Not covered yet
 Placeholders exist in :ref:`qa_test_cases` for these:
 
 * the whole **UI set** until M8 lands,
-* back-end ``GET /booking?firstname=`` filtering (Low),
-* platform ``/auth/logout`` (the request shape is unclear - returns 400 for
-  every form I have tried).
+* back-end ``GET /booking?firstname=`` filtering (Low).

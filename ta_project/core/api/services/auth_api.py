@@ -9,10 +9,12 @@ from core.api.services.base_service import BaseApi
 class AuthApi(BaseApi):
     """Token creation / validation."""
 
-    def __init__(self, client, login_endpoint: str = "/auth", validate_endpoint: Optional[str] = None):
+    def __init__(self, client, login_endpoint: str = "/auth",
+                 validate_endpoint: Optional[str] = None, logout_endpoint: Optional[str] = None):
         super().__init__(client)
         self.login_endpoint = login_endpoint
         self.validate_endpoint = validate_endpoint
+        self.logout_endpoint = logout_endpoint
 
     def create_token(self, credentials: dict, headers: Optional[dict] = None):
         """POST the credentials; return the raw response (caller reads ``token``)."""
@@ -29,5 +31,13 @@ class AuthApi(BaseApi):
         if not self.validate_endpoint:
             raise ValueError("this AuthApi has no validate endpoint configured")
         return self.client.post(self.validate_endpoint,
+                                headers={"Content-Type": "application/json"},
+                                json={"token": token})
+
+    def logout(self, token: str):
+        """POST the token to the logout endpoint (platform only)."""
+        if not self.logout_endpoint:
+            raise ValueError("this AuthApi has no logout endpoint configured")
+        return self.client.post(self.logout_endpoint,
                                 headers={"Content-Type": "application/json"},
                                 json={"token": token})

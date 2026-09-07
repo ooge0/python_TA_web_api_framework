@@ -11,7 +11,7 @@ One row per requirement from :ref:`qa_feature_catalogue`, its test cases from
 ``Blocked`` = cases exist but cannot run (UI, pending M8).
 ``Gap`` = no case implemented.
 
-Snapshot: 46 API tests passing, 20 UI tests skipped (M8).
+Snapshot: 47 API tests passing, 20 UI tests skipped (M8).
 
 Back-end API
 ============
@@ -48,7 +48,7 @@ Front-end API
    "REQ-FE-AUTH-01", "TC-FE-AUTH-001, 004", "Automated", "Covered"
    "REQ-FE-AUTH-02", "TC-FE-AUTH-002, 003", "Automated", "Covered"
    "REQ-FE-AUTH-03", "TC-FE-AUTH-005", "Automated", "Covered"
-   "REQ-FE-AUTH-04", "TC-FE-AUTH-006", "Not implemented", "Gap"
+   "REQ-FE-AUTH-04", "TC-FE-AUTH-006", "Automated", "Covered"
    "REQ-FE-ROOM-01", "TC-FE-ROOM-001", "Automated", "Covered"
    "REQ-FE-ROOM-02", "TC-FE-ROOM-002", "Automated", "Covered"
    "REQ-FE-ROOM-03", "TC-FE-ROOM-003", "Automated", "Covered"

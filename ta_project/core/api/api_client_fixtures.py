@@ -53,7 +53,8 @@ def back_booking_api(backend_api_client) -> BookingApi:
 def front_auth_api(frontend_api_client) -> AuthApi:
     return AuthApi(frontend_api_client,
                    login_endpoint=FrontEndPoints.LOGIN,
-                   validate_endpoint=f"{FrontEndPoints.AUTH}/validate")
+                   validate_endpoint=f"{FrontEndPoints.AUTH}/validate",
+                   logout_endpoint=f"{FrontEndPoints.AUTH}/logout")
 
 
 @pytest.fixture

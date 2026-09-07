@@ -66,3 +66,12 @@ class TestFrontApiResources:
             assert_that(exc.response.status_code, is_(403))
         else:
             raise AssertionError("a bogus token should not validate")
+
+    def test_front_api_logout(self, front_auth_api, front_api_valid_user_creds):
+        """
+        TC-FE-AUTH-006: POST /api/auth/logout with a token returns
+        {"success": true}. (The SUT does not actually invalidate the token
+        afterwards - a known platform quirk, not asserted here.)
+        """
+        token = front_auth_api.token_for(front_api_valid_user_creds)
+        assert_that(front_auth_api.logout(token).json().get("success"), is_(True))

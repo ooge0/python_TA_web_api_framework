@@ -91,7 +91,7 @@ Front-end API - Auth & booking  (``test_front_api_auth.py``, ``test_front_api_bo
    "TC-FE-AUTH-003", "REQ-FE-AUTH-02", "fuzzed creds always -> 401 (Hypothesis)", "negative", "Low", "Automated", "::test_fuzzed_credentials_are_always_rejected"
    "TC-FE-AUTH-004", "REQ-FE-AUTH-01", "front login returns a token (smoke)", "positive", "Medium", "Automated", "TestFrontApiAuth::test_valid_credentials_return_a_token"
    "TC-FE-AUTH-005", "REQ-FE-AUTH-03", "token validation - valid token accepted, tampered token rejected", "positive/negative", "Medium", "Automated", "TestFrontApiResources::test_front_api_token_validation"
-   "TC-FE-AUTH-006", "REQ-FE-AUTH-04", "logout invalidates the token", "positive", "Medium", "Not implemented", "-"
+   "TC-FE-AUTH-006", "REQ-FE-AUTH-04", "POST /api/auth/logout -> success (SUT does not actually invalidate the token)", "positive", "Medium", "Automated", "TestFrontApiResources::test_front_api_logout"
    "TC-FE-ROOM-001", "REQ-FE-ROOM-01", "GET /api/room returns the room list", "positive", "High", "Automated", "TestFrontApiResources::test_front_api_room_list"
    "TC-FE-ROOM-002", "REQ-FE-ROOM-02", "GET /api/room/{id} returns room details", "positive", "Medium", "Automated", "TestFrontApiResources::test_front_api_room_by_id"
    "TC-FE-ROOM-003", "REQ-FE-ROOM-03", "POST /api/room with a token creates a room", "positive", "Medium", "Automated", "TestFrontApiRoomAdmin::test_create_and_delete_room"

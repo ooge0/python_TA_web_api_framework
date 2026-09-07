@@ -55,10 +55,10 @@ Getting the framework installed and the suite running.
 
 QA & Testing
 ============
-The whole testing story in one section: what I test and how, a plain-English
-description of what the tests check, the feature / requirements catalogue, the
-test cases with their pytest node names, the traceability matrix, the
-coverage-by-feature view, and the auto-generated reference for the test modules.
+The whole testing story in one section: what I test and how, a description of
+what the tests check, the feature / requirements catalogue, the test cases with
+their pytest node names, the traceability matrix, the coverage-by-feature view,
+and the auto-generated reference for the test modules.
 
 .. toctree::
    :maxdepth: 2
