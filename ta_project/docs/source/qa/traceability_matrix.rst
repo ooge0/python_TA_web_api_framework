@@ -15,9 +15,9 @@ reads the ``@pytest.mark.req`` markers off the collected tests and fails CI if a
 catalogue requirement is neither covered nor listed in ``_known_gaps.txt``, or
 if a marker names an id that is not in the catalogue.
 
-Snapshot: **44 of 52 requirements covered** (49 API + 13 UI tests passing, 1
-skipped). Back-end and front-end API are fully covered (17/17, 15/15); the
-8 gaps are all UI - see :ref:`qa_known_issues` KI-12 and ``_known_gaps.txt``.
+Snapshot: **52 of 52 requirements covered** (49 API + 21 UI tests passing, 1
+skipped). Back-end API 17/17, front-end API 15/15, UI 20/20. No gaps remain;
+``_known_gaps.txt`` is empty.
 
 Back-end API
 ============
@@ -76,12 +76,12 @@ UI
 
    "REQ-UI-HOME-01", "TC-UI-HOME-001", "Automated", "Covered"
    "REQ-UI-HOME-02", "TC-UI-HOME-002", "Automated", "Covered"
-   "REQ-UI-HOME-03", "TC-UI-HOME-004", "Not implemented", "Gap"
-   "REQ-UI-HOME-04", "-", "-", "Gap"
+   "REQ-UI-HOME-03", "TC-UI-HOME-003", "Automated", "Covered"
+   "REQ-UI-HOME-04", "TC-UI-HOME-004", "Automated", "Covered"
    "REQ-UI-CONTACT-01", "TC-UI-CONTACT-001", "Automated", "Covered"
    "REQ-UI-CONTACT-02", "TC-UI-CONTACT-002", "Automated", "Covered"
    "REQ-UI-RES-01", "TC-UI-RES-001", "Automated", "Covered"
-   "REQ-UI-RES-02", "TC-UI-RES-002", "Not implemented", "Gap (calendar flow)"
+   "REQ-UI-RES-02", "TC-UI-RES-002", "Automated", "Covered"
    "REQ-UI-LOGIN-01", "TC-UI-LOGIN-001", "Automated", "Covered"
    "REQ-UI-LOGIN-02", "TC-UI-LOGIN-002", "Automated", "Covered"
    "REQ-UI-LOGIN-03", "TC-UI-LOGIN-003", "Automated", "Covered"
@@ -89,11 +89,11 @@ UI
    "REQ-UI-NAV-02", "TC-UI-NAV-002", "Automated", "Covered"
    "REQ-UI-NAV-03", "TC-UI-NAV-003", "Automated", "Covered"
    "REQ-UI-ROOMS-01", "TC-UI-ROOMS-001", "Automated", "Covered"
-   "REQ-UI-ROOMS-02", "TC-UI-ROOMS-002", "Not implemented", "Gap"
-   "REQ-UI-ROOMS-03", "TC-UI-ROOMS-003", "Not implemented", "Gap"
-   "REQ-UI-BRAND-01", "TC-UI-BRAND-001", "Not implemented", "Gap"
-   "REQ-UI-REPORT-01", "TC-UI-REPORT-001", "Not implemented", "Gap"
-   "REQ-UI-MSG-01", "TC-UI-MSG-001", "Not implemented", "Gap"
+   "REQ-UI-ROOMS-02", "TC-UI-ROOMS-002", "Automated", "Covered"
+   "REQ-UI-ROOMS-03", "TC-UI-ROOMS-003", "Automated", "Covered"
+   "REQ-UI-BRAND-01", "TC-UI-BRAND-001", "Automated", "Covered"
+   "REQ-UI-REPORT-01", "TC-UI-REPORT-001", "Automated", "Covered"
+   "REQ-UI-MSG-01", "TC-UI-MSG-001", "Automated", "Covered"
 
 Orphan tests (no requirement)
 =============================

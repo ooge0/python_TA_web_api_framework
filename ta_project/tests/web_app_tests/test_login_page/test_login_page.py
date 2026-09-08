@@ -5,10 +5,10 @@ logout, and the rooms table.
 import allure
 import pytest
 import pytest_check as check
-from hamcrest import assert_that, contains_string, has_items, is_
+from hamcrest import assert_that, contains_string, greater_than, has_items, is_
 
 from config.settings import get_settings
-from core.locators.login_page_locators import LoginPageLocators
+from core.locators.login_page_locators import AdminRoomsLocators, LoginPageLocators
 from core.pages.admin_rooms_page import AdminRoomsFrontPage
 from core.pages.login_page import LoginAdminPage
 
@@ -98,3 +98,73 @@ class TestAdminNavigation:
         numbers = rooms.room_numbers()
         assert_that(numbers, has_items("101", "102", "103"))
         assert_that(rooms.create_button_visible(), is_(True))
+
+    @allure.feature("Admin rooms")
+    @pytest.mark.req("REQ-UI-ROOMS-02")
+    def test_create_room_adds_it_to_the_table(self, front_auth_api, front_room_api):
+        """TC-UI-ROOMS-002: create a room via the UI, verify it appears."""
+        rooms = AdminRoomsFrontPage(self.driver)
+        rooms.find(AdminRoomsLocators.ROOM_ROWS)
+        before = rooms.room_count()
+        rooms.create_room("999", room_type="Single", price="75", features=("WiFi",))
+        assert_that(rooms.room_count(), is_(before + 1))
+        assert "999" in rooms.room_numbers()
+        token = front_auth_api.token_for(_S.front_api_valid_creds)
+        all_rooms = front_room_api.list()
+        new = [r for r in all_rooms if r.roomName == "999"]
+        if new:
+            front_room_api.delete(new[0].roomid, token)
+
+    @allure.feature("Admin rooms")
+    @pytest.mark.req("REQ-UI-ROOMS-03")
+    def test_delete_room_removes_it_from_the_table(self, front_auth_api, front_room_api):
+        """TC-UI-ROOMS-003: delete a room via the UI, verify it disappears."""
+        token = front_auth_api.token_for(_S.front_api_valid_creds)
+        rooms_page = AdminRoomsFrontPage(self.driver)
+        rooms_page.create_room("888", room_type="Double", price="50")
+        before = rooms_page.room_count()
+        rooms_page.delete_last_room()
+        assert_that(rooms_page.room_count(), is_(before - 1))
+        all_rooms = front_room_api.list()
+        leftover = [r for r in all_rooms if r.roomName == "888"]
+        for r in leftover:
+            front_room_api.delete(r.roomid, token)
+
+    @allure.feature("Admin branding")
+    @pytest.mark.req("REQ-UI-BRAND-01")
+    def test_branding_page_shows_bb_details(self):
+        """TC-UI-BRAND-001: the branding admin page loads and shows the B&B name."""
+        from core.pages.admin_branding_page import AdminBrandingPage
+        from core.locators.login_page_locators import AdminNavLocators
+        self.driver.find_element(*AdminNavLocators.BRANDING_LINK).click()
+        page = AdminBrandingPage(self.driver)
+        assert_that(page.heading_visible(), is_(True))
+        assert page.name_value(), "B&B name should not be empty"
+
+    @allure.feature("Admin report")
+    @pytest.mark.req("REQ-UI-REPORT-01")
+    def test_report_page_shows_calendar(self):
+        """TC-UI-REPORT-001: the report page loads a calendar view."""
+        from core.pages.admin_report_page import AdminReportPage
+        from core.locators.login_page_locators import AdminNavLocators
+        self.driver.find_element(*AdminNavLocators.REPORT_LINK).click()
+        page = AdminReportPage(self.driver)
+        assert_that(page.calendar_visible(), is_(True))
+        assert page.toolbar_label(), "report calendar should show a month label"
+
+    @allure.feature("Admin messages")
+    @pytest.mark.req("REQ-UI-MSG-01")
+    def test_messages_page_lists_submissions(self, front_message_api):
+        """TC-UI-MSG-001: the messages page shows at least one message."""
+        from core.pages.admin_messages_page import AdminMessagesPage
+        from core.locators.login_page_locators import AdminNavLocators
+        front_message_api.send({
+            "name": "UITest", "email": "ui@test.com", "phone": "0123456789012",
+            "subject": "M10 UI test message",
+            "description": "Sent by the automated test suite for verification.",
+        })
+        self.driver.find_element(*AdminNavLocators.MESSAGES_LINK).click()
+        import time
+        time.sleep(3)
+        page = AdminMessagesPage(self.driver)
+        assert_that(page.message_count(), is_(greater_than(0)))

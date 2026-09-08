@@ -47,3 +47,9 @@ class ReservationPageLocators:
 
     ROOM_TITLE = (By.CSS_SELECTOR, "h1")
     BOOK_THIS_ROOM_HEADING = (By.XPATH, "//*[normalize-space()='Book This Room']")
+    CALENDAR = (By.CSS_SELECTOR, ".rbc-calendar")
+    CALENDAR_DAYS = (By.CSS_SELECTOR, ".rbc-date-cell:not(.rbc-off-range) button.rbc-button-link")
+    CALENDAR_NEXT = (By.XPATH, "//button[normalize-space()='Next']")
+    PRICE_TOTAL = (By.XPATH, "//div[contains(@class,'fw-bold')]//span[last()]")
+    RESERVE_NOW = (By.ID, "doReservation")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")

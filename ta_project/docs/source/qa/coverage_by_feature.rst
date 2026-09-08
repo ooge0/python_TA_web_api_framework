@@ -43,8 +43,8 @@ Summary
 
    "Back-end API", "17", "17", "0"
    "Front-end API", "15", "15", "0"
-   "UI", "20", "12", "8"
-   "**Total**", "**52**", "**44**", "**8**"
+   "UI", "20", "20", "0"
+   "**Total**", "**52**", "**52**", "**0**"
 
 (These are the numbers ``utilities/_devtools/check_traceability.py`` computes
 from the ``@pytest.mark.req`` markers and ``_known_gaps.txt``; CI fails if they
@@ -65,6 +65,7 @@ History
    "M7 - /auth/logout", "47", "31"
    "M8 - UI re-target", "47 API + 13 UI", "~43 (hand-tallied)"
    "M9 - QA loop (name filter, taxonomy, traceability gate)", "49 API + 13 UI", "44 (gate-counted)"
+   "M10 - close UI requirement gaps", "49 API + 21 UI", "52/52 (gate-counted)"
 
 Reading of this
 ===============

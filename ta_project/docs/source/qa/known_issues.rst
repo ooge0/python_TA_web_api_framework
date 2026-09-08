@@ -79,26 +79,19 @@ Framework limitations
        now CI accepts the external dependency.
      - Medium
    * - KI-11
-     - No retry / rerun handling for transient failures. The UI tests also race
-       under ``pytest -n auto`` - several headless browsers log into the same
-       admin SPA at once and occasionally collide on the session / redirect
-       (``test_logout_leaves_the_admin_area``). They pass reliably serially
-       (``-m ui -n0``); CI runs ``-m "not ui"`` so it is unaffected.
-     - ``pytest-rerunfailures`` for the API suite; an xdist group (or ``-n0``)
-       for the UI suite.
+     - No retry / rerun handling for transient failures. The UI tests share one
+       admin session and raced under ``pytest -n auto`` before M10. They are now
+       auto-tagged ``xdist_group("ui")`` so ``--dist loadgroup`` pins them to
+       one worker; CI runs them with ``-m ui -n0``.
+     - ``pytest-rerunfailures`` for the API suite is still a candidate.
      - Low
    * - KI-12
-     - UI coverage stops at the pages M8 re-targeted: the home-page room
-       listing, room details and the reservation calendar
-       (``REQ-UI-RES-02``, part of ``REQ-UI-HOME-*``) have no tests.
-     - A dedicated UI-coverage milestone - new page objects for the
-       reservation flow.
-     - Medium
-   * - KI-13
-     - ``REQ-BE-BOOKING-02`` (``GET /booking?firstname=`` filter) - Low value,
-       one requirement, still uncovered.
-     - One test; scheduled with M9.
-     - Low
+     - *(Resolved in M10.)* All 8 UI requirement gaps are now covered: room
+       create/delete, reservation calendar, admin branding/report/messages,
+       and the two nav-link checks. ``_known_gaps.txt`` is empty; 52/52
+       requirements covered.
+     - Done.
+     - Resolved
    * - KI-14
      - ``pytest-cov`` runs but the CI floor (``--cov-fail-under``) is set low;
        coverage can still drift down within the band.

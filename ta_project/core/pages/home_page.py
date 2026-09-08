@@ -23,6 +23,13 @@ class HomeFrontPage(BaseFrontPage):
     def brand_text(self) -> str:
         return self.text_of(L.NAV_BRAND)
 
+    def nav_link_hrefs(self) -> Dict[str, str]:
+        """Return ``{text: href}`` for each nav link."""
+        return {e.text.strip(): e.get_attribute("href") for e in self.find_all(L.NAV_LINKS)}
+
+    def admin_nav_link_href(self) -> str:
+        return self.attr_of(L.NAV_ADMIN_LINK, "href")
+
     # ---- footer ----
 
     def footer_present(self) -> bool:

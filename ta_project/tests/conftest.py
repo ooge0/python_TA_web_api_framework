@@ -98,6 +98,7 @@ def pytest_collection_modifyitems(items):
             item.add_marker("api")
         elif "/web_app_tests/" in path:
             item.add_marker("ui")
+            item.add_marker(pytest.mark.xdist_group("ui"))
 
 
 @pytest.fixture()
