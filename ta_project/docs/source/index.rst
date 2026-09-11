@@ -54,6 +54,7 @@ Getting the framework installed and the suite running.
    config/environment_setup
    config/running_tests
    config/sphinx_setup
+   config/ci_cd
 
 
 QA & Testing
