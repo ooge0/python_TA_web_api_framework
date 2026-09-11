@@ -19,9 +19,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: pylint
-        continue-on-error: true
-        run: pylint core utilities tests --rcfile=config/pylint.rc --fail-under=8.0
+      - name: ruff
+        run: ruff check core utilities tests
 
   traceability:
     runs-on: ubuntu-latest

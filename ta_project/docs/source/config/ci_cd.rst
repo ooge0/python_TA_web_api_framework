@@ -22,15 +22,14 @@ same branch.
 
 The workflow has six jobs:
 
-1. **lint** — installs dependencies, runs ``pylint`` on ``core``, ``utilities``
-   and ``tests`` with ``--rcfile=config/pylint.rc --fail-under=8.0``.
-   ``continue-on-error: true`` so the pipeline does not block on style warnings.
+1. **lint** — installs dependencies, runs ``ruff check`` on ``core``,
+   ``utilities`` and ``tests``.
 
 2. **traceability** — runs
    ``python -m utilities._devtools.check_traceability``.  The script collects
    every ``@pytest.mark.req("REQ-...")`` marker, diffs it against the
    requirements catalogue and exits non-zero if any requirement is uncovered.
-   This is the CI enforcement side of :ref:`qa_other_qa_signals`.
+   This is the CI enforcement side of :ref:`qa_other_signals`.
 
 3. **docs** — builds Sphinx HTML with ``sphinx-build -b html docs/source
    docs/_build/html -W --keep-going`` (warnings as errors).  On completion the

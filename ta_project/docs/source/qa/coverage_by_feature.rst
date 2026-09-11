@@ -66,17 +66,18 @@ History
    "M8 - UI re-target", "47 API + 13 UI", "~43 (hand-tallied)"
    "M9 - QA loop (name filter, taxonomy, traceability gate)", "49 API + 13 UI", "44 (gate-counted)"
    "M10 - close UI requirement gaps", "49 API + 21 UI", "52/52 (gate-counted)"
+   "Score-4 upgrade (reservation flow, a11y, assertpy2)", "49 API + 23 UI", "53/53 (gate-counted)"
 
 Reading of this
 ===============
 
 * **Both APIs are fully covered** — back-end 17/17, front-end 15/15 — all
   through the ``core/api/services`` service objects.
-* The **UI layer is fully covered** (21 tests, 20/20 requirements): home page
+* The **UI layer is fully covered** (23 tests, 21/21 requirements): home page
   (footer, nav, brand, "Book now" links, nav anchors, admin link), contact form
   (valid + invalid), reservation page (calendar + reserve button), admin login
   (valid / invalid / placeholders), admin navigation (navbar, brand, logout),
   admin rooms (table, create, delete), admin branding, admin report, admin
   messages.
-* **No gaps remain.** ``_known_gaps.txt`` is empty; 52/52 requirements covered.
+* **No gaps remain.** ``_known_gaps.txt`` is empty; 53/53 requirements covered.
   KI-12 (the UI-coverage milestone) is resolved.

@@ -29,7 +29,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 CATALOGUE = ROOT / "docs" / "source" / "qa" / "feature_catalogue.rst"
 KNOWN_GAPS = ROOT / "docs" / "source" / "qa" / "_known_gaps.txt"
 
-REQ_RE = re.compile(r"REQ-(?:BE|FE|UI)-[A-Z]+-\d+")
+REQ_RE = re.compile(r"REQ-(?:BE|FE|UI)-[A-Z][A-Z0-9]*-\d+")
 # tests that legitimately have no requirement (kept visible on purpose)
 EXEMPT_NODE_SUBSTRINGS = ("test_sut_drift_episode.py",)
 

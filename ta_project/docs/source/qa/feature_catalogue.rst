@@ -82,3 +82,4 @@ UI (restful-booker-platform front end)
    "FEAT-UI-ADMIN-BRANDING", "REQ-UI-BRAND-01", "the branding page shows and edits the B&B name, contact details and map", "Low"
    "FEAT-UI-ADMIN-REPORT", "REQ-UI-REPORT-01", "the report page shows the booking calendar", "Low"
    "FEAT-UI-ADMIN-MESSAGE", "REQ-UI-MSG-01", "the messages page lists contact submissions, shows an unread badge and can mark a message read", "Medium"
+   "FEAT-UI-ACCESSIBILITY", "REQ-UI-A11Y-01", "the ``<html>`` element has a ``lang`` attribute (WCAG 2.1 SC 3.1.1)", "Low"

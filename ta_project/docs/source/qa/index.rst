@@ -97,5 +97,6 @@ Pages in this section
    other_qa_signals
    known_issues
    operational_notes
+   project_scorecard
    episodes
    ../tests/tests

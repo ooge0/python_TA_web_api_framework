@@ -1,4 +1,4 @@
-"""
+﻿"""
 Front-end (platform) auth - ``POST /api/auth/login``.
 
 Valid credentials return ``200`` with ``{"token": "..."}`` in the body; invalid
@@ -10,7 +10,7 @@ the invalid rows come from ``resources/test_data/booker_test_data.xlsx`` via
 """
 import allure
 import pytest
-from hamcrest import assert_that, is_
+from assertpy2 import assert_that
 from hypothesis import given, settings
 from hypothesis.strategies import text
 from requests import HTTPError
@@ -35,8 +35,8 @@ class TestFrontApiAuth:
     def test_valid_credentials_return_a_token(self, front_auth_api, front_api_valid_user_creds):
         """TC-FE-AUTH-001 / 004: valid credentials -> 200 with a token in the body."""
         response = front_auth_api.create_token(front_api_valid_user_creds)
-        assert_that(response.status_code, is_(200))
-        assert_that(bool(response.json().get("token")), is_(True), "no token in the response body")
+        assert_that(response.status_code).is_equal_to(200)
+        assert_that(response.json().get("token")).is_not_empty()
 
     @pytest.mark.req("REQ-FE-AUTH-02")
     def test_invalid_credentials_are_rejected(self, front_auth_api, api_invalid_user_creds):
@@ -65,6 +65,7 @@ class TestFrontApiAuth:
         try:
             resp = front_auth_api.create_token(credentials)
         except HTTPError as exc:
-            assert_that(exc.response.status_code, is_(self.ref_bad_creds))
+            assert_that(exc.response.status_code).is_equal_to(self.ref_bad_creds)
         else:
             raise AssertionError(f"credentials {credentials} were accepted -> {resp.status_code}")
+

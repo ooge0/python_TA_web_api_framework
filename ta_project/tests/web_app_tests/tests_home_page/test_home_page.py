@@ -1,14 +1,14 @@
-"""
+﻿"""
 UI tests for the public home page - nav bar, footer, contact form, rooms.
 """
 import allure
 import faker
 import pytest
-import pytest_check as check
-from hamcrest import assert_that, contains_string, is_, greater_than
+from assertpy2 import assert_that, soft_assertions
+from selenium.webdriver.common.by import By
 
 from config.settings import get_settings
-from core.locators.home_page_locators import HomePageLocators
+from core.locators.home_page_locators import HomePageLocators, ReservationPageLocators
 from core.pages.home_page import HomeFrontPage
 
 pytestmark = [
@@ -43,37 +43,38 @@ class TestHomePage:
     @pytest.mark.req("REQ-UI-HOME-01")
     def test_footer_is_present(self):
         """TC-UI-HOME-001."""
-        assert_that(HomeFrontPage(self.driver).footer_present(), is_(True))
+        assert_that(HomeFrontPage(self.driver).footer_present()).is_true()
 
     @allure.feature("Home page")
     @pytest.mark.req("REQ-UI-HOME-02")
     def test_footer_links(self):
         """TC-UI-HOME-002: the four policy footer links - texts + hrefs.
 
-        Soft assertions (``pytest_check``): one run reports every wrong link.
+        Soft assertions: one run reports every wrong link.
         """
         home = HomeFrontPage(self.driver)
-        check.equal(home.footer_link_texts(),
-                    ["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"])
-        hrefs = home.footer_link_hrefs()
-        check.equal(len(hrefs), 4)
-        for got, want in zip(hrefs, ("mwtestconsultancy.co.uk", "/cookie", "/privacy", "/admin")):
-            check.is_in(want, got)
+        with soft_assertions():
+            assert_that(home.footer_link_texts()).is_equal_to(
+                ["Mark Winteringham", "Cookie-Policy", "Privacy-Policy", "Admin panel"])
+            hrefs = home.footer_link_hrefs()
+            assert_that(hrefs).is_length(4)
+            for got, want in zip(hrefs, ("mwtestconsultancy.co.uk", "/cookie", "/privacy", "/admin")):
+                assert_that(got).contains(want)
 
     @allure.feature("Home page")
     @pytest.mark.req("REQ-UI-HOME-01")
     def test_nav_brand(self):
         """TC-UI-HOME-01 area: the brand text."""
-        assert_that(HomeFrontPage(self.driver).brand_text(), is_("Shady Meadows B&B"))
+        assert_that(HomeFrontPage(self.driver).brand_text()).is_equal_to("Shady Meadows B&B")
 
     @allure.feature("Reservation")
     @pytest.mark.req("REQ-UI-RES-01")
     def test_book_now_links_point_at_reservation_pages(self):
         """TC-UI-RES-01: each room's 'Book now' opens /reservation/{id}."""
         hrefs = HomeFrontPage(self.driver).book_now_hrefs()
-        assert_that(len(hrefs), greater_than(0))
+        assert_that(hrefs).is_not_empty()
         for href in hrefs:
-            assert_that(href, contains_string("/reservation/"))
+            assert_that(href).contains("/reservation/")
 
     @allure.feature("Contact form")
     @pytest.mark.req("REQ-UI-CONTACT-01")
@@ -81,7 +82,7 @@ class TestHomePage:
         """TC-UI-CONTACT-01."""
         home = HomeFrontPage(self.driver)
         home.fill_contact_form(_valid_contact_details()).submit_contact_form()
-        assert_that(home.contact_confirmation_shown(), is_(True))
+        assert_that(home.contact_confirmation_shown()).is_true()
 
     @allure.feature("Contact form")
     @pytest.mark.req("REQ-UI-CONTACT-02")
@@ -90,19 +91,18 @@ class TestHomePage:
         home = HomeFrontPage(self.driver)
         home.submit_contact_form()
         error = home.contact_error_text()
-        assert_that(error, contains_string("Subject must be between"))
-        assert_that(error, contains_string("Message must be between"))
+        assert_that(error).contains("Subject must be between")
+        assert_that(error).contains("Message must be between")
 
     @allure.feature("Home page")
     @pytest.mark.req("REQ-UI-HOME-04")
     def test_admin_links_point_to_admin(self):
         """TC-UI-HOME-004: the Admin nav link and the footer Admin panel link open /admin."""
         home = HomeFrontPage(self.driver)
-        check.is_true(home.admin_nav_link_href().endswith("/admin"), "nav Admin link")
-        admin_footer = home.attr_of(
-            HomePageLocators.FOOTER_LINK_ADMIN, "href"
-        )
-        check.is_true(admin_footer.endswith("/admin"), "footer Admin panel link")
+        with soft_assertions():
+            assert_that(home.admin_nav_link_href()).ends_with("/admin")
+            admin_footer = home.attr_of(HomePageLocators.FOOTER_LINK_ADMIN, "href")
+            assert_that(admin_footer).ends_with("/admin")
 
     @allure.feature("Home page")
     @pytest.mark.req("REQ-UI-HOME-03")
@@ -110,11 +110,11 @@ class TestHomePage:
         """TC-UI-HOME-003: each nav link's href is an anchor to a page section."""
         home = HomeFrontPage(self.driver)
         hrefs = home.nav_link_hrefs()
-        for label in ("Rooms", "Booking", "Amenities", "Location", "Contact"):
-            check.is_true(
-                any(h.endswith(f"/#{label.lower()}") for h in hrefs.values()),
-                f"nav link for {label} should anchor to #{label.lower()}",
-            )
+        with soft_assertions():
+            for label in ("Rooms", "Booking", "Amenities", "Location", "Contact"):
+                assert_that(
+                    any(h.endswith(f"/#{label.lower()}") for h in hrefs.values())
+                ).is_true().described_as(f"nav link for {label} should anchor to #{label.lower()}")
 
     @allure.feature("Reservation")
     @pytest.mark.req("REQ-UI-RES-02")
@@ -123,8 +123,33 @@ class TestHomePage:
         from core.pages.reservation_page import ReservationPage
         home = HomeFrontPage(self.driver)
         hrefs = home.book_now_hrefs()
-        assert hrefs, "no Book now links on the home page"
+        assert hrefs, "precondition: no Book now links on the home page"
         self.driver.get(hrefs[0])
         page = ReservationPage(self.driver)
-        assert_that(page.calendar_visible(), is_(True))
-        assert page.room_title(), "room title should not be empty"
+        assert_that(page.calendar_visible()).is_true()
+        assert_that(page.room_title()).is_not_empty()
+
+    @allure.feature("Reservation")
+    @pytest.mark.req("REQ-UI-RES-02")
+    def test_reservation_booking_completes_with_valid_dates(self):
+        """TC-UI-RES-003: select dates on the calendar and complete a reservation."""
+        from core.pages.reservation_page import ReservationPage
+        home = HomeFrontPage(self.driver)
+        hrefs = home.book_now_hrefs()
+        assert hrefs, "precondition: no Book now links on the home page"
+        self.driver.get(hrefs[0])
+        page = ReservationPage(self.driver)
+        days = self.driver.find_elements(*ReservationPageLocators.CALENDAR_DAYS)
+        assert days, "precondition: no selectable calendar days"
+        days[0].click()
+        days[min(2, len(days) - 1)].click()
+        page.click_reserve_now()
+        assert_that(page.has_success_message()).is_true()
+
+    @allure.feature("Accessibility")
+    @pytest.mark.req("REQ-UI-A11Y-01")
+    def test_page_has_lang_attribute(self):
+        """TC-UI-A11Y-001: the html element has a lang attribute (WCAG 3.1.1)."""
+        lang = self.driver.find_element(By.TAG_NAME, "html").get_attribute("lang")
+        assert_that(lang).is_not_none().is_not_empty()
+

@@ -1,3 +1,5 @@
+.. _adr_006_xdist_group_ui:
+
 ADR-006: xdist_group for UI test isolation
 ===========================================
 

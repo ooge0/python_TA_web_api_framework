@@ -94,6 +94,7 @@ UI
    "REQ-UI-BRAND-01", "TC-UI-BRAND-001", "Automated", "Covered"
    "REQ-UI-REPORT-01", "TC-UI-REPORT-001", "Automated", "Covered"
    "REQ-UI-MSG-01", "TC-UI-MSG-001", "Automated", "Covered"
+   "REQ-UI-A11Y-01", "TC-UI-A11Y-001", "Automated", "Covered"
 
 Orphan tests (no requirement)
 =============================

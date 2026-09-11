@@ -79,10 +79,11 @@ seconds (``response.elapsed``).  These are smoke-level performance checks, not
 load tests — they catch regressions where the server suddenly takes 10+
 seconds, not throughput limits.
 
-Soft assertions (pytest-check)
-==============================
+Soft assertions (assertpy2)
+===========================
 
-``pytest-check`` (``check.is_in``, ``check.equal``, ...) is used in tests
+``assertpy2`` soft assertions (``with soft_assertions():``) are used in tests
 where a single failure should not hide the rest — for example, verifying that
-the admin navbar contains all expected links.  A regular ``assert`` would stop
-at the first missing link; ``pytest-check`` reports all of them.
+the admin navbar contains all expected links or that every branding field is
+present.  A regular ``assert`` would stop at the first failure; the soft block
+collects all of them and reports them together.

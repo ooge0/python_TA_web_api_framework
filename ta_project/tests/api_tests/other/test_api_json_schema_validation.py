@@ -1,10 +1,10 @@
-"""
+﻿"""
 JSON-Schema validation of the back-end ``/booking`` responses. Calls go through
 ``back_booking_api`` (:mod:`core.api.services`).
 """
 import allure
 import pytest
-from hamcrest import assert_that, is_
+from assertpy2 import assert_that
 
 from config.logger_config import get_logger
 from core.data.json_schemas.booking_schema import BOOKING_SCHEMA_MAIN, BOOKING_SCHEMA_SECONDARY
@@ -24,7 +24,7 @@ class TestJsonValidation:
         """POST /booking -> 200 and the body matches the create-response schema."""
         payload, _ = backend_api_post_test_payload
         response = back_booking_api.create(payload)
-        assert_that(response.status_code, is_(200))
+        assert_that(response.status_code).is_equal_to(200)
         validate_json(response.json(), BOOKING_SCHEMA_MAIN)
 
     @pytest.mark.req("REQ-BE-BOOKING-03", "REQ-BE-BOOKING-06")
@@ -32,5 +32,6 @@ class TestJsonValidation:
         """GET /booking/{id} (for a booking this test created) matches the booking schema."""
         booking_id, _, _ = created_backend_booking
         response = back_booking_api.get(booking_id)
-        assert_that(response.status_code, is_(200))
+        assert_that(response.status_code).is_equal_to(200)
         validate_json(response.json(), BOOKING_SCHEMA_SECONDARY)
+

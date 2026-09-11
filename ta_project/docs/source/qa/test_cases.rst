@@ -122,6 +122,8 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
    "TC-UI-CONTACT-002", "REQ-UI-CONTACT-02", "empty contact form -> field-validation errors", "negative", "High", "Automated", "::test_contact_form_shows_validation_errors_when_empty"
    "TC-UI-RES-001", "REQ-UI-RES-01", "each room 'Book now' link points at /reservation/{id}", "positive", "High", "Automated", "::test_book_now_links_point_at_reservation_pages"
    "TC-UI-RES-002", "REQ-UI-RES-02", "reservation page shows calendar and reserve button", "positive", "High", "Automated", "TestHomePage::test_reservation_page_shows_calendar_and_reserve_button"
+   "TC-UI-RES-003", "REQ-UI-RES-02", "select dates and complete a reservation booking", "positive", "High", "Automated", "TestHomePage::test_reservation_booking_completes_with_valid_dates"
+   "TC-UI-A11Y-001", "REQ-UI-A11Y-01", "html element has a lang attribute (WCAG 3.1.1)", "positive", "Low", "Automated", "TestHomePage::test_page_has_lang_attribute"
 
 UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
 =======================================================================
@@ -147,6 +149,6 @@ UI - Admin rooms / branding / report / messages
    "TC-UI-ROOMS-001", "REQ-UI-ROOMS-01", "rooms table lists existing rooms (101/102/103) + Create button", "positive", "High", "Automated", "TestAdminNavigation::test_rooms_table_lists_rooms"
    "TC-UI-ROOMS-002", "REQ-UI-ROOMS-02", "create a room via the UI, verify it appears", "positive", "High", "Automated", "TestAdminNavigation::test_create_room_adds_it_to_the_table"
    "TC-UI-ROOMS-003", "REQ-UI-ROOMS-03", "delete a room via the UI, verify it disappears", "positive", "Medium", "Automated", "TestAdminNavigation::test_delete_room_removes_it_from_the_table"
-   "TC-UI-BRAND-001", "REQ-UI-BRAND-01", "branding page loads and shows the B&B name", "positive", "Low", "Automated", "TestAdminNavigation::test_branding_page_shows_bb_details"
+   "TC-UI-BRAND-001", "REQ-UI-BRAND-01", "branding page shows B&B name, description and contact name", "positive", "Low", "Automated", "TestAdminNavigation::test_branding_page_shows_bb_details"
    "TC-UI-REPORT-001", "REQ-UI-REPORT-01", "report page loads a calendar view", "positive", "Low", "Automated", "TestAdminNavigation::test_report_page_shows_calendar"
-   "TC-UI-MSG-001", "REQ-UI-MSG-01", "messages page lists at least one message", "positive", "Medium", "Automated", "TestAdminNavigation::test_messages_page_lists_submissions"
+   "TC-UI-MSG-001", "REQ-UI-MSG-01", "messages page lists messages with name and subject", "positive", "Medium", "Automated", "TestAdminNavigation::test_messages_page_lists_submissions"

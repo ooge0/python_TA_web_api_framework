@@ -73,7 +73,7 @@ docs/          Sphinx source + built HTML
 
 ## Test suite
 
-49 API + 21 UI tests passing, 1 skipped.  52/52 requirements covered
+49 API + 23 UI tests passing, 1 skipped.  53/53 requirements covered
 (traceability gate enforced in CI).  Code coverage floor: 70%.
 
 ## License

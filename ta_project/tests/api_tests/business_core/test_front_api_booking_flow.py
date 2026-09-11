@@ -1,4 +1,4 @@
-"""
+﻿"""
 Front-end API (restful-booker-platform, ``/api``) - the public reservation flow
 and room administration. Uses the service objects from
 :mod:`core.api.services`.
@@ -9,7 +9,7 @@ from datetime import date, timedelta
 import allure
 import faker
 import pytest
-from hamcrest import assert_that, is_, is_not, none, greater_than_or_equal_to
+from assertpy2 import assert_that
 from requests import HTTPError
 
 from config.logger_config import get_logger
@@ -47,7 +47,7 @@ class TestFrontApiReservation:
         checkin, checkout = _far_future_window()
         payload = _reservation(2, checkin, checkout)
         resp = front_booking_api.reserve(payload)
-        assert_that(resp.status_code, is_(201), "precondition: reservation failed")
+        assert resp.status_code == 201, "precondition: reservation failed"
         booking_id = resp.json()["bookingid"]
         yield booking_id, payload
         try:
@@ -59,8 +59,8 @@ class TestFrontApiReservation:
     def test_public_reservation_is_created(self, created_reservation):
         """TC-FE-BOOK-001: a valid reservation returns 201 with a bookingid."""
         booking_id, _ = created_reservation
-        assert_that(booking_id, is_not(none()))
-        assert_that(isinstance(booking_id, int), is_(True))
+        assert_that(booking_id).is_not_none()
+        assert_that(booking_id).is_instance_of(int)
 
     @pytest.mark.req("REQ-FE-BOOKING-03")
     def test_overlapping_reservation_is_rejected(self, front_booking_api, created_reservation):
@@ -72,14 +72,14 @@ class TestFrontApiReservation:
                                (overlap_start + timedelta(days=2)).isoformat())
         with pytest.raises(HTTPError) as exc:
             front_booking_api.reserve(overlap)
-        assert_that(exc.value.response.status_code, is_(409))
+        assert_that(exc.value.response.status_code).is_equal_to(409)
 
     @pytest.mark.req("REQ-FE-BOOKING-01")
     def test_bookings_for_room(self, front_booking_api, front_token, created_reservation):
         """TC-FE-BOOK-003: GET /api/booking?roomid= (token) returns room bookings."""
         booking_id, _ = created_reservation
         bookings = front_booking_api.for_room(2, front_token).json().get("bookings", [])
-        assert_that(any(b.get("bookingid") == booking_id for b in bookings), is_(True))
+        assert_that(any(b.get("bookingid") == booking_id for b in bookings)).is_true()
 
 
 @allure.epic("Front-end API")
@@ -103,17 +103,18 @@ class TestFrontApiRoomAdmin:
             "roomPrice": 111,
             "features": ["WiFi"],
         }
-        assert_that(front_room_api.create(room, front_token).json().get("success"), is_(True))
+        assert_that(front_room_api.create(room, front_token).json().get("success")).is_true()
 
         created = [r for r in front_room_api.list() if r.roomName == name]
-        assert_that(len(created), greater_than_or_equal_to(1), "new room not found in the list")
+        assert_that(created).is_not_empty().described_as("new room not found in the list")
 
         resp = front_room_api.delete(created[0].roomid, front_token)
-        assert_that(resp.status_code, is_(202))
-        assert_that([r for r in front_room_api.list() if r.roomName == name], is_([]))
+        assert_that(resp.status_code).is_equal_to(202)
+        assert_that([r for r in front_room_api.list() if r.roomName == name]).is_empty()
 
     @allure.feature("Report")
     @pytest.mark.req("REQ-FE-REPORT-01")
     def test_report_is_reachable(self, front_report_api, front_token):
         """TC-FE-REPORT-001: GET /api/report (token) -> 200."""
-        assert_that(front_report_api.get(front_token).status_code, is_(200))
+        assert_that(front_report_api.get(front_token).status_code).is_equal_to(200)
+

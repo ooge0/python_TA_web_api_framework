@@ -8,8 +8,8 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **49 API + 21 UI tests passing** (1 skipped = the episode
-reminder). 52/52 requirements covered. API calls go through the per-resource
+Current run: **49 API + 23 UI tests passing** (1 skipped = the episode
+reminder). 53/53 requirements covered. API calls go through the per-resource
 service objects in :mod:`core.api.services` (``AuthApi``, ``BookingApi``,
 ``RoomApi``, ``ReportApi`` ...).
 
