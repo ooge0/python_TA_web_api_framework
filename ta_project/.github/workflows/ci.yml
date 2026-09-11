@@ -19,14 +19,11 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      # Reported, not yet gating - the code does not score 10/10 yet (ROADMAP M6).
       - name: pylint
         continue-on-error: true
         run: pylint core utilities tests --rcfile=config/pylint.rc --fail-under=8.0
 
   traceability:
-    # No network needed - collect-only. Fails if a catalogue REQ-* has no test,
-    # a test's `req` id is not in the catalogue, or a test carries no `req`.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +35,24 @@ jobs:
       - name: requirements traceability
         run: python -m utilities._devtools.check_traceability
 
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: sphinx build
+        run: sphinx-build -b html docs/source docs/_build/html -W --keep-going
+      - name: upload docs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sphinx-html
+          path: docs/_build/html/
+
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -48,13 +63,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      # The API tests run against the live restful-booker / automationintesting
-      # services (no local stub yet - ROADMAP M3). The Selenium UI tests
-      # (``-m ui``) need a real browser and are left to local / a future
-      # browser job; CI runs the API suite.
-      # Coverage source / omit / fail_under live in pyproject.toml
-      # ([tool.coverage.*]); the floor fails the job if coverage drops.
-      - name: pytest
+      - name: pytest (API suite)
         run: >
           pytest -n auto -m "not ui"
           --cov --cov-report=term-missing --cov-report=xml

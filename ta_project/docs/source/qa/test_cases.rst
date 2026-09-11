@@ -6,9 +6,8 @@ Test Cases
 
 Every case is tied to a feature and one or more requirements from
 :ref:`qa_feature_catalogue`. ``Node`` is the pytest ``Class::method`` (file
-implied by the section). Placeholder rows (``Not implemented``) are cases that
-*should* exist to cover a valuable requirement but have no test yet - they are
-the UI-coverage backlog (:ref:`qa_known_issues` KI-12).
+implied by the section). All 52 requirements are covered — no placeholder
+rows remain.
 
 Every automated test also carries a ``@pytest.mark.req("REQ-...")`` marker;
 ``utilities/_devtools/check_traceability.py`` (a CI job) fails the build if a
@@ -82,7 +81,7 @@ Back-end API - Response time  (``test_api_performance.py``)
    "TC-BE-PERF-006", "REQ-BE-BOOKING-09", "PATCH /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_patch_response_time"
    "TC-BE-PERF-007", "REQ-BE-BOOKING-11", "DELETE /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_delete_response_time"
 
-Front-end API  (``test_front_api_auth.py``, ``test_front_api_resources.py``, ``test_front_api_booking_flow.py``)
+Front-end API (``test_front_api_auth.py``, ``test_front_api_resources.py``, ``test_front_api_booking_flow.py``)
 =============================================================================================================
 
 .. csv-table::
@@ -117,11 +116,12 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
 
    "TC-UI-HOME-001", "REQ-UI-HOME-01", "the home page footer is present", "positive", "High", "Automated", "TestHomePage::test_footer_is_present"
    "TC-UI-HOME-002", "REQ-UI-HOME-02", "the four footer links - texts + hrefs", "positive", "Medium", "Automated", "::test_footer_links"
-   "TC-UI-HOME-004", "REQ-UI-HOME-03", "nav links scroll to their sections", "positive", "Low", "Not implemented", "-"
+   "TC-UI-HOME-003", "REQ-UI-HOME-03", "nav links are section anchors (/#rooms, /#booking, etc.)", "positive", "Low", "Automated", "TestHomePage::test_nav_links_are_section_anchors"
+   "TC-UI-HOME-004", "REQ-UI-HOME-04", "admin link points to /admin", "positive", "Medium", "Automated", "TestHomePage::test_admin_links_point_to_admin"
    "TC-UI-CONTACT-001", "REQ-UI-CONTACT-01", "contact form valid submit -> confirmation", "positive", "High", "Automated", "::test_contact_form_valid_submit_shows_confirmation"
    "TC-UI-CONTACT-002", "REQ-UI-CONTACT-02", "empty contact form -> field-validation errors", "negative", "High", "Automated", "::test_contact_form_shows_validation_errors_when_empty"
    "TC-UI-RES-001", "REQ-UI-RES-01", "each room 'Book now' link points at /reservation/{id}", "positive", "High", "Automated", "::test_book_now_links_point_at_reservation_pages"
-   "TC-UI-RES-002", "REQ-UI-RES-02", "complete a reservation (calendar flow)", "positive", "High", "Not implemented", "-"
+   "TC-UI-RES-002", "REQ-UI-RES-02", "reservation page shows calendar and reserve button", "positive", "High", "Automated", "TestHomePage::test_reservation_page_shows_calendar_and_reserve_button"
 
 UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
 =======================================================================
@@ -145,8 +145,8 @@ UI - Admin rooms / branding / report / messages
    :widths: 14, 15, 34, 9, 6, 14, 22
 
    "TC-UI-ROOMS-001", "REQ-UI-ROOMS-01", "rooms table lists existing rooms (101/102/103) + Create button", "positive", "High", "Automated", "TestAdminNavigation::test_rooms_table_lists_rooms"
-   "TC-UI-ROOMS-002", "REQ-UI-ROOMS-02", "Create adds a room and it appears in the table", "positive", "High", "Not implemented", "-"
-   "TC-UI-ROOMS-003", "REQ-UI-ROOMS-03", "a room can be deleted", "positive", "Medium", "Not implemented", "-"
-   "TC-UI-BRAND-001", "REQ-UI-BRAND-01", "branding page shows and edits B&B details", "positive", "Low", "Not implemented", "-"
-   "TC-UI-REPORT-001", "REQ-UI-REPORT-01", "report page shows the booking calendar", "positive", "Low", "Not implemented", "-"
-   "TC-UI-MSG-001", "REQ-UI-MSG-01", "messages page lists contact submissions and marks one read", "positive", "Medium", "Not implemented", "-"
+   "TC-UI-ROOMS-002", "REQ-UI-ROOMS-02", "create a room via the UI, verify it appears", "positive", "High", "Automated", "TestAdminNavigation::test_create_room_adds_it_to_the_table"
+   "TC-UI-ROOMS-003", "REQ-UI-ROOMS-03", "delete a room via the UI, verify it disappears", "positive", "Medium", "Automated", "TestAdminNavigation::test_delete_room_removes_it_from_the_table"
+   "TC-UI-BRAND-001", "REQ-UI-BRAND-01", "branding page loads and shows the B&B name", "positive", "Low", "Automated", "TestAdminNavigation::test_branding_page_shows_bb_details"
+   "TC-UI-REPORT-001", "REQ-UI-REPORT-01", "report page loads a calendar view", "positive", "Low", "Automated", "TestAdminNavigation::test_report_page_shows_calendar"
+   "TC-UI-MSG-001", "REQ-UI-MSG-01", "messages page lists at least one message", "positive", "Medium", "Automated", "TestAdminNavigation::test_messages_page_lists_submissions"

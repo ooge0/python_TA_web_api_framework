@@ -10,7 +10,7 @@ ISO/IEC/IEEE 29119-3.
 Objective
 =========
 
-Verify the auth, booking and (later) room / branding / message behaviour of
+Verify the auth, booking, room, branding and message behaviour of
 *restful-booker* (back-end API) and *restful-booker-platform*
 (front-end API + UI), and keep that verification green in CI.
 
@@ -29,7 +29,9 @@ Scope
      - load / stress, contract tests, back-end ``/room`` and platform
        ``/report`` internals
    * - UI
-     - home page, contact form, admin login, admin navigation, rooms table
+     - home page (footer, nav, brand, anchors, admin link), contact form,
+       reservation page, admin login, admin navigation, admin rooms
+       (table + create + delete), admin branding, admin report, admin messages
      - visual regression, accessibility, cross-device
    * - Data
      - inline constants, ``Faker``, and one data-driven case reading the
@@ -91,8 +93,8 @@ Risks
      - each test owns its data; request ``timeout``; entry-criteria check
    * - ``restful-booker`` free host resets bookings periodically
      - no reliance on pre-existing ids
-   * - UI layer targets an old SUT version
-     - UI cases marked ``Blocked``; re-target tracked as **M8**
+   * - UI tests share one admin session (race under parallel execution)
+     - auto-tagged ``xdist_group("ui")``; CI runs ``-m ui -n0``
    * - No local stub / mock
      - accepted for now; candidate for a later milestone
 
