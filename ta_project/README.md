@@ -5,9 +5,10 @@
   <img alt="selenium" src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white" width="90"/>
   <img alt="requests" src="https://img.shields.io/badge/-requests-%43B02A?style=for-the-badge&logo=requests&logoColor=white" width="75"/>
 </p>
-<p>
-  <img alt="license" src="https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge" width="100"/>
-</p>
+
+[![CI](https://github.com/ooge0/python_TA_web_api_framework/actions/workflows/ci.yml/badge.svg)](https://github.com/ooge0/python_TA_web_api_framework/actions/workflows/ci.yml)
+[![Docs](https://github.com/ooge0/python_TA_web_api_framework/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/ooge0/python_TA_web_api_framework/actions/workflows/deploy-docs.yml)
+![License](https://img.shields.io/badge/license-MIT-yellow)
 
 **Test automation framework for the restful-booker practice stack — UI,
 front-end API and back-end API.**

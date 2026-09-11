@@ -53,7 +53,7 @@ jobs:
           name: sphinx-html
           path: docs/_build/html/
 
-  test:
+  test-api:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -67,12 +67,96 @@ jobs:
         run: >
           pytest -n auto -m "not ui"
           --cov --cov-report=term-missing --cov-report=xml
-          --junitxml=junit.xml
-      - name: upload reports
+          --junitxml=junit-api.xml
+          --alluredir=allure-results-api
+      - name: test report summary
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: API test results
+          path: junit-api.xml
+          reporter: java-junit
+      - name: upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: api-test-reports
           path: |
-            junit.xml
+            junit-api.xml
             coverage.xml
+      - name: upload allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-api
+          path: allure-results-api/
+
+  test-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: install firefox
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: latest
+      - name: install geckodriver
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          geckodriver-version: latest
+      - name: pytest (UI suite, headless Firefox, single-threaded)
+        run: >
+          pytest -m ui -n0
+          --junitxml=junit-ui.xml
+          --alluredir=allure-results-ui
+      - name: test report summary
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: UI test results
+          path: junit-ui.xml
+          reporter: java-junit
+      - name: upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-test-reports
+          path: junit-ui.xml
+      - name: upload allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-ui
+          path: allure-results-ui/
+
+  allure-report:
+    if: always()
+    needs: [test-api, test-ui]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: download API allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-api
+          path: allure-results/
+      - name: download UI allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-ui
+          path: allure-results/
+      - name: generate allure report
+        uses: simple-elf/allure-report-action@v1.9
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+      - name: upload allure report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-history/
