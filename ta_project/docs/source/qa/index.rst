@@ -29,7 +29,7 @@ What I test, and where
    * - UI
      - ``https://automationintesting.online``
      - *restful-booker-platform* front end (React SPA). The Selenium layer
-       was re-targeted at this build in **M8**; 13 UI tests pass.
+       was re-targeted at this build in **M8**; 21 UI tests pass (M10).
 
 How I test
 ==========
@@ -86,12 +86,16 @@ Pages in this section
 .. toctree::
    :maxdepth: 1
 
+   testing_philosophy
    what_my_tests_cover
    test_plan
    feature_catalogue
    test_cases
    traceability_matrix
    coverage_by_feature
+   allure_reporting
+   other_qa_signals
    known_issues
+   operational_notes
    episodes
    ../tests/tests

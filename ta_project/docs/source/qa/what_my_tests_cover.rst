@@ -8,10 +8,10 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **49 API + 13 UI tests passing** (1 skipped = the episode
-reminder). API calls go through the per-resource service objects in
-:mod:`core.api.services` (``AuthApi``, ``BookingApi``, ``RoomApi``,
-``ReportApi`` ...).
+Current run: **49 API + 21 UI tests passing** (1 skipped = the episode
+reminder). 52/52 requirements covered. API calls go through the per-resource
+service objects in :mod:`core.api.services` (``AuthApi``, ``BookingApi``,
+``RoomApi``, ``ReportApi`` ...).
 
 Back-end API - authentication
 =============================
@@ -93,17 +93,16 @@ UI (Selenium, re-targeted in M8)
 #. **Admin navigation.** The post-login navbar shows Rooms / Report / Branding /
    Messages / Front Page; the brand is "Restful Booker Platform Demo"; Logout
    ends the session; the rooms table lists 101 / 102 / 103 with a Create button.
+#. **Admin rooms.** Creating a room via the UI adds it to the table; deleting a
+   room removes it. API cleanup ensures no leaked records.
+#. **Admin branding.** The branding page loads and shows the B&B name.
+#. **Admin report.** The report page loads a calendar view with a month label.
+#. **Admin messages.** The messages page lists at least one message (seeded
+   through the front API).
+#. **Reservation.** The reservation page shows a calendar and a "Reserve now"
+   button.
+#. **Home navigation.** Nav links are section anchors (``/#rooms``,
+   ``/#booking``, etc.); the admin link points to ``/admin``.
 
 Each UI test runs a fresh headless Firefox and waits for the SPA to render -
 no ``time.sleep``.
-
-Not covered yet
-===============
-
-Both APIs are fully covered. The open gaps are all UI - placeholders exist in
-:ref:`qa_test_cases`, and :ref:`qa_known_issues` KI-12 tracks them:
-
-* the reservation-calendar completion (``REQ-UI-RES-02``),
-* admin room create / delete (``REQ-UI-ROOMS-02/03``),
-* the branding / report / messages admin pages,
-* the nav-anchor scroll (``REQ-UI-HOME-03``).

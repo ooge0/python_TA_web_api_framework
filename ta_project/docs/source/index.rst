@@ -37,6 +37,7 @@ What the framework is, how it is laid out, and the tools it uses.
    about/about_this_guide
    about/framework_structure
    about/features
+   about/sut_description
    readme
 
 
@@ -51,6 +52,8 @@ Getting the framework installed and the suite running.
 
    config/setup_and_running
    config/environment_setup
+   config/running_tests
+   config/sphinx_setup
 
 
 QA & Testing
@@ -66,6 +69,19 @@ and the auto-generated reference for the test modules.
    :caption: QA & Testing
 
    qa/index
+
+
+Decisions
+=========
+Architecture decision records — one page per non-obvious choice, with context,
+decision and consequences.
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: Decisions
+
+   decisions/index
 
 
 Diagrams & Graphs

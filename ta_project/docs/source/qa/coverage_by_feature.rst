@@ -6,7 +6,7 @@ Coverage by Feature
 
 Derived from :ref:`qa_feature_catalogue`, :ref:`qa_test_cases` and
 :ref:`qa_traceability`. "Automated / passing" is from the last run
-(49 API + 13 UI tests passing).
+(49 API + 21 UI tests passing).
 
 This is **requirement** coverage, not code coverage. Code coverage
 (``pytest-cov``) is reported separately by CI.
@@ -24,15 +24,15 @@ This is **requirement** coverage, not code coverage. Code coverage
    "FEAT-FE-BRANDING", "1", "1", "1", "-", "Covered"
    "FEAT-FE-MESSAGE", "2", "2", "2", "-", "Covered"
    "FEAT-FE-REPORT", "1", "1", "1", "-", "Covered"
-   "FEAT-UI-HOME", "4", "4", "2", "HOME-03 nav-scroll, HOME-04 admin link", "Partial"
+   "FEAT-UI-HOME", "4", "4", "4", "-", "Covered"
    "FEAT-UI-CONTACT", "2", "2", "2", "-", "Covered"
-   "FEAT-UI-RESERVATION", "2", "2", "1", "RES-02 complete a booking (calendar flow)", "Partial"
+   "FEAT-UI-RESERVATION", "2", "2", "2", "-", "Covered"
    "FEAT-UI-ADMIN-LOGIN", "3", "3", "3", "-", "Covered"
    "FEAT-UI-ADMIN-NAV", "3", "3", "3", "-", "Covered"
-   "FEAT-UI-ADMIN-ROOMS", "3", "3", "1", "ROOMS-02 create, ROOMS-03 delete", "Partial"
-   "FEAT-UI-ADMIN-BRANDING", "1", "1", "0", "BRAND-01", "Not covered"
-   "FEAT-UI-ADMIN-REPORT", "1", "1", "0", "REPORT-01", "Not covered"
-   "FEAT-UI-ADMIN-MESSAGE", "1", "1", "0", "MSG-01", "Not covered"
+   "FEAT-UI-ADMIN-ROOMS", "3", "3", "3", "-", "Covered"
+   "FEAT-UI-ADMIN-BRANDING", "1", "1", "1", "-", "Covered"
+   "FEAT-UI-ADMIN-REPORT", "1", "1", "1", "-", "Covered"
+   "FEAT-UI-ADMIN-MESSAGE", "1", "1", "1", "-", "Covered"
 
 Summary
 =======
@@ -70,14 +70,13 @@ History
 Reading of this
 ===============
 
-* **Both APIs are fully covered** - back-end 17/17, front-end 15/15 - all
+* **Both APIs are fully covered** — back-end 17/17, front-end 15/15 — all
   through the ``core/api/services`` service objects.
-* The **UI layer is re-targeted and green** (13 tests): home footer + nav +
-  brand, the contact form (valid submit + field validation), the "Book now"
-  links, admin login (valid / invalid / placeholders), the admin navbar +
-  branding text, logout, and the rooms table.
-* **The 8 remaining gaps are all UI** (Low/Medium): the calendar-based
-  reservation completion, admin room create/delete, the branding / report /
-  messages admin pages, the nav-anchor scroll, and the Admin-link click. They
-  are listed in ``docs/source/qa/_known_gaps.txt`` and tracked as
-  :ref:`qa_known_issues` KI-12 - a dedicated UI-coverage milestone.
+* The **UI layer is fully covered** (21 tests, 20/20 requirements): home page
+  (footer, nav, brand, "Book now" links, nav anchors, admin link), contact form
+  (valid + invalid), reservation page (calendar + reserve button), admin login
+  (valid / invalid / placeholders), admin navigation (navbar, brand, logout),
+  admin rooms (table, create, delete), admin branding, admin report, admin
+  messages.
+* **No gaps remain.** ``_known_gaps.txt`` is empty; 52/52 requirements covered.
+  KI-12 (the UI-coverage milestone) is resolved.
