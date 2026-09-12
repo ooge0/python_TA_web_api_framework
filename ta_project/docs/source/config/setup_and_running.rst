@@ -60,10 +60,50 @@ Reports:
    pytest --html=report.html --self-contained-html          # single-file HTML report
    pytest --alluredir=allure-results && allure serve allure-results
 
-CI (``.github/workflows/ci.yml``) runs ``pylint`` and ``pytest`` with coverage on
+CI (``.github/workflows/ci.yml``) runs ``ruff`` lint and ``pytest`` with coverage on
 every push and pull request.
 
 .. important::
 
    ``pytest`` from the repo root loads ``pyproject.toml`` for its config
    (markers, ``testpaths``). There is no separate ``-c`` flag to pass.
+
+Database as test data
+=====================
+
+The ``setup_database`` fixture (``resources/test_data/fixtures_api_test_data.py``)
+creates an SQLite database at ``resources/test_data/test_data_for_ta_framework.db``
+and seeds it with reference rows the first time it is called.  The fixture is
+idempotent — running the suite multiple times does not duplicate rows.
+
+The database is one of three intentional data sources in the framework (the
+others being inline constants and the Excel workbook).  It demonstrates the
+pattern of reading test data from a relational store; see
+:class:`~utilities.excel_data_provider.ExcelDataProvider` for the Excel
+equivalent.
+
+To inspect the schema and seed data:
+
+.. code-block:: bash
+
+   sqlite3 resources/test_data/test_data_for_ta_framework.db ".tables"
+   sqlite3 resources/test_data/test_data_for_ta_framework.db "SELECT * FROM login_test_data;"
+
+Dependency tree
+===============
+
+To inspect the full dependency graph (all transitive dependencies):
+
+.. code-block:: bash
+
+   pip install pipdeptree
+   pipdeptree
+
+To export a PNG diagram:
+
+.. code-block:: bash
+
+   pipdeptree --graph-output png > deps.png
+
+This is useful for auditing unexpected transitive dependencies or checking that
+``requirements.txt`` is consistent with ``requirements.in``.

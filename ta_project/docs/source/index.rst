@@ -38,6 +38,7 @@ What the framework is, how it is laid out, and the tools it uses.
    about/framework_structure
    about/features
    about/sut_description
+   about/external_resources
    readme
 
 
