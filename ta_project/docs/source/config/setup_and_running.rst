@@ -38,6 +38,17 @@ To refresh the lock file after editing ``requirements.in``:
 The bootstrap scripts (``setup_env.bat`` / ``setup_env.sh``) do the venv +
 install in one step; ``setup_for_tox.bat`` also installs and runs ``tox``.
 
+Installing Playwright browsers
+==============================
+
+After ``pip install -r requirements.txt``, install the browser binaries::
+
+    playwright install firefox chromium --with-deps
+
+This is a one-time step; binaries are cached by Playwright.  In CI,
+``.github/workflows/ci.yml`` runs ``playwright install ${{ matrix.browser }} --with-deps``
+per matrix job (Firefox and Chromium in parallel).
+
 Run the tests
 =============
 
@@ -47,7 +58,7 @@ The suite needs network access and the two live practice services.
 
    pytest -n auto            # full suite, in parallel (pytest-xdist)
    pytest -m api             # API tests only
-   pytest -m ui              # UI tests (currently skipped - roadmap M8)
+   pytest -m ui --browser firefox   # UI tests (Playwright — see Installing Playwright browsers above)
    pytest -k booking         # by keyword
    pytest path/to/test.py::TestClass::test_name
 

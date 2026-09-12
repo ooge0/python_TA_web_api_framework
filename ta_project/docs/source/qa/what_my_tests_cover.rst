@@ -8,7 +8,7 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **49 API + 23 UI tests passing** (1 skipped = the episode
+Current run: **49 API + 24 UI tests passing** (1 skipped = the episode
 reminder). 53/53 requirements covered. API calls go through the per-resource
 service objects in :mod:`core.api.services` (``AuthApi``, ``BookingApi``,
 ``RoomApi``, ``ReportApi`` ...).
@@ -79,8 +79,8 @@ Front-end API (the platform)
    ``GET /api/message`` + ``/count`` (token) return the inbox and the total.
 #. **Report.** ``GET /api/report`` (token) returns ``200``.
 
-UI (Selenium, re-targeted in M8)
-================================
+UI (Playwright, v3)
+===================
 
 #. **Home page.** The footer is present; the four footer links have the right
    text and hrefs; the nav brand is "Shady Meadows B&B"; each room's "Book now"
@@ -104,5 +104,6 @@ UI (Selenium, re-targeted in M8)
 #. **Home navigation.** Nav links are section anchors (``/#rooms``,
    ``/#booking``, etc.); the admin link points to ``/admin``.
 
-Each UI test runs a fresh headless Firefox and waits for the SPA to render -
-no ``time.sleep``.
+Each UI test runs in an isolated browser context. The browser is selected via
+``--browser firefox|chromium`` (CI: both in a matrix). Playwright's built-in
+auto-wait replaces all explicit waits — no ``time.sleep``.

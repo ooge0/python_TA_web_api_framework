@@ -79,12 +79,12 @@ Framework limitations
        now CI accepts the external dependency.
      - Medium
    * - KI-11
-     - No retry / rerun handling for transient failures. The UI tests share one
-       admin session and raced under ``pytest -n auto`` before M10. They are now
-       auto-tagged ``xdist_group("ui")`` so ``--dist loadgroup`` pins them to
-       one worker; CI runs them with ``-m ui -n0``.
-     - ``pytest-rerunfailures`` for the API suite is still a candidate.
-     - Low
+     - *(Resolved in v3.)* UI tests previously shared one admin session and
+       required ``-n0``. In v3 each test gets an isolated browser context
+       (pytest-playwright default) — no shared state, no race.
+       ``pytest-rerunfailures`` for transient API failures is still a candidate.
+     - Done (browser context isolation). Retry handling: still a candidate.
+     - Resolved
    * - KI-12
      - *(Resolved in M10.)* All 8 UI requirement gaps are now covered: room
        create/delete, reservation calendar, admin branding/report/messages,

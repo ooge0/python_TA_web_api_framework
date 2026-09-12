@@ -38,11 +38,13 @@ Both are shared practice environments.  Other users' data is visible, the
 services go to sleep or rate-limit, and there is no retry mechanism.  See
 :ref:`qa_known_issues` KI-05 and KI-10.
 
-ON-04: UI tests must run single-threaded
-=========================================
+ON-04: *(Superseded in v3.)*
+============================
 
-UI tests share one admin session in the browser.  Under ``pytest -n auto``
-they raced (e.g. one test deleting a room while another was reading the table).
-They are now auto-tagged ``xdist_group("ui")`` in ``tests/conftest.py``, so
-``--dist loadgroup`` pins them to a single worker.  CI runs them as a separate
-job with ``-m ui -n0``.  See :ref:`qa_known_issues` KI-11.
+UI tests previously shared one admin session in the browser and had to run
+single-threaded (``xdist_group("ui")`` / ``-n0``).  In v3 each test gets an
+**isolated browser context** (pytest-playwright default): separate cookies,
+localStorage and network state.  There is no shared session and no race
+condition.  ``xdist_group("ui")`` has been removed from ``tests/conftest.py``.
+The CI ``-n0`` constraint is gone; the matrix runs Firefox and Chromium in
+parallel jobs.  See :ref:`qa_known_issues` KI-11 (marked Resolved).

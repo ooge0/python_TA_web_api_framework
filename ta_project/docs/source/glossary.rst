@@ -21,6 +21,9 @@
 .. _RST2PDF: https://rst2pdf.org/
 .. _Regex: https://docs.python.org/3/library/re.html
 .. _Requests: https://requests.readthedocs.io/
+.. _Playwright: https://playwright.dev/python/docs/intro
+.. _Pytest_Playwright: https://playwright.dev/python/docs/pytest
+.. _Browser_Context: https://playwright.dev/python/docs/browser-contexts
 .. _Selenium: https://selenium.dev/documentation/en/
 .. _Sphinx: https://www.sphinx-doc.org/
 .. _Sphinx_AutoAPI: https://sphinx-autoapi.readthedocs.io/
@@ -198,8 +201,40 @@ Glossary
 
 
 
+   Browser_Context
+      A Playwright ``BrowserContext`` is an isolated browser session: separate
+      cookies, localStorage and network state.  ``pytest-playwright`` creates one
+      context per test by default, eliminating the shared-session race that
+      required ``xdist_group("ui")`` in v2.
+
+      Playwright browser contexts: Browser_Context_
+
+
+
+   Playwright
+      Microsoft's browser automation library for Python (and other languages).
+      Replaces Selenium in v3 of this framework (see ADR-012).  Provides
+      built-in auto-wait, network interception via ``page.route()``, isolated
+      browser contexts, and cross-browser support (Chromium, Firefox, WebKit) in
+      one package.  Used via ``pytest-playwright``.
+
+      Playwright documentation: Playwright_
+
+
+
+   Pytest_Playwright
+      pytest plugin that integrates Playwright into the test suite.  Provides
+      the ``page``, ``browser`` and ``browser_context`` fixtures; the
+      ``--browser`` CLI flag selects the target browser per run.
+
+      pytest-playwright documentation: Pytest_Playwright_
+
+
+
    Selenium
       Selenium is a tool for automating web applications for testing purposes.
+      Used in v1/v2 of this framework; replaced by :term:`Playwright` in v3
+      (see ADR-012).
 
       Selenium documentation: Selenium_
 

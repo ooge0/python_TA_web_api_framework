@@ -85,3 +85,24 @@ Test*`` never collected.
 
 **Lesson.** These are exactly what a linter + a CI gate catch on the first push.
 They cost nothing to prevent and are tedious to find later.
+
+Episode 6 — docs lagged a full framework version behind
+========================================================
+
+**What happened.** The v3 Playwright migration (ADR-012) updated all test code
+but left 15+ Sphinx RST files referencing Selenium, ``xdist_group("ui")``,
+``BaseFrontPage``, ``(By, selector)`` tuples and ``geckodriver`` setup.  The
+committed ``docs/html/`` — the GitHub Pages source the user opens in a file
+browser — was the pre-built v2 HTML.  Searching for "playwright" in the docs
+returned nothing.
+
+**Why it went unnoticed.** The Sphinx build is separate from the test run, and
+there was no CI check that rebuilt ``docs/html/`` from ``docs/source/`` and
+committed the result.  The migration PR focused on code, not the published docs.
+
+**What I did.** Audited all 15+ source files, patched every stale reference, and
+rebuilt ``docs/html/``.
+
+**Lesson.** Treat docs as a deliverable on every branch.  Rebuild and commit
+``docs/html/`` as part of the migration PR, not as a follow-up.  A docs CI job
+that fails on stale content would have caught this on the first push.

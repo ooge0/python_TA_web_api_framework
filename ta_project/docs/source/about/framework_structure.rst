@@ -12,7 +12,7 @@ The tree
    core/
      api/         APIClient + endpoint registries + per-resource service objects
        services/  AuthApi / BookingApi / RoomApi / BrandingApi / MessageApi / ReportApi / PlatformBookingApi
-     pages/       Selenium page objects (BaseFrontPage -> Home / LoginAdmin / AdminRooms)
+     pages/       Playwright page objects (BasePage → Home / LoginAdmin / AdminRooms)
      locators/    locator registries, one class per page
      data/
        data_models/    pydantic models with from_dict / to_dict
@@ -23,7 +23,7 @@ The tree
    tests/
      conftest.py            the only project conftest; composes fixtures via pytest_plugins
      api_tests/             requests-based - business_core/ (auth, booking, resources) + other/ (schema, perf)
-     web_app_tests/         Selenium - test_login_page/ + tests_home_page/
+     web_app_tests/         Playwright - test_login_page/ + tests_home_page/
    docs/          this Sphinx site
    pyproject.toml pytest config (markers, testpaths)
    tox.ini        py312 / lint envs
@@ -48,5 +48,6 @@ How the pieces connect
 
 .. note::
 
-   The Selenium UI layer was rebuilt for the current SPA in **M8**
-   (episode 1 in :ref:`qa_episodes`).
+   Playwright replaced Selenium in **v3** (ADR-012). Each test gets an isolated
+   browser context; the browser is selected via ``--browser firefox|chromium``
+   (CI: matrix job running both). See :ref:`adr_012`.

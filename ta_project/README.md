@@ -2,7 +2,7 @@
 <p align="left">
   <img alt="python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" width="80"/>
   <img alt="pytest" src="https://img.shields.io/badge/py-test-blue?logo=pytest" width="80"/>
-  <img alt="selenium" src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white" width="90"/>
+  <img alt="playwright" src="https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white" width="100"/>
   <img alt="requests" src="https://img.shields.io/badge/-requests-%43B02A?style=for-the-badge&logo=requests&logoColor=white" width="75"/>
 </p>
 
@@ -22,11 +22,13 @@ front-end API and back-end API.**
 git clone <repo> && cd python_TA_web_api_framework
 python -m venv .venv && .venv/Scripts/activate   # POSIX: source .venv/bin/activate
 pip install -r requirements.txt
+playwright install firefox chromium --with-deps   # one-time browser binary install
 
-pytest -n auto        # full suite in parallel (needs network + the two live SUTs)
-pytest -m api         # API tests only
-pytest -m ui          # UI tests only
-tox -e lint           # pylint
+pytest -n auto                   # full suite in parallel (needs network + the two live SUTs)
+pytest -m api                    # API tests only
+pytest -m ui --browser firefox   # UI tests (Playwright, Firefox)
+pytest -m ui --browser chromium  # UI tests (Playwright, Chromium)
+tox -e lint                      # ruff
 ```
 
 Both live services must be reachable.  The suite creates and cleans up its own

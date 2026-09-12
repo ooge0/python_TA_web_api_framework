@@ -28,8 +28,9 @@ What I test, and where
        body of ``POST /api/auth/login``.
    * - UI
      - ``https://automationintesting.online``
-     - *restful-booker-platform* front end (React SPA). The Selenium layer
-       was re-targeted at this build in **M8**; 21 UI tests pass (M10).
+     - *restful-booker-platform* front end (React SPA). Playwright (v3,
+       :ref:`adr_012`); 24 UI tests including browser-security checks.
+       CI: Firefox + Chromium matrix.
 
 How I test
 ==========

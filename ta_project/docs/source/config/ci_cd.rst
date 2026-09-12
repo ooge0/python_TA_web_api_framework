@@ -49,19 +49,33 @@ The workflow has six jobs:
    JUnit XML as a PR check annotation so individual failures appear inline in
    the PR diff.
 
-5. **test-ui** — runs the UI suite single-threaded on headless Firefox:
+5. **test-ui** — runs the UI suite in a **browser matrix** (Firefox + Chromium):
+
+   .. code-block:: yaml
+
+      strategy:
+        fail-fast: false
+        matrix:
+          browser: [firefox, chromium]
+
+   Each matrix job installs its browser binary::
+
+      playwright install ${{ matrix.browser }} --with-deps
+
+   then runs:
 
    .. code-block:: text
 
-      pytest -m ui -n0 \
-        --junitxml=junit-ui.xml \
-        --alluredir=allure-results-ui
+      pytest -m ui -n0 --browser ${{ matrix.browser }} \
+        --junitxml=junit-ui-${{ matrix.browser }}.xml \
+        --screenshot only-on-failure \
+        --video retain-on-failure \
+        --tracing retain-on-failure \
+        --alluredir=allure-results-ui-${{ matrix.browser }}
 
-   Browser setup uses ``browser-actions/setup-firefox`` and
-   ``browser-actions/setup-geckodriver`` (both ``latest``).  ``-n0`` is
-   required because UI tests share one admin session
-   (see :ref:`adr_006_xdist_group_ui`).  Uploads ``ui-test-reports`` and
-   ``allure-results-ui``.
+   Uploads ``ui-test-reports-<browser>`` (JUnit XML) and
+   ``allure-results-ui-<browser>`` per browser.  No geckodriver or
+   ``setup-firefox`` action is needed — Playwright manages its own binaries.
 
 6. **allure-report** — runs after both test jobs (``if: always()``).
    Downloads ``allure-results-api`` and ``allure-results-ui`` into a single
@@ -108,9 +122,12 @@ Artifacts produced
    * - ``allure-results-api``
      - test-api
      - Raw Allure JSON results (API suite)
-   * - ``ui-test-reports``
-     - test-ui
-     - ``junit-ui.xml``
+   * - ``ui-test-reports-firefox``
+     - test-ui (firefox)
+     - ``junit-ui-firefox.xml``
+   * - ``ui-test-reports-chromium``
+     - test-ui (chromium)
+     - ``junit-ui-chromium.xml``
    * - ``allure-results-ui``
      - test-ui
      - Raw Allure JSON results (UI suite)
@@ -149,8 +166,9 @@ Key configuration notes
 1. **Python version** — both workflows pin ``3.12``.
 2. **Dependency caching** — ``actions/setup-python`` with ``cache: pip``.
 3. **Timeout** — test jobs have ``timeout-minutes: 15``.
-4. **UI isolation** — the UI job uses ``-n0`` (no parallelism); see
-   :ref:`adr_006_xdist_group_ui` for why.
+4. **Browser matrix** — the UI job runs Firefox and Chromium as parallel matrix
+   jobs.  Each test gets an isolated browser context so there is no shared-state
+   race and no ``-n0`` constraint between test workers within a job.
 5. **Allure merge** — the allure-report job downloads both result sets into
    the same directory before generation, so the final report covers the full
    suite.

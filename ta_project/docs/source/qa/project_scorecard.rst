@@ -41,13 +41,14 @@ Test suite
        Missing: room update flow untested.
    * - UI tests
      - 4
-     - 23 tests: home, login, admin CRUD, reservation end-to-end,
-       accessibility smoke.
-     - Good: login fully covered (valid, invalid, placeholders), home page
-       thorough (footer, nav, contact form, anchors), rooms CRUD, reservation
-       booking flow completes, branding verifies name + description + contact,
-       messages verifies count + name + subject, basic WCAG ``lang`` check.
-       Missing: visual regression, cross-browser matrix, deeper accessibility.
+     - 24 tests: home, login, admin CRUD, reservation end-to-end,
+       accessibility smoke, 9 browser-security checks.
+     - Good: login fully covered, home page thorough, rooms CRUD, reservation
+       flow, branding, messages, WCAG ``lang`` check; security checks cover
+       HttpOnly cookies, storage cleanup after logout, password field type,
+       security response headers, console errors, graceful API degradation.
+       Cross-browser matrix now in CI.  Missing: visual regression, deeper
+       accessibility.
    * - Data strategy
      - 4
      - Three sources: inline, Excel, SQLite. Faker. No hard-coded IDs.
@@ -63,9 +64,11 @@ Test suite
        assert approach.  Missing: no custom assertion extensions.
    * - Parallelism
      - 4
-     - ``pytest-xdist``, ``--dist loadgroup``, ``xdist_group("ui")``.
-     - Good: explicit isolation, CI enforces ``-n0`` for UI.  Missing: no
-       parallel UI capability.
+     - ``pytest-xdist`` for API; isolated browser context per UI test (v3).
+     - Good: API tests fully parallel; UI tests each get an isolated browser
+       context — no shared state, no race.  Cross-browser: CI matrix runs
+       Firefox + Chromium.  Missing: UI workers still run with ``-n0`` per
+       matrix job (parallelising across tests within a browser is next).
 
 
 Architecture
@@ -86,12 +89,12 @@ Architecture
        no retry/backoff, no request/response interceptors.
    * - Page objects
      - 4
-     - ``BaseFrontPage`` + 7 concrete pages.  ``(By, selector)`` tuples.
-       ``WebDriverWait`` with ``DEFAULT_WAIT=15``.
-     - Good: centralised explicit waits, no ``implicitly_wait()``, fluent API,
-       configurable timeout per call.  Zero ``time.sleep()`` — replaced with
-       explicit waits on DOM state (room count change after create/delete).
-       Missing: ``ReservationPage`` is thin.
+     - ``BasePage`` + 7 concrete pages.  CSS/XPath selector strings.
+       Playwright built-in auto-wait.
+     - Good: no ``implicitly_wait()``, fluent API, zero ``time.sleep()`` —
+       Playwright's auto-wait blocks on DOM state automatically.  Network
+       interception via ``page.route()`` enables mock-based tests without a
+       stub server.  Missing: ``ReservationPage`` is thin.
    * - Models
      - 4
      - Pydantic v2 ``BaseModel`` for all API payloads.
@@ -131,9 +134,9 @@ CI / CD
        checking (mypy).
    * - Test execution
      - 4
-     - Separate API (parallel) and UI (headless Firefox, ``-n0``) jobs.
-     - Good: correct split, browser setup automated, 15 min timeout.  Missing:
-       single OS, single Python version, no matrix.
+     - Separate API (parallel) and UI (browser matrix: Firefox + Chromium) jobs.
+     - Good: correct split, browser setup automated, 15 min timeout, cross-browser
+       matrix added in v3.  Missing: single OS, single Python version.
    * - Traceability gate
      - 5
      - ``check_traceability.py`` — uncovered requirement = red build.
@@ -209,7 +212,7 @@ Gaps that keep scores below 5
      - No Docker/devcontainer, no stub/mock for live services, credentials in
        ``config.ini``.
    * - CI / CD
-     - Single OS and Python.  No mypy.  No Dependabot.  Coverage floor low.
+     - Single OS and Python version.  No mypy.  No Dependabot.  Coverage floor low.
    * - Documentation
      - 8 orphan Sphinx warnings.  No runbook.  No changelog.
 

@@ -49,8 +49,8 @@ Environments
 
 * Back-end API - ``https://restful-booker.herokuapp.com`` (shared public).
 * Front-end API + UI - ``https://automationintesting.online`` (shared public).
-* Browser - Firefox, headless (``config.ini`` ``browser_headless_mode = 1``);
-  chrome / edge also supported by the fixture.
+* Browser - ``--browser firefox`` or ``--browser chromium`` (add ``--headed``
+  for a visible window); CI runs both via GitHub Actions matrix.
 * Python 3.12; ``pytest -n auto``.
 
 Credentials (public demo accounts, ``config.ini [credentials]``):
@@ -93,8 +93,9 @@ Risks
      - each test owns its data; request ``timeout``; entry-criteria check
    * - ``restful-booker`` free host resets bookings periodically
      - no reliance on pre-existing ids
-   * - UI tests share one admin session (race under parallel execution)
-     - auto-tagged ``xdist_group("ui")``; CI runs ``-m ui -n0``
+   * - UI tests previously shared one admin session (race under parallel execution)
+     - Resolved in v3: pytest-playwright isolates each test in its own browser
+       context — no shared state, no race condition
    * - No local stub / mock
      - accepted for now; candidate for a later milestone
 

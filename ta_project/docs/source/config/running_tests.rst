@@ -60,9 +60,17 @@ Parallel execution
 
    pytest -n auto
 
-UI tests are auto-tagged ``xdist_group("ui")`` so ``--dist loadgroup`` pins
-them to a single worker, avoiding the shared-admin-session race.  CI runs the
-UI job separately with ``-m ui -n0``.
+UI tests each get an **isolated browser context** (pytest-playwright default),
+so they carry no shared state and are safe to run in parallel.  Select the
+browser via ``--browser``:
+
+.. code-block:: bash
+
+   pytest -m ui --browser firefox        # headless Firefox
+   pytest -m ui --browser chromium       # headless Chromium
+   pytest -m ui --browser firefox --headed   # visible window
+
+CI runs both browsers in a matrix job (see :ref:`config_ci_cd`).
 
 Rerunning failed tests
 ======================
