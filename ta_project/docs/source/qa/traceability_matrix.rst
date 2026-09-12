@@ -15,8 +15,8 @@ reads the ``@pytest.mark.req`` markers off the collected tests and fails CI if a
 catalogue requirement is neither covered nor listed in ``_known_gaps.txt``, or
 if a marker names an id that is not in the catalogue.
 
-Snapshot: **52 of 52 requirements covered** (49 API + 21 UI tests passing, 1
-skipped). Back-end API 17/17, front-end API 15/15, UI 20/20. No gaps remain;
+Snapshot: **61 of 61 requirements covered** (57 API + 24 UI tests, 1 skipped).
+Back-end API 26/26, front-end API 15/15, UI 20/20. No gaps remain;
 ``_known_gaps.txt`` is empty.
 
 Back-end API
@@ -43,6 +43,14 @@ Back-end API
    "REQ-BE-BOOKING-11", "TC-BE-BOOK-011, TC-BE-PERF-007", "Automated", "Covered"
    "REQ-BE-BOOKING-12", "TC-BE-BOOK-014", "Automated", "Covered"
    "REQ-BE-BOOKING-13", "TC-BE-BOOK-016/017", "Automated", "Covered"
+   "REQ-BE-BOOKING-14", "TC-BE-BOOK-020/021", "Automated", "Covered"
+   "REQ-BE-BOOKING-15", "TC-BE-BOOK-024", "Automated", "Covered"
+   "REQ-BE-BOOKING-16", "TC-BE-BOOK-025/026", "Automated", "Covered"
+   "REQ-BE-BOOKING-17", "TC-BE-BOOK-027", "Automated", "Covered"
+   "REQ-BE-BOOKING-18", "TC-BE-BOOK-022/023", "Automated", "Covered"
+   "REQ-BE-CONTRACT-01", "TC-BE-CONTRACT-001..004", "Automated", "Covered"
+   "REQ-BE-CONTRACT-02", "TC-BE-CONTRACT-005/006", "Automated", "Covered"
+   "REQ-BE-CONTRACT-03", "TC-BE-CONTRACT-007", "Automated", "Covered"
 
 Front-end API
 =============

@@ -8,8 +8,8 @@ What the suite checks, by area. For the IDs, priorities and pytest node names
 see :ref:`qa_test_cases`; for the requirement-by-requirement view see
 :ref:`qa_traceability`.
 
-Current run: **49 API + 24 UI tests passing** (1 skipped = the episode
-reminder). 53/53 requirements covered. API calls go through the per-resource
+Current run: **57 API + 24 UI tests passing** (1 skipped = the episode
+reminder). 61/61 requirements covered. API calls go through the per-resource
 service objects in :mod:`core.api.services` (``AuthApi``, ``BookingApi``,
 ``RoomApi``, ``ReportApi`` ...).
 
@@ -50,6 +50,35 @@ owns its data. Without a token, ``PUT``, ``PATCH`` and ``DELETE`` all return
 
 **Deleting.** ``DELETE /booking/{id}`` with a token returns ``201``, and the
 booking then ``404`` s.
+
+Back-end API - round-trips and boundaries
+==========================================
+
+**Consistency.** A POST→GET round-trip checks that every submitted field
+matches what is stored.  A PUT→GET round-trip checks that all fields were
+replaced.  A PATCH→GET check confirms only the named field changed; two
+successive PATCHes each leave their change in place.
+
+**Token reuse.** A single auth token remains valid across a PUT followed by a
+PATCH on the same booking.
+
+**Date boundaries.** The SUT accepts bookings where checkout < checkin (SUT
+quirk documented as KI; see :ref:`qa_known_issues`) and far-future (year-9999)
+dates.  Both are tested and the stored dates are verified via GET.
+
+**Filter precision.** ``GET /booking?firstname=<uuid>`` returns an empty list
+when no match exists — verifies that the filter is not returning all bookings
+on miss.
+
+Back-end API - contract
+=======================
+
+Every HTTP verb (GET list, GET item, POST, PUT, PATCH) and the auth endpoints
+are validated against their JSON Schemas after every call.  The schemas add
+ISO-8601 date-pattern constraints (``^\d{4}-\d{2}-\d{2}$``) that the existing
+schemas lack.  Every response is also checked for ``Content-Type: application/
+json``.  This catches silent regressions where a field is renamed, retyped or
+dropped from the SUT without a test immediately failing.
 
 Back-end API - health and speed
 ===============================

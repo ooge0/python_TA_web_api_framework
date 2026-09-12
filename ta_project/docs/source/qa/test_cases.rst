@@ -6,7 +6,7 @@ Test Cases
 
 Every case is tied to a feature and one or more requirements from
 :ref:`qa_feature_catalogue`. ``Node`` is the pytest ``Class::method`` (file
-implied by the section). All 52 requirements are covered — no placeholder
+implied by the section). All 61 requirements are covered — no placeholder
 rows remain.
 
 Every automated test also carries a ``@pytest.mark.req("REQ-...")`` marker;
@@ -58,6 +58,37 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-017", "REQ-BE-BOOKING-13", "POST /booking without bookingdates -> 500", "negative", "Medium", "Automated", "::test_create_without_dates_is_rejected"
    "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname=&lastname= filters the list", "positive", "Low", "Automated", "TestBackApiBooking::test_name_filter_returns_the_matching_booking"
    "TC-BE-BOOK-019", "REQ-BE-BOOKING-03", "GET /booking/{id} returns the booking details", "positive", "High", "Automated", "TestBackApiBooking::test_get_booking_by_id"
+
+Back-end API - Booking Advanced  (``test_back_api_booking_advanced.py``)
+=========================================================================
+
+.. csv-table::
+   :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
+   :widths: 14, 18, 30, 9, 6, 12, 30
+
+   "TC-BE-BOOK-020", "REQ-BE-BOOKING-14", "POST then GET: all fields match the submitted payload", "e2e", "High", "Automated", "TestBackApiBookingConsistency::test_post_then_get_returns_same_data"
+   "TC-BE-BOOK-021", "REQ-BE-BOOKING-14", "PUT replaces all fields; GET confirms the change", "e2e", "High", "Automated", "::test_put_replaces_all_fields"
+   "TC-BE-BOOK-022", "REQ-BE-BOOKING-18", "PATCH leaves unpatched fields unchanged", "positive", "High", "Automated", "::test_patch_does_not_alter_untouched_fields"
+   "TC-BE-BOOK-023", "REQ-BE-BOOKING-18", "Successive PATCH calls accumulate (both changes visible after second)", "positive", "Medium", "Automated", "::test_successive_patches_accumulate"
+   "TC-BE-BOOK-024", "REQ-BE-BOOKING-15", "Single token valid across PUT then PATCH (token reuse)", "positive", "Medium", "Automated", "::test_token_reuse_across_consecutive_writes"
+   "TC-BE-BOOK-025", "REQ-BE-BOOKING-16", "POST with checkout < checkin is accepted (SUT quirk)", "boundary", "Low", "Automated", "TestBackApiBookingDateBoundaries::test_inverted_dates_accepted_by_sut"
+   "TC-BE-BOOK-026", "REQ-BE-BOOKING-16", "POST with year-9999 dates accepted; GET returns same dates", "boundary", "Low", "Automated", "::test_far_future_dates_accepted"
+   "TC-BE-BOOK-027", "REQ-BE-BOOKING-17", "GET /booking?firstname=<uuid> returns empty list", "negative", "Medium", "Automated", "TestBackApiFilterPrecision::test_name_filter_returns_empty_for_nonexistent_name"
+
+Back-end API - Contract  (``test_api_contract.py``)
+=====================================================
+
+.. csv-table::
+   :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
+   :widths: 14, 18, 30, 9, 6, 12, 28
+
+   "TC-BE-CONTRACT-001", "REQ-BE-CONTRACT-01 / REQ-BE-BOOKING-01", "GET /booking list items match BOOKING_ID_ITEM_SCHEMA", "contract", "High", "Automated", "TestApiResponseContracts::test_booking_list_items_match_schema"
+   "TC-BE-CONTRACT-002", "REQ-BE-CONTRACT-01 / REQ-BE-BOOKING-03", "GET /booking/{id} matches BOOKING_OBJECT_SCHEMA (incl. ISO-date pattern)", "contract", "High", "Automated", "::test_get_booking_matches_schema"
+   "TC-BE-CONTRACT-003", "REQ-BE-CONTRACT-01 / REQ-BE-BOOKING-08", "PUT /booking/{id} response matches BOOKING_OBJECT_SCHEMA", "contract", "High", "Automated", "::test_put_booking_response_matches_schema"
+   "TC-BE-CONTRACT-004", "REQ-BE-CONTRACT-01 / REQ-BE-BOOKING-10", "PATCH /booking/{id} response matches BOOKING_OBJECT_SCHEMA", "contract", "High", "Automated", "::test_patch_booking_response_matches_schema"
+   "TC-BE-CONTRACT-005", "REQ-BE-CONTRACT-02 / REQ-BE-AUTH-01", "POST /auth success matches AUTH_SUCCESS_SCHEMA", "contract", "High", "Automated", "::test_auth_success_response_matches_schema"
+   "TC-BE-CONTRACT-006", "REQ-BE-CONTRACT-02 / REQ-BE-AUTH-02", "POST /auth failure matches AUTH_FAILURE_SCHEMA", "contract", "High", "Automated", "::test_auth_failure_response_matches_schema"
+   "TC-BE-CONTRACT-007", "REQ-BE-CONTRACT-03", "GET, POST, PUT, PATCH, auth responses carry Content-Type: application/json", "contract", "Medium", "Automated", "::test_crud_responses_have_json_content_type"
 
 Back-end API - Ping
 ===================

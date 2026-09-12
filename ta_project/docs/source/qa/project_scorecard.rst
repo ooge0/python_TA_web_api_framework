@@ -28,11 +28,12 @@ Test suite
      - Explanation
    * - API tests (back-end)
      - 4
-     - 30 tests: auth, booking CRUD, ping, schema, perf, fuzzing.
-       Parallel-safe, self-cleaning.
-     - Good: all five verbs, negative cases, JSON-Schema validation, Hypothesis
-       fuzzing, latency checks.  Missing: ``/auth/logout`` negative tests,
-       malformed-payload tests, contract tests.
+     - 57 tests: auth, booking CRUD, ping, schema, perf, fuzzing, contract,
+       round-trip, date-boundary, filter-precision.  Parallel-safe, self-cleaning.
+     - Good: all five verbs, negative cases, JSON-Schema contract testing on every
+       endpoint, round-trip consistency checks, date boundary behaviour, filter
+       precision, Hypothesis fuzzing, latency checks.  Missing: ``/auth/logout``
+       negative tests, malformed-payload tests, mutation testing.
    * - API tests (front-end)
      - 4
      - 21 tests: auth, booking flow, rooms, branding, report, messages.
@@ -140,7 +141,7 @@ CI / CD
    * - Traceability gate
      - 5
      - ``check_traceability.py`` — uncovered requirement = red build.
-     - Production-grade.  53/53 enforced.
+     - Production-grade.  61/61 enforced.
    * - Docs build
      - 4
      - ``sphinx-build -W --keep-going`` in CI.  Deploy to GitHub Pages.
@@ -206,8 +207,8 @@ Gaps that keep scores below 5
    * - Area
      - What is missing
    * - Test suite
-     - No visual regression, no contract tests, no load testing, no deep
-       accessibility coverage.
+     - No visual regression, no load testing, no deep accessibility coverage,
+       no ``/auth/logout`` negative tests, no malformed-payload corpus tests.
    * - Architecture
      - No Docker/devcontainer, no stub/mock for live services, credentials in
        ``config.ini``.

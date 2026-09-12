@@ -31,6 +31,14 @@ Back-end API (restful-booker)
    "", "REQ-BE-BOOKING-11", "``DELETE /booking/{id}`` with a valid token returns 201; the booking then 404s", "High"
    "", "REQ-BE-BOOKING-12", "``DELETE /booking/{id}`` without a token returns 403", "High"
    "", "REQ-BE-BOOKING-13", "``POST /booking`` with a missing required field / bad date format is rejected", "High"
+   "", "REQ-BE-BOOKING-14", "POST → GET round-trip: every field returned by GET matches the value submitted in POST", "High"
+   "", "REQ-BE-BOOKING-15", "a single auth token remains valid across multiple consecutive write operations (PUT, PATCH)", "Medium"
+   "", "REQ-BE-BOOKING-16", "the SUT accepts bookings with inverted date order (checkout < checkin) and far-future dates (documented SUT quirk)", "Low"
+   "", "REQ-BE-BOOKING-17", "GET /booking?firstname= with a name that matches no booking returns an empty list", "Medium"
+   "", "REQ-BE-BOOKING-18", "PATCH leaves unpatched fields unchanged; successive patches accumulate", "High"
+   "FEAT-BE-CONTRACT", "REQ-BE-CONTRACT-01", "every booking endpoint response (GET list, GET, POST, PUT, PATCH) matches its declared JSON Schema (field names, types, required keys, date pattern)", "High"
+   "", "REQ-BE-CONTRACT-02", "POST /auth success and failure responses each match their declared JSON Schema", "High"
+   "", "REQ-BE-CONTRACT-03", "all booking and auth endpoint responses carry ``Content-Type: application/json``", "Medium"
 
 Front-end API (restful-booker-platform, ``/api``)
 =================================================
