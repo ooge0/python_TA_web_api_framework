@@ -73,7 +73,14 @@ def _collect_markers() -> dict[str, dict]:
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
         pytest.main(
-            ["--collect-only", "-qq", "-p", "no:cacheprovider", str(ROOT / "tests")],
+            [
+                "--collect-only", "-qq",
+                "-p", "no:cacheprovider",
+                # override addopts to strip --junitxml so the collect-only run
+                # does not overwrite the xml written by the actual test run
+                "--override-ini=addopts=-ra --strict-markers",
+                str(ROOT / "tests"),
+            ],
             plugins=[_Plugin()],
         )
     return records
