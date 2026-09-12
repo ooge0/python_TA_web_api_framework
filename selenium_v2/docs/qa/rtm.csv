@@ -1,0 +1,47 @@
+test_class,test_function,area,feature,status,notes
+TestBackApiAuth,test_back_api_creation_token_by_valid_creds,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_invalid_creds,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_valid_user_creds_and_no_headers,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_no_user_creds_and_valid_headers,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_empty_user_creds_and_no_headers,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_valid_user_creds_and_wrong_type_of_headers,BE,Authentication,automated,
+TestBackApiAuth,test_back_api_creation_token_by_invalid_creds_hypothesis_check,BE,Authentication,automated,Hypothesis fuzz
+TestBackApiBooking,test_backend_api_booking_ (×2 duplicate names),BE,Bookings,broken,Duplicate method names — Python keeps only last; one test effectively lost
+TestBackApiBooking,test_backend_api_booking_post_call_response_code_check,BE,Bookings,automated,
+TestBackApiBooking,test_back_end_api_create_booking_with_no_token,BE,Bookings,automated,
+TestBackApiBooking,test_backend_api_booking_creation_with_bookingid_not,BE,Bookings,automated,Assertion style may be no-op (assert_that(x; 200))
+TestBackApiBooking,test_backend_api_booking_create_booking,BE,Bookings,automated,Hard-coded booking id
+TestBackApiBooking,test_backend_api_booking_update,BE,Bookings,automated,Hard-coded booking id
+TestBackApiBooking,test_backend_api_booking_patch_response_is_edited_ok (×2 duplicate names),BE,Bookings,broken,Duplicate method names — Python keeps only last; one test effectively lost
+TestBackApiBooking,test_backend_api_booking_delete_booking_by_valid_id,BE,Bookings,automated,Hard-coded booking id; no cleanup
+TestFrontApiAuth,test_front_api_creation_token_by_valid_creds,FE,Authentication,automated,
+TestFrontApiAuth,test_front_api_creation_token_by_invalid_creds,FE,Authentication,automated,
+TestFrontApiAuth,test_front_api_creation_token_by_invalid_creds_hypothesis_check,FE,Authentication,automated,Hypothesis fuzz
+TestFrontApiAuth,test_front_api_create_token,FE,Authentication,automated,
+TestFrontApiBooking,test_front_api_create_booking_with_valid_token,FE,Bookings,broken,Fixture likely missing or conftest issue
+TestJsonValidation,test_backend_api_create_booking_response_check_via_json_validation,BE,Schema,automated,
+TestJsonValidation,test_backend_api_existing_booking_by_id_response_check_via_json_validation,BE,Schema,automated,Hard-coded booking id
+TestApiPerformance,test_backend_api_auth_post_call_response_time_check,BE,Performance,automated,Single-request latency ≤ 2s
+TestApiPerformance,test_backend_api_auth_post_call_response_code_check,BE,Performance,automated,
+TestApiPerformance,test_backend_api_booking_post_call_response_time_check,BE,Performance,automated,Single-request latency ≤ 2s
+TestApiPerformance,test_backend_api_booking_put_call_response_time_check,BE,Performance,automated,Single-request latency ≤ 2s
+TestApiPerformance,test_backend_api_booking_patch_call_response_time_check,BE,Performance,automated,Single-request latency ≤ 2s
+TestApiPerformance,test_backend_api_booking_delete_call_response_time_check,BE,Performance,automated,Single-request latency ≤ 2s
+TestHomePage,test_check_home_page_footer_presence,UI,Home page,automated,Selenium
+TestHomePage,test_check_home_page_footer_content_old,UI,Home page,automated,Selenium; exact text may be stale
+TestHomePage,test_check_home_page_footer_content_new,UI,Home page,automated,Selenium; exact text may be stale
+TestHomePage,test_booking_request_valid_check (×2 duplicate names),UI,Reservation,broken,Duplicate method names; likely only last collects
+UiTestLoginActionFlow,(all methods),UI,Admin login,not_collected,Class-level collection issue — entire class silently skipped; negative login coverage lost
+TestLoginPage,test_ui_ (×5 generic names),UI,Admin rooms,broken,Generic method names suggest copy-paste error; methods likely invalid or test_ui_ collides
+,GET /booking CRUD (DELETE without token → 403),BE,Bookings,gap,No negative test for DELETE without auth
+,PUT / PATCH without token → 403,BE,Bookings,gap,No auth-required negative tests
+,Admin report page,UI,Admin report,gap,No UI test
+,Admin messages page,UI,Admin messages,gap,No UI test
+,Admin branding page,UI,Admin branding,gap,No UI test
+,Logout clears session,UI,Admin navigation,gap,Covered by UiTestLoginActionFlow (not collected)
+,Front-end /room CRUD via API,FE,Rooms,gap,No tests for front-end room endpoints
+,Front-end /report via API,FE,Report,gap,No test
+,Front-end /message via API,FE,Messages,gap,No test
+,GET /ping health check,BE,Health,gap,No test
+,Contact form validation,UI,Contact form,gap,No test
+,Browser security checks,UI,Browser security,gap,No tests (added in v3)
