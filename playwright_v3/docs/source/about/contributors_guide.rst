@@ -30,7 +30,7 @@ every push and pull request. ``pylint`` is reported but does not gate yet.
 Conventions
 -----------
 
-* One assertion style per module (PyHamcrest ``assert_that`` is the default).
+* One assertion style per module (``assertpy2`` fluent ``assert_that`` is the default; ``soft_assertions()`` for multi-check blocks).
 * API write tests must create and clean up their own data - no hard-coded ids.
 * New test functions are auto-tagged ``api`` / ``ui`` by path; add a
   ``TC-*`` row in :ref:`qa_test_cases` and link the requirement.

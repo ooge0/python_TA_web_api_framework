@@ -9,7 +9,7 @@
 .. _Pipdeptree: https://pypi.org/project/pipdeptree/
 .. _PlantUML: https://www.plantuml.com/
 .. _PlantUMLStdlib: https://plantuml.com/stdlib
-.. _PyHamcrest: https://pyhamcrest.readthedocs.io/
+
 .. _Pydocstyle: https://pydocstyle.readthedocs.io/
 .. _Pylint: https://pylint.pycqa.org/
 .. _Pytest: https://docs.pytest.org/
@@ -126,13 +126,6 @@ Glossary
       Pydocstyle is a documentation style checker that ensures consistency in docstring formats.
 
       Pydocstyle home page: Pydocstyle_
-
-
-
-   PyHamcrest
-      PyHamcrest provides matcher objects to write readable and flexible tests, similar to the popular Java Hamcrest library.
-
-      PyHamcrest documentation: PyHamcrest_
 
 
 

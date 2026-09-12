@@ -88,10 +88,9 @@ Assertion styles
 
 More than one assertion style where it earns its place:
 
-#. **PyHamcrest matchers** — the bulk of the suite.
+#. **assertpy2 fluent assertions** — the bulk of the suite; ``assert_that(x).is_equal_to(y)``,
+   ``soft_assertions()`` blocks where multiple checks should all report before failing.
 #. **JSON-Schema validation** — ``/booking`` responses.
 #. **Hypothesis** — fuzzed auth payloads.
 #. **MIME matrix** — ~70-entry negative Content-Type case.
-#. **pytest-check** — soft assertions where a single failure should not hide
-   the rest.
 #. **Single-request latency** — ``response.elapsed < 2 s``.
