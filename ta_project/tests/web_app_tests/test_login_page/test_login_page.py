@@ -31,6 +31,7 @@ pytestmark = [
 @allure.feature("Admin login")
 class TestAdminLogin:
 
+    @pytest.mark.tc("TC-UI-LOGIN-003")
     @pytest.mark.req("REQ-UI-LOGIN-03")
     def test_login_form_placeholders(self):
         """TC-UI-LOGIN-003."""
@@ -38,6 +39,7 @@ class TestAdminLogin:
         assert_that(page.attr_of(LoginPageLocators.USERNAME, "placeholder")).is_equal_to("Enter username")
         assert_that(page.attr_of(LoginPageLocators.PASSWORD, "placeholder")).is_equal_to("Password")
 
+    @pytest.mark.tc("TC-UI-LOGIN-001")
     @pytest.mark.req("REQ-UI-LOGIN-01")
     def test_valid_credentials_log_in(self):
         """TC-UI-LOGIN-001: valid admin credentials -> the admin area."""
@@ -45,6 +47,7 @@ class TestAdminLogin:
         page.login(_S.admin_user, _S.front_ui_password)
         assert_that(page.is_logged_in()).is_true()
 
+    @pytest.mark.tc("TC-UI-LOGIN-002")
     @pytest.mark.req("REQ-UI-LOGIN-02")
     def test_invalid_credentials_are_rejected(self):
         """TC-UI-LOGIN-002: invalid credentials -> error, still on the form."""
@@ -65,11 +68,13 @@ class TestAdminNavigation:
         page.login(_S.admin_user, _S.front_ui_password)
         assert page.is_logged_in(), "precondition: admin login failed"
 
+    @pytest.mark.tc("TC-UI-NAV-002")
     @pytest.mark.req("REQ-UI-NAV-02")
     def test_brand_text(self):
         """TC-UI-NAV-02."""
         assert_that(LoginAdminPage(self.driver).brand_text()).is_equal_to("Restful Booker Platform Demo")
 
+    @pytest.mark.tc("TC-UI-NAV-001")
     @pytest.mark.req("REQ-UI-NAV-01")
     def test_navbar_links(self):
         """TC-UI-NAV-01: the post-login navbar carries every admin section.
@@ -81,6 +86,7 @@ class TestAdminNavigation:
             for expected in ("Rooms", "Report", "Branding", "Messages", "Front Page"):
                 assert_that(texts).contains(expected)
 
+    @pytest.mark.tc("TC-UI-NAV-003")
     @pytest.mark.req("REQ-UI-NAV-03")
     def test_logout_leaves_the_admin_area(self):
         """TC-UI-NAV-03: Logout ends the admin session (redirects to the public site)."""
@@ -89,6 +95,7 @@ class TestAdminNavigation:
         assert_that(page.is_logged_in(timeout=10)).is_false()
 
     @allure.feature("Admin rooms")
+    @pytest.mark.tc("TC-UI-ROOMS-001")
     @pytest.mark.req("REQ-UI-ROOMS-01")
     def test_rooms_table_lists_rooms(self):
         """TC-UI-ROOMS-01."""
@@ -98,6 +105,7 @@ class TestAdminNavigation:
         assert_that(rooms.create_button_visible()).is_true()
 
     @allure.feature("Admin rooms")
+    @pytest.mark.tc("TC-UI-ROOMS-002")
     @pytest.mark.req("REQ-UI-ROOMS-02")
     def test_create_room_adds_it_to_the_table(self, front_auth_api, front_room_api):
         """TC-UI-ROOMS-002: create a room via the UI, verify it appears."""
@@ -114,6 +122,7 @@ class TestAdminNavigation:
             front_room_api.delete(new[0].roomid, token)
 
     @allure.feature("Admin rooms")
+    @pytest.mark.tc("TC-UI-ROOMS-003")
     @pytest.mark.req("REQ-UI-ROOMS-03")
     def test_delete_room_removes_it_from_the_table(self, front_auth_api, front_room_api):
         """TC-UI-ROOMS-003: delete a room via the UI, verify it disappears."""
@@ -129,6 +138,7 @@ class TestAdminNavigation:
             front_room_api.delete(r.roomid, token)
 
     @allure.feature("Admin branding")
+    @pytest.mark.tc("TC-UI-BRAND-001")
     @pytest.mark.req("REQ-UI-BRAND-01")
     def test_branding_page_shows_bb_details(self):
         """TC-UI-BRAND-001: the branding admin page loads and shows B&B details."""
@@ -142,6 +152,7 @@ class TestAdminNavigation:
         assert_that(page.contact_name_value()).is_not_empty()
 
     @allure.feature("Admin report")
+    @pytest.mark.tc("TC-UI-REPORT-001")
     @pytest.mark.req("REQ-UI-REPORT-01")
     def test_report_page_shows_calendar(self):
         """TC-UI-REPORT-001: the report page loads a calendar view."""
@@ -153,6 +164,7 @@ class TestAdminNavigation:
         assert_that(page.toolbar_label()).is_not_empty()
 
     @allure.feature("Admin messages")
+    @pytest.mark.tc("TC-UI-MSG-001")
     @pytest.mark.req("REQ-UI-MSG-01")
     def test_messages_page_lists_submissions(self, front_message_api):
         """TC-UI-MSG-001: the messages page shows at least one message with content."""

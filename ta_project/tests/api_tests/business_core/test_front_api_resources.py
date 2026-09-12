@@ -17,6 +17,7 @@ class TestFrontApiResources:
     logger = get_logger()
 
     @allure.feature("Rooms")
+    @pytest.mark.tc("TC-FE-ROOM-001")
     @pytest.mark.req("REQ-FE-ROOM-01")
     def test_front_api_room_list(self, front_room_api):
         """TC-FE-ROOM-001: GET /api/room returns the room list."""
@@ -27,6 +28,7 @@ class TestFrontApiResources:
         assert_that(first.type).is_not_empty()
 
     @allure.feature("Rooms")
+    @pytest.mark.tc("TC-FE-ROOM-002")
     @pytest.mark.req("REQ-FE-ROOM-02")
     def test_front_api_room_by_id(self, front_room_api):
         """TC-FE-ROOM-002: GET /api/room/{id} returns room details."""
@@ -35,6 +37,7 @@ class TestFrontApiResources:
         assert_that(room.features).is_not_none()
 
     @allure.feature("Branding")
+    @pytest.mark.tc("TC-FE-BRAND-001")
     @pytest.mark.req("REQ-FE-BRANDING-01")
     def test_front_api_branding(self, front_branding_api):
         """TC-FE-BRAND-001: GET /api/branding returns the full branding block.
@@ -49,6 +52,7 @@ class TestFrontApiResources:
             assert_that(body.get("name")).is_not_empty().described_as("branding 'name' is empty")
 
     @allure.feature("Messages")
+    @pytest.mark.tc("TC-FE-MSG-001")
     @pytest.mark.req("REQ-FE-MESSAGE-01")
     def test_front_api_create_message(self, front_message_api):
         """TC-FE-MSG-001: POST /api/message (contact form) is accepted."""
@@ -63,6 +67,7 @@ class TestFrontApiResources:
         assert_that(front_message_api.send(payload).json().get("success")).is_true()
 
     @allure.feature("Messages")
+    @pytest.mark.tc("TC-FE-MSG-002")
     @pytest.mark.req("REQ-FE-MESSAGE-02")
     def test_front_api_message_inbox(self, front_message_api, front_token):
         """TC-FE-MSG-002: GET /api/message (token) lists messages, /count returns the unread badge."""
@@ -76,6 +81,7 @@ class TestFrontApiResources:
                         f"message is missing '{field}'")
 
     @allure.feature("Authentication")
+    @pytest.mark.tc("TC-FE-AUTH-005")
     @pytest.mark.req("REQ-FE-AUTH-03")
     def test_front_api_token_validation(self, front_auth_api, front_token):
         """TC-FE-AUTH-005: a valid token validates; a tampered one is rejected."""
@@ -89,6 +95,7 @@ class TestFrontApiResources:
             raise AssertionError("a bogus token should not validate")
 
     @allure.feature("Authentication")
+    @pytest.mark.tc("TC-FE-AUTH-006")
     @pytest.mark.req("REQ-FE-AUTH-04")
     def test_front_api_logout(self, front_auth_api, front_api_valid_user_creds):
         """

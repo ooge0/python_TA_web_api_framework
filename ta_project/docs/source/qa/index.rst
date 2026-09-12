@@ -45,10 +45,11 @@ How I test
    negative test.
 #. **Parallel by default.** ``pytest -n auto`` (xdist); the API suite is
    parallel-safe.
-#. **More than one assertion style where it earns its place.** PyHamcrest
-   matchers for the bulk of it, JSON-Schema validation for ``/booking``
-   responses, Hypothesis to fuzz the auth payloads, a ~70-entry MIME matrix for
-   the negative Content-Type case, and single-request latency checks.
+#. **More than one assertion style where it earns its place.** assertpy2 fluent
+   assertions (with ``soft_assertions()`` blocks where multiple checks should all
+   report), JSON-Schema validation for ``/booking`` responses, Hypothesis to fuzz
+   the auth payloads, a ~70-entry MIME matrix for the negative Content-Type case,
+   and single-request latency checks.
 #. **Everything is reported.** Allure, pytest-html, ``pytest-cov`` and JUnit XML
    come out of every CI run and ``tox -e test``.
 
@@ -91,6 +92,7 @@ Pages in this section
    test_plan
    feature_catalogue
    test_cases
+   test_results
    traceability_matrix
    coverage_by_feature
    allure_reporting

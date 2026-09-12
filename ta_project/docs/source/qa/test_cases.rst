@@ -57,6 +57,7 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-016", "REQ-BE-BOOKING-13", "POST /booking with an empty body -> 500", "negative", "High", "Automated", "::test_create_with_empty_body_is_rejected"
    "TC-BE-BOOK-017", "REQ-BE-BOOKING-13", "POST /booking without bookingdates -> 500", "negative", "Medium", "Automated", "::test_create_without_dates_is_rejected"
    "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname=&lastname= filters the list", "positive", "Low", "Automated", "TestBackApiBooking::test_name_filter_returns_the_matching_booking"
+   "TC-BE-BOOK-019", "REQ-BE-BOOKING-03", "GET /booking/{id} returns the booking details", "positive", "High", "Automated", "TestBackApiBooking::test_get_booking_by_id"
 
 Back-end API - Ping
 ===================
@@ -118,6 +119,7 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
    "TC-UI-HOME-002", "REQ-UI-HOME-02", "the four footer links - texts + hrefs", "positive", "Medium", "Automated", "::test_footer_links"
    "TC-UI-HOME-003", "REQ-UI-HOME-03", "nav links are section anchors (/#rooms, /#booking, etc.)", "positive", "Low", "Automated", "TestHomePage::test_nav_links_are_section_anchors"
    "TC-UI-HOME-004", "REQ-UI-HOME-04", "admin link points to /admin", "positive", "Medium", "Automated", "TestHomePage::test_admin_links_point_to_admin"
+   "TC-UI-HOME-005", "REQ-UI-HOME-01", "navbar brand text is 'Shady Meadows B&B'", "positive", "Low", "Automated", "TestHomePage::test_nav_brand"
    "TC-UI-CONTACT-001", "REQ-UI-CONTACT-01", "contact form valid submit -> confirmation", "positive", "High", "Automated", "::test_contact_form_valid_submit_shows_confirmation"
    "TC-UI-CONTACT-002", "REQ-UI-CONTACT-02", "empty contact form -> field-validation errors", "negative", "High", "Automated", "::test_contact_form_shows_validation_errors_when_empty"
    "TC-UI-RES-001", "REQ-UI-RES-01", "each room 'Book now' link points at /reservation/{id}", "positive", "High", "Automated", "::test_book_now_links_point_at_reservation_pages"

@@ -16,6 +16,7 @@ class TestBackApiPing:
 
     logger = get_logger()
 
+    @pytest.mark.tc("TC-BE-PING-001")
     @pytest.mark.req("REQ-BE-PING-01")
     def test_backend_api_ping_returns_201(self, backend_api_client):
         """TC-BE-PING-001: GET /ping -> 201."""

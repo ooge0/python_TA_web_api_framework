@@ -40,12 +40,14 @@ def _valid_contact_details() -> dict:
 class TestHomePage:
 
     @allure.feature("Home page")
+    @pytest.mark.tc("TC-UI-HOME-001")
     @pytest.mark.req("REQ-UI-HOME-01")
     def test_footer_is_present(self):
         """TC-UI-HOME-001."""
         assert_that(HomeFrontPage(self.driver).footer_present()).is_true()
 
     @allure.feature("Home page")
+    @pytest.mark.tc("TC-UI-HOME-002")
     @pytest.mark.req("REQ-UI-HOME-02")
     def test_footer_links(self):
         """TC-UI-HOME-002: the four policy footer links - texts + hrefs.
@@ -62,12 +64,14 @@ class TestHomePage:
                 assert_that(got).contains(want)
 
     @allure.feature("Home page")
+    @pytest.mark.tc("TC-UI-HOME-005")
     @pytest.mark.req("REQ-UI-HOME-01")
     def test_nav_brand(self):
         """TC-UI-HOME-01 area: the brand text."""
         assert_that(HomeFrontPage(self.driver).brand_text()).is_equal_to("Shady Meadows B&B")
 
     @allure.feature("Reservation")
+    @pytest.mark.tc("TC-UI-RES-001")
     @pytest.mark.req("REQ-UI-RES-01")
     def test_book_now_links_point_at_reservation_pages(self):
         """TC-UI-RES-01: each room's 'Book now' opens /reservation/{id}."""
@@ -77,6 +81,7 @@ class TestHomePage:
             assert_that(href).contains("/reservation/")
 
     @allure.feature("Contact form")
+    @pytest.mark.tc("TC-UI-CONTACT-001")
     @pytest.mark.req("REQ-UI-CONTACT-01")
     def test_contact_form_valid_submit_shows_confirmation(self):
         """TC-UI-CONTACT-01."""
@@ -85,6 +90,7 @@ class TestHomePage:
         assert_that(home.contact_confirmation_shown()).is_true()
 
     @allure.feature("Contact form")
+    @pytest.mark.tc("TC-UI-CONTACT-002")
     @pytest.mark.req("REQ-UI-CONTACT-02")
     def test_contact_form_shows_validation_errors_when_empty(self):
         """TC-UI-CONTACT-02: submitting an empty form lists the field errors."""
@@ -95,6 +101,7 @@ class TestHomePage:
         assert_that(error).contains("Message must be between")
 
     @allure.feature("Home page")
+    @pytest.mark.tc("TC-UI-HOME-004")
     @pytest.mark.req("REQ-UI-HOME-04")
     def test_admin_links_point_to_admin(self):
         """TC-UI-HOME-004: the Admin nav link and the footer Admin panel link open /admin."""
@@ -105,6 +112,7 @@ class TestHomePage:
             assert_that(admin_footer).ends_with("/admin")
 
     @allure.feature("Home page")
+    @pytest.mark.tc("TC-UI-HOME-003")
     @pytest.mark.req("REQ-UI-HOME-03")
     def test_nav_links_are_section_anchors(self):
         """TC-UI-HOME-003: each nav link's href is an anchor to a page section."""
@@ -117,6 +125,7 @@ class TestHomePage:
                 ).is_true().described_as(f"nav link for {label} should anchor to #{label.lower()}")
 
     @allure.feature("Reservation")
+    @pytest.mark.tc("TC-UI-RES-002")
     @pytest.mark.req("REQ-UI-RES-02")
     def test_reservation_page_shows_calendar_and_reserve_button(self):
         """TC-UI-RES-002: the reservation page loads with a calendar and Reserve Now."""
@@ -130,6 +139,7 @@ class TestHomePage:
         assert_that(page.room_title()).is_not_empty()
 
     @allure.feature("Reservation")
+    @pytest.mark.tc("TC-UI-RES-003")
     @pytest.mark.req("REQ-UI-RES-02")
     def test_reservation_booking_completes_with_valid_dates(self):
         """TC-UI-RES-003: select dates on the calendar and complete a reservation."""
@@ -147,6 +157,7 @@ class TestHomePage:
         assert_that(page.has_success_message()).is_true()
 
     @allure.feature("Accessibility")
+    @pytest.mark.tc("TC-UI-A11Y-001")
     @pytest.mark.req("REQ-UI-A11Y-01")
     def test_page_has_lang_attribute(self):
         """TC-UI-A11Y-001: the html element has a lang attribute (WCAG 3.1.1)."""

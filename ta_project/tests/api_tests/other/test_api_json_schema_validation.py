@@ -19,6 +19,7 @@ class TestJsonValidation:
 
     logger = get_logger()
 
+    @pytest.mark.tc("TC-BE-BOOK-007")
     @pytest.mark.req("REQ-BE-BOOKING-06")
     def test_create_booking_response_matches_schema(self, back_booking_api, backend_api_post_test_payload):
         """POST /booking -> 200 and the body matches the create-response schema."""
@@ -27,6 +28,7 @@ class TestJsonValidation:
         assert_that(response.status_code).is_equal_to(200)
         validate_json(response.json(), BOOKING_SCHEMA_MAIN)
 
+    @pytest.mark.tc("TC-BE-BOOK-008")
     @pytest.mark.req("REQ-BE-BOOKING-03", "REQ-BE-BOOKING-06")
     def test_get_booking_by_id_response_matches_schema(self, back_booking_api, created_backend_booking):
         """GET /booking/{id} (for a booking this test created) matches the booking schema."""

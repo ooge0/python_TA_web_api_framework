@@ -43,6 +43,21 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: download junit xml (api)
+        uses: actions/download-artifact@v4
+        with:
+          name: api-test-reports
+          path: resources/test_report/
+        continue-on-error: true
+      - name: download junit xml (ui)
+        uses: actions/download-artifact@v4
+        with:
+          name: ui-test-reports
+          path: resources/test_report/
+        continue-on-error: true
+      - name: generate test results rst
+        run: python -m utilities._devtools.generate_test_results_rst
+        continue-on-error: true
       - name: sphinx build
         run: sphinx-build -b html docs/source docs/_build/html -W --keep-going
       - name: upload docs
