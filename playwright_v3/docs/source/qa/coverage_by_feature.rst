@@ -1,7 +1,7 @@
 .. _qa_coverage:
 
 ===================
-Coverage by Feature
+Coverage by feature
 ===================
 
 Derived from :ref:`qa_feature_catalogue`, :ref:`qa_test_cases` and

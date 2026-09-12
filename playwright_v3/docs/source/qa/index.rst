@@ -1,7 +1,7 @@
 .. _qa_index:
 
 =============
-QA & Testing
+QA & testing
 =============
 
 This section is the whole testing story in one place: what I test, how I test

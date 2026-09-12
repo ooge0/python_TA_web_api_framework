@@ -1,7 +1,7 @@
 .. _qa_test_results:
 
 ============
-Test Results
+Test results
 ============
 
 .. note:: Generated 2026-09-12 10:33 UTC.  Re-run ``python -m utilities._devtools.generate_test_results_rst``
@@ -16,7 +16,7 @@ Summary
 
    "2026-09-12 10:33 UTC", "73", "69", "3", "0", "1", "0", "345.6"
 
-By Category
+By category
 ===========
 
 Back-end API
@@ -116,7 +116,7 @@ Web UI
    "TC-UI-A11Y-001", "REQ-UI-A11Y-01", "html element has a lang attribute (WCAG 3.1.1)", "✓", "8.93"
    "TC-UI-RES-002", "REQ-UI-RES-02", "reservation page shows calendar and reserve button", "✓", "13.73"
 
-Full Results
+Full results
 ============
 
 Status symbols: ✓ = passed  ✗ = failed  E = error  S = skipped  – = not run

@@ -1,7 +1,7 @@
 .. _qa_known_issues:
 
 ============
-Known Issues
+Known issues
 ============
 
 Open items that the tests have to live with. Two kinds: **SUT quirks** (the

@@ -1,7 +1,7 @@
 .. _qa_what_covered:
 
 =======================
-What My Tests Cover
+What my tests cover
 =======================
 
 What the suite checks, by area. For the IDs, priorities and pytest node names

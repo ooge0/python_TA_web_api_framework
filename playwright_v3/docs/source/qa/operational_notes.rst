@@ -1,7 +1,7 @@
 .. _qa_operational_notes:
 
 =================
-Operational Notes
+Operational notes
 =================
 
 Quirks, inconsistencies and things to know when running or maintaining the

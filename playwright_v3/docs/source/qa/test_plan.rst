@@ -1,7 +1,7 @@
 .. _qa_test_plan:
 
 =========
-Test Plan
+Test plan
 =========
 
 Short plan, kept in sync with the roadmap. Full template reference:

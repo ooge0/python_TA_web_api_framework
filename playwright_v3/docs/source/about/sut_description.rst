@@ -1,7 +1,7 @@
 .. _sut_description:
 
 ================================
-System Under Test (SUT)
+System under test (SUT)
 ================================
 
 The suite targets two practice applications built around the *restful-booker*

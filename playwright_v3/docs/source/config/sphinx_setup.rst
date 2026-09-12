@@ -1,7 +1,7 @@
 .. _sphinx_setup:
 
 ====================
-Sphinx Documentation
+Sphinx documentation
 ====================
 
 How the documentation is built and published.

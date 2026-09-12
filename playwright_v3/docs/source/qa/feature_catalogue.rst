@@ -1,7 +1,7 @@
 .. _qa_feature_catalogue:
 
 =================
-Feature Catalogue
+Feature catalogue
 =================
 
 Features and requirements of the three systems under test. This is the source of

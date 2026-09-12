@@ -1,7 +1,7 @@
 .. _qa_test_cases:
 
 ==========
-Test Cases
+Test cases
 ==========
 
 Every case is tied to a feature and one or more requirements from
@@ -17,7 +17,7 @@ catalogue, or a test carries no marker.
 Legend - **Status**: ``Automated`` = test exists and passes ·
 ``Not implemented`` = placeholder, no test.
 
-Back-end API - Auth  (``test_back_api_auth.py``)
+Back-end API - auth  (``test_back_api_auth.py``)
 ================================================
 
 .. csv-table::
@@ -32,7 +32,7 @@ Back-end API - Auth  (``test_back_api_auth.py``)
    "TC-BE-AUTH-006", "REQ-BE-AUTH-03", "non-JSON Content-Type -> 'Bad credentials' (matrix of ~70 MIME types)", "negative", "Medium", "Automated", "::test_non_json_content_type_never_authenticates"
    "TC-BE-AUTH-007", "REQ-BE-AUTH-02", "fuzzed username/password never yield a token (Hypothesis)", "negative", "Low", "Automated", "::test_fuzzed_credentials_never_authenticate"
 
-Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_validation.py``)
+Back-end API - booking  (``test_back_api_booking.py``, ``test_api_json_schema_validation.py``)
 ==============================================================================================
 
 .. csv-table::
@@ -59,7 +59,7 @@ Back-end API - Booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-018", "REQ-BE-BOOKING-02", "GET /booking?firstname=&lastname= filters the list", "positive", "Low", "Automated", "TestBackApiBooking::test_name_filter_returns_the_matching_booking"
    "TC-BE-BOOK-019", "REQ-BE-BOOKING-03", "GET /booking/{id} returns the booking details", "positive", "High", "Automated", "TestBackApiBooking::test_get_booking_by_id"
 
-Back-end API - Booking Advanced  (``test_back_api_booking_advanced.py``)
+Back-end API - booking (advanced)  (``test_back_api_booking_advanced.py``)
 =========================================================================
 
 .. csv-table::
@@ -75,7 +75,7 @@ Back-end API - Booking Advanced  (``test_back_api_booking_advanced.py``)
    "TC-BE-BOOK-026", "REQ-BE-BOOKING-16", "POST with year-9999 dates accepted; GET returns same dates", "boundary", "Low", "Automated", "::test_far_future_dates_accepted"
    "TC-BE-BOOK-027", "REQ-BE-BOOKING-17", "GET /booking?firstname=<uuid> returns empty list", "negative", "Medium", "Automated", "TestBackApiFilterPrecision::test_name_filter_returns_empty_for_nonexistent_name"
 
-Back-end API - Contract  (``test_api_contract.py``)
+Back-end API - contract  (``test_api_contract.py``)
 =====================================================
 
 .. csv-table::
@@ -90,7 +90,7 @@ Back-end API - Contract  (``test_api_contract.py``)
    "TC-BE-CONTRACT-006", "REQ-BE-CONTRACT-02 / REQ-BE-AUTH-02", "POST /auth failure matches AUTH_FAILURE_SCHEMA", "contract", "High", "Automated", "::test_auth_failure_response_matches_schema"
    "TC-BE-CONTRACT-007", "REQ-BE-CONTRACT-03", "GET, POST, PUT, PATCH, auth responses carry Content-Type: application/json", "contract", "Medium", "Automated", "::test_crud_responses_have_json_content_type"
 
-Back-end API - Ping
+Back-end API - ping
 ===================
 
 .. csv-table::
@@ -99,7 +99,7 @@ Back-end API - Ping
 
    "TC-BE-PING-001", "REQ-BE-PING-01", "GET /ping -> 201", "health", "Medium", "Automated", "TestBackApiPing::test_backend_api_ping_returns_201"
 
-Back-end API - Response time  (``test_api_performance.py``)
+Back-end API - response time  (``test_api_performance.py``)
 ===========================================================
 
 .. csv-table::
@@ -139,7 +139,7 @@ Front-end API (``test_front_api_auth.py``, ``test_front_api_resources.py``, ``te
    "TC-FE-MSG-002", "REQ-FE-MESSAGE-02", "GET /api/message + /count with a token", "positive", "Medium", "Automated", "TestFrontApiResources::test_front_api_message_inbox"
    "TC-FE-REPORT-001", "REQ-FE-REPORT-01", "GET /api/report with a token -> 200", "positive", "Low", "Automated", "TestFrontApiRoomAdmin::test_report_is_reachable"
 
-UI - Home & contact  (``tests_home_page/test_home_page.py``)
+UI - home & contact  (``tests_home_page/test_home_page.py``)
 ============================================================
 
 .. csv-table::
@@ -158,7 +158,7 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
    "TC-UI-RES-003", "REQ-UI-RES-02", "select dates and complete a reservation booking", "positive", "High", "Automated", "TestHomePage::test_reservation_booking_completes_with_valid_dates"
    "TC-UI-A11Y-001", "REQ-UI-A11Y-01", "html element has a lang attribute (WCAG 3.1.1)", "positive", "Low", "Automated", "TestHomePage::test_page_has_lang_attribute"
 
-UI - Browser security  (``test_login_page.py`` / ``test_home_page.py``)
+UI - browser security  (``test_login_page.py`` / ``test_home_page.py``)
 ========================================================================
 
 .. csv-table::
@@ -175,7 +175,7 @@ UI - Browser security  (``test_login_page.py`` / ``test_home_page.py``)
    "TC-UI-SEC-012", "REQ-UI-SEC-12", "home page produces no JS console errors", "security", "Low", "Automated", "TestHomePageSecurity::test_no_js_console_errors_on_home_page"
    "TC-UI-SEC-013", "REQ-UI-SEC-13", "empty rooms API response - UI degrades gracefully (route mock)", "resilience", "Low", "Automated", "TestHomePageSecurity::test_empty_state_when_api_returns_no_rooms"
 
-UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
+UI - admin login & navigation  (``test_login_page/test_login_page.py``)
 =======================================================================
 
 .. csv-table::
@@ -189,7 +189,7 @@ UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
    "TC-UI-NAV-002", "REQ-UI-NAV-02", "admin brand text is 'Restful Booker Platform Demo'", "positive", "Medium", "Automated", "::test_brand_text"
    "TC-UI-NAV-003", "REQ-UI-NAV-03", "Logout ends the admin session", "positive", "Medium", "Automated", "::test_logout_leaves_the_admin_area"
 
-UI - Admin rooms / branding / report / messages
+UI - admin rooms / branding / report / messages
 ===============================================
 
 .. csv-table::

@@ -1,7 +1,7 @@
 .. _qa_allure_reporting:
 
 ================
-Allure Reporting
+Allure reporting
 ================
 
 How Allure is wired into the framework, and how to generate and read a report.

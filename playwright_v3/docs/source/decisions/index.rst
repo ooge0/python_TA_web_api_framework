@@ -1,7 +1,7 @@
 .. _decisions_index:
 
 ============================
-Architecture Decision Records
+Architecture decision records
 ============================
 
 Each non-obvious choice in this framework is recorded as a short ADR:

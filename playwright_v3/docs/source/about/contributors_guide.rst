@@ -1,4 +1,4 @@
-Notes for Contributors
+Notes for contributors
 ======================
 
 Setup

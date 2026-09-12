@@ -1,7 +1,7 @@
 .. _qa_traceability:
 
 ============================
-Requirements Traceability
+Requirements traceability
 ============================
 
 One row per requirement from :ref:`qa_feature_catalogue`, its test cases from

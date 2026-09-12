@@ -1,7 +1,7 @@
 .. _qa_testing_philosophy:
 
 ===================
-Testing Philosophy
+Testing philosophy
 ===================
 
 How I think about testing in this framework, and why.

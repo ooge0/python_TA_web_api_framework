@@ -1,7 +1,7 @@
 .. _framework_structure_page:
 
 ===================
-Framework Structure
+Framework structure
 ===================
 
 The tree

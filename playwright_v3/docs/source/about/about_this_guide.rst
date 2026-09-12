@@ -1,8 +1,8 @@
 *******************************************************************************
-About this Guide
+About this guide
 *******************************************************************************
 
-The Story
+The story
 ===============================================================================
 
 This guide as part of my own developed solution as structured projects where I focused on :term:`Pytest`, :term:`Allure_Pytest`, :term:`Tox`, :term:`PlantUML`, :term:`Sphinx` as the main tools for creating, proposing, analysing, documenting, maintaining test automation frameworks.

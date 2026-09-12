@@ -1,7 +1,7 @@
 .. _config_ci_cd:
 
 ======================
-CI / CD Pipeline
+CI/CD pipeline
 ======================
 
 Two GitHub Actions workflows automate testing, linting and documentation
@@ -12,7 +12,7 @@ publishing.  Both live under ``.github/workflows/``.
    :depth: 2
 
 
-Continuous Integration — ``ci.yml``
+Continuous integration — ``ci.yml``
 ====================================
 
 Triggers: every push, every pull request, and manual ``workflow_dispatch``.

@@ -1,7 +1,7 @@
 .. _running_tests:
 
 ==============
-Running Tests
+Running tests
 ==============
 
 How to run the test suite, filter tests, and generate reports.

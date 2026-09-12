@@ -1,7 +1,7 @@
 .. _qa_other_signals:
 
 ================
-Other QA Signals
+Other QA signals
 ================
 
 Beyond the test results themselves, several mechanisms give additional

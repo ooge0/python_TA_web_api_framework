@@ -1,7 +1,7 @@
 .. _about_external_resources:
 
 ==================
-External Resources
+External resources
 ==================
 
 Practice applications

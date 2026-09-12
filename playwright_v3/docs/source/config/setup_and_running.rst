@@ -1,7 +1,7 @@
 .. _setup_and_running:
 
 ===============
-Setup & Running
+Setup & running
 ===============
 
 Install

@@ -1,7 +1,7 @@
 .. _qa_project_scorecard:
 
 =================
-Project Scorecard
+Project scorecard
 =================
 
 Self-assessment of the framework, scored 0-5 per area.  0 = absent,

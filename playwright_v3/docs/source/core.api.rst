@@ -1,7 +1,7 @@
 core.api package
 ================
 
-Function and Class Relationships
+Function and class relationships
 =================================
 
 Module contents

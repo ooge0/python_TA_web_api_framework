@@ -42,14 +42,14 @@ What the framework is, how it is laid out, and the tools it uses.
    readme
 
 
-Setup & Running
+Setup & running
 ===============
 Getting the framework installed and the suite running.
 
 .. toctree::
    :maxdepth: 2
    :numbered:
-   :caption: Setup & Running
+   :caption: Setup & running
 
    config/setup_and_running
    config/environment_setup
@@ -58,7 +58,7 @@ Getting the framework installed and the suite running.
    config/ci_cd
 
 
-QA & Testing
+QA & testing
 ============
 The whole testing story in one section: what I test and how, a description of
 what the tests check, the feature / requirements catalogue, the test cases with
@@ -68,7 +68,7 @@ and the auto-generated reference for the test modules.
 .. toctree::
    :maxdepth: 2
    :numbered:
-   :caption: QA & Testing
+   :caption: QA & testing
 
    qa/index
 
@@ -86,14 +86,14 @@ decision and consequences.
    decisions/index
 
 
-Diagrams & Graphs
+Diagrams & graphs
 =================
 Visualisations of the ``core`` package - class and package relationships and
 how ``APIClient`` is wired.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Diagrams & Graphs
+   :caption: Diagrams & graphs
 
    diagrams/graphs
    diagrams/classes_relationships
