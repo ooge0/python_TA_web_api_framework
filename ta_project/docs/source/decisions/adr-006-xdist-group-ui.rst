@@ -3,7 +3,7 @@
 ADR-006: xdist_group for UI test isolation
 ===========================================
 
-**Status:** Accepted
+**Status:** Superseded by :ref:`adr_012` (v3: each test gets an isolated Playwright browser context, so ``xdist_group`` is no longer needed)
 
 **Context.** UI tests share one admin session in the browser.  Under
 ``pytest -n auto`` (multiple workers) they raced: one test deleting a room

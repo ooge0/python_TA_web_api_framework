@@ -127,6 +127,23 @@ UI - Home & contact  (``tests_home_page/test_home_page.py``)
    "TC-UI-RES-003", "REQ-UI-RES-02", "select dates and complete a reservation booking", "positive", "High", "Automated", "TestHomePage::test_reservation_booking_completes_with_valid_dates"
    "TC-UI-A11Y-001", "REQ-UI-A11Y-01", "html element has a lang attribute (WCAG 3.1.1)", "positive", "Low", "Automated", "TestHomePage::test_page_has_lang_attribute"
 
+UI - Browser security  (``test_login_page.py`` / ``test_home_page.py``)
+========================================================================
+
+.. csv-table::
+   :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
+   :widths: 14, 14, 36, 10, 6, 14, 26
+
+   "TC-UI-SEC-001", "REQ-UI-SEC-01", "password input type is 'password' - value not exposed in DOM", "security", "High", "Automated", "TestLoginPageSecurity::test_password_field_type_is_password"
+   "TC-UI-SEC-002", "REQ-UI-SEC-02", "password autocomplete is not 'on'", "security", "Medium", "Automated", "TestLoginPageSecurity::test_password_autocomplete_is_restricted"
+   "TC-UI-SEC-003", "REQ-UI-SEC-03", "login page produces no JS console errors", "security", "Medium", "Automated", "TestLoginPageSecurity::test_no_js_console_errors_on_login_page"
+   "TC-UI-SEC-004", "REQ-UI-SEC-04", "session/auth cookie has HttpOnly flag", "security", "High", "Automated", "TestLoginPageSecurity::test_auth_cookie_has_httponly_flag"
+   "TC-UI-SEC-005", "REQ-UI-SEC-05", "logout clears auth keys from localStorage / sessionStorage", "security", "High", "Automated", "TestLoginPageSecurity::test_logout_clears_auth_storage"
+   "TC-UI-SEC-010", "REQ-UI-SEC-10", "home page response has X-Content-Type-Options: nosniff", "security", "Medium", "Automated", "TestHomePageSecurity::test_x_content_type_options_header"
+   "TC-UI-SEC-011", "REQ-UI-SEC-11", "home page response has clickjacking mitigation header", "security", "Medium", "Automated", "TestHomePageSecurity::test_x_frame_options_header"
+   "TC-UI-SEC-012", "REQ-UI-SEC-12", "home page produces no JS console errors", "security", "Low", "Automated", "TestHomePageSecurity::test_no_js_console_errors_on_home_page"
+   "TC-UI-SEC-013", "REQ-UI-SEC-13", "empty rooms API response - UI degrades gracefully (route mock)", "resilience", "Low", "Automated", "TestHomePageSecurity::test_empty_state_when_api_returns_no_rooms"
+
 UI - Admin login & navigation  (``test_login_page/test_login_page.py``)
 =======================================================================
 

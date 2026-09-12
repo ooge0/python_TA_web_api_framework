@@ -10,21 +10,23 @@ filterwarnings = [
 ]
 markers = [
     "api: back-end / front-end API tests",
-    "ui: Selenium UI tests",
+    "ui: Playwright UI tests",
     "smoke: minimal fast subset",
     "regression: full regression subset",
     "req(*ids): the REQ-* requirements this test verifies - checked against docs/source/qa/feature_catalogue.rst by utilities/_devtools/check_traceability.py",
     "tc(*ids): the TC-* test case IDs this test implements - used by utilities/_devtools/generate_test_results_rst.py to join JUnit XML results with test case specifications",
 ]
 
-# Parallel runs: `pytest-xdist` is installed. Run the suite across CPUs with
-#   pytest -n auto --dist loadgroup
-# and force a single process for debugging with
-#   pytest -n0
-# The API tests are parallel-safe (each write test creates and cleans up its own
-# record). The UI tests are auto-tagged `xdist_group("ui")` so they all land on
-# one worker under `--dist loadgroup`, avoiding the admin-session race (KI-11).
-# CI runs `-m "not ui"` for the API job and `-m ui -n0` for the UI job.
+# Browser selection: pytest-playwright reads --browser from addopts or the CLI.
+# Default is chromium.  To run on Firefox locally:
+#   pytest -m ui --browser firefox
+# To run on both browsers in one shot:
+#   pytest -m ui --browser firefox --browser chromium
+# CI overrides this per-job via the workflow matrix (see .github/workflows/ci.yml).
+#
+# Parallel runs: API tests use -n auto (pytest-xdist); UI tests run -n0 because
+# each test gets its own isolated browser context from pytest-playwright - no
+# shared driver state to protect.
 
 
 [tool.coverage.run]

@@ -95,6 +95,15 @@ UI
    "REQ-UI-REPORT-01", "TC-UI-REPORT-001", "Automated", "Covered"
    "REQ-UI-MSG-01", "TC-UI-MSG-001", "Automated", "Covered"
    "REQ-UI-A11Y-01", "TC-UI-A11Y-001", "Automated", "Covered"
+   "REQ-UI-SEC-01", "TC-UI-SEC-001", "Automated", "Covered"
+   "REQ-UI-SEC-02", "TC-UI-SEC-002", "Automated", "Covered"
+   "REQ-UI-SEC-03", "TC-UI-SEC-003", "Automated", "Covered"
+   "REQ-UI-SEC-04", "TC-UI-SEC-004", "Automated", "Covered"
+   "REQ-UI-SEC-05", "TC-UI-SEC-005", "Automated", "Covered"
+   "REQ-UI-SEC-10", "TC-UI-SEC-010", "Automated", "Covered"
+   "REQ-UI-SEC-11", "TC-UI-SEC-011", "Automated", "Covered"
+   "REQ-UI-SEC-12", "TC-UI-SEC-012", "Automated", "Covered"
+   "REQ-UI-SEC-13", "TC-UI-SEC-013", "Automated", "Covered"
 
 Orphan tests (no requirement)
 =============================

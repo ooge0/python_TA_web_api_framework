@@ -31,41 +31,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: requirements traceability
+      - name: requirements traceability gate
         run: python -m utilities._devtools.check_traceability
-
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-      - run: pip install -r requirements.txt
-      - name: download junit xml (api)
-        uses: actions/download-artifact@v4
-        with:
-          name: api-test-reports
-          path: resources/test_report/
-        continue-on-error: true
-      - name: download junit xml (ui)
-        uses: actions/download-artifact@v4
-        with:
-          name: ui-test-reports
-          path: resources/test_report/
-        continue-on-error: true
-      - name: generate test results rst
-        run: python -m utilities._devtools.generate_test_results_rst
-        continue-on-error: true
-      - name: sphinx build
-        run: sphinx-build -b html docs/source docs/_build/html -W --keep-going
-      - name: upload docs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: sphinx-html
-          path: docs/_build/html/
 
   test-api:
     runs-on: ubuntu-latest
@@ -77,7 +44,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: pytest (API suite)
+      - name: pytest (API suite, parallel)
         run: >
           pytest -n auto -m "not ui"
           --cov --cov-report=term-missing --cov-report=xml
@@ -105,9 +72,16 @@ jobs:
           name: allure-results-api
           path: allure-results-api/
 
+  # UI tests run on a browser matrix: firefox and chromium.
+  # Each browser gets its own job with its own JUnit XML artifact so results
+  # can be compared per-browser in the Allure report and dorny summary.
   test-ui:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false          # run both browsers even if one fails
+      matrix:
+        browser: [firefox, chromium]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -115,38 +89,82 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: install firefox
-        uses: browser-actions/setup-firefox@v1
-        with:
-          firefox-version: latest
-      - name: install geckodriver
-        uses: browser-actions/setup-geckodriver@latest
-        with:
-          geckodriver-version: latest
-      - name: pytest (UI suite, headless Firefox, single-threaded)
+      - name: install playwright browsers
+        run: playwright install ${{ matrix.browser }} --with-deps
+      - name: pytest (UI suite, ${{ matrix.browser }}, headless)
         run: >
           pytest -m ui -n0
-          --junitxml=junit-ui.xml
-          --alluredir=allure-results-ui
+          --browser ${{ matrix.browser }}
+          --headed=false
+          --junitxml=junit-ui-${{ matrix.browser }}.xml
+          --alluredir=allure-results-ui-${{ matrix.browser }}
+          --screenshot only-on-failure
+          --video retain-on-failure
+          --tracing retain-on-failure
+        env:
+          PWDEBUG: "0"
       - name: test report summary
         if: always()
         uses: dorny/test-reporter@v1
         with:
-          name: UI test results
-          path: junit-ui.xml
+          name: UI results (${{ matrix.browser }})
+          path: junit-ui-${{ matrix.browser }}.xml
           reporter: java-junit
       - name: upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ui-test-reports
-          path: junit-ui.xml
+          name: ui-test-reports-${{ matrix.browser }}
+          path: |
+            junit-ui-${{ matrix.browser }}.xml
+            test-results/
       - name: upload allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-ui
-          path: allure-results-ui/
+          name: allure-results-ui-${{ matrix.browser }}
+          path: allure-results-ui-${{ matrix.browser }}/
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: [test-api, test-ui]
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: download junit xml (api)
+        uses: actions/download-artifact@v4
+        with:
+          name: api-test-reports
+          path: resources/test_report/
+        continue-on-error: true
+      - name: download junit xml (ui firefox)
+        uses: actions/download-artifact@v4
+        with:
+          name: ui-test-reports-firefox
+          path: resources/test_report/
+        continue-on-error: true
+      - name: download junit xml (ui chromium)
+        uses: actions/download-artifact@v4
+        with:
+          name: ui-test-reports-chromium
+          path: resources/test_report/
+        continue-on-error: true
+      - name: generate test results rst
+        run: python -m utilities._devtools.generate_test_results_rst
+        continue-on-error: true
+      - name: sphinx build
+        run: sphinx-build -b html docs/source docs/_build/html -W --keep-going
+      - name: upload docs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sphinx-html
+          path: docs/_build/html/
 
   allure-report:
     if: always()
@@ -159,11 +177,19 @@ jobs:
         with:
           name: allure-results-api
           path: allure-results/
-      - name: download UI allure results
+        continue-on-error: true
+      - name: download UI allure results (firefox)
         uses: actions/download-artifact@v4
         with:
-          name: allure-results-ui
+          name: allure-results-ui-firefox
           path: allure-results/
+        continue-on-error: true
+      - name: download UI allure results (chromium)
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-ui-chromium
+          path: allure-results/
+        continue-on-error: true
       - name: generate allure report
         uses: simple-elf/allure-report-action@v1.9
         with:

@@ -22,3 +22,4 @@ of decisions already made.
    adr-009-sphinx-for-qa-docs
    adr-010-per-resource-services
    adr-011-three-data-sources
+   adr-012-playwright-replaces-selenium

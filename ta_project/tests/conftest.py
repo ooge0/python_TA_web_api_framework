@@ -1,146 +1,130 @@
-#/tests/conftest.py
+# /tests/conftest.py
 """
-Project-wide fixtures:
-    - logging (session logger, per-test start/outcome, screenshot-on-failure)
-    - the Selenium ``setup_and_teardown`` browser fixture
-    - marker auto-tagging by path
+Project-wide fixtures.
 
-API-client / service-object fixtures live in
-``core/api/api_client_fixtures.py``; API test data in
-``resources/test_data/fixtures_api_test_data.py``.
+UI browser lifecycle is managed by ``pytest-playwright`` (``page``, ``browser``,
+``browser_context`` built-ins).  This file adds:
+  - session logger + per-test logging
+  - ``admin_page``: logs in to ``/admin`` and returns a ready Page
+  - ``home_page``: opens the public home page and returns a ready Page
+  - ``browser_context_args`` override: sets base URL and viewport
+  - screenshot-on-failure via Allure (Playwright's ``--screenshot`` flag
+    handles local artefacts; Allure attachment adds it to the report)
+  - marker auto-tagging (api / ui) by test path
+
+API-client fixtures live in ``core/api/api_client_fixtures.py``;
+API test data in ``resources/test_data/fixtures_api_test_data.py``.
 """
+from __future__ import annotations
+
 import allure
 import pytest
 from allure_commons.types import AttachmentType
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.options import Options as EdgeOptions
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from playwright.sync_api import Page
 
 from config.logger_config import get_logger
-from utilities.general_utils import GeneralUtils
+from config.settings import get_settings
 
 pytest_plugins = [
     "tests.web_app_tests.tests_home_page.fixtures_for_home_page_tests",
     "tests.web_app_tests.test_login_page.fixtures_for_login_page_tests",
     "core.api.api_client_fixtures",
-    "resources.test_data.fixtures_api_test_data"
+    "resources.test_data.fixtures_api_test_data",
 ]
 
-utils = GeneralUtils()
+_settings = get_settings()
 
 
-# LOGGER fixtures
+# ------------------------------------------------------------------ logging
 
 @pytest.fixture(scope="session", autouse=True)
 def session_logger():
-    """
-    Create instance of logger.
-
-    :return: Logger(loguru)
-    """
-    logger = get_logger()
-    return logger
+    return get_logger()
 
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(autouse=True)
 def log_test_name(request, session_logger):
-    """Log when each test starts and whether it passed, failed or was skipped."""
-    test_name = request.node.name
-    session_logger.info(f"Starting test: {test_name}")
+    """Log start / outcome for every test."""
+    name = request.node.name
+    session_logger.info(f"starting test: {name}")
     yield
     if hasattr(request.node, "rep_call"):
-        if request.node.rep_call.passed:
-            session_logger.info(f"Test {test_name} passed")
-        elif request.node.rep_call.failed:
-            session_logger.error(f"Test {test_name} failed")
-        elif request.node.rep_call.skipped:
-            session_logger.warning(f"Test {test_name} skipped")
-
-
-# General fixtures
-
-@pytest.fixture()
-def log_failure_by_picture(request):
-    """
-    Make a screenshot for failed tests
-    """
-    yield
-    item = request.node
-    if hasattr(item, "rep_call") and item.rep_call.failed:
-        # Access the driver from the tests class instance
-        driver = getattr(request.cls, 'driver', None)
-        if driver:
-            allure.attach(driver.get_screenshot_as_png(), name="screenshot_on_failure",
-                          attachment_type=AttachmentType.PNG)
+        rep = request.node.rep_call
+        if rep.passed:
+            session_logger.info(f"passed: {name}")
+        elif rep.failed:
+            session_logger.error(f"failed: {name}")
+        elif rep.skipped:
+            session_logger.warning(f"skipped: {name}")
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):
-    """
-    Execute all other hooks to obtain the report object
-    """
-    # execute all other hooks to obtain the report object
     outcome = yield
     rep = outcome.get_result()
-    # set an attribute for each phase of a call, which can be "setup", "call", "teardown"
-    setattr(item, "rep_" + rep.when, rep)
+    setattr(item, f"rep_{rep.when}", rep)
 
+
+# ------------------------------------------------------------------ markers
 
 def pytest_collection_modifyitems(items):
-    """Auto-tag tests by location so `pytest -m api` / `-m ui` work."""
+    """Auto-tag tests by directory so ``pytest -m api`` / ``-m ui`` work."""
     for item in items:
         path = str(item.fspath).replace("\\", "/")
         if "/api_tests/" in path:
             item.add_marker("api")
         elif "/web_app_tests/" in path:
             item.add_marker("ui")
-            item.add_marker(pytest.mark.xdist_group("ui"))
 
 
-@pytest.fixture()
-def setup_and_teardown(request, session_logger):
-    """
-    Start a browser, open ``request.param["url"]`` and wait for the SPA shell to
-    render, then attach the driver to the test class. Quit on teardown.
+# ----------------------------------------------------------------- Playwright context
 
-    ``request.param`` is ``{"url", "browser", "browser_headless_mode"}`` - set by
-    an indirect ``parametrize`` on the test module.
-    """
-    browser = request.param.get("browser")
-    browser_headless_mode = utils.str_to_bool(request.param.get("browser_headless_mode"))
+@pytest.fixture(scope="session")
+def browser_context_args(browser_context_args):
+    """Shared browser-context settings: viewport and base URL."""
+    return {
+        **browser_context_args,
+        "viewport": {"width": 1500, "height": 900},
+        "base_url": _settings.front_url,
+    }
 
-    if browser == "chrome":
-        options = ChromeOptions()
-        if browser_headless_mode:
-            options.add_argument("--headless")
-        driver = webdriver.Chrome(options=options)
-    elif browser == "firefox":
-        options = FirefoxOptions()
-        if browser_headless_mode:
-            options.add_argument("--headless")
-        driver = webdriver.Firefox(options=options)
-    elif browser == "edge":
-        options = EdgeOptions()
-        if browser_headless_mode:
-            options.add_argument("--headless")
-        driver = webdriver.Edge(options=options)
-    else:
-        session_logger.error(
-            "Config file has no name for the browser instance. Check the configuration. "
-            "Acceptable browsers are: 'chrome', 'firefox', 'edge'")
-        raise ValueError(f"Unsupported browser: {browser}")
 
-    driver.set_window_size(1500, 2200)
-    driver.get(request.param.get("url"))
-    # wait for the SPA shell to render (a nav link or the admin login field)
-    WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, "a.nav-link, #username"))
-    )
+# ----------------------------------------------------------------- page fixtures
 
-    request.cls.driver = driver  # attach the driver to the test class
-    yield driver
-    driver.quit()
+@pytest.fixture
+def home_page(page: Page) -> Page:
+    """Navigate to the public home page and wait for the SPA shell."""
+    page.goto(_settings.front_url)
+    page.locator("a.navbar-brand").wait_for(state="visible")
+    return page
+
+
+@pytest.fixture
+def admin_page(page: Page) -> Page:
+    """Navigate to /admin, log in, and return the authenticated Page."""
+    page.goto(_settings.admin_url)
+    page.locator("#username").wait_for(state="visible")
+    page.locator("#username").fill(_settings.admin_user)
+    page.locator("#password").fill(_settings.front_ui_password)
+    page.locator("#doLogin").click()
+    # Wait for the post-login Rooms link as the auth signal
+    page.locator("a.nav-link[href$='/admin/rooms']").wait_for(state="visible")
+    return page
+
+
+# ----------------------------------------------------------------- screenshot on failure
+
+@pytest.fixture(autouse=True)
+def attach_screenshot_on_failure(request, page: Page):
+    """Attach a screenshot to Allure when a UI test fails."""
+    yield
+    if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
+        # Only for tests that use a Page (UI tests)
+        try:
+            allure.attach(
+                page.screenshot(),
+                name="screenshot_on_failure",
+                attachment_type=AttachmentType.PNG,
+            )
+        except Exception:
+            pass  # page may already be closed in teardown

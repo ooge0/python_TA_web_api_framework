@@ -5,7 +5,8 @@ pytest-html
 pytest-cov
 assertpy2
 requests
-selenium
+playwright
+pytest-playwright
 pytest-xdist
 loguru
 openpyxl

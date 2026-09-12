@@ -29,10 +29,17 @@ Package categories
 ``from assertpy2 import assert_that, soft_assertions``.  Provides rich failure
 messages and a ``with soft_assertions():`` context for non-fatal multi-checks.
 
-**UI (Selenium)**
+**UI (Playwright)**
 
-``selenium`` — WebDriver API.
-``webdriver-manager`` — automatic driver download and caching.
+``playwright`` — browser automation: Chromium, Firefox, WebKit in one package.
+``pytest-playwright`` — pytest fixtures (``page``, ``browser``, ``browser_context``);
+``--browser`` flag selects the target browser per run.
+
+Browser binaries are installed separately (not pulled by pip)::
+
+    playwright install firefox chromium --with-deps
+
+This replaces ``selenium`` + ``webdriver-manager`` + separate geckodriver/chromedriver management.
 
 **Data**
 

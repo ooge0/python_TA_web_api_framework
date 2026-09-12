@@ -1,11 +1,11 @@
 # /core/pages/admin_report_page.py
 """``AdminReportPage`` - the ``/admin/report`` page."""
 from core.locators.login_page_locators import AdminReportLocators as L
-from core.pages.base_page import BaseFrontPage
+from core.pages.base_page import BasePage
 
 
-class AdminReportPage(BaseFrontPage):
-    """Read the booking-calendar report."""
+class AdminReportPage(BasePage):
+    """Read the booking-calendar report view."""
 
     def calendar_visible(self) -> bool:
         return self.is_visible(L.CALENDAR)

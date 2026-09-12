@@ -46,8 +46,10 @@ Tools and libraries
    Test reporting with ``@allure.epic`` / ``@allure.feature`` / ``@allure.story``
    labels and per-test attachments.
 
-`Selenium WebDriver <https://www.selenium.dev/documentation/>`_
-   Browser automation for the UI tests.
+`Playwright <https://playwright.dev/python/docs/intro>`_
+   Browser automation for the UI tests (v3). Provides built-in auto-wait,
+   network interception, browser contexts, and cross-browser support
+   (Chromium, Firefox, WebKit) in a single API.
 
 `assertpy2 <https://pypi.org/project/assertpy2/>`_
    Fluent assertion library: ``assert_that(x).is_equal_to(y)``, soft assertions.

@@ -1,7 +1,7 @@
 ADR-005: Tuple locators over enum-name parsing
 ================================================
 
-**Status:** Accepted
+**Status:** Superseded by :ref:`adr_012` (v3 uses plain CSS/XPath strings with Playwright's ``page.locator()``)
 
 **Context.** The original ``BasePage.find_element_by_locator`` parsed enum
 member names (``..._XPATH_LOCATOR`` → ``By.XPATH``,

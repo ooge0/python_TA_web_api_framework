@@ -13,8 +13,10 @@ How I built it
 #. **Pydantic models.** The booking / auth / room payloads are pydantic v2
    models with ``from_dict`` / ``to_dict`` helpers; ``/booking`` responses are
    also validated against a JSON Schema.
-#. **Page-object model** for the UI - Selenium, ``(By, "selector")`` tuple
-   locators, explicit waits only, no ``sleep``.
+#. **Page-object model** for the UI - Playwright (``pytest-playwright``),
+   CSS / XPath string locators, built-in auto-wait, no manual ``WebDriverWait``
+   or ``sleep``.  Cross-browser: the browser is selected at runtime via
+   ``--browser firefox | chromium``; CI runs both in a GitHub Actions matrix.
 #. **Test data** comes from three interchangeable sources on purpose: inline
    constants and ``Faker`` for most cases; an Excel workbook
    (``resources/test_data/booker_test_data.xlsx``) read via
