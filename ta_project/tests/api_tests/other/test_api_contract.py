@@ -40,7 +40,11 @@ class TestApiResponseContracts:
     @pytest.mark.req("REQ-BE-CONTRACT-01", "REQ-BE-BOOKING-01")
     def test_booking_list_items_match_schema(self, back_booking_api):
         """GET /booking returns a list; each element matches BOOKING_ID_ITEM_SCHEMA."""
-        response = back_booking_api.list_ids()
+        # list_ids() parses into a model; use the raw client to keep the Response object
+        response = back_booking_api.client.get(
+            back_booking_api.endpoint,
+            headers={"Content-Type": "application/json"},
+        )
         assert_that(response.status_code).is_equal_to(200)
         body = response.json()
         assert_that(body).is_instance_of(list)
@@ -117,7 +121,10 @@ class TestApiResponseContracts:
         token = auth_headers.get("Cookie", "").replace("token=", "")
 
         responses = {
-            "GET /booking": back_booking_api.list_ids(),
+            "GET /booking": back_booking_api.client.get(
+                back_booking_api.endpoint,
+                headers={"Content-Type": "application/json"},
+            ),
             "GET /booking/{id}": back_booking_api.get(booking_id),
             "PUT /booking/{id}": back_booking_api.update(booking_id, payload, token),
             "PATCH /booking/{id}": back_booking_api.patch(booking_id, {"firstname": "CTCheck"}, token),

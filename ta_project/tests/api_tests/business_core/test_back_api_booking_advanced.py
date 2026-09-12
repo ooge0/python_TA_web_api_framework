@@ -185,7 +185,12 @@ class TestBackApiFilterPrecision:
         """GET /booking?firstname=<uuid> returns an empty list when no match exists."""
         import uuid
         unique_name = f"NoSuchUser_{uuid.uuid4().hex}"
-        response = back_booking_api.find(firstname=unique_name)
+        # find() parses into a BookingIdList model; use raw client to keep the Response
+        response = back_booking_api.client.get(
+            back_booking_api.endpoint,
+            headers={"Content-Type": "application/json"},
+            params={"firstname": unique_name},
+        )
         assert_that(response.status_code).is_equal_to(200)
         body = response.json()
         assert_that(body).is_instance_of(list)
