@@ -29,7 +29,11 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 _REPORT_DIR = ROOT / "resources" / "test_report"
 # Prefer merged junit.xml; fall back to individual API/UI files if present
 JUNIT_XML = _REPORT_DIR / "junit.xml"
-_JUNIT_ALT = [_REPORT_DIR / "junit-api.xml", _REPORT_DIR / "junit-ui.xml"]
+_JUNIT_ALT = [
+    _REPORT_DIR / "junit-api.xml",
+    _REPORT_DIR / "junit_ui.xml",   # local UI run
+    _REPORT_DIR / "junit-ui.xml",   # CI artifact name
+]
 OUT_RST = ROOT / "docs" / "source" / "qa" / "test_results.rst"
 TC_CASES_RST = ROOT / "docs" / "source" / "qa" / "test_cases.rst"
 
@@ -199,13 +203,15 @@ def build() -> None:
 
     print("parsing JUnit XML …")
     junit: dict[str, dict] = {}
-    if JUNIT_XML.exists():
-        junit = _parse_junit(JUNIT_XML)
-    else:
-        for alt in _JUNIT_ALT:
-            if alt.exists():
-                junit.update(_parse_junit(alt))
-    print(f"  {len(junit)} results loaded" if junit else "  no junit.xml found — status will be 'no-run'")
+    for xml_path in [JUNIT_XML] + _JUNIT_ALT:
+        if xml_path.exists():
+            before = len(junit)
+            junit.update(_parse_junit(xml_path))
+            added = len(junit) - before
+            if added:
+                print(f"  {xml_path.name}: +{added} results")
+    if not junit:
+        print("  no junit.xml found — status will be 'no-run'")
 
     tc_titles = _load_tc_titles()
 
