@@ -11,13 +11,14 @@ class AdminBrandingPage(BasePage):
         return self.is_visible(L.HEADING)
 
     def name_value(self) -> str:
-        return self.attr_of(L.NAME_INPUT, "value")
+        # Branding values load asynchronously; input_value_of waits for non-empty
+        return self.input_value_of(L.NAME_INPUT)
 
     def description_value(self) -> str:
-        return self.attr_of(L.DESCRIPTION, "value")
+        return self.input_value_of(L.DESCRIPTION)
 
     def contact_name_value(self) -> str:
-        return self.attr_of(L.CONTACT_NAME, "value")
+        return self.input_value_of(L.CONTACT_NAME)
 
     def contact_phone_value(self) -> str:
         return self.attr_of(L.CONTACT_PHONE, "value")

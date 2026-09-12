@@ -1,7 +1,7 @@
 # /core/pages/reservation_page.py
 """``ReservationPage`` - the ``/reservation/{id}`` room-booking page with calendar."""
 from core.locators.home_page_locators import ReservationPageLocators as L
-from core.pages.base_page import BasePage
+from core.pages.base_page import BasePage, DEFAULT_TIMEOUT
 
 
 class ReservationPage(BasePage):
@@ -15,7 +15,12 @@ class ReservationPage(BasePage):
 
     def calendar_day_locators(self):
         """Return all selectable day buttons in the current month view."""
-        return self.page.locator(L.CALENDAR_DAYS).all()
+        loc = self.page.locator(L.CALENDAR_DAYS)
+        try:
+            loc.first.wait_for(state="visible", timeout=DEFAULT_TIMEOUT)
+        except Exception:
+            return []
+        return loc.all()
 
     def fill_guest_details(
         self,

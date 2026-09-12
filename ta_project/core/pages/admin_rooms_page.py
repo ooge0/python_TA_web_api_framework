@@ -58,6 +58,8 @@ class AdminRoomsFrontPage(BasePage):
         before = self.room_count()
         deletes = self.page.locator(L.DELETE_ROOM)
         if deletes.count() > 0:
+            # Accept browser confirm() dialogs that some SUT versions show
+            self.page.once("dialog", lambda d: d.accept())
             deletes.last.click()
             self.page.wait_for_function(
                 f"() => document.querySelectorAll(\"{L.ROOM_ROWS}\").length < {before}",

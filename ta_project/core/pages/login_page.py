@@ -23,8 +23,12 @@ class LoginAdminPage(BasePage):
         return self
 
     def is_logged_in(self, timeout: int = 10_000) -> bool:
-        # The Rooms nav link is the reliable post-login indicator
-        return self.is_visible(NAV.ROOMS_LINK, timeout=timeout)
+        # When logged in the login heading disappears; hidden also if element absent
+        try:
+            self.page.locator(L.LOGIN_HEADING).wait_for(state="hidden", timeout=timeout)
+            return True
+        except Exception:
+            return False
 
     def login_error_text(self) -> str:
         return self.text_of(L.ERROR_ALERT)

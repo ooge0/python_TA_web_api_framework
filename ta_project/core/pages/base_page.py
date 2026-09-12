@@ -31,9 +31,13 @@ class BasePage:
     # ------------------------------------------------------------------ reads
 
     def find(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> Locator:
-        """Return a Locator and assert the element is visible before use."""
+        """Return a Locator, waiting for the first match to be visible.
+
+        Uses .first so selectors that match multiple elements don't raise a
+        strict-mode violation — the caller decides how many elements to use.
+        """
         loc = self.page.locator(selector)
-        loc.wait_for(state="visible", timeout=timeout)
+        loc.first.wait_for(state="visible", timeout=timeout)
         return loc
 
     def find_all(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> List[Locator]:
@@ -46,7 +50,22 @@ class BasePage:
         return self.find(selector, timeout).inner_text().strip()
 
     def attr_of(self, selector: str, name: str, timeout: int = DEFAULT_TIMEOUT) -> str:
-        return self.find(selector, timeout).get_attribute(name) or ""
+        return self.find(selector, timeout).first.get_attribute(name) or ""
+
+    def input_value_of(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> str:
+        """Get the current runtime value of an input/textarea (JS-populated safe).
+
+        Unlike ``get_attribute('value')`` this reads the DOM property so it
+        returns the current value even when the field was filled by JavaScript.
+        Waits up to ``timeout`` ms for the value to become non-empty.
+        """
+        loc = self.page.locator(selector)
+        loc.first.wait_for(state="visible", timeout=timeout)
+        self.page.wait_for_function(
+            f"() => (document.querySelector('{selector}')?.value || '').trim().length > 0",
+            timeout=timeout,
+        )
+        return loc.first.input_value()
 
     def is_visible(self, selector: str, timeout: int = SHORT_TIMEOUT) -> bool:
         """Non-throwing visibility check - returns False on timeout."""
