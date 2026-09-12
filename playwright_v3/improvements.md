@@ -20,7 +20,7 @@ inferred from reading; I confirm them by running the suite once.
 
 ## Status
 
-Work happens in `ta_project/` (the original tree stays frozen as the snapshot).
+Work happens in `playwright_v3/` (the original Selenium v2 tree is in `selenium_v2/`).
 See `ROADMAP.md` for the milestone view.
 
 | milestone | state |

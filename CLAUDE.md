@@ -340,6 +340,56 @@ Optional: `pytest-bdd` (<https://pytest-bdd.readthedocs.io/>) would keep the
 feature catalogue and the test cases in one place as Gherkin `.feature` files,
 if I decide I want living feature-oriented specs.
 
+## 10. Writing rule: sentence case in all headings
+
+**Every heading in RST, Markdown, docstrings, and inline comments must use
+sentence case** — only the first word capitalized, plus proper nouns and
+acronyms.
+
+```
+WRONG  →  "Check an Entire Directory"
+RIGHT  →  "Check an entire directory"
+
+WRONG  →  "Running the Test Suite With Multiple Workers"
+RIGHT  →  "Running the test suite with multiple workers"
+
+OK     →  "Playwright setup on Windows"   (Playwright, Windows = proper nouns)
+OK     →  "HTTP response schema validation"  (HTTP = acronym)
+OK     →  "pytest-cov and Coverage.py"    (Coverage.py = product name)
+```
+
+Proper nouns / acronyms that stay capitalized regardless of position:
+`Python`, `Playwright`, `Selenium`, `pytest`, `Sphinx`, `API`, `REST`,
+`HTTP`, `HTML`, `JSON`, `SQL`, `CRUD`, `CI`, `URL`, `SUT`, `RTM`,
+`Allure`, `Windows`, `Linux`, `GitHub`, `GitHub Actions`.
+
+### Regexp to detect violations
+
+Run from the repo root to flag mid-heading words that start with an uppercase
+letter (likely Title Case leftovers):
+
+```bash
+grep -rnP " [A-Z][a-z]{2,}" docs/source/ --include="*.rst" --include="*.md"
+```
+
+**What it catches:** any word preceded by a space that starts with an uppercase
+letter followed by at least two lowercase letters — i.e., normal prose words
+that were capitalized by mistake.
+
+**False positives to ignore:** proper nouns and product names listed above, and
+any occurrence inside a code block or URL.
+
+Quick scan of the full project (RST + MD + Python docstrings):
+
+```bash
+grep -rnP " [A-Z][a-z]{2,}" \
+    playwright_v3/docs/source/ \
+    playwright_v3/tests/ playwright_v3/core/ \
+    --include="*.rst" --include="*.md" --include="*.py"
+```
+
+---
+
 ## 9. Reminders when I work here
 
 - `pytest` from the repo root does **not** load `config/pytest.ini`. Use

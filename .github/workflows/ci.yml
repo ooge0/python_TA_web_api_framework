@@ -12,24 +12,32 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright_v3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: ruff
         run: ruff check core utilities tests
 
   traceability:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright_v3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: requirements traceability gate
         run: python -m utilities._devtools.check_traceability
@@ -37,12 +45,16 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: playwright_v3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: pytest (API suite, parallel)
         run: >
@@ -55,7 +67,7 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: API test results
-          path: junit-api.xml
+          path: playwright_v3/junit-api.xml
           reporter: java-junit
       - name: upload test reports
         if: always()
@@ -63,14 +75,14 @@ jobs:
         with:
           name: api-test-reports
           path: |
-            junit-api.xml
-            coverage.xml
+            playwright_v3/junit-api.xml
+            playwright_v3/coverage.xml
       - name: upload allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-api
-          path: allure-results-api/
+          path: playwright_v3/allure-results-api/
 
   # UI tests run on a browser matrix: firefox and chromium.
   # Each browser gets its own job with its own JUnit XML artifact so results
@@ -82,12 +94,16 @@ jobs:
       fail-fast: false          # run both browsers even if one fails
       matrix:
         browser: [firefox, chromium]
+    defaults:
+      run:
+        working-directory: playwright_v3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: install playwright browsers
         run: playwright install ${{ matrix.browser }} --with-deps
@@ -108,7 +124,7 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: UI results (${{ matrix.browser }})
-          path: junit-ui-${{ matrix.browser }}.xml
+          path: playwright_v3/junit-ui-${{ matrix.browser }}.xml
           reporter: java-junit
       - name: upload test reports
         if: always()
@@ -116,43 +132,47 @@ jobs:
         with:
           name: ui-test-reports-${{ matrix.browser }}
           path: |
-            junit-ui-${{ matrix.browser }}.xml
-            test-results/
+            playwright_v3/junit-ui-${{ matrix.browser }}.xml
+            playwright_v3/test-results/
       - name: upload allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-ui-${{ matrix.browser }}
-          path: allure-results-ui-${{ matrix.browser }}/
+          path: playwright_v3/allure-results-ui-${{ matrix.browser }}/
 
   docs:
     runs-on: ubuntu-latest
     needs: [test-api, test-ui]
     if: always()
+    defaults:
+      run:
+        working-directory: playwright_v3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: download junit xml (api)
         uses: actions/download-artifact@v4
         with:
           name: api-test-reports
-          path: resources/test_report/
+          path: playwright_v3/resources/test_report/
         continue-on-error: true
       - name: download junit xml (ui firefox)
         uses: actions/download-artifact@v4
         with:
           name: ui-test-reports-firefox
-          path: resources/test_report/
+          path: playwright_v3/resources/test_report/
         continue-on-error: true
       - name: download junit xml (ui chromium)
         uses: actions/download-artifact@v4
         with:
           name: ui-test-reports-chromium
-          path: resources/test_report/
+          path: playwright_v3/resources/test_report/
         continue-on-error: true
       - name: generate test results rst
         run: python -m utilities._devtools.generate_test_results_rst
@@ -164,7 +184,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sphinx-html
-          path: docs/_build/html/
+          path: playwright_v3/docs/_build/html/
 
   allure-report:
     if: always()
