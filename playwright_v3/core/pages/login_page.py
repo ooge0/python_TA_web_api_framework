@@ -59,3 +59,31 @@ class LoginAdminPage(BasePage):
 
     def password_autocomplete(self) -> str:
         return self.attr_of(L.PASSWORD, "autocomplete")
+
+    # --- nav-section helpers ---
+
+    def nav_section_labels_visible(self) -> dict:
+        """Return {label: bool} for each known admin nav section."""
+        sections = {
+            "Rooms": NAV.ROOMS_LINK,
+            "Report": NAV.REPORT_LINK,
+            "Branding": NAV.BRANDING_LINK,
+            "Messages": NAV.MESSAGES_LINK,
+            "Front Page": NAV.FRONT_PAGE_LINK,
+        }
+        return {label: self.is_visible(loc, timeout=5_000) for label, loc in sections.items()}
+
+    def go_to_branding(self):
+        from core.pages.admin_branding_page import AdminBrandingPage
+        self.click(NAV.BRANDING_LINK)
+        return AdminBrandingPage(self.page)
+
+    def go_to_report(self):
+        from core.pages.admin_report_page import AdminReportPage
+        self.click(NAV.REPORT_LINK)
+        return AdminReportPage(self.page)
+
+    def go_to_messages(self):
+        from core.pages.admin_messages_page import AdminMessagesPage
+        self.click(NAV.MESSAGES_LINK)
+        return AdminMessagesPage(self.page)

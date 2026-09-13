@@ -12,7 +12,6 @@ from assertpy2 import assert_that, soft_assertions
 from playwright.sync_api import Page
 
 from config.settings import get_settings
-from core.locators.login_page_locators import AdminNavLocators, AdminRoomsLocators, LoginPageLocators
 from core.pages.admin_rooms_page import AdminRoomsFrontPage
 from core.pages.login_page import LoginAdminPage
 
@@ -102,8 +101,7 @@ class TestLoginPageSecurity:
         """TC-UI-SEC-003: the login page produces no JS console errors."""
         errors: list[str] = []
         page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
-        page.goto(_S.admin_url)
-        page.locator(LoginPageLocators.LOGIN_HEADING).wait_for(state="visible")
+        _login_page(page).wait_for_form()
         assert_that(errors).is_empty()
 
     @pytest.mark.xfail(
@@ -170,15 +168,10 @@ class TestAdminNavigation:
     def test_navbar_links(self, page: Page):
         """TC-UI-NAV-001: every admin section is represented in the post-login navbar."""
         lp = _login_page_authenticated(page)
+        visible = lp.nav_section_labels_visible()
         with soft_assertions():
-            for loc, label in [
-                (AdminNavLocators.ROOMS_LINK, "Rooms"),
-                (AdminNavLocators.REPORT_LINK, "Report"),
-                (AdminNavLocators.BRANDING_LINK, "Branding"),
-                (AdminNavLocators.MESSAGES_LINK, "Messages"),
-                (AdminNavLocators.FRONT_PAGE_LINK, "Front Page"),
-            ]:
-                assert_that(lp.is_visible(loc, timeout=5_000)).described_as(
+            for label in ("Rooms", "Report", "Branding", "Messages", "Front Page"):
+                assert_that(visible[label]).described_as(
                     f"{label} nav link should be visible after login"
                 ).is_true()
 
@@ -218,8 +211,7 @@ class TestAdminNavigation:
     def test_create_room_adds_it_to_the_table(self, page: Page, front_auth_api, front_room_api):
         """TC-UI-ROOMS-002: create a room via the UI - it appears in the table and via API."""
         _login_page_authenticated(page)
-        rooms = AdminRoomsFrontPage(page)
-        rooms.find(AdminRoomsLocators.ROOM_ROWS)
+        rooms = AdminRoomsFrontPage(page).wait_until_loaded()
         before = rooms.room_count()
         rooms.create_room("999", room_type="Single", price="75", features=("WiFi",))
         assert_that(rooms.room_count()).is_equal_to(before + 1)
@@ -256,10 +248,8 @@ class TestAdminNavigation:
     @pytest.mark.req("REQ-UI-BRAND-01")
     def test_branding_page_shows_bb_details(self, page: Page):
         """TC-UI-BRAND-001: the branding admin page loads with all B&B fields populated."""
-        from core.pages.admin_branding_page import AdminBrandingPage
-        _login_page_authenticated(page)
-        page.locator(AdminNavLocators.BRANDING_LINK).click()
-        branding = AdminBrandingPage(page)
+        lp = _login_page_authenticated(page)
+        branding = lp.go_to_branding()
         with soft_assertions():
             assert_that(branding.heading_visible()).is_true()
             assert_that(branding.name_value()).is_not_empty()
@@ -271,10 +261,8 @@ class TestAdminNavigation:
     @pytest.mark.req("REQ-UI-REPORT-01")
     def test_report_page_shows_calendar(self, page: Page):
         """TC-UI-REPORT-001: the report page renders a calendar view."""
-        from core.pages.admin_report_page import AdminReportPage
-        _login_page_authenticated(page)
-        page.locator(AdminNavLocators.REPORT_LINK).click()
-        report = AdminReportPage(page)
+        lp = _login_page_authenticated(page)
+        report = lp.go_to_report()
         assert_that(report.calendar_visible()).is_true()
         assert_that(report.toolbar_label()).is_not_empty()
 
@@ -283,15 +271,13 @@ class TestAdminNavigation:
     @pytest.mark.req("REQ-UI-MSG-01")
     def test_messages_page_lists_submissions(self, page: Page, front_message_api):
         """TC-UI-MSG-001: the messages inbox shows at least one message with content."""
-        from core.pages.admin_messages_page import AdminMessagesPage
         front_message_api.send({
             "name": "UITest", "email": "ui@test.com", "phone": "0123456789012",
             "subject": "v3 UI test message",
             "description": "Sent by the automated test suite for verification.",
         })
-        _login_page_authenticated(page)
-        page.locator(AdminNavLocators.MESSAGES_LINK).click()
-        msgs = AdminMessagesPage(page)
+        lp = _login_page_authenticated(page)
+        msgs = lp.go_to_messages()
         with soft_assertions():
             assert_that(msgs.message_count()).is_greater_than(0)
             assert_that(msgs.first_message_name()).is_not_empty()

@@ -152,6 +152,10 @@ class LoginAdminPage(BaseFrontPage):
             self.logger.error(f"login_to_admin_panel failed due to an unexpected error: {e}")
             raise
 
+    def submit_login_form(self):
+        """Click the login submit button."""
+        self.click(LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR)
+
     def enter_credentials_into_login_form(self, username: str, user_password: str):
         """
         Enters the provided credentials into the login form.

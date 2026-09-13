@@ -9,6 +9,10 @@ from core.pages.base_page import BasePage, DEFAULT_TIMEOUT
 class AdminRoomsFrontPage(BasePage):
     """Read and act on the rooms table."""
 
+    def wait_until_loaded(self) -> "AdminRoomsFrontPage":
+        self.find(L.ROOM_ROWS)
+        return self
+
     def room_count(self) -> int:
         return self.page.locator(L.ROOM_ROWS).count()
 

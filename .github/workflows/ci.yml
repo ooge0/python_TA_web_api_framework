@@ -106,7 +106,7 @@ jobs:
           cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
       - name: install playwright browsers
-        run: playwright install ${{ matrix.browser }} --with-deps
+        run: python -m playwright install ${{ matrix.browser }} --with-deps
       - name: pytest (UI suite, ${{ matrix.browser }}, headless)
         run: >
           pytest -m ui -n0

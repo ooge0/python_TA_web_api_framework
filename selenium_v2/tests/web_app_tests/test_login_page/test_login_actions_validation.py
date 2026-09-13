@@ -9,7 +9,6 @@ from hamcrest import assert_that, equal_to, is_
 from pytest_lazyfixture import lazy_fixture
 
 from config.logger_config import get_logger
-from core.locators.login_page_locators import LoginPageLocators
 from core.pages.home_page import HomeFrontPage
 from core.pages.login_page import LoginAdminPage
 from core.reference_data.user_creds_reference_data import UserCredsDataFromDB
@@ -154,7 +153,7 @@ class UiTestLoginActionFlow:
             login_admin_page.enter_credentials_into_login_form(user_name, user_password)
 
         with allure.step("Submit the login form"):
-            login_admin_page.click(LoginPageLocators.SUBMIT_BUTTON_ID_LOCATOR)
+            login_admin_page.submit_login_form()
 
         with allure.step("Verify login success"):
             assert_that(login_admin_page.is_logout_navbar_link_visible, is_(True),
