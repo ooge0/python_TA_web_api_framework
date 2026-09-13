@@ -8,8 +8,8 @@ UI browser lifecycle is managed by ``pytest-playwright`` (``page``, ``browser``,
   - ``admin_page``: logs in to ``/admin`` and returns a ready Page
   - ``home_page``: opens the public home page and returns a ready Page
   - ``browser_context_args`` override: sets base URL and viewport
-  - screenshot-on-failure via Allure (Playwright's ``--screenshot`` flag
-    handles local artefacts; Allure attachment adds it to the report)
+  - screenshot-on-failure: moved to web_app_tests/conftest.py so it is
+    autouse only for UI tests (API tests have no browser)
   - marker auto-tagging (api / ui) by test path
 
 API-client fixtures live in ``core/api/api_client_fixtures.py``;
@@ -17,9 +17,7 @@ API test data in ``resources/test_data/fixtures_api_test_data.py``.
 """
 from __future__ import annotations
 
-import allure
 import pytest
-from allure_commons.types import AttachmentType
 from playwright.sync_api import Page
 
 from config.logger_config import get_logger
@@ -112,19 +110,3 @@ def admin_page(page: Page) -> Page:
     return page
 
 
-# ----------------------------------------------------------------- screenshot on failure
-
-@pytest.fixture(autouse=True)
-def attach_screenshot_on_failure(request, page: Page):
-    """Attach a screenshot to Allure when a UI test fails."""
-    yield
-    if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
-        # Only for tests that use a Page (UI tests)
-        try:
-            allure.attach(
-                page.screenshot(),
-                name="screenshot_on_failure",
-                attachment_type=AttachmentType.PNG,
-            )
-        except Exception:
-            pass  # page may already be closed in teardown
