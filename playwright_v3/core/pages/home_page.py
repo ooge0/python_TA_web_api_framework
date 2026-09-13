@@ -29,6 +29,9 @@ class HomeFrontPage(BasePage):
     def admin_nav_link_href(self) -> str:
         return self.attr_of(L.NAV_ADMIN_LINK, "href")
 
+    def footer_admin_link_href(self) -> str:
+        return self.attr_of(L.FOOTER_LINK_ADMIN, "href")
+
     # ---- footer ----
 
     def footer_present(self) -> bool:
@@ -54,6 +57,17 @@ class HomeFrontPage(BasePage):
 
     def book_now_hrefs(self) -> List[str]:
         return [loc.get_attribute("href") or "" for loc in self.find_all(L.ROOM_BOOK_NOW_LINKS)]
+
+    def go_to_reservation(self, index: int = 0) -> "ReservationPage":
+        """Navigate to the reservation page at the given Book now link index."""
+        from core.pages.reservation_page import ReservationPage
+        hrefs = self.book_now_hrefs()
+        assert hrefs, "precondition: no Book now links on the home page"
+        self.page.goto(hrefs[index])
+        return ReservationPage(self.page)
+
+    def book_now_count(self) -> int:
+        return self.page.locator(L.ROOM_BOOK_NOW_LINKS).count()
 
     # ---- contact form ----
 

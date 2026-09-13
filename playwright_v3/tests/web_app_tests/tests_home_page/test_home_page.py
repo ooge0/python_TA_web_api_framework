@@ -12,7 +12,6 @@ from assertpy2 import assert_that, soft_assertions
 from playwright.sync_api import Page, Route
 
 from config.settings import get_settings
-from core.locators.home_page_locators import HomePageLocators, ReservationPageLocators
 from core.pages.home_page import HomeFrontPage
 
 _S = get_settings()
@@ -102,8 +101,7 @@ class TestHomePage:
         home = HomeFrontPage(home_page)
         with soft_assertions():
             assert_that(home.admin_nav_link_href()).ends_with("/admin")
-            admin_footer = home.attr_of(HomePageLocators.FOOTER_LINK_ADMIN, "href")
-            assert_that(admin_footer).ends_with("/admin")
+            assert_that(home.footer_admin_link_href()).ends_with("/admin")
 
     @allure.feature("Home page")
     @pytest.mark.tc("TC-UI-HOME-003")
@@ -123,11 +121,7 @@ class TestHomePage:
     @pytest.mark.req("REQ-UI-RES-02")
     def test_reservation_page_shows_calendar_and_reserve_button(self, home_page: Page):
         """TC-UI-RES-002: the reservation page loads with a calendar and a Reserve Now button."""
-        from core.pages.reservation_page import ReservationPage
-        hrefs = HomeFrontPage(home_page).book_now_hrefs()
-        assert hrefs, "precondition: no Book now links on the home page"
-        home_page.goto(hrefs[0])
-        page = ReservationPage(home_page)
+        page = HomeFrontPage(home_page).go_to_reservation()
         with soft_assertions():
             assert_that(page.calendar_visible()).is_true()
             assert_that(page.room_title()).is_not_empty()
@@ -142,11 +136,7 @@ class TestHomePage:
     @pytest.mark.req("REQ-UI-RES-02")
     def test_reservation_booking_completes_with_valid_dates(self, home_page: Page):
         """TC-UI-RES-003: select two calendar dates, fill guest details, complete reservation."""
-        from core.pages.reservation_page import ReservationPage
-        hrefs = HomeFrontPage(home_page).book_now_hrefs()
-        assert hrefs, "precondition: no Book now links on the home page"
-        home_page.goto(hrefs[0])
-        page = ReservationPage(home_page)
+        page = HomeFrontPage(home_page).go_to_reservation()
         days = page.calendar_day_locators()
         assert days, "precondition: no selectable calendar days"
         # react-big-calendar requires drag-select to pick a date range
@@ -223,7 +213,7 @@ class TestHomePageSecurity:
         errors: list[str] = []
         page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
         page.goto(_S.front_url)
-        page.locator("a.navbar-brand").wait_for(state="visible")
+        HomeFrontPage(page).wait_until_loaded()
         assert_that(errors).is_empty()
 
     @pytest.mark.tc("TC-UI-SEC-013")
@@ -239,10 +229,9 @@ class TestHomePageSecurity:
 
         page.route("**/api/room", _intercept_rooms)
         page.goto(_S.front_url)
-        page.locator("a.navbar-brand").wait_for(state="visible")
+        home = HomeFrontPage(page).wait_until_loaded()
         # No rooms means no Book now links - the page should not crash
-        page.wait_for_timeout(1500)  # let the SPA render
-        book_now_count = page.locator(HomePageLocators.ROOM_BOOK_NOW_LINKS).count()
+        book_now_count = home.book_now_count()
         # The test documents the behaviour rather than asserting a specific count,
         # because the app may show a placeholder message instead.
         assert_that(book_now_count).is_greater_than_or_equal_to(0)
