@@ -60,7 +60,7 @@ Back-end API - booking  (``test_back_api_booking.py``, ``test_api_json_schema_va
    "TC-BE-BOOK-019", "REQ-BE-BOOKING-03", "GET /booking/{id} returns the booking details", "positive", "High", "Automated", "TestBackApiBooking::test_get_booking_by_id"
 
 Back-end API - booking (advanced)  (``test_back_api_booking_advanced.py``)
-=========================================================================
+===========================================================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"
@@ -114,7 +114,7 @@ Back-end API - response time  (``test_api_performance.py``)
    "TC-BE-PERF-007", "REQ-BE-BOOKING-11", "DELETE /booking/{id} responds < 2 s", "Low", "Automated", "::test_booking_delete_response_time"
 
 Front-end API (``test_front_api_auth.py``, ``test_front_api_resources.py``, ``test_front_api_booking_flow.py``)
-=============================================================================================================
+================================================================================================================
 
 .. csv-table::
    :header: "TC", "Req", "Title", "Type", "Prio", "Status", "Node"

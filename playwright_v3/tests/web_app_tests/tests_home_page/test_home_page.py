@@ -169,7 +169,7 @@ class TestHomePageSecurity:
     """Network-level and browser-storage security checks for the public home page.
 
     Each test documents a security property from the OWASP Testing Guide
-    (OTG-CONFIG-*).  A failing test surfaces a gap - it does not mean the site
+    (``OTG-CONFIG-*``).  A failing test surfaces a gap — it does not mean the site
     is exploited.
     """
 

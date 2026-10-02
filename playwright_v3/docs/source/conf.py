@@ -45,7 +45,30 @@ source_suffix = {
 }
 
 templates_path = []
-exclude_patterns = ['_build', 'index_old.rst_']
+exclude_patterns = [
+    '_build',
+    'index_old.rst_',
+    # all_classes_and_members.rst and the autosummary-generated per-module stubs
+    # are all registered again by AutoAPI, causing duplicate-object warnings.
+    # Exclude them here and disable autosummary_generate so they are not re-created.
+    'all_classes_and_members.rst',
+    'modules_summary.rst',
+    'methods_list.rst',
+    'config.rst',
+    'core.rst',
+    'core.*.rst',
+    'resources.rst',
+    'resources.*.rst',
+    'utilities.rst',
+    'tests/tests.rst',
+    'tests/tests.*.rst',
+    'qa/_known_gaps.txt',
+]
+
+suppress_warnings = [
+    # Pydantic internal forward-reference that sphinx_autodoc_typehints cannot resolve.
+    'sphinx_autodoc_typehints.forward_reference',
+]
 locale_dirs = []     # Disable translations if not required
 
 
@@ -64,7 +87,7 @@ autoapi_type = 'python'
 autoapi_generate_api_docs = False
 autoapi_add_toctree_entry = False                   # Avoids adding entries to the main toctree
 autoapi_python_class_content = "both"               # Include both class docstring and methods
-autosummary_generate = True                         # Allow to create auto summary for project
+autosummary_generate = False                        # Stubs conflict with AutoAPI; disabled.
 
 ## Snippet for deafult configuration of autodoc
 # autodoc_default_options = {

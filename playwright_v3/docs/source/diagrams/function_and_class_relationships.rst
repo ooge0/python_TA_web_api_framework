@@ -1,5 +1,5 @@
 Function and class relationships
-===============================
+=================================
 
 This graph shows the relationships between functions and their parent classes/modules. (Simple view)
 

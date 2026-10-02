@@ -38,8 +38,9 @@
 .. _venv_docs: https://docs.python.org/3/library/venv.html
 
 .. _glossary_page:
+
 Glossary
-=============
+========
 
 .. glossary::
    :sorted:

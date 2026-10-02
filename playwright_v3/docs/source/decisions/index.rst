@@ -1,8 +1,8 @@
 .. _decisions_index:
 
-============================
+==============================
 Architecture decision records
-============================
+==============================
 
 Each non-obvious choice in this framework is recorded as a short ADR:
 context, decision, consequences.  These are not proposals — they are records

@@ -102,4 +102,3 @@ Pages in this section
    operational_notes
    project_scorecard
    episodes
-   ../tests/tests
