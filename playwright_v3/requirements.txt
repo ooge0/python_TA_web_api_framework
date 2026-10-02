@@ -58,6 +58,8 @@ faker==28.1.0
     # via -r requirements.in
 graphviz==0.20.3
     # via -r requirements.in
+greenlet==3.5.6
+    # via playwright
 h11==0.14.0
     # via wsproto
 hypothesis==6.111.2
@@ -109,6 +111,8 @@ packaging==24.1
     #   pytest
     #   rst2pdf
     #   sphinx
+playwright==1.63.0
+    # via -r requirements.in
 pillow==11.0.0
     # via reportlab
 pipdeptree==2.23.1
@@ -118,6 +122,10 @@ pluggy==1.5.0
     #   allure-python-commons
     #   pytest
     #   pytest-cov
+pyee==13.0.1
+    # via playwright
+pyhamcrest==2.1.0
+    # via -r requirements.in
 pycparser==2.22
     # via cffi
 pydantic==2.9.1
@@ -141,6 +149,10 @@ pytest==7.4.4
     #   pytest-html
     #   pytest-metadata
     #   pytest-xdist
+pytest-base-url==2.1.0
+    # via pytest-playwright
+pytest-playwright==0.9.0
+    # via -r requirements.in
 pytest-cov==7.1.0
     # via -r requirements.in
 pytest-html==4.1.1
@@ -151,6 +163,8 @@ pytest-xdist==3.6.1
     # via -r requirements.in
 python-dateutil==2.9.0.post0
     # via faker
+python-slugify==8.0.4
+    # via pytest-playwright
 pyyaml==6.0.2
     # via
     #   myst-parser
@@ -178,6 +192,8 @@ selenium==4.24.0
     # via -r requirements.in
 six==1.16.0
     # via python-dateutil
+text-unidecode==1.3
+    # via python-slugify
 smartypants==2.0.2
     # via rst2pdf
 sniffio==1.3.1
@@ -190,6 +206,8 @@ sortedcontainers==2.4.0
     # via
     #   hypothesis
     #   trio
+sphinx-autodoc-typehints==2.3.0
+    # via -r requirements.in
 sphinx==7.4.7
     # via
     #   -r requirements.in
