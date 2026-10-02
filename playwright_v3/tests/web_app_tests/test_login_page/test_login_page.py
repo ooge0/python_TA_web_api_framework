@@ -222,7 +222,7 @@ class TestAdminNavigation:
         for r in new:
             try:
                 front_room_api.delete(r.roomid, token)
-            except Exception:  # noqa: BLE001
+            except Exception:
                 pass
 
     @allure.feature("Admin rooms")
@@ -246,7 +246,7 @@ class TestAdminNavigation:
         for r in [r for r in front_room_api.list() if r.roomName == "888"]:
             try:
                 front_room_api.delete(r.roomid, token)
-            except Exception:  # noqa: BLE001
+            except Exception:
                 pass
 
     @allure.feature("Admin branding")
