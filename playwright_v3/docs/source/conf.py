@@ -68,6 +68,11 @@ exclude_patterns = [
 suppress_warnings = [
     # Pydantic internal forward-reference that sphinx_autodoc_typehints cannot resolve.
     'sphinx_autodoc_typehints.forward_reference',
+    # AutoAPI import failures: playwright and other runtime deps are not installed
+    # in the docs build environment; astroid raises ImportError when it tries to
+    # resolve those imports during static analysis.  The warning subtype in
+    # sphinx-autoapi 3.x is "not_readable" (see autoapi/_mapper.py:read_file).
+    'autoapi.not_readable',
 ]
 locale_dirs = []     # Disable translations if not required
 

@@ -159,6 +159,7 @@ jobs:
           cache: pip
           cache-dependency-path: playwright_v3/requirements.txt
       - run: pip install -r requirements.txt
+      - run: pip install playwright pytest-playwright
       - name: download junit xml (api)
         uses: actions/download-artifact@v4
         with:
