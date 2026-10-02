@@ -114,7 +114,6 @@ jobs:
         run: >
           pytest -m ui -n0
           --browser ${{ matrix.browser }}
-          --headed=false
           --junitxml=junit-ui-${{ matrix.browser }}.xml
           --alluredir=allure-results-ui-${{ matrix.browser }}
           --screenshot only-on-failure
