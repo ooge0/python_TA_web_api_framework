@@ -10,10 +10,6 @@ build:
 python:
   install:
     - requirements: playwright_v3/requirements.txt
-    - method: pip
-      packages:
-        - playwright        # Python package only (no browser binaries needed for docs build)
-        - pytest-playwright # required so autoapi can import the test modules without errors
 
 sphinx:
   configuration: playwright_v3/docs/source/conf.py

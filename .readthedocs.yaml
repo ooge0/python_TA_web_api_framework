@@ -19,10 +19,6 @@ build:
 python:
   install:
     - requirements: playwright_v3/requirements.txt
-    - method: pip
-      packages:
-        - playwright
-        - pytest-playwright
 
 sphinx:
   configuration: playwright_v3/docs/source/conf.py
