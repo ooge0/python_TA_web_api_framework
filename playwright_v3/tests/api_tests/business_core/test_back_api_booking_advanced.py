@@ -14,7 +14,10 @@ import pytest
 from assertpy2 import assert_that
 
 from config.logger_config import get_logger
-from core.data.data_models.front_api_booking_object_data_model import ApiBookingObjectPayload, BookingDates
+from core.data.data_models.front_api_booking_object_data_model import (
+    ApiBookingObjectPayload,
+    BookingDates,
+)
 
 
 @allure.epic("Back-end API")
@@ -44,7 +47,7 @@ class TestBackApiBookingConsistency:
     @pytest.mark.req("REQ-BE-BOOKING-14", "REQ-BE-BOOKING-08")
     def test_put_replaces_all_fields(self, back_booking_api, created_backend_booking):
         """PUT /booking/{id} replaces the booking; subsequent GET reflects the new data."""
-        booking_id, auth_headers, original = created_backend_booking
+        booking_id, auth_headers, _original = created_backend_booking
         token = auth_headers.get("Cookie", "").replace("token=", "")
 
         replacement = ApiBookingObjectPayload(
@@ -100,7 +103,7 @@ class TestBackApiBookingConsistency:
     @pytest.mark.req("REQ-BE-BOOKING-15", "REQ-BE-AUTH-01")
     def test_token_reuse_across_consecutive_writes(self, back_booking_api, created_backend_booking, get_back_end_token):
         """A single auth token remains valid across two consecutive write operations."""
-        booking_id, auth_headers, payload = created_backend_booking
+        booking_id, _auth_headers, payload = created_backend_booking
         token = get_back_end_token
 
         put_resp = back_booking_api.update(booking_id, payload, token)
@@ -144,7 +147,7 @@ class TestBackApiBookingDateBoundaries:
         # cleanup
         try:
             back_booking_api.delete(booking_id, get_back_end_token)
-        except Exception:  # noqa: BLE001
+        except Exception:
             pass
 
     @pytest.mark.tc("TC-BE-BOOK-026")
@@ -167,7 +170,7 @@ class TestBackApiBookingDateBoundaries:
 
         try:
             back_booking_api.delete(booking_id, get_back_end_token)
-        except Exception:  # noqa: BLE001
+        except Exception:
             pass
 
 

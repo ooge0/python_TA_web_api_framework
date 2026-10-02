@@ -120,7 +120,6 @@ def main() -> int:
         for rid in sorted(stale_gaps):
             print(f"  {rid}")
 
-    covered = len(catalogue) - len(uncovered) - len(known_gaps - stale_gaps)
     print()
     print(f"catalogue requirements : {len(catalogue)}")
     print(f"covered by a test      : {len(catalogue & set(tested))}")

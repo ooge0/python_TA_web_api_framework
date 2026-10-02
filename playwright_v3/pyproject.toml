@@ -29,6 +29,12 @@ markers = [
 # shared driver state to protect.
 
 
+[tool.ruff.lint]
+# BLE001: blind Exception catch — intentional in best-effort cleanup fixtures and
+#         page helpers where swallowing errors is the correct contract.
+# S110:   try-except-pass — same contexts; logging the exception is unnecessary there.
+ignore = ["BLE001", "S110"]
+
 [tool.coverage.run]
 source = ["core", "utilities"]
 branch = true

@@ -44,7 +44,6 @@ def generate_md_links(test_info, base_dir) -> defaultdict(list):
     md_links = defaultdict(list)  # Using defaultdict to group test names under their class/category
 
     for file_path, test_name in test_info:
-        abs_file_path = os.path.abspath(file_path)
         relative_path = f"../{file_path.split('python_TA_web_api_framework/')[1]}"
 
         # Escape special characters in the test name for MarkDown
@@ -81,7 +80,7 @@ def write_md_file(md_links, output_file):
             for link in links:
                 f.write(f"{link_count}. {link}\n")
                 link_count += 1
-            f.write(f"\n")
+            f.write("\n")
             category_count += 1
 
 

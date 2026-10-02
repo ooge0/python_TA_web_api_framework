@@ -3,23 +3,28 @@
 ``HomeFrontPage`` - the public automationintesting.online home page:
 nav bar, rooms, contact form, footer.
 """
-from typing import Dict, List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from core.locators.home_page_locators import HomePageLocators as L
 from core.pages.base_page import BasePage
+
+if TYPE_CHECKING:
+    from core.pages.reservation_page import ReservationPage
 
 
 class HomeFrontPage(BasePage):
     """Actions and reads on the home page."""
 
-    def wait_until_loaded(self) -> "HomeFrontPage":
+    def wait_until_loaded(self) -> HomeFrontPage:
         self.find(L.NAV_BRAND)
         return self
 
     def brand_text(self) -> str:
         return self.text_of(L.NAV_BRAND)
 
-    def nav_link_hrefs(self) -> Dict[str, str]:
+    def nav_link_hrefs(self) -> dict[str, str]:
         """Return ``{link text: href}`` for every nav link."""
         result = {}
         for loc in self.find_all(L.NAV_LINKS):
@@ -37,7 +42,7 @@ class HomeFrontPage(BasePage):
     def footer_present(self) -> bool:
         return self.is_visible(L.FOOTER)
 
-    def footer_link_texts(self) -> List[str]:
+    def footer_link_texts(self) -> list[str]:
         return [
             self.text_of(L.FOOTER_LINK_MARK_W),
             self.text_of(L.FOOTER_LINK_COOKIE),
@@ -45,7 +50,7 @@ class HomeFrontPage(BasePage):
             self.text_of(L.FOOTER_LINK_ADMIN),
         ]
 
-    def footer_link_hrefs(self) -> List[str]:
+    def footer_link_hrefs(self) -> list[str]:
         return [
             self.attr_of(L.FOOTER_LINK_MARK_W, "href"),
             self.attr_of(L.FOOTER_LINK_COOKIE, "href"),
@@ -55,10 +60,10 @@ class HomeFrontPage(BasePage):
 
     # ---- rooms ----
 
-    def book_now_hrefs(self) -> List[str]:
+    def book_now_hrefs(self) -> list[str]:
         return [loc.get_attribute("href") or "" for loc in self.find_all(L.ROOM_BOOK_NOW_LINKS)]
 
-    def go_to_reservation(self, index: int = 0) -> "ReservationPage":
+    def go_to_reservation(self, index: int = 0) -> ReservationPage:
         """Navigate to the reservation page at the given Book now link index."""
         from core.pages.reservation_page import ReservationPage
         hrefs = self.book_now_hrefs()
@@ -71,7 +76,7 @@ class HomeFrontPage(BasePage):
 
     # ---- contact form ----
 
-    def fill_contact_form(self, data: Dict[str, str]) -> "HomeFrontPage":
+    def fill_contact_form(self, data: dict[str, str]) -> HomeFrontPage:
         self.fill(L.CONTACT_NAME, data["name"])
         self.fill(L.CONTACT_EMAIL, data["email"])
         self.fill(L.CONTACT_PHONE, data["phone"])
@@ -79,7 +84,7 @@ class HomeFrontPage(BasePage):
         self.fill(L.CONTACT_MESSAGE, data["contact_message_details"])
         return self
 
-    def submit_contact_form(self) -> "HomeFrontPage":
+    def submit_contact_form(self) -> HomeFrontPage:
         self.click(L.CONTACT_SUBMIT)
         return self
 

@@ -52,7 +52,7 @@ class TestFrontApiReservation:
         yield booking_id, payload
         try:
             front_booking_api.delete(booking_id, front_token)
-        except Exception:  # noqa: BLE001 - best-effort cleanup
+        except Exception:
             pass
 
     @pytest.mark.tc("TC-FE-BOOK-001")
