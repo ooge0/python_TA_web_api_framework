@@ -216,11 +216,14 @@ class TestAdminNavigation:
         rooms.create_room("999", room_type="Single", price="75", features=("WiFi",))
         assert_that(rooms.room_count()).is_equal_to(before + 1)
         assert_that(rooms.room_numbers()).contains("999")
-        # API cleanup
+        # API cleanup — best-effort; the shared SUT auto-resets, so 404 is expected
         token = front_auth_api.token_for(_S.front_api_valid_creds)
         new = [r for r in front_room_api.list() if r.roomName == "999"]
         for r in new:
-            front_room_api.delete(r.roomid, token)
+            try:
+                front_room_api.delete(r.roomid, token)
+            except Exception:  # noqa: BLE001
+                pass
 
     @allure.feature("Admin rooms")
     @pytest.mark.xfail(
@@ -239,9 +242,12 @@ class TestAdminNavigation:
         before = rooms_page.room_count()
         rooms_page.delete_last_room()
         assert_that(rooms_page.room_count()).is_equal_to(before - 1)
-        # API cleanup for any leftovers
+        # API cleanup for any leftovers — best-effort, SUT auto-reset may 404
         for r in [r for r in front_room_api.list() if r.roomName == "888"]:
-            front_room_api.delete(r.roomid, token)
+            try:
+                front_room_api.delete(r.roomid, token)
+            except Exception:  # noqa: BLE001
+                pass
 
     @allure.feature("Admin branding")
     @pytest.mark.tc("TC-UI-BRAND-001")
