@@ -177,6 +177,8 @@ jobs:
           name: ui-test-reports-chromium
           path: playwright_v3/resources/test_report/
         continue-on-error: true
+      - name: install graphviz
+        run: sudo apt-get install -y graphviz
       - name: generate test results rst
         run: python -m utilities._devtools.generate_test_results_rst
         continue-on-error: true
@@ -213,13 +215,14 @@ jobs:
           name: allure-results-ui-chromium
           path: allure-results/
         continue-on-error: true
+      - name: install allure CLI
+        run: |
+          curl -sLo allure.tgz https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          tar -xzf allure.tgz
       - name: generate allure report
-        uses: simple-elf/allure-report-action@v1.9
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
+        run: allure-2.27.0/bin/allure generate allure-results -o allure-report --clean
       - name: upload allure report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: allure-history/
+          path: allure-report/
