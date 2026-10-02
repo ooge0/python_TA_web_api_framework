@@ -1,6 +1,5 @@
 # /core/api/services/room_api.py
 """Platform ``/api/room`` service (restful-booker-platform)."""
-from typing import List, Optional
 
 from core.api.services.base_service import BaseApi
 from core.data.data_models.front_api_room_details_data_models import FrontRoomDetails
@@ -11,7 +10,7 @@ class RoomApi(BaseApi):
 
     endpoint = "/api/room"
 
-    def list(self) -> List[FrontRoomDetails]:
+    def list(self) -> list[FrontRoomDetails]:
         rooms = self.client.get(self.endpoint).json().get("rooms", [])
         return [FrontRoomDetails.model_validate(r) for r in rooms]
 

@@ -11,8 +11,6 @@ page's locator module.  They are passed directly to ``page.locator()``.
 """
 from __future__ import annotations
 
-from typing import List
-
 from playwright.sync_api import Locator, Page, expect
 
 from config.logger_config import get_logger
@@ -40,7 +38,7 @@ class BasePage:
         loc.first.wait_for(state="visible", timeout=timeout)
         return loc
 
-    def find_all(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> List[Locator]:
+    def find_all(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> list[Locator]:
         """Wait until at least one match is present and return the locator list."""
         loc = self.page.locator(selector)
         loc.first.wait_for(state="attached", timeout=timeout)
@@ -81,23 +79,23 @@ class BasePage:
 
     # ----------------------------------------------------------------- actions
 
-    def open(self, url: str) -> "BasePage":
+    def open(self, url: str) -> BasePage:
         self.page.goto(url)
         return self
 
-    def click(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> "BasePage":
+    def click(self, selector: str, timeout: int = DEFAULT_TIMEOUT) -> BasePage:
         """Wait for the element to be enabled, then click it."""
         self.page.locator(selector).click(timeout=timeout)
         return self
 
     def fill(self, selector: str, text: str,
-             timeout: int = DEFAULT_TIMEOUT) -> "BasePage":
+             timeout: int = DEFAULT_TIMEOUT) -> BasePage:
         """Clear the field and type ``text`` into it."""
         self.page.locator(selector).fill(text, timeout=timeout)
         return self
 
     def select_option(self, selector: str, value: str,
-                      timeout: int = DEFAULT_TIMEOUT) -> "BasePage":
+                      timeout: int = DEFAULT_TIMEOUT) -> BasePage:
         """Select a ``<select>`` option by visible text."""
         self.page.locator(selector).select_option(label=value, timeout=timeout)
         return self

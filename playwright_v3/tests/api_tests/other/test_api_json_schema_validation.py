@@ -7,7 +7,10 @@ import pytest
 from assertpy2 import assert_that
 
 from config.logger_config import get_logger
-from core.data.json_schemas.booking_schema import BOOKING_SCHEMA_MAIN, BOOKING_SCHEMA_SECONDARY
+from core.data.json_schemas.booking_schema import (
+    BOOKING_SCHEMA_MAIN,
+    BOOKING_SCHEMA_SECONDARY,
+)
 from utilities.api_utils import validate_json
 
 

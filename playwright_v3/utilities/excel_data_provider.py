@@ -7,7 +7,6 @@ retrieve user credentials from an Excel sheet, both valid and invalid,
 and supports data retrieval by index.
 """
 
-from typing import List, Tuple
 
 import openpyxl
 
@@ -26,7 +25,7 @@ class ExcelDataProvider:
         self.file_path = file_path
         self.logger = get_logger()
 
-    def get_data(self, sheet_name: str, flag: bool) -> List[Tuple[str, str]]:
+    def get_data(self, sheet_name: str, flag: bool) -> list[tuple[str, str]]:
         """
         Extracts a set of user credentials from the specified Excel sheet.
 
@@ -46,7 +45,7 @@ class ExcelDataProvider:
         self.logger.info(f"Retrieved test data from Excel file: {data}")
         return data
 
-    def get_valid_data(self, sheet_name: str) -> List[Tuple[str, str]]:
+    def get_valid_data(self, sheet_name: str) -> list[tuple[str, str]]:
         """
         Retrieves valid test data from the specified Excel sheet.
 
@@ -58,7 +57,7 @@ class ExcelDataProvider:
         """
         return self.get_data(sheet_name, True)
 
-    def get_invalid_data(self, sheet_name: str) -> List[Tuple[str, str]]:
+    def get_invalid_data(self, sheet_name: str) -> list[tuple[str, str]]:
         """
         Retrieves invalid test data from the specified Excel sheet.
 
@@ -70,7 +69,7 @@ class ExcelDataProvider:
         """
         return self.get_data(sheet_name, False)
 
-    def get_data_by_index(self, data: List[Tuple[str, str]], index: int) -> Tuple[str, str]:
+    def get_data_by_index(self, data: list[tuple[str, str]], index: int) -> tuple[str, str]:
         """
         Retrieves data from the provided list by index.
 

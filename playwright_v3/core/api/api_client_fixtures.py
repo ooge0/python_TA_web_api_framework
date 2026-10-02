@@ -13,7 +13,13 @@ from core.api.backend_api_points import BackEndPoints
 from core.api.frontend_api_points import FrontEndPoints
 from core.api.services.auth_api import AuthApi
 from core.api.services.booking_api import BookingApi
-from core.api.services.room_api import BrandingApi, MessageApi, PlatformBookingApi, ReportApi, RoomApi
+from core.api.services.room_api import (
+    BrandingApi,
+    MessageApi,
+    PlatformBookingApi,
+    ReportApi,
+    RoomApi,
+)
 
 # --------------------------------------------------------------------------- #
 # clients

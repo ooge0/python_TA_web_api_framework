@@ -6,7 +6,7 @@ Pydantic models for a booking payload / response.
 callers keep working; the flattening for the wire format (``bookingdates`` inline,
 ``additionalneeds`` as a plain string) lives in ``to_dict``.
 """
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
@@ -27,13 +27,13 @@ class ApiBookingObjectPayload(BaseModel):
     lastname: str = ""
     totalprice: int = 0
     # the API accepts a bool or the string "true"/"false"; responses use a bool
-    depositpaid: Union[bool, str] = False
+    depositpaid: bool | str = False
     bookingdates: BookingDates = BookingDates()
     additionalneeds: str = ""
-    bookingid: Optional[int] = None
+    bookingid: int | None = None
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any], is_response: bool = False) -> "ApiBookingObjectPayload":
+    def from_dict(cls, data: dict[str, Any], is_response: bool = False) -> "ApiBookingObjectPayload":
         """
         Build an instance from a dict.
 
@@ -61,9 +61,9 @@ class ApiBookingObjectPayload(BaseModel):
             bookingid=bookingid,
         )
 
-    def to_dict(self, include_id: bool = False) -> Dict[str, Any]:
+    def to_dict(self, include_id: bool = False) -> dict[str, Any]:
         """Flatten to the wire format the API expects."""
-        data: Dict[str, Any] = {
+        data: dict[str, Any] = {
             "firstname": self.firstname,
             "lastname": self.lastname,
             "totalprice": self.totalprice,

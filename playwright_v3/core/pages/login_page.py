@@ -2,10 +2,10 @@
 """
 ``LoginAdminPage`` - the ``/admin`` login form and the post-login navbar.
 """
-from typing import List
 
-from core.locators.login_page_locators import AdminNavLocators as NAV, LoginPageLocators as L
-from core.pages.base_page import BasePage, SHORT_TIMEOUT
+from core.locators.login_page_locators import AdminNavLocators as NAV
+from core.locators.login_page_locators import LoginPageLocators as L
+from core.pages.base_page import BasePage
 
 
 class LoginAdminPage(BasePage):
@@ -39,7 +39,7 @@ class LoginAdminPage(BasePage):
     def brand_text(self) -> str:
         return self.text_of(NAV.BRAND)
 
-    def nav_link_texts(self) -> List[str]:
+    def nav_link_texts(self) -> list[str]:
         return [loc.inner_text().strip() for loc in self.find_all(NAV.NAV_LINKS)]
 
     def logout(self) -> "LoginAdminPage":

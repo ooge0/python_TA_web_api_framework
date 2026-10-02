@@ -2,7 +2,6 @@
 import pytest
 from playwright.sync_api import Page
 
-from config.settings import get_settings
 from core.pages.login_page import LoginAdminPage
 
 

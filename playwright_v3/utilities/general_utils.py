@@ -23,8 +23,7 @@ class GeneralUtils:
         try:
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, 'w') as f:
-                for test_name in test_list:
-                    f.write(test_name + '\n')
+                f.writelines(test_name + '\n' for test_name in test_list)
             self.logger.info(f"Test names written to {file_path}")
         except Exception as e:
             self.logger.error(f"Error creating or writing to file: {e}")

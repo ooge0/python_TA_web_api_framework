@@ -1,10 +1,11 @@
 # /core/api/services/booking_api.py
 """Back-end ``/booking`` service (restful-booker)."""
-from typing import Optional
 
 from core.api.services.base_service import BaseApi
-from core.data.data_models.front_api_booking_object_data_model import ApiBookingObjectPayload
 from core.data.data_models.front_api_booking_id_list_data_model import BookingIdList
+from core.data.data_models.front_api_booking_object_data_model import (
+    ApiBookingObjectPayload,
+)
 
 
 class BookingApi(BaseApi):
@@ -14,11 +15,11 @@ class BookingApi(BaseApi):
 
     # ---- reads ----
 
-    def list_ids(self, headers: Optional[dict] = None) -> BookingIdList:
+    def list_ids(self, headers: dict | None = None) -> BookingIdList:
         resp = self.client.get(self.endpoint, headers=headers or {"Content-Type": "application/json"})
         return BookingIdList.from_list(resp.json())
 
-    def find(self, *, firstname: Optional[str] = None, lastname: Optional[str] = None) -> BookingIdList:
+    def find(self, *, firstname: str | None = None, lastname: str | None = None) -> BookingIdList:
         """``GET /booking?firstname=&lastname=`` - the name filter."""
         params = {k: v for k, v in (("firstname", firstname), ("lastname", lastname)) if v is not None}
         resp = self.client.get(self.endpoint, headers={"Content-Type": "application/json"}, params=params)
@@ -30,7 +31,7 @@ class BookingApi(BaseApi):
 
     # ---- writes ----
 
-    def create(self, payload: ApiBookingObjectPayload, headers: Optional[dict] = None):
+    def create(self, payload: ApiBookingObjectPayload, headers: dict | None = None):
         return self.client.post(self.endpoint,
                                 headers=headers or {"Content-Type": "application/json"},
                                 json=payload.to_dict())
@@ -46,6 +47,6 @@ class BookingApi(BaseApi):
         return self.client.patch(f"{self.endpoint}/{booking_id}",
                                  headers=self.cookie_headers(token), json=changes)
 
-    def delete(self, booking_id: int, token: Optional[str] = None):
+    def delete(self, booking_id: int, token: str | None = None):
         headers = self.cookie_headers(token) if token else None
         return self.client.delete(f"{self.endpoint}/{booking_id}", headers=headers)

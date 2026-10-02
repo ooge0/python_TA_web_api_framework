@@ -1,7 +1,7 @@
 # /core/pages/reservation_page.py
 """``ReservationPage`` - the ``/reservation/{id}`` room-booking page with calendar."""
 from core.locators.home_page_locators import ReservationPageLocators as L
-from core.pages.base_page import BasePage, DEFAULT_TIMEOUT
+from core.pages.base_page import DEFAULT_TIMEOUT, BasePage
 
 
 class ReservationPage(BasePage):

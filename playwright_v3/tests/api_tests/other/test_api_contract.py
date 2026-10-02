@@ -19,7 +19,6 @@ from core.data.json_schemas.booking_schema import (
     AUTH_SUCCESS_SCHEMA,
     BOOKING_ID_ITEM_SCHEMA,
     BOOKING_OBJECT_SCHEMA,
-    BOOKING_SCHEMA_MAIN,
 )
 from utilities.api_utils import validate_json
 

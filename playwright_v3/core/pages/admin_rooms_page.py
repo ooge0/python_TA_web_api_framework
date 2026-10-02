@@ -1,9 +1,8 @@
 # /core/pages/admin_rooms_page.py
 """``AdminRoomsFrontPage`` - the ``/admin/rooms`` management page."""
-from typing import List
 
 from core.locators.login_page_locators import AdminRoomsLocators as L
-from core.pages.base_page import BasePage, DEFAULT_TIMEOUT
+from core.pages.base_page import DEFAULT_TIMEOUT, BasePage
 
 
 class AdminRoomsFrontPage(BasePage):
@@ -16,7 +15,7 @@ class AdminRoomsFrontPage(BasePage):
     def room_count(self) -> int:
         return self.page.locator(L.ROOM_ROWS).count()
 
-    def room_numbers(self) -> List[str]:
+    def room_numbers(self) -> list[str]:
         """Return the room-number text from the first line of every row."""
         rows = self.find_all(L.ROOM_ROWS)
         return [row.inner_text().split("\n", 1)[0].strip() for row in rows]

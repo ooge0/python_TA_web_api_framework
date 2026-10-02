@@ -1,7 +1,7 @@
-import sys
-import os
-import inspect
 import importlib
+import inspect
+import os
+import sys
 
 # Add project root directory to PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

@@ -10,7 +10,7 @@ This class offers methods to:
   - Log API requests and responses.
 """
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any
+from typing import Any
 
 import requests
 
@@ -22,7 +22,7 @@ DEFAULT_TIMEOUT = 30  # seconds
 _SENSITIVE_KEYS = {"password", "token", "authorization", "cookie", "set-cookie", "proxy-authorization"}
 
 
-def _redact(data: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+def _redact(data: dict[str, Any] | None) -> dict[str, Any] | None:
     """Return a copy of ``data`` with sensitive values replaced by ``'***'``."""
     if not isinstance(data, dict):
         return data
@@ -50,8 +50,8 @@ class APIClient:
     timeout: int = DEFAULT_TIMEOUT
     logger = get_logger()
 
-    def _request(self, method: str, endpoint: str, headers: Optional[Dict[str, str]] = None,
-                 json: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def _request(self, method: str, endpoint: str, headers: dict[str, str] | None = None,
+                 json: dict[str, Any] | None = None, params: dict[str, Any] | None = None) -> requests.Response:
         """
         Method to execute API requests with parameters for method, endpoint, headers, JSON body, and query parameters.
 
@@ -82,27 +82,27 @@ class APIClient:
                               f"(headers={_redact(headers)} json={_redact(json)} params={params})")
             raise
 
-    def get(self, endpoint: str, headers: Optional[Dict[str, str]] = None,
-            params: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def get(self, endpoint: str, headers: dict[str, str] | None = None,
+            params: dict[str, Any] | None = None) -> requests.Response:
         """ GET API call execution with query parameters."""
         return self._request('get', endpoint, headers=headers, params=params)
 
-    def post(self, endpoint: str, headers: Optional[Dict[str, str]] = None,
-             json: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def post(self, endpoint: str, headers: dict[str, str] | None = None,
+             json: dict[str, Any] | None = None) -> requests.Response:
         """ POST API call execution with JSON body."""
         return self._request('post', endpoint, headers=headers, json=json)
 
-    def put(self, endpoint: str, headers: Optional[Dict[str, str]] = None,
-            json: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def put(self, endpoint: str, headers: dict[str, str] | None = None,
+            json: dict[str, Any] | None = None) -> requests.Response:
         """ PUT API call execution with JSON body."""
         return self._request('put', endpoint, headers=headers, json=json)
 
-    def patch(self, endpoint: str, headers: Optional[Dict[str, str]] = None,
-              json: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def patch(self, endpoint: str, headers: dict[str, str] | None = None,
+              json: dict[str, Any] | None = None) -> requests.Response:
         """ PATCH API call execution with JSON body."""
         return self._request('patch', endpoint, headers=headers, json=json)
 
-    def delete(self, endpoint: str, headers: Optional[Dict[str, str]] = None,
-               params: Optional[Dict[str, Any]] = None) -> requests.Response:
+    def delete(self, endpoint: str, headers: dict[str, str] | None = None,
+               params: dict[str, Any] | None = None) -> requests.Response:
         """ DELETE API call execution with query parameters."""
         return self._request('delete', endpoint, headers=headers, params=params)
