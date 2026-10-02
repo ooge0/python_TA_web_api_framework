@@ -1,20 +1,15 @@
-# .readthedocs.yaml
 version: 2
 
-# Specify the OS and Python environment explicitly
 build:
-  commands:
-    - cp -r docs/html $READTHEDOCS_OUTPUT/html/
-  os: ubuntu-20.04
+  os: ubuntu-22.04
   tools:
     python: "3.12"
+  apt_packages:
+    - graphviz
 
-# Skip the project install
 python:
   install:
-    - requirements: docs/requirements.txt  # Optional if you have specific doc requirements
+    - requirements: selenium_v2/requirements.txt
 
-# Set the documentation type to 'sphinx' and serve from the pre-built HTML folder
 sphinx:
-  builder: dirhtml  # Ensures directory-style HTML output if needed
-  configuration: false  # Disables re-building Sphinx; just serves HTML files
+  configuration: selenium_v2/docs/source/conf.py

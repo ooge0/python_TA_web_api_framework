@@ -1,20 +1,28 @@
-# .readthedocs.yaml
+# Root-level config — used ONLY by the ReadTheDocs project whose
+# "Configuration file" is left at the default (repo root).
+# Both active docs sites use their own subfolder config instead:
+#   playwright_v3 site → playwright_v3/.readthedocs.yaml
+#   selenium_v2 site  → selenium_v2/.readthedocs.yaml
+#
+# This file is kept so RTD does not reject the repo on import.
+# Point any new RTD project at the appropriate subfolder config above.
+
 version: 2
 
-# Specify the OS and Python environment explicitly
 build:
-  commands:
-    - cp -r playwright_v3/docs/html $READTHEDOCS_OUTPUT/html/
-  os: ubuntu-20.04
+  os: ubuntu-22.04
   tools:
     python: "3.12"
+  apt_packages:
+    - graphviz
 
-# Skip the project install
 python:
   install:
-    - requirements: playwright_v3/docs/requirements.txt
+    - requirements: playwright_v3/requirements.txt
+    - method: pip
+      packages:
+        - playwright
+        - pytest-playwright
 
-# Set the documentation type to 'sphinx' and serve from the pre-built HTML folder
 sphinx:
-  builder: dirhtml  # Ensures directory-style HTML output if needed
-  configuration: false  # Disables re-building Sphinx; just serves HTML files
+  configuration: playwright_v3/docs/source/conf.py
